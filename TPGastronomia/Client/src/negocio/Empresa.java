@@ -1,6 +1,7 @@
 package negocio;
 
 import exceptions.ContrasenaIncorrecta_Exception;
+import exceptions.NoExisteOperario_Exception;
 import exceptions.UserNameIncorrecto_Exception;
 
 import exceptions.UserNameRepetido_Exception;
@@ -16,7 +17,9 @@ import modelo.Mesa;
 import modelo.Mozo;
 import modelo.Operario;
 import modelo.Producto;
-
+/**
+ * Clase Singleton que representa a la empresa gastronomica.
+ */
 public class Empresa {
     
     private String nombre;
@@ -56,6 +59,28 @@ public class Empresa {
     
     public Operario login(String userName,String password)throws UserNameIncorrecto_Exception,ContrasenaIncorrecta_Exception {return null;}
     
+    /**
+     * Metodo para modificar algun atributo del operario en cuestion.
+     * Pre: El campo NyA debe ser distinto de null y distinto de vacio.
+     * Pre: El campo userName debe ser distinto de null y distinto de vacio.
+     * Pre: El campo password debe ser distinto de null y distinto de vacio.
+     * Pre: El campo activo debe ser distinto de null y distinto de vacio.
+     * @param operario
+     * @param NyA
+     * @param userName
+     * @param password
+     * @param activo
+     * @throws UserNameRepetido_Exception si el nombre de usuario ingresado esta asociado a otra cuenta.
+     */
     public void modificaOperario (Operario operario, String NyA, String userName, String password, boolean activo) throws UserNameRepetido_Exception {}
+    
+    /**
+     * Metodo para eliminar un operario del sistema. <br>
+     * Pre: El operario debe ser dsitinto de null o vacio. <br>
+     * Post: Se elimina el operario del sistema.
+     * @param operario
+     * @throws NoExisteOperario_Exception si no esta registrado el operario en el sistema.
+     */
+    public void eliminaOperario (Operario operario)throws NoExisteOperario_Exception{}
     
 }
