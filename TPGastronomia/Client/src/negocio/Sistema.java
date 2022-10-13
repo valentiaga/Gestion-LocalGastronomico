@@ -15,6 +15,9 @@ import java.util.Map;
 
 import modelo.Mesa;
 import modelo.Mozo;
+
+import modelo.Mozo.estado;
+
 import modelo.Operario;
 import modelo.Producto;
 import modelo.Sueldo;
@@ -23,6 +26,10 @@ import modelo.Sueldo;
  * Clase Singleton que representa a la empresa gastronomica.
  */
 public class Sistema {
+    
+//    enum Estado{activo,
+//                deFranco,
+//                ausente}
     
     private String nombre;
     private ArrayList<Mozo> mozos; 
@@ -107,5 +114,17 @@ public class Sistema {
      * @throws NoExisteOperario_Exception si no esta registrado el operario en el sistema.
      */
     public void eliminaOperario (Operario operario)throws NoExisteOperario_Exception{}
+    
+    public void agregaMozo(Mozo mozo){}
+    
+    public void modificaMozo(Mozo mozo){}
+    
+    public void modificaMozo(String NyA){}
+    
+    public void modificaMozo(int cantHijos){}
+    
+   // public void modificaMozo(Estado estado){}
+    
+    public void eliminaMozo(Mozo mozo){}
     
 }
