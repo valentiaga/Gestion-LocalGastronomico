@@ -1,9 +1,10 @@
 package excepciones;
 
 public class NoExisteOperario_Exception extends Exception {
+	private String userName;
 
-    public NoExisteOperario_Exception(String string) {
-        // TODO Implement this method
-        super(string);
-    }
+	public NoExisteOperario_Exception(String userName) {
+		super();
+		this.userName = userName;
+	}
 }

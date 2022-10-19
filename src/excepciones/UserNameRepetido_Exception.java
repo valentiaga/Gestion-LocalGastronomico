@@ -1,9 +1,11 @@
 package excepciones;
 
 public class UserNameRepetido_Exception extends Exception {
-	   
-    public UserNameRepetido_Exception(String string) {
-        super(string);
-    }
+	private String userName;
+
+	public UserNameRepetido_Exception(String userName) {
+		super();
+		this.userName = userName;
+	}
 
 }

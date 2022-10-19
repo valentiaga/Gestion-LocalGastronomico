@@ -1,13 +1,12 @@
 package negocio;
 
-import java.util.ArrayList;
 import java.util.GregorianCalendar;
 import java.util.HashMap;
-import java.util.Map;
 
 import excepciones.ContrasenaIncorrecta_Exception;
 import excepciones.NoExisteMozo_Exception;
 import excepciones.NoExisteOperario_Exception;
+import excepciones.NyAExistente_Exception;
 import excepciones.UserNameIncorrecto_Exception;
 import excepciones.UserNameRepetido_Exception;
 import modelo.Estado;
@@ -25,7 +24,7 @@ public class Sistema {
     private HashMap<String,Mozo> mozos = new HashMap<>(); 
     private HashMap<Integer,Producto> productos = new HashMap<Integer,Producto>();
     private HashMap<String,Operario> operarios = new HashMap<String, Operario>();
-    private ArrayList<Mesa> mesas = new ArrayList<Mesa>(); 
+    private HashMap<Integer,Mesa> mesas = new HashMap<Integer,Mesa>(); 
     private static Sistema instance = null;
     private Sueldo sueldo;
     
@@ -96,7 +95,7 @@ public class Sistema {
     public void eliminaOperario (String userName)throws NoExisteOperario_Exception{}
     
 
-    public void agregaMozo(String NyA, GregorianCalendar fecha, int cantHijos, Estado estado){}
+    public void agregaMozo(String NyA, GregorianCalendar fecha, int cantHijos, Estado estado) throws NyAExistente_Exception{}
 
 
     public void modificaMozoNyA(String NyA, String newNyA){}
@@ -108,6 +107,22 @@ public class Sistema {
     public void modificaMozoEstado(String NyA, Estado estado){}
     
     public void eliminaMozo(String NyA) throws NoExisteMozo_Exception {}
+    
+    public void agregaProducto(String nombre, double precioCosto, double precioVenta, int stockInicial) {}
+    
+    public void modificaProductoNombre(int id, String nombre) {}
+    
+    public void modificaProductoPrecioCosto(int id, double precioCosto) {}
+    
+    public void modificaProductoPrecioVenta(int id, double precioVenta) {}
+    
+    public void modificaProductoStockInicial(int id, int stockInicial) {}
+    
+    public void agregaMesa(int cantSillas, boolean libre) {}
+    
+    public void modificaMesaCantSillas(int nroMesa, int cantSillas) {}
+    
+    public void modificaMesaEstado(int nroMesa, boolean libre) {}
     
     
 }
