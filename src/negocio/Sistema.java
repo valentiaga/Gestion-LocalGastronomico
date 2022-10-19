@@ -22,10 +22,10 @@ import modelo.Sueldo;
  */
 public class Sistema {
     
-    private HashMap<String,Mozo> mozos; 
-    private HashMap<Integer,Producto> productos;
-    private HashMap<String,Operario> operarios;
-    private ArrayList<Mesa> mesas; 
+    private HashMap<String,Mozo> mozos = new HashMap<>(); 
+    private HashMap<Integer,Producto> productos = new HashMap<Integer,Producto>();
+    private HashMap<String,Operario> operarios = new HashMap<String, Operario>();
+    private ArrayList<Mesa> mesas = new ArrayList<Mesa>(); 
     private static Sistema instance = null;
     private Sueldo sueldo;
     
@@ -35,7 +35,7 @@ public class Sistema {
         return instance;
     }
 
-/**
+    /**
      * Metodo que configura los datos basicos de funcionamiento de local. <br>
      * @param nombre 
      * @param mozos
@@ -44,6 +44,7 @@ public class Sistema {
      * @param mesas
      * @param map
      */
+    /*
     public void configuraLocal(String nombre, ArrayList<Mozo> mozos, ArrayList<Producto> productos, ArrayList<Operario> operarios,
                    ArrayList<Mesa> mesas,Map<String, String> map,Sueldo sueldo) {
         this.nombre = nombre;
@@ -54,6 +55,7 @@ public class Sistema {
         this.map = map;
         this.sueldo = sueldo;
     }
+    */
     
     
     /**
