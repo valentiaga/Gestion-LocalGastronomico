@@ -4,7 +4,7 @@ public class PromocionProd
 {
     private int idProm;
     private Producto producto;
-    private String diasPromo;
+    private Enumerados.diasDePromo diasPromo;
     private boolean aplica2x1;
     private boolean aplicaDtoPorCant;
     private int DtoPorCant_CantMinima;

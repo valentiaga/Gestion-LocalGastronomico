@@ -9,11 +9,12 @@ import excepciones.NoExisteOperario_Exception;
 import excepciones.NyAExistente_Exception;
 import excepciones.UserNameIncorrecto_Exception;
 import excepciones.UserNameRepetido_Exception;
-import modelo.Estado;
+import modelo.Enumerados;
 import modelo.Mesa;
 import modelo.Mozo;
 import modelo.Operario;
 import modelo.Producto;
+import modelo.PromocionProd;
 import modelo.Sueldo;
 
 /**
@@ -25,6 +26,8 @@ public class Sistema {
     private HashMap<Integer,Producto> productos = new HashMap<Integer,Producto>();
     private HashMap<String,Operario> operarios = new HashMap<String, Operario>();
     private HashMap<Integer,Mesa> mesas = new HashMap<Integer,Mesa>(); 
+    private HashMap<Integer, PromocionProd> promocionProds = new HashMap<Integer, PromocionProd>();
+    private Operario operarioActual;
     private static Sistema instance = null;
     private Sueldo sueldo;
     
@@ -95,7 +98,7 @@ public class Sistema {
     public void eliminaOperario (String userName)throws NoExisteOperario_Exception{}
     
 
-    public void agregaMozo(String NyA, GregorianCalendar fecha, int cantHijos, Estado estado) throws NyAExistente_Exception{}
+    public void agregaMozo(String NyA, GregorianCalendar fecha, int cantHijos, Enumerados.estadoMozo estado) throws NyAExistente_Exception{}
 
 
     public void modificaMozoNyA(String NyA, String newNyA){}
@@ -104,7 +107,7 @@ public class Sistema {
     public void modificaMozoCantHijos(String NyA, int cantHijos){}
     
 
-    public void modificaMozoEstado(String NyA, Estado estado){}
+    public void modificaMozoEstado(String NyA, Enumerados.estadoMozo estado){}
     
     public void eliminaMozo(String NyA) throws NoExisteMozo_Exception {}
     
@@ -124,5 +127,11 @@ public class Sistema {
     
     public void modificaMesaEstado(int nroMesa, boolean libre) {}
     
+    public void agregaProductoPromo(int idProm, int idProd, Enumerados.diasDePromo dia, boolean aplica2x1, boolean aplicaDtoPorCantidad, int dtoPorCantidad_CantMinima, double dtoPorCantidad_PrecioUnitario, boolean activa) {}
     
+    public void modificaProductoPromo(int idProm, boolean activa) { /* solo activa o desactiva la promo */}
+    
+    public void eliminaProductoPromo(int idProm) {}
+    
+
 }
