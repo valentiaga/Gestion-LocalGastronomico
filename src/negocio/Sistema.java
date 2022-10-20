@@ -109,13 +109,13 @@ public class Sistema {
 	 * @throws UserNameRepetido_Exception Se lanza si el nuevo nombre de usuario ya
 	 *                                    existe en el sistema.
 	 */
-	public void modificaOperario(String NyA, String userName, String password, boolean activo)
-			throws UserNameRepetido_Exception {
+	public void modificaOperario(String NyA, String userName, String password, boolean activo) throws UserNameRepetido_Exception {
+				
 		// llamamos al operario actual y modificamos a ese
 		// El estado se modifica?
 	}
 
-	public void eliminaOperario() { // consideramos que el operario puede eliminarse por sí mismo al igual que puede
+	public void eliminaOperario() { // consideramos que el operario puede eliminarse por sï¿½ mismo al igual que puede
 									// eliminarlo el admin.
 		// se llama al actual y se lo elimina
 	}
