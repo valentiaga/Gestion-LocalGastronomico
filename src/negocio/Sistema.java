@@ -161,10 +161,19 @@ public class Sistema {
     public void agregaProductoPromo(int idProd, Enumerados.diasDePromo dia, boolean aplica2x1, boolean aplicaDtoPorCantidad, int dtoPorCantidad_CantMinima, double dtoPorCantidad_PrecioUnitario, boolean activa) throws PromoIdRepetido_Exception {}
     
     
-    public void modificaProductoPromo(int idProm, boolean activa) { /* solo activa o desactiva la promo */}
-    
-    
-    public void eliminaProductoPromo(int idProm) {}
+    /**
+        * metodo para modificar el estado de una promo.<br>
+         * @param idProm identificador de la promo. <br>
+         * @param activa estado de la promo. <br>
+         */
+
+        public void modificaProductoPromo(int idProm, boolean activa) { /* solo activa o desactiva la promo */}
+
+        /**
+         * metodo que elimina la promo. <br>
+         * @param idProm identificador de la promo. <br>
+         */
+        public void eliminaProductoPromo(int idProm) {}
     
     
     
