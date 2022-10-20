@@ -1,12 +1,21 @@
+/*
+ * Los estados de mozo y operario los maneja cada uno al final del dia o el sistema / admin??
+ * Si esta en el contrato lo consideramos como una precondicion? Por lo tanto no lanzamos excepcion (producto)
+ * 
+ */
+
 package negocio;
 
 import java.util.GregorianCalendar;
 import java.util.HashMap;
 
 import excepciones.ContrasenaIncorrecta_Exception;
+import excepciones.NoExisteID_Exception;
+import excepciones.NoExisteMesa_Exception;
 import excepciones.NoExisteMozo_Exception;
 import excepciones.NoExisteOperario_Exception;
 import excepciones.NyAExistente_Exception;
+import excepciones.PromoIdRepetido_Exception;
 import excepciones.UserNameIncorrecto_Exception;
 import excepciones.UserNameRepetido_Exception;
 import modelo.Enumerados;
@@ -84,54 +93,125 @@ public class Sistema {
     
     public Operario login(String userName,String password)throws UserNameIncorrecto_Exception,ContrasenaIncorrecta_Exception {return null;}
     
+    
+    /**
+     * metodo utilizado para modificar el o los campos de Operario que se deseen.
+     * @param NyA nombre y apellido nuevo.
+     * @param userName nuevo nombre de usuario.
+     * @param password nueva contrasenia.
+     * @param activo nuevo estado del Operario.
+     * @throws UserNameRepetido_Exception Se lanza si el nuevo nombre de usuario ya existe en el sistema.
+     */
+    public void modificaOperario (String NyA, String userName, String password, boolean activo) throws UserNameRepetido_Exception 
+    {
+        //llamamos al operario actual y modificamos a ese
+        //El estado se modifica?
+    }
+    
+    
+    public void eliminaOperario (){ //consideramos que el operario puede eliminarse por sí mismo al igual que puede eliminarlo el admin.
+        //se llama al actual y se lo elimina
+    }
+    
+    /**
+     * metodo para modificar el/los atributos del mozo que se desee/n.
+     * @param NyA nombre y apellido nuevo.
+     * @param cantHijos nueva cantidad de hijos.
+     * @param mozo que se desea modificar.
+     */
+    public void modificaMozo (Mozo mozo, String NyA, int cantHijos){ //el estado lo modifica el o el sistema??
+        //el estado se modifica?
+    }
+
+    /**
+     * metodo para modificar el/los atributos que se deseen del producto.
+     * @param id correspondiente al producto. <br>
+     * @param nombre nuevo nombre del producto. <br>
+     * @param precioCosto nuevo precio de costo. <br>
+     * @param precioVenta nuevo precio de venta. <br>
+     * @param stockInicial nuevo stock inicial. <br>
+     * @throws NoExisteID_Exception Se lanza si el ID ingresado no esta relacionado a ningun producto del sistema.
+     */
+    public void modificaProducto (int id, String nombre, double precioCosto, double precioVenta, int stockInicial) throws NoExisteID_Exception{}
  
-    public void modificaOperarioNyA (String userName, String NyA){}
+ 
+ /**
+     * metodo para modificar el/los atributos que se deseen de la mesa.
+     * @param nroMesa ID de mesa. <br>
+     * @param cantSillas cantidad de personas que ocuparan la mesa. <br>
+     * @param libre estado de la mesa. <br>
+     * @throws NoExisteMesa_Exception Se lanza si el ID no corresponde con ninguna mesa cargada en el sistema. 
+     */
+    public void modificaMesa (int nroMesa, int cantSillas, boolean libre)throws NoExisteMesa_Exception{} //tira excepcion de no existe mesa? O vamos a tener un mapa de mesas 
     
-    public void modificaOperarioUsername (String userName, String newUserName) throws UserNameRepetido_Exception {}
     
-    public void modificaOperarioPassword (String userName, String password){}
+    /**
+     * metodo para agregar un nuevo producto en promo al menu. <br>
+     * Pre: El producto debe ser distinto de null. <br>
+     * Pre: La promo aplica2x1 y 
+     * @param idProd ID del producto al que se le aplica la promo. <br>
+     * @param dia de la semana en el que estara disponible la promo. <br>
+     * @param aplica2x1 tipo de descuento. <br>
+     * @param aplicaDtoPorCantidad tipo de descuento. <br>
+     * @param dtoPorCantidad_CantMinima tipo de descuento. <br>
+     * @param dtoPorCantidad_PrecioUnitario tipo de descuento. <br>
+     * @param activa determina si esta activa o no en el momento actual. <br>
+     * @throws PromoIdRepetido_Exception Se lanza si se intenta asignar un identificador de promo existente. <br>
+     */
+    public void agregaProductoPromo(int idProd, Enumerados.diasDePromo dia, boolean aplica2x1, boolean aplicaDtoPorCantidad, int dtoPorCantidad_CantMinima, double dtoPorCantidad_PrecioUnitario, boolean activa) throws PromoIdRepetido_Exception {}
     
-    public void modificaOperarioEstado (String userName, boolean activo){}
+    
+    public void modificaProductoPromo(int idProm, boolean activa) { /* solo activa o desactiva la promo */}
+    
+    
+    public void eliminaProductoPromo(int idProm) {}
+    
+    
+    
+    
+    
+   /* /** 
+     * metodo utilizado para modificar el Nombre y Apellido de un Operario.<br>
+     * @param userName perteneciente al nombre de usuario del Operario que se desea modificar. <br>
+     * @param NyA nombre y apellido nuevo. <br>
+     */
+  //  public void modificaOperarioNyA (String userName, String NyA){} 
+    
+   /* /**
+     * metodo utilizado para modificar el nomrbe de usuario de un Operario existente.<br>
+     * @param userName perteneciente al nombre de usuario del Operario que se desea modificar. <br>
+     * @param newUserName nuevo nombre de usuario. <br>
+     * @throws UserNameRepetido_Exception Se lanza si el nuevo nombre de usuario ya existe en el sistema. <br>
+     */
+   // public void modificaOperarioUsername (String userName, String newUserName) throws UserNameRepetido_Exception {}
+    
+    
+  //  public void modificaOperarioPassword (String userName, String password){}
+    
+    
+   // public void modificaOperarioEstado (String userName, boolean activo){}
     
 
 
-    public void eliminaOperario (String userName)throws NoExisteOperario_Exception{}
-    
-
-    public void agregaMozo(String NyA, GregorianCalendar fecha, int cantHijos, Enumerados.estadoMozo estado) throws NyAExistente_Exception{}
-
-
-    public void modificaMozoNyA(String NyA, String newNyA){}
+   /* public void modificaMozoNyA(String NyA, String newNyA){}
 
 
     public void modificaMozoCantHijos(String NyA, int cantHijos){}
     
 
     public void modificaMozoEstado(String NyA, Enumerados.estadoMozo estado){}
-    
-    public void eliminaMozo(String NyA) throws NoExisteMozo_Exception {}
-    
-    public void agregaProducto(String nombre, double precioCosto, double precioVenta, int stockInicial) {}
-    
+
+
     public void modificaProductoNombre(int id, String nombre) {}
+    
     
     public void modificaProductoPrecioCosto(int id, double precioCosto) {}
     
+    
     public void modificaProductoPrecioVenta(int id, double precioVenta) {}
     
+    
     public void modificaProductoStockInicial(int id, int stockInicial) {}
+    */
     
-    public void agregaMesa(int cantSillas, boolean libre) {}
-    
-    public void modificaMesaCantSillas(int nroMesa, int cantSillas) {}
-    
-    public void modificaMesaEstado(int nroMesa, boolean libre) {}
-    
-    public void agregaProductoPromo(int idProm, int idProd, Enumerados.diasDePromo dia, boolean aplica2x1, boolean aplicaDtoPorCantidad, int dtoPorCantidad_CantMinima, double dtoPorCantidad_PrecioUnitario, boolean activa) {}
-    
-    public void modificaProductoPromo(int idProm, boolean activa) { /* solo activa o desactiva la promo */}
-    
-    public void eliminaProductoPromo(int idProm) {}
-    
-
 }
