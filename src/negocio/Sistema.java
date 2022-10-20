@@ -174,53 +174,6 @@ public class Sistema {
          * @param idProm identificador de la promo. <br>
          */
         public void eliminaProductoPromo(int idProm) {}
-    
-    
-    
-    
-    
-   /* /** 
-     * metodo utilizado para modificar el Nombre y Apellido de un Operario.<br>
-     * @param userName perteneciente al nombre de usuario del Operario que se desea modificar. <br>
-     * @param NyA nombre y apellido nuevo. <br>
-     */
-  //  public void modificaOperarioNyA (String userName, String NyA){} 
-    
-   /* /**
-     * metodo utilizado para modificar el nomrbe de usuario de un Operario existente.<br>
-     * @param userName perteneciente al nombre de usuario del Operario que se desea modificar. <br>
-     * @param newUserName nuevo nombre de usuario. <br>
-     * @throws UserNameRepetido_Exception Se lanza si el nuevo nombre de usuario ya existe en el sistema. <br>
-     */
-   // public void modificaOperarioUsername (String userName, String newUserName) throws UserNameRepetido_Exception {}
-    
-    
-  //  public void modificaOperarioPassword (String userName, String password){}
-    
-    
-   // public void modificaOperarioEstado (String userName, boolean activo){}
-    
-
-
-   /* public void modificaMozoNyA(String NyA, String newNyA){}
-
-
-    public void modificaMozoCantHijos(String NyA, int cantHijos){}
-    
-
-    public void modificaMozoEstado(String NyA, Enumerados.estadoMozo estado){}
-
-
-    public void modificaProductoNombre(int id, String nombre) {}
-    
-    
-    public void modificaProductoPrecioCosto(int id, double precioCosto) {}
-    
-    
-    public void modificaProductoPrecioVenta(int id, double precioVenta) {}
-    
-    
-    public void modificaProductoStockInicial(int id, int stockInicial) {}
-    */
+ 
     
 }
