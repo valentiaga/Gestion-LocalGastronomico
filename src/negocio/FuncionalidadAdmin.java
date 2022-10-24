@@ -8,9 +8,9 @@ import excepciones.NyAExistente_Exception;
 import modelo.Enumerados;
 import modelo.Operario;
 
-public class GestionAdmin extends GestionOperarios {
+public class FuncionalidadAdmin extends FuncionalidadOperarios {
 
-	public GestionAdmin(Operario operario) {
+	public FuncionalidadAdmin(Operario operario) {
 		super(operario);
 	}
 

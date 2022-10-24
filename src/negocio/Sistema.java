@@ -6,6 +6,7 @@
 
 package negocio;
 
+import java.util.ArrayList;
 import java.util.GregorianCalendar;
 import java.util.HashMap;
 
@@ -19,12 +20,14 @@ import excepciones.PromoIdRepetido_Exception;
 import excepciones.UserNameIncorrecto_Exception;
 import excepciones.UserNameRepetido_Exception;
 import modelo.Cerveceria;
+import modelo.Comanda;
 import modelo.Enumerados;
 import modelo.Mesa;
 import modelo.Mozo;
 import modelo.Operario;
 import modelo.Producto;
 import modelo.PromocionProd;
+import modelo.PromocionTemporal;
 import modelo.Sueldo;
 
 /**
@@ -53,9 +56,11 @@ public class Sistema {
 	private HashMap<String, Operario> operarios = Cerveceria.getInstance().getOperarios();
 	private HashMap<Integer, Mesa> mesas = Cerveceria.getInstance().getMesas();
 	private HashMap<Integer, PromocionProd> promocionProds = Cerveceria.getInstance().getPromocionProds();
+	private ArrayList<Comanda> comandas = Cerveceria.getInstance().getComandas();
+	private HashMap<String, PromocionTemporal> promocionTemp = Cerveceria.getInstance().getPromocionTemp();
 	private Operario operarioActual;
 	private static Sistema instance = null;
-	private Sueldo sueldo;		//ESTO ACA ESTA RAROOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOO
+	//private Sueldo sueldo;		//ESTO ACA ESTA RAROOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOO, hay que volarlo y explicar que usamos el metodo y atributo de la CLASE
 
 	public static Sistema getInstance() {
 		if (instance == null)
@@ -108,7 +113,7 @@ public class Sistema {
 	 * @throws ContrasenaIncorrecta_Exception
 	 */
 
-	public GestionOperarios login(String userName, String password)
+	public FuncionalidadOperarios login(String userName, String password)
 			throws UserNameIncorrecto_Exception, ContrasenaIncorrecta_Exception {
 		return null;
 	}

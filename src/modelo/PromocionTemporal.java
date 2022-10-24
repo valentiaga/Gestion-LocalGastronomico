@@ -10,4 +10,10 @@ public class PromocionTemporal extends Promocion
     //private Enumerados.diasDePromo diasDePromo;
     //private boolean activo;
     private boolean esAcumulable;
+    
+    
+	public int getPorcentajeDesc() {
+		return porcentajeDesc;
+	}
+    
 }

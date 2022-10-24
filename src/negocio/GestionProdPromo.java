@@ -17,5 +17,8 @@ public class GestionProdPromo {
 		return null;
 	}
 	
-	
+	 public double calculaDescuento(PromocionProd promocionProd) {
+		 return 0;
+	 }
+	 
 }

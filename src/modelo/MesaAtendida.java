@@ -9,7 +9,7 @@ public class MesaAtendida {
 	private Mesa mesa;
 	private ArrayList<Pedido> pedidos = new ArrayList<Pedido>();
 	private double total;
-	private Enumerados.formaDePago formaDePago;
+	private Enumerados.formaDePago formaDePago;							// hay que elegir la forma de pago por ventana cuando se cierra la mesa
 	private ArrayList<Promocion> promociones = new ArrayList<Promocion>();
 	
 	

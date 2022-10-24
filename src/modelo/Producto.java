@@ -9,4 +9,10 @@ public class Producto
     private double precioVenta;
     private int stockInicial;
 
+    
+    /**
+     * el producto no puede ser nulo
+	 * aplicaDosPorUno y aplicaDtoPorCantidad no pueden ser false ambos al mismo tiempo (ya que no habría promo)
+
+     */
 }
