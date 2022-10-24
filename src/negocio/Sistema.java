@@ -18,6 +18,7 @@ import excepciones.NyAExistente_Exception;
 import excepciones.PromoIdRepetido_Exception;
 import excepciones.UserNameIncorrecto_Exception;
 import excepciones.UserNameRepetido_Exception;
+import modelo.Cerveceria;
 import modelo.Enumerados;
 import modelo.Mesa;
 import modelo.Mozo;
@@ -28,19 +29,35 @@ import modelo.Sueldo;
 
 /**
  * Clase Singleton que representa a la empresa gastronomica.
+ * mozos:
+ * 			Key   -> Nya
+ * 			Value -> Mozo
+ * productos: 
+ * 			Key   -> id del producto
+ * 			Value -> Producto
+ * operarios:
+ * 			Key   -> userNamer
+ * 			Value -> Operario
+ * mesas:
+ * 			Key   -> numero de mesa
+ * 			Value -> Mesa
+ * promocionProds:
+ * 			Key   -> idProm
+ * 			Value -> PromocionProd
  */
-public class Sistema {
 
-	private HashMap<String, Mozo> mozos = new HashMap<>();
-	private HashMap<Integer, Producto> productos = new HashMap<Integer, Producto>();
-	private HashMap<String, Operario> operarios = new HashMap<String, Operario>();
-	private HashMap<Integer, Mesa> mesas = new HashMap<Integer, Mesa>();
-	private HashMap<Integer, PromocionProd> promocionProds = new HashMap<Integer, PromocionProd>();
+public class Sistema {
+	
+	private HashMap<String, Mozo> mozos = Cerveceria.getInstance().getMozos();
+	private HashMap<Integer, Producto> productos = Cerveceria.getInstance().getProductos();	
+	private HashMap<String, Operario> operarios = Cerveceria.getInstance().getOperarios();
+	private HashMap<Integer, Mesa> mesas = Cerveceria.getInstance().getMesas();
+	private HashMap<Integer, PromocionProd> promocionProds = Cerveceria.getInstance().getPromocionProds();
 	private Operario operarioActual;
 	private static Sistema instance = null;
-	private Sueldo sueldo;
+	private Sueldo sueldo;		//ESTO ACA ESTA RAROOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOO
 
-	public Sistema getInstance() {
+	public static Sistema getInstance() {
 		if (instance == null)
 			instance = new Sistema();
 		return instance;
@@ -56,7 +73,11 @@ public class Sistema {
 	 * @param mesas
 	 * @param map
 	 */
-	/*
+	
+	// SI HAY METODOS PARA METER COSAS A LOS ARRAYS, HACEMOS SETERS PARA LOS DEMAS Y VOLAMOS ESTE METODO
+	
+	
+	/*		
 	 * public void configuraLocal(String nombre, ArrayList<Mozo> mozos,
 	 * ArrayList<Producto> productos, ArrayList<Operario> operarios, ArrayList<Mesa>
 	 * mesas,Map<String, String> map,Sueldo sueldo) { this.nombre = nombre;
@@ -112,6 +133,7 @@ public class Sistema {
 	public void modificaOperario(String NyA, String userName, String password, boolean activo) throws UserNameRepetido_Exception {
 				
 		// llamamos al operario actual y modificamos a ese
+		// se delega a la Clase Operario
 		// El estado se modifica?
 	}
 
@@ -143,8 +165,7 @@ public class Sistema {
 	 *                              a ningun producto del sistema.
 	 */
 	public void modificaProducto(int id, String nombre, double precioCosto, double precioVenta, int stockInicial)
-			throws NoExisteID_Exception {
-	}
+			throws NoExisteID_Exception {}
 
 	/**
 	 * metodo para modificar el/los atributos que se deseen de la mesa.
@@ -180,7 +201,8 @@ public class Sistema {
 			boolean aplicaDtoPorCantidad, int dtoPorCantidad_CantMinima, double dtoPorCantidad_PrecioUnitario,
 			boolean activa) throws PromoIdRepetido_Exception {
 	}
-
+	
+	
 	/**
 	 * metodo para modificar el estado de una promo.<br>
 	 * 
@@ -196,7 +218,18 @@ public class Sistema {
 	 * 
 	 * @param idProm identificador de la promo. <br>
 	 */
-	public void eliminaProductoPromo(int idProm) {
-	}
+	public void eliminaProductoPromo(int idProm) {}
+	
+	// estaba en admin
+	 public void agregaMozo(String NyA, GregorianCalendar fecha, int cantHijos, Enumerados.estadoMozo estado) throws NyAExistente_Exception{}
+	 public void eliminaMozo(String NyA) throws NoExisteMozo_Exception {}
+	 public void eliminaOperario (String userName)throws NoExisteOperario_Exception{}
+	 public void agregaProducto(String nombre, double precioCosto, double precioVenta, int stockInicial) {}
+	 public void agregaMesa(int cantSillas, boolean libre) {}
+	 //
+	 
+	 
+	 public void eliminaProducto(int idProd) {}
+	 public void eliminaMesa(int numeroMesa) {}
 
 }

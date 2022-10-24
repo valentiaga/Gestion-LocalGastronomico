@@ -5,7 +5,7 @@ public class Sueldo
     private double remBasic;
     
     /**
-     *  Metodo que calcula el sueldo final de cada mozo. <br>
+     *  Metodo que calcula el sueldo final de cada mozo,remuneración básica: 5% más por cada hijo. <br>
      * @param cantHijos del mozo. <br>
      * @return double sueldo final del mozo. <br>
      */

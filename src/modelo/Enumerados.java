@@ -19,5 +19,24 @@ public class Enumerados
 		SABADO,
 		DOMINGO;
 	}
+	
+	public enum estadoComanda
+	{
+		ABIERTO,
+		CERRADO;
+	}
+	
+	public enum estadoMesa
+	{
+		LIBRE,
+		OCUPADA;
+	}
+	public enum formaDePago
+	{
+		EFECTIVO,
+		TARJETA,
+		MERCPAGO,
+		CTADNI;
+	}
 }
 

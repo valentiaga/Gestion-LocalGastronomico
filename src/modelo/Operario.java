@@ -9,8 +9,10 @@ public class Operario
     private String password;
     private boolean activo;
 
-    
-    
+   
     public void modificaOperario(String NyA, String userName, String password, boolean activo){}
+    
+    // Al comienzo de la jornada, el operario asignará a cada mozo las mesas que le correspondan
+    //public void asignaMesas(Mozo mozo, Mesa mesa) {}
     
 }
