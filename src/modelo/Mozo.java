@@ -1,5 +1,6 @@
 package modelo;
 
+import java.util.ArrayList;
 import java.util.GregorianCalendar;
 
 public class Mozo
@@ -8,7 +9,8 @@ public class Mozo
 	private String NyA;
 	private GregorianCalendar fecha;
 	private int cantHijos;
-	
+	private ArrayList <MesaAtendida> mesasAtendidas;
+	private double sueldo;
 
     /**
      * Constructor de cada mozo. <br>
@@ -22,6 +24,8 @@ public class Mozo
         this.NyA = NyA;
         this.fecha = new GregorianCalendar(); //setear fecha actual
         this.cantHijos = cantHijos;
+        this.mesasAtendidas = new ArrayList<MesaAtendida>();
+        this.sueldo =  Sueldo.calculaSueldo(cantHijos);
     }
 
 }

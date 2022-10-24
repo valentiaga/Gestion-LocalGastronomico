@@ -13,6 +13,8 @@ public class Cerveceria {
 	private HashMap<Integer, Mesa> mesas = new HashMap<Integer, Mesa>();
 	private HashMap<Integer, PromocionProd> promocionProds = new HashMap<Integer, PromocionProd>();
 	private static Cerveceria instance = null;
+	private String usuarioAdministrador="ADMIN";
+	private String codigoAdministrador = "ADMIN1234";
 	
 	public static Cerveceria getInstance() {
 		if (instance == null)

@@ -11,4 +11,18 @@ public class MesaAtendida {
 	private double total;
 	private Enumerados.formaDePago formaDePago;
 	private ArrayList<Promocion> promociones = new ArrayList<Promocion>();
+	
+	
+	public MesaAtendida(GregorianCalendar fecha, Mesa mesa, ArrayList<Pedido> pedidos, double total,
+			modelo.Enumerados.formaDePago formaDePago, ArrayList<Promocion> promociones) {
+		super();
+		this.fecha = fecha;
+		this.mesa = mesa;
+		this.pedidos = pedidos;
+		this.total = total;
+		this.formaDePago = formaDePago;
+		this.promociones = promociones;
+	}
+	
+	
 }
