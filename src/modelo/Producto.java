@@ -8,7 +8,37 @@ public class Producto
     private double precioCosto;
     private double precioVenta;
     private int stockInicial;
+    
+	public Producto( String nombre, double precioCosto, double precioVenta, int stockInicial) {
+		super();
+		this.idProd = siguienteIdProd++;
+		this.nombre = nombre;
+		this.precioCosto = precioCosto;
+		this.precioVenta = precioVenta;
+		this.stockInicial = stockInicial;
+	}
 
+	public int getIdProd() {
+		return idProd;
+	}
+
+	public String getNombre() {
+		return nombre;
+	}
+
+	public double getPrecioCosto() {
+		return precioCosto;
+	}
+
+	public double getPrecioVenta() {
+		return precioVenta;
+	}
+
+	public int getStockInicial() {
+		return stockInicial;
+	}
+
+    
     
     /**
      * el producto no puede ser nulo

@@ -12,11 +12,11 @@ import modelo.Mozo;
 import modelo.Operario;
 import modelo.PromocionTemporal;
 
-public class FuncionalidadOperarios {
+public class FuncionalidadOperario {
 
 	private Operario operario;
 
-	public FuncionalidadOperarios(Operario operario) {
+	public FuncionalidadOperario(Operario operario) {
 		super();
 		this.operario = operario;
 	}

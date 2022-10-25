@@ -2,43 +2,81 @@ package negocio;
 
 import java.util.GregorianCalendar;
 
+
 import excepciones.NoExisteMozo_Exception;
 import excepciones.NoExisteOperario_Exception;
-import excepciones.NyAExistente_Exception;
+import excepciones.UserNameRepetido_Exception;
+import excepciones.precioInvalido_Exception;
+import excepciones.prodEnUso_Exception;
 import modelo.Enumerados;
+import modelo.Mesa;
+import modelo.Mozo;
 import modelo.Operario;
+import modelo.Producto;
 
-public class FuncionalidadAdmin extends FuncionalidadOperarios {
+public class FuncionalidadAdmin extends FuncionalidadOperario {
 
 	public FuncionalidadAdmin(Operario operario) {
 		super(operario);
 	}
 
-	public void agregaMozo(String NyA, GregorianCalendar fecha, int cantHijos, Enumerados.estadoMozo estado)
-			throws NyAExistente_Exception {
+	public void agregaMozo(String NyA, GregorianCalendar fecha, int cantHijos, Enumerados.estadoMozo estado) {
+		Sistema.getInstance().getMozos().put(NyA, new Mozo(NyA,cantHijos));
 	}
 
-	public void eliminaMozo(String NyA) throws NoExisteMozo_Exception {
-	}
-
-	public void agregaOperario (String NyA, String userName, String password) {
-		
-	}
-	public void eliminaOperario(String userName) throws NoExisteOperario_Exception {
-	}
-
-	public void agregaProducto(String nombre, double precioCosto, double precioVenta, int stockInicial) {
-	}
-
-	public void eliminaProducto(int idProd) {
-		
+	public void eliminaMozo(String NyA){				
+		Sistema.getInstance().getMozos().remove(NyA);
 	}
 	
-	public void agregaMesa(int cantSillas, boolean libre) {
+	/**
+	 * Metodo que registra un nuevo operario en el sistema. <br>
+	 * Post: Agrega un nuevo operario al HashMap
+	 * 
+	 * @param NyA      atributo correspondiente al nombre y apellido del operario
+	 *                 que desea registrarse. <br>
+	 * @param userName atributo correspondiente al nombre de usuario que usara el
+	 *                 operario para el login. <br>
+	 * @param password atributo que representa la contrasena y que corresponde al
+	 *                 userName. <br>
+	 * @throws UserNameRepetido_Exception si el nombre de usuario ingresado esta
+	 *                                    asociado a otra cuenta.
+	 */
+	
+	public void registraOperario (String NyA, String userName, String password) throws UserNameRepetido_Exception{
+		if(Sistema.getInstance().getOperariosRegistrados().putIfAbsent(userName, new Operario(NyA,userName,password,true)) != null)	// si ya estaba registrado tiramos excepcion????
+			throw new UserNameRepetido_Exception("El userName '"+userName+"' ya esta asociado a un operario.");
 	}
 	
-	public void eliminaMesa(int numeroMesa) {
+	public void eliminaOperario(String userName){
+		Sistema.getInstance().getOperariosRegistrados().remove(userName);
+	}
+
+	public void agregaProducto(String nombre, double precioCosto, double precioVenta, int stockInicial) throws precioInvalido_Exception{
 		
+		if(precioVenta < precioCosto) 
+			throw new precioInvalido_Exception("El precio de venta debe ser mayor o igual al costo.");
+		else
+			if(precioVenta < 0 || precioCosto < 0) 
+				throw new precioInvalido_Exception("Ninguno de los precios puede ser negativo.");
+			
+		Producto producto = new Producto(nombre,precioCosto,precioVenta,stockInicial);
+		Sistema.getInstance().getProductos().put(producto.getIdProd(), producto);
+			
+	}
+
+	public void eliminaProducto(int idProd) throws prodEnUso_Exception {
+		
+		if(GestionComandas.contieneProd(idProd) == true)
+			throw new prodEnUso_Exception("El producto esta en una comanda activa, no puede ser eliminado");
+	}
+	
+	public void agregaMesa(int cantSillas) {
+		Mesa mesa = new Mesa(cantSillas);
+		Sistema.getInstance().getMesas().put(mesa.getNroMesa(), mesa);
+	}
+	
+	public void eliminaMesa(int nroMesa) {
+		Sistema.getInstance().getMesas().remove(nroMesa);
 	}
 
 }

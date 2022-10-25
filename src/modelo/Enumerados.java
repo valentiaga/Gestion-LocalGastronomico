@@ -38,5 +38,10 @@ public class Enumerados
 		MERCPAGO,
 		CTADNI;
 	}
+	
+	public enum tipoDeUsuario{
+		ADMINISTRADO,
+		OPERARIO;
+	}
 }
 

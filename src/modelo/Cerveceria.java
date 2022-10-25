@@ -1,20 +1,22 @@
 package modelo;
 
+
 import java.util.ArrayList;
 import java.util.HashMap;
 
 import negocio.Sistema;
 
+
 public class Cerveceria {
 
-	
 	private HashMap<String, Mozo> mozos = new HashMap<>();
 	private HashMap<Integer, Producto> productos = new HashMap<Integer, Producto>();	
-	private HashMap<String, Operario> operarios = new HashMap<String, Operario>();
+	private HashMap<String, Operario> operariosRegistrados = new HashMap<String, Operario>();
 	private HashMap<Integer, Mesa> mesas = new HashMap<Integer, Mesa>();
 	private HashMap<Integer, PromocionProd> promocionProds = new HashMap<Integer, PromocionProd>();
 	private HashMap<String, PromocionTemporal> promocionTemp = new HashMap<String, PromocionTemporal>();
 	private ArrayList<Comanda> comandas = new ArrayList<Comanda>();
+	private HashMap<String, String> contrasena = new HashMap<String, String>();
 	private static Cerveceria instance = null;
 	private String usuarioAdministrador="ADMIN";
 	private String codigoAdministrador = "ADMIN1234";
@@ -34,7 +36,7 @@ public class Cerveceria {
 	}
 
 	public HashMap<String, Operario> getOperarios() {
-		return operarios;
+		return operariosRegistrados;
 	}
 
 	public HashMap<Integer, Mesa> getMesas() {
@@ -51,6 +53,10 @@ public class Cerveceria {
 
 	public HashMap<String, PromocionTemporal> getPromocionTemp() {
 		return promocionTemp;
+	}
+
+	public HashMap<String, String> getContrasena() {
+		return contrasena;
 	}
 	
 	

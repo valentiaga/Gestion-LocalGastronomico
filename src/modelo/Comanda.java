@@ -10,4 +10,18 @@ public class Comanda
     private Mesa mesa;
     private ArrayList<Pedido> pedidos;
     private Enumerados.estadoComanda estado;
+    
+	public GregorianCalendar getFecha() {
+		return fecha;
+	}
+	public Mesa getMesa() {
+		return mesa;
+	}
+	public ArrayList<Pedido> getPedidos() {
+		return pedidos;
+	}
+	public Enumerados.estadoComanda getEstado() {
+		return estado;
+	}
+    
 }

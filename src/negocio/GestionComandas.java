@@ -1,12 +1,13 @@
 package negocio;
 
+import java.util.ArrayList;
+
 import modelo.Comanda;
+import modelo.Producto;
 
 public class GestionComandas {
 	
-	private Comanda comanda;
-
-	
+	private static ArrayList<Comanda> comandas = Sistema.getInstance().getComandas();
 	/**
 	 * No es posible crear una nueva comanda si el local
 	no tiene mesas habilitadas
@@ -21,10 +22,20 @@ public class GestionComandas {
 	 * @param comanda
 	 */
 	
-	public GestionComandas(Comanda comanda) {
-		super();
-		this.comanda = comanda;
+	public static boolean contieneProd(int idProd) {
+		
+		boolean bool = false;
+		int i = 0,j = 0;
+		
+		while( bool == false && i < comandas.size() ) {
+			while(bool == false && j < comandas.get(i).getPedidos().size()) {
+				if(comandas.get(i).getPedidos().get(i).getProducto().getIdProd() == idProd)
+					bool = true;
+				j++;
+			}
+			i++;
+		}
+		return bool;
 	}
-	
 	
 }

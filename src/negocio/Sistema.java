@@ -7,6 +7,7 @@
 package negocio;
 
 import java.util.ArrayList;
+
 import java.util.GregorianCalendar;
 import java.util.HashMap;
 
@@ -15,7 +16,6 @@ import excepciones.NoExisteID_Exception;
 import excepciones.NoExisteMesa_Exception;
 import excepciones.NoExisteMozo_Exception;
 import excepciones.NoExisteOperario_Exception;
-import excepciones.NyAExistente_Exception;
 import excepciones.PromoIdRepetido_Exception;
 import excepciones.UserNameIncorrecto_Exception;
 import excepciones.UserNameRepetido_Exception;
@@ -31,74 +31,94 @@ import modelo.PromocionTemporal;
 import modelo.Sueldo;
 
 /**
- * Clase Singleton que representa a la empresa gastronomica.
- * mozos:
- * 			Key   -> Nya
- * 			Value -> Mozo
- * productos: 
- * 			Key   -> id del producto
- * 			Value -> Producto
- * operarios:
- * 			Key   -> userNamer
- * 			Value -> Operario
- * mesas:
- * 			Key   -> numero de mesa
- * 			Value -> Mesa
- * promocionProds:
- * 			Key   -> idProm
- * 			Value -> PromocionProd
+ * Clase Singleton que representa a la empresa gastronomica. mozos: Key -> Nya
+ * Value -> Mozo productos: Key -> id del producto Value -> Producto operarios:
+ * Key -> userNamer Value -> Operario mesas: Key -> numero de mesa Value -> Mesa
+ * promocionProds: Key -> idProm Value -> PromocionProd
  */
 
 public class Sistema {
-	
+
 	private HashMap<String, Mozo> mozos = Cerveceria.getInstance().getMozos();
-	private HashMap<Integer, Producto> productos = Cerveceria.getInstance().getProductos();	
-	private HashMap<String, Operario> operarios = Cerveceria.getInstance().getOperarios();
+	private HashMap<Integer, Producto> productos = Cerveceria.getInstance().getProductos();
+	private HashMap<String, Operario> operariosRegistrados = Cerveceria.getInstance().getOperarios();	// operariosRegistrados
 	private HashMap<Integer, Mesa> mesas = Cerveceria.getInstance().getMesas();
 	private HashMap<Integer, PromocionProd> promocionProds = Cerveceria.getInstance().getPromocionProds();
 	private ArrayList<Comanda> comandas = Cerveceria.getInstance().getComandas();
 	private HashMap<String, PromocionTemporal> promocionTemp = Cerveceria.getInstance().getPromocionTemp();
-	private Operario operarioActual;
+	private HashMap<String, String> contrasena = Cerveceria.getInstance().getContrasena();
+	//private Operario operarioActual;
+	private FuncionalidadOperario funcionalidadOperario;
+	//private boolean esAdmin;
 	private static Sistema instance = null;
-	//private Sueldo sueldo;		//ESTO ACA ESTA RAROOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOO, hay que volarlo y explicar que usamos el metodo y atributo de la CLASE
+	
+	// private Sueldo sueldo; //ESTO ACA ESTA
+	// RAROOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOO, hay que volarlo y explicar que
+	// usamos el metodo y atributo de la CLASE
 
 	public static Sistema getInstance() {
 		if (instance == null)
 			instance = new Sistema();
 		return instance;
 	}
-
 	
+	
+//	public Operario getOperarioActual() {
+//		return operarioActual;
+//	}
+//
+//	public void setOperarioActual(Operario operarioActual) {
+//		this.operarioActual = operarioActual;
+//	}
 
-	public Operario getOperarioActual() {
-		return operarioActual;
+	public HashMap<String, Mozo> getMozos() {
+		return mozos;
 	}
 
 
-
-	public void setOperarioActual(Operario operarioActual) {
-		this.operarioActual = operarioActual;
+	public HashMap<Integer, Producto> getProductos() {
+		return productos;
 	}
 
 
-
-	/**
-	 * Metodo que registra un nuevo operario en el sistema. <br>
-	 * Post: Agrega un nuevo operario al HashMap
-	 * 
-	 * @param NyA      atributo correspondiente al nombre y apellido del operario
-	 *                 que desea registrarse. <br>
-	 * @param userName atributo correspondiente al nombre de usuario que usara el
-	 *                 operario para el login. <br>
-	 * @param password atributo que representa la contrasena y que corresponde al
-	 *                 userName. <br>
-	 * @throws UserNameRepetido_Exception si el nombre de usuario ingresado esta
-	 *                                    asociado a otra cuenta.
-	 */
-	public void registro(String NyA, String userName, String password) throws UserNameRepetido_Exception {
-		//delegar a admin si es un operario
+	public HashMap<String, Operario> getOperariosRegistrados() {
+		return operariosRegistrados;
 	}
 
+
+	public HashMap<Integer, Mesa> getMesas() {
+		return mesas;
+	}
+
+
+	public HashMap<Integer, PromocionProd> getPromocionProds() {
+		return promocionProds;
+	}
+
+
+	public ArrayList<Comanda> getComandas() {
+		return comandas;
+	}
+
+
+	public HashMap<String, PromocionTemporal> getPromocionTemp() {
+		return promocionTemp;
+	}
+
+
+	public HashMap<String, String> getContrasena() {
+		return contrasena;
+	}
+
+
+	public FuncionalidadOperario getFuncionalidadOperario() {
+		return funcionalidadOperario;
+	}
+
+	public void setFuncionalidadOperario(FuncionalidadOperario funcionalidadOperario) {
+		this.funcionalidadOperario = funcionalidadOperario;
+	}
+	
 	/**
 	 * metodo para logear un operario. <br>
 	 * Pre: El operario debe estar activo <br>
@@ -113,17 +133,27 @@ public class Sistema {
 	 * @throws ContrasenaIncorrecta_Exception
 	 */
 
-	public FuncionalidadOperarios login(String userName, String password)
+//	public FuncionalidadOperario login(String userName, String password)
+//			throws UserNameIncorrecto_Exception, ContrasenaIncorrecta_Exception {
+	
+	public void login(String userName, String password)
 			throws UserNameIncorrecto_Exception, ContrasenaIncorrecta_Exception {
-		return null;
+		
+		if(this.operariosRegistrados.containsKey(userName)) {
+			Operario operario = this.operariosRegistrados.get(userName);
+			if(operario.verificaPassword(password) == true) {
+				//this.operarioActual = operario;										// podriamos tener solo funcionalidad, porque tiene el operario
+				this.funcionalidadOperario = new FuncionalidadOperario(operario);
+			}
+			else {	
+				throw new ContrasenaIncorrecta_Exception("Contrasena incorrecta.");
+			}
+		}
+		else {
+			throw new UserNameIncorrecto_Exception("El usuario '"+userName+"' no se encuentra registrado en el sistema.");
+		}
 	}
+	
 
-	
-	
-	
-	
-	
-	 
-	 
 
 }
