@@ -1,10 +1,13 @@
 package negocio;
 
+import java.time.LocalDate;
+import java.time.Month;
+import java.time.temporal.ChronoUnit;
+import java.util.Calendar;
 import java.util.GregorianCalendar;
 
-
-import excepciones.NoExisteMozo_Exception;
-import excepciones.NoExisteOperario_Exception;
+import excepciones.CantHijosInvalida_Exception;
+import excepciones.EdadInvalida_Exception;
 import excepciones.UserNameRepetido_Exception;
 import excepciones.precioInvalido_Exception;
 import excepciones.prodEnUso_Exception;
@@ -20,7 +23,15 @@ public class FuncionalidadAdmin extends FuncionalidadOperario {
 		super(operario);
 	}
 
-	public void agregaMozo(String NyA, GregorianCalendar fecha, int cantHijos, Enumerados.estadoMozo estado) {
+	public void agregaMozo(String NyA, GregorianCalendar fechaNacimiento, int cantHijos, Enumerados.estadoMozo estado) throws EdadInvalida_Exception, CantHijosInvalida_Exception {
+		LocalDate today = LocalDate.now();
+        LocalDate fechaNac = LocalDate.of(fechaNacimiento.get(Calendar.YEAR), fechaNacimiento.get(Calendar.MONTH), fechaNacimiento.get(Calendar.DAY_OF_MONTH));
+        long edad = ChronoUnit.YEARS.between(fechaNac, today);
+       
+		if (edad < 18)
+			throw new EdadInvalida_Exception("Debe ser mayor de 18 anios.");
+		if (cantHijos<0)
+			throw new CantHijosInvalida_Exception("Ingrese una cantidad de hijos valida.");
 		Sistema.getInstance().getMozos().put(NyA, new Mozo(NyA,cantHijos));
 	}
 

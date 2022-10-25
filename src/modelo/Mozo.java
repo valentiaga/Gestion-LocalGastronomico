@@ -28,4 +28,18 @@ public class Mozo
         this.sueldo =  Sueldo.calculaSueldo(cantHijos);
     }
 
+	public void setEstado(Enumerados.estadoMozo estado) {
+		this.estado = estado;
+	}
+
+	public void setNyA(String nyA) {
+		NyA = nyA;
+	}
+
+	public void setCantHijos(int cantHijos) {
+		this.cantHijos = cantHijos;
+	}
+    
+    
+
 }

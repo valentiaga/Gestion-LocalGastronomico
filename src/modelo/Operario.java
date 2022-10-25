@@ -25,4 +25,37 @@ public class Operario
     public boolean verificaPassword(String password) {
 		return password == this.password;
 	}
+
+	public void setNyA(String nyA) {
+		NyA = nyA;
+	}
+
+	public void setUserName(String userName) {
+		this.userName = userName;
+	}
+
+	public void setPassword(String password) {
+		this.password = password;
+	}
+
+	public void setActivo(boolean activo) {
+		this.activo = activo;
+	}
+
+	public String getNyA() {
+		return NyA;
+	}
+
+	public String getUserName() {
+		return userName;
+	}
+
+	public String getPassword() {
+		return password;
+	}
+
+	public boolean isActivo() {
+		return activo;
+	}
+    
 }

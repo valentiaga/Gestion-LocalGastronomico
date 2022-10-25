@@ -29,6 +29,14 @@ public class Mesa
 	public Enumerados.estadoMesa getEstado() {
 		return estado;
 	}
+
+	public void setCantPax(int cantPax) {
+		this.cantPax = cantPax;
+	}
+
+	public void setEstado(Enumerados.estadoMesa estado) {
+		this.estado = estado;
+	}
     
     
     

@@ -1,15 +1,23 @@
 package negocio;
 
+import excepciones.CantComensalesInvalida_Exception;
+import excepciones.CantHijosInvalida_Exception;
 import excepciones.NoExisteID_Exception;
 import excepciones.NoExisteMesa_Exception;
+import excepciones.ProductoNulo_Exception;
 import excepciones.PromoIdRepetido_Exception;
+import excepciones.PromoInvalida_Exception;
+import excepciones.PromoRepetida_Exception;
 import excepciones.UserNameRepetido_Exception;
+import excepciones.precioInvalido_Exception;
+import excepciones.prodEnUso_Exception;
 import modelo.Comanda;
 import modelo.Enumerados;
 import modelo.Mesa;
-import modelo.MesaAtendida;
 import modelo.Mozo;
 import modelo.Operario;
+import modelo.Producto;
+import modelo.PromocionProd;
 import modelo.PromocionTemporal;
 
 public class FuncionalidadOperario {
@@ -19,6 +27,10 @@ public class FuncionalidadOperario {
 	public FuncionalidadOperario(Operario operario) {
 		super();
 		this.operario = operario;
+	}
+
+	public Operario getOperario() {
+		return operario;
 	}
 
 	/**
@@ -33,15 +45,20 @@ public class FuncionalidadOperario {
 	 */
 	public void modificaOperario(String NyA, String userName, String password, boolean activo)
 			throws UserNameRepetido_Exception {
-
-		// llamamos al operario actual y modificamos a ese
-		// se delega a la Clase Operario
-		// El estado se modifica?
+		if (userName != this.operario.getUserName()
+				&& Sistema.getInstance().getOperariosRegistrados().containsKey(userName))
+			throw new UserNameRepetido_Exception("El nombre de usuario ya se encuentra registrado en el sistema.");
+		this.operario.setNyA(NyA);
+		this.operario.setPassword(password);
+		this.operario.setUserName(userName);
+		this.operario.setActivo(activo); // El estado se modifica?
 	}
 
-	public void eliminaOperario() { // consideramos que el operario puede eliminarse por s� mismo al igual que puede
+	public void eliminaOperario() { // consideramos que el operario puede eliminarse por s� mismo al igual que
+									// puede
 									// eliminarlo el admin.
-		// se llama al actual y se lo elimina
+		Sistema.getInstance().getOperariosRegistrados().remove(this.operario); // hay q volver a la vista inicial una
+																				// vez eliminado
 	}
 
 	/**
@@ -51,8 +68,14 @@ public class FuncionalidadOperario {
 	 * @param cantHijos nueva cantidad de hijos.
 	 * @param mozo      que se desea modificar.
 	 */
-	public void modificaMozo(Mozo mozo, String NyA, int cantHijos) { // el estado lo modifica el o el sistema??
-		// el estado se modifica?
+	public void modificaMozo(Mozo mozo, String NyA, int cantHijos) throws CantHijosInvalida_Exception { // el estado lo
+																										// modifica el o
+																										// // el
+																										// sistema??
+		if (cantHijos < 0)
+			throw new CantHijosInvalida_Exception("Ingrese una cantidad de hijos valida.");
+		mozo.setCantHijos(cantHijos);
+		mozo.setNyA(NyA);
 	}
 
 	/**
@@ -66,8 +89,19 @@ public class FuncionalidadOperario {
 	 * @throws NoExisteID_Exception Se lanza si el ID ingresado no esta relacionado
 	 *                              a ningun producto del sistema.
 	 */
-	public void modificaProducto(int id, String nombre, double precioCosto, double precioVenta, int stockInicial)
-			throws NoExisteID_Exception {
+	public void modificaProducto(int idProd, String nombre, double precioCosto, double precioVenta, int stockInicial)
+			throws NoExisteID_Exception, precioInvalido_Exception, prodEnUso_Exception {
+		Producto prodActual = Sistema.getInstance().getProductos().get(idProd);
+		if (prodActual == null)
+			throw new NoExisteID_Exception("No existe el producto que desea modificar. Ingrese un ID valido.");
+		if (precioCosto < 0 || precioVenta < 0)
+			throw new precioInvalido_Exception("Ninguno de los precios puede ser negativo.");
+		if (GestionComandas.contieneProd(idProd) == true)
+			throw new prodEnUso_Exception("El producto esta en una comanda activa, no puede ser modificado");
+		prodActual.setNombre(nombre);
+		prodActual.setPrecioCosto(precioCosto);
+		prodActual.setPrecioVenta(precioVenta);
+		prodActual.setStockInicial(stockInicial);
 	}
 
 	/**
@@ -80,7 +114,15 @@ public class FuncionalidadOperario {
 	 *                                mesa cargada en el sistema.
 	 */
 
-	public void modificaMesa(int nroMesa, int cantSillas, boolean libre) throws NoExisteMesa_Exception {
+	public void modificaMesa(int nroMesa, int cantPax, Enumerados.estadoMesa estado)
+			throws NoExisteMesa_Exception, CantComensalesInvalida_Exception {
+		Mesa mesaActual = Sistema.getInstance().getMesas().get(nroMesa);
+		if (mesaActual == null)
+			throw new NoExisteMesa_Exception("No existe la mesa que desea modificar.");
+		if (cantPax < 2 && nroMesa > 0)
+			throw new CantComensalesInvalida_Exception("La cantidad de comensales debe ser mayor a uno.");
+		mesaActual.setCantPax(cantPax);
+		mesaActual.setEstado(estado);
 	} // tira excepcion de no existe mesa? O vamos a tener un mapa de mesas
 		// si elegimos en la ventana la mesa del array de mesa, no se va a tirar la
 		// excepcion nunca
@@ -103,9 +145,17 @@ public class FuncionalidadOperario {
 	 * @throws PromoIdRepetido_Exception Se lanza si se intenta asignar un
 	 *                                   identificador de promo existente. <br>
 	 */
-	public void agregaPromocionProd(int idProd, Enumerados.diasDePromo dia, boolean aplica2x1,
+	public void agregaPromocionProd(Producto producto, Enumerados.diasDePromo dia, boolean aplica2x1,
 			boolean aplicaDtoPorCantidad, int dtoPorCantidad_CantMinima, double dtoPorCantidad_PrecioUnitario,
-			boolean activa) throws PromoIdRepetido_Exception {}
+			boolean activa) throws ProductoNulo_Exception, PromoInvalida_Exception {
+		if (producto == null)
+			throw new ProductoNulo_Exception("El producto no puede ser nulo.");
+		if (aplica2x1 == false && aplicaDtoPorCantidad == false)
+			throw new PromoInvalida_Exception("Alguna de las promos 2x1 o dto por cantidad debe ser verdadera.");
+		PromocionProd promoNueva = new PromocionProd(activa, dia, producto, aplica2x1, aplicaDtoPorCantidad,
+				dtoPorCantidad_CantMinima, dtoPorCantidad_PrecioUnitario);
+		Sistema.getInstance().getPromocionProds().put(promoNueva.getIdProm(), promoNueva);
+	}
 
 	/**
 	 * metodo para modificar el estado de una promo.<br>
@@ -114,36 +164,67 @@ public class FuncionalidadOperario {
 	 * @param activa estado de la promo. <br>
 	 */
 
-	public void modificaPromocionProd(int idProm, boolean activa) {
-		/* solo activa o desactiva la promo */}
+	public void modificaPromocionProd(int idProm, boolean activa, Enumerados.diasDePromo dia, boolean aplica2x1,
+			boolean aplicaDtoPorCantidad, int dtoPorCantidad_CantMinima, double dtoPorCantidad_PrecioUnitario)
+			throws PromoInvalida_Exception, NoExisteID_Exception {
+		if (aplica2x1 == false && aplicaDtoPorCantidad == false)
+			throw new PromoInvalida_Exception("Alguna de las promos 2x1 o dto por cantidad debe ser verdadera.");
+		PromocionProd promoActual = Sistema.getInstance().getPromocionProds().get(idProm);
+		if (promoActual == null)
+			throw new NoExisteID_Exception("No existe la promo " + idProm + ".");
+		promoActual.setAplica2x1(aplica2x1);
+		promoActual.setAplicaDtoPorCant(aplicaDtoPorCantidad);
+		promoActual.setDtoPorCant_CantMinima(dtoPorCantidad_CantMinima);
+		promoActual.setDtoPorCant_PrecioUnitario(dtoPorCantidad_PrecioUnitario);
+		promoActual.setActiva(activa);
+	}
 
 	/**
 	 * metodo que elimina la promo. <br>
 	 * 
 	 * @param idProm identificador de la promo. <br>
 	 */
-	
-	public void eliminaPromocionProd(int idProm) {}
 
-	public void agregaPromocionTemporal(String nombre, Enumerados.formaDePago formaDePago, int porcentajeDescuento,
-			Enumerados.diasDePromo diasDePromo, boolean activo, boolean esAcumulable) {}
+	public void eliminaPromocionProd(int idProm) {
+		Sistema.getInstance().getPromocionProds().remove(idProm);
+	}
 
-	public void eliminaPromocionTemporal(String nombre) {}
-	
-	public void modificaPromocionTemporal(String nombre,boolean activo,int porcentajeDescuento,boolean esAcumulable) {}
+	public void agregaPromocionTemporal(boolean activa, modelo.Enumerados.diasDePromo diasDePromo, String nombre,
+			modelo.Enumerados.formaDePago formaDePago, int porcentajeDesc, boolean esAcumulable, int horaInicio,
+			int horaFinal) throws PromoRepetida_Exception {
+		
+		PromocionTemporal promoActual = new PromocionTemporal(activa, diasDePromo, nombre, formaDePago, porcentajeDesc,
+				esAcumulable, horaInicio, horaFinal);
+		if (Sistema.getInstance().getPromocionTemp().put(nombre, promoActual)!= null)
+			throw new PromoRepetida_Exception("Ya existe la promo '"+nombre+"'.");
+	}
 
-	public void setEstadoMozo(Mozo mozo) {}
+	public void eliminaPromocionTemporal(String nombre) {
+		Sistema.getInstance().getPromocionTemp().remove(nombre);
+	}
 
-	public void setMesaMozo(Mesa mesa, Mozo mozo) {}
+	public void modificaPromocionTemporal(String nombre, boolean activo, int porcentajeDescuento,
+			boolean esAcumulable) {
+	}
+
+	public void setEstadoMozo(Mozo mozo) {
+	}
+
+	public void setMesaMozo(Mesa mesa, Mozo mozo) {
+	}
 
 	// verifica promos, instancia MesaAtendida, y la agrega a el ArrayList del mozo
-	public void cierraMesa(Comanda comanda) {}
+	public void cierraMesa(Comanda comanda) {
+	}
 
-	public void cierraComanda(Comanda comanda) {}
+	public void cierraComanda(Comanda comanda) {
+	}
 
 	// crea comanda
-	public void abreComanda(Mesa mesa) {}
+	public void abreComanda(Mesa mesa) {
+	}
 
-	public void agregaPedidos(Comanda comanda, int cant, int idProd) {}
+	public void agregaPedidos(Comanda comanda, int cant, int idProd) {
+	}
 
 }

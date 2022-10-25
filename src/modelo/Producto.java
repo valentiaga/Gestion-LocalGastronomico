@@ -38,6 +38,23 @@ public class Producto
 		return stockInicial;
 	}
 
+	public void setNombre(String nombre) {
+		this.nombre = nombre;
+	}
+
+	public void setPrecioCosto(double precioCosto) {
+		this.precioCosto = precioCosto;
+	}
+
+	public void setPrecioVenta(double precioVenta) {
+		this.precioVenta = precioVenta;
+	}
+
+	public void setStockInicial(int stockInicial) {
+		this.stockInicial = stockInicial;
+	}
+
+	
     
     
     /**
