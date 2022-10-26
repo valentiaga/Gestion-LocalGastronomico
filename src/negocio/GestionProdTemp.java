@@ -39,7 +39,7 @@ public class GestionProdTemp {
 		for(int i=0; i < promos.size();i++) { //puede haber mas de una promo temporal aplicable al momento??
 			
 			promoTemp = promos.get(i);
-			diaPromo = promoTemp.getDiasDePromo().ordinal();			//chequear las promos temporales y cargarlas en el array de promos de MesaAtendida
+			diaPromo = promoTemp.getDiasDePromo().ordinal();	//chequear que ordinal devuelva desde 1 a 7
 			horaInicioPromo = promoTemp.getHoraInicio();
 			horaFinalPromo = promoTemp.getHoraFinal();
 			
