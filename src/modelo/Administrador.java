@@ -8,10 +8,14 @@ import java.util.GregorianCalendar;
 
 public class Administrador extends Operario
 {
-
-	public Administrador(String nyA, String userName, String password, boolean activo) {
-		super(nyA, userName, password, activo);
-		// TODO Auto-generated constructor stub
+	private static Administrador instance= null;
+	
+	public Administrador() {}
+	
+	public static Administrador getInstance() {
+		
+		if(instance == null)
+			instance = new Administrador();
+		return instance;
 	}
-
 }

@@ -90,4 +90,7 @@ public class FuncionalidadAdmin extends FuncionalidadOperario {
 		Sistema.getInstance().getMesas().remove(nroMesa);
 	}
 
+	public void modificaPassword(String password) {
+		this.getOperario().setPassword(password);
+	}
 }

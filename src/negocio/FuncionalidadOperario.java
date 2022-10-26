@@ -14,8 +14,10 @@ import excepciones.prodEnUso_Exception;
 import modelo.Comanda;
 import modelo.Enumerados;
 import modelo.Mesa;
+import modelo.MesaAtendida;
 import modelo.Mozo;
 import modelo.Operario;
+import modelo.Pedido;
 import modelo.Producto;
 import modelo.PromocionProd;
 import modelo.PromocionTemporal;
@@ -23,7 +25,8 @@ import modelo.PromocionTemporal;
 public class FuncionalidadOperario {
 
 	private Operario operario;
-
+	private Sistema sistema = Sistema.getInstance();
+	
 	public FuncionalidadOperario(Operario operario) {
 		super();
 		this.operario = operario;
@@ -167,11 +170,14 @@ public class FuncionalidadOperario {
 	public void modificaPromocionProd(int idProm, boolean activa, Enumerados.diasDePromo dia, boolean aplica2x1,
 			boolean aplicaDtoPorCantidad, int dtoPorCantidad_CantMinima, double dtoPorCantidad_PrecioUnitario)
 			throws PromoInvalida_Exception, NoExisteID_Exception {
+		
 		if (aplica2x1 == false && aplicaDtoPorCantidad == false)
 			throw new PromoInvalida_Exception("Alguna de las promos 2x1 o dto por cantidad debe ser verdadera.");
 		PromocionProd promoActual = Sistema.getInstance().getPromocionProds().get(idProm);
+		
 		if (promoActual == null)
 			throw new NoExisteID_Exception("No existe la promo " + idProm + ".");
+		
 		promoActual.setAplica2x1(aplica2x1);
 		promoActual.setAplicaDtoPorCant(aplicaDtoPorCantidad);
 		promoActual.setDtoPorCant_CantMinima(dtoPorCantidad_CantMinima);
@@ -203,28 +209,61 @@ public class FuncionalidadOperario {
 		Sistema.getInstance().getPromocionTemp().remove(nombre);
 	}
 
-	public void modificaPromocionTemporal(String nombre, boolean activo, int porcentajeDescuento,
-			boolean esAcumulable) {
+	public void modificaPromocionTemporal(String nombre, Enumerados.diasDePromo diasDePromo,Enumerados.formaDePago formaDePago,boolean activo, int porcentajeDescuento,
+			boolean esAcumulable,int horaInicio, int horaFinal) throws PromoInvalida_Exception {
+		
+		Sistema sistema = Sistema.getInstance();
+		PromocionTemporal promocionTemporal = sistema.getPromocionTemp().get(nombre);
+		
+		if(promocionTemporal == null)
+			throw new PromoInvalida_Exception("La promocion '"+nombre+"' no existe.");
+		
+		promocionTemporal.setActiva(activo);
+		promocionTemporal.setPorcentajeDesc(porcentajeDescuento);				// controlar en la ventana que sea > 0
+		promocionTemporal.setEsAcumulable(esAcumulable);
+		promocionTemporal.setHoraInicio(horaInicio);							// controlar en la ventana que sea  0< > 24
+		promocionTemporal.setHoraFinal(horaFinal);
+		promocionTemporal.setFormaDePago(formaDePago);
+		promocionTemporal.setDiasDePromo(diasDePromo);
 	}
 
-	public void setEstadoMozo(Mozo mozo) {
+	public void setEstadoMozo(Mozo mozo,Enumerados.estadoMozo estado) {
+		mozo.setEstado(estado);
 	}
 
 	public void setMesaMozo(Mesa mesa, Mozo mozo) {
+		mesa.setMozo(mozo);
 	}
 
 	// verifica promos, instancia MesaAtendida, y la agrega a el ArrayList del mozo
-	public void cierraMesa(Comanda comanda) {
+	public void cierraMesa(Comanda comanda, Enumerados.formaDePago formaDePago) {	// forma de pago la eligen en la ventana
+		
+		Mozo mozo = comanda.getMesa().getMozo();
+		double total = GestionComandas.totalComandaSinDescuento(comanda);
+										
+		MesaAtendida mesaAtendida = new MesaAtendida(comanda.getMesa(), comanda.getPedidos(), total, formaDePago);
+		GestionProdPromo.cargaPromosProd(comanda);
+		
+		comanda.getMesa().setEstado(Enumerados.estadoMesa.LIBRE);
 	}
 
 	public void cierraComanda(Comanda comanda) {
+		comanda.setEstado(Enumerados.estadoComanda.CERRADO);
+		//this.cierraMesa(comanda);  // o lo llamamos desde otro lado con la misma comanda
 	}
 
 	// crea comanda
 	public void abreComanda(Mesa mesa) {
+		Sistema sistema = Sistema.getInstance();
+		
+		sistema.getComandas().add(new Comanda(mesa, Enumerados.estadoComanda.ABIERTO));
 	}
 
 	public void agregaPedidos(Comanda comanda, int cant, int idProd) {
+		
+		Producto producto = Sistema.getInstance().getProductos().get(idProd);
+		
+		comanda.agregaPedido(new Pedido(producto,cant));
 	}
 
 }

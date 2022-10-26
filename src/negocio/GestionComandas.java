@@ -38,4 +38,13 @@ public class GestionComandas {
 		return bool;
 	}
 	
+	public static double totalComandaSinDescuento(Comanda comanda) {
+		double total = 0;
+		
+		for(int i = 0 ; i< comanda.getPedidos().size(); i++) {
+			total += comanda.getPedidos().get(i).getCant() * comanda.getPedidos().get(i).getProducto().getPrecioVenta();
+		}
+		
+		return total;
+	}
 }

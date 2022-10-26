@@ -4,6 +4,8 @@ package modelo;
 import java.util.ArrayList;
 import java.util.GregorianCalendar;
 
+import modelo.Enumerados.estadoComanda;
+
 public class Comanda 
 {
     private GregorianCalendar fecha;
@@ -11,6 +13,20 @@ public class Comanda
     private ArrayList<Pedido> pedidos;
     private Enumerados.estadoComanda estado;
     
+    
+    
+	public Comanda(Mesa mesa, estadoComanda estado) {
+		super();
+		this.fecha = new GregorianCalendar();
+		this.mesa = mesa;
+		this.pedidos = pedidos;
+		this.estado = estado;
+	}
+	
+	public void setEstado(Enumerados.estadoComanda estado) {
+		this.estado = estado;
+	}
+
 	public GregorianCalendar getFecha() {
 		return fecha;
 	}
@@ -24,4 +40,8 @@ public class Comanda
 		return estado;
 	}
     
+	public void agregaPedido(Pedido pedido) {
+		this.pedidos.add(pedido);
+	}
+	
 }

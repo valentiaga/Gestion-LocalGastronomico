@@ -39,6 +39,30 @@ public class Mozo
 	public void setCantHijos(int cantHijos) {
 		this.cantHijos = cantHijos;
 	}
+
+	public Enumerados.estadoMozo getEstado() {
+		return estado;
+	}
+
+	public String getNyA() {
+		return NyA;
+	}
+
+	public GregorianCalendar getFecha() {
+		return fecha;
+	}
+
+	public int getCantHijos() {
+		return cantHijos;
+	}
+
+	public ArrayList<MesaAtendida> getMesasAtendidas() {
+		return mesasAtendidas;
+	}
+
+	public double getSueldo() {
+		return sueldo;
+	}
     
     
 

@@ -9,6 +9,7 @@ public class Operario
     private String password;
     private boolean activo;
     
+    public Operario() {}
     public Operario(String nyA, String userName, String password, boolean activo) {
 		super();
 		NyA = nyA;

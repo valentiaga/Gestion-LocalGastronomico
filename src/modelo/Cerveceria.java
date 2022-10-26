@@ -15,11 +15,14 @@ public class Cerveceria {
 	private HashMap<Integer, Mesa> mesas = new HashMap<Integer, Mesa>();
 	private HashMap<Integer, PromocionProd> promocionProds = new HashMap<Integer, PromocionProd>();
 	private HashMap<String, PromocionTemporal> promocionTemp = new HashMap<String, PromocionTemporal>();
+	//private ArrayList<PromocionTemporal> promocionesTemp = new ArrayList<PromocionTemporal>();
+			
 	private ArrayList<Comanda> comandas = new ArrayList<Comanda>();
+	//private HashMap<Integer, Comanda> comandas = new HashMap<Integer, Comanda>();
 	private HashMap<String, String> contrasena = new HashMap<String, String>();
 	private static Cerveceria instance = null;
-	private String usuarioAdministrador="ADMIN";
-	private String codigoAdministrador = "ADMIN1234";
+	//private static String usuarioAdministrador= "ADMIN";
+	//private static String codigoAdministrador = "ADMIN1234";
 	
 	public static Cerveceria getInstance() {
 		if (instance == null)
@@ -58,6 +61,10 @@ public class Cerveceria {
 	public HashMap<String, String> getContrasena() {
 		return contrasena;
 	}
+
+//	public ArrayList<PromocionTemporal> getPromocionesTemp() {
+//		return promocionesTemp;
+//	}
 	
 	
 	

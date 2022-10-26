@@ -7,9 +7,8 @@ public class Mesa
     private static int siguienteNroMesa = 0; //el 0 es la barra
     private int nroMesa;
     private int cantPax;
-    //private String estado;
     private Enumerados.estadoMesa estado;
-    //private Mozo mozo;
+    private Mozo mozo;
     
 	public Mesa(int cantPax) {
 		super();
@@ -36,6 +35,14 @@ public class Mesa
 
 	public void setEstado(Enumerados.estadoMesa estado) {
 		this.estado = estado;
+	}
+
+	public Mozo getMozo() {
+		return mozo;
+	}
+
+	public void setMozo(Mozo mozo) {
+		this.mozo = mozo;
 	}
     
     

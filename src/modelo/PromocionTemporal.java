@@ -29,6 +29,56 @@ public class PromocionTemporal extends Promocion
 	}
 
 
+	public String getNombre() {
+		return nombre;
+	}
+
+
+	public Enumerados.formaDePago getFormaDePago() {
+		return formaDePago;
+	}
+
+
+	public void setFormaDePago(Enumerados.formaDePago formaDePago) {
+		this.formaDePago = formaDePago;
+	}
+
+
+	public boolean isEsAcumulable() {
+		return esAcumulable;
+	}
+
+
+	public void setEsAcumulable(boolean esAcumulable) {
+		this.esAcumulable = esAcumulable;
+	}
+
+
+	public int getHoraInicio() {
+		return horaInicio;
+	}
+
+
+	public void setHoraInicio(int horaInicio) {
+		this.horaInicio = horaInicio;
+	}
+
+
+	public int getHoraFinal() {
+		return horaFinal;
+	}
+
+
+	public void setHoraFinal(int horaFinal) {
+		this.horaFinal = horaFinal;
+	}
+
+
+	public void setPorcentajeDesc(int porcentajeDesc) {
+		this.porcentajeDesc = porcentajeDesc;
+	}
+
+
 	
     
 }

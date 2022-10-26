@@ -11,6 +11,7 @@ public class Pedido
 		this.producto = producto;
 		this.cant = cant;
 	}
+	
 	public Producto getProducto() {
 		return producto;
 	}

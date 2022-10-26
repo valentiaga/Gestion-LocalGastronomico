@@ -16,9 +16,11 @@ import excepciones.NoExisteID_Exception;
 import excepciones.NoExisteMesa_Exception;
 import excepciones.NoExisteMozo_Exception;
 import excepciones.NoExisteOperario_Exception;
+import excepciones.OperarioInactivo_Exception;
 import excepciones.PromoIdRepetido_Exception;
 import excepciones.UserNameIncorrecto_Exception;
 import excepciones.UserNameRepetido_Exception;
+import modelo.Administrador;
 import modelo.Cerveceria;
 import modelo.Comanda;
 import modelo.Enumerados;
@@ -45,12 +47,16 @@ public class Sistema {
 	private HashMap<Integer, Mesa> mesas = Cerveceria.getInstance().getMesas();
 	private HashMap<Integer, PromocionProd> promocionProds = Cerveceria.getInstance().getPromocionProds();
 	private ArrayList<Comanda> comandas = Cerveceria.getInstance().getComandas();
+	//private HashMap<Integer, Comanda> comandas
 	private HashMap<String, PromocionTemporal> promocionTemp = Cerveceria.getInstance().getPromocionTemp();
+	//private ArrayList<PromocionTemporal> promocionesTemp = Cerveceria.getInstance().getPromocionesTemp();
 	private HashMap<String, String> contrasena = Cerveceria.getInstance().getContrasena();
 	//private Operario operarioActual;
 	private FuncionalidadOperario funcionalidadOperario;
 	//private boolean esAdmin;
 	private static Sistema instance = null;
+	private String usuarioAdministrador= "ADMIN";
+	private String codigoAdministrador = "ADMIN1234";
 	
 	// private Sueldo sueldo; //ESTO ACA ESTA
 	// RAROOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOO, hay que volarlo y explicar que
@@ -111,12 +117,29 @@ public class Sistema {
 	}
 
 
+//	public ArrayList<PromocionTemporal> getPromocionesTemp() {
+//		return promocionesTemp;
+//	}
+
+
 	public FuncionalidadOperario getFuncionalidadOperario() {
 		return funcionalidadOperario;
 	}
 
 	public void setFuncionalidadOperario(FuncionalidadOperario funcionalidadOperario) {
 		this.funcionalidadOperario = funcionalidadOperario;
+	}
+	
+	public void registraAdmin() {
+		Administrador admin = Administrador.getInstance();
+		
+		if(this.operariosRegistrados.isEmpty() == true) {
+			admin.setActivo(true);
+			admin.setUserName(this.usuarioAdministrador);
+			admin.setPassword(codigoAdministrador);
+			admin.setNyA("Administrador");
+			this.operariosRegistrados.put(admin.getUserName(), admin);
+		}
 	}
 	
 	/**
@@ -137,13 +160,18 @@ public class Sistema {
 //			throws UserNameIncorrecto_Exception, ContrasenaIncorrecta_Exception {
 	
 	public void login(String userName, String password)
-			throws UserNameIncorrecto_Exception, ContrasenaIncorrecta_Exception {
+			throws UserNameIncorrecto_Exception, ContrasenaIncorrecta_Exception, OperarioInactivo_Exception {
 		
 		if(this.operariosRegistrados.containsKey(userName)) {
 			Operario operario = this.operariosRegistrados.get(userName);
 			if(operario.verificaPassword(password) == true) {
 				//this.operarioActual = operario;										// podriamos tener solo funcionalidad, porque tiene el operario
-				this.funcionalidadOperario = new FuncionalidadOperario(operario);
+				if(operario.isActivo() == false)
+					throw new OperarioInactivo_Exception("El usuario '"+userName+"' se encuentra inactivo.");
+				if(userName == this.usuarioAdministrador)								// si la contrasena sigue siendo Admin1234 hay que obligarlo a cambiarla
+					this.funcionalidadOperario = new FuncionalidadAdmin(operario);
+				else
+					this.funcionalidadOperario = new FuncionalidadOperario(operario);
 			}
 			else {	
 				throw new ContrasenaIncorrecta_Exception("Contrasena incorrecta.");
@@ -154,6 +182,6 @@ public class Sistema {
 		}
 	}
 	
-
+	
 
 }
