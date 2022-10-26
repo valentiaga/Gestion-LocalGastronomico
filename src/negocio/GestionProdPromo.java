@@ -21,7 +21,7 @@ public class GestionProdPromo {
 		
 		Mozo mozo = comanda.getMesa().getMozo();
 		int ultimo = mozo.getMesasAtendidas().size();
-		MesaAtendida mesaAtendida = mozo.getMesasAtendidas().get(ultimo);
+		MesaAtendida mesaAtendida = mozo.getMesasAtendidas().get(ultimo); //no seria -1?
 		ArrayList<Pedido> pedidos = mesaAtendida.getPedidos();
 		PromocionProd promo;
 		

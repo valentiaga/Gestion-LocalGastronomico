@@ -26,7 +26,7 @@ public class FuncionalidadOperario {
 
 	private Operario operario;
 	private Sistema sistema = Sistema.getInstance();
-	
+
 	public FuncionalidadOperario(Operario operario) {
 		super();
 		this.operario = operario;
@@ -170,14 +170,14 @@ public class FuncionalidadOperario {
 	public void modificaPromocionProd(int idProm, boolean activa, Enumerados.diasDePromo dia, boolean aplica2x1,
 			boolean aplicaDtoPorCantidad, int dtoPorCantidad_CantMinima, double dtoPorCantidad_PrecioUnitario)
 			throws PromoInvalida_Exception, NoExisteID_Exception {
-		
+
 		if (aplica2x1 == false && aplicaDtoPorCantidad == false)
 			throw new PromoInvalida_Exception("Alguna de las promos 2x1 o dto por cantidad debe ser verdadera.");
 		PromocionProd promoActual = Sistema.getInstance().getPromocionProds().get(idProm);
-		
+
 		if (promoActual == null)
 			throw new NoExisteID_Exception("No existe la promo " + idProm + ".");
-		
+
 		promoActual.setAplica2x1(aplica2x1);
 		promoActual.setAplicaDtoPorCant(aplicaDtoPorCantidad);
 		promoActual.setDtoPorCant_CantMinima(dtoPorCantidad_CantMinima);
@@ -198,36 +198,37 @@ public class FuncionalidadOperario {
 	public void agregaPromocionTemporal(boolean activa, modelo.Enumerados.diasDePromo diasDePromo, String nombre,
 			modelo.Enumerados.formaDePago formaDePago, int porcentajeDesc, boolean esAcumulable, int horaInicio,
 			int horaFinal) throws PromoRepetida_Exception {
-		
+
 		PromocionTemporal promoActual = new PromocionTemporal(activa, diasDePromo, nombre, formaDePago, porcentajeDesc,
 				esAcumulable, horaInicio, horaFinal);
-		if (Sistema.getInstance().getPromocionTemp().put(nombre, promoActual)!= null)
-			throw new PromoRepetida_Exception("Ya existe la promo '"+nombre+"'.");
+		if (Sistema.getInstance().getPromocionTemp().put(nombre, promoActual) != null)
+			throw new PromoRepetida_Exception("Ya existe la promo '" + nombre + "'.");
 	}
 
 	public void eliminaPromocionTemporal(String nombre) {
 		Sistema.getInstance().getPromocionTemp().remove(nombre);
 	}
 
-	public void modificaPromocionTemporal(String nombre, Enumerados.diasDePromo diasDePromo,Enumerados.formaDePago formaDePago,boolean activo, int porcentajeDescuento,
-			boolean esAcumulable,int horaInicio, int horaFinal) throws PromoInvalida_Exception {
-		
+	public void modificaPromocionTemporal(String nombre, Enumerados.diasDePromo diasDePromo,
+			Enumerados.formaDePago formaDePago, boolean activo, int porcentajeDescuento, boolean esAcumulable,
+			int horaInicio, int horaFinal) throws PromoInvalida_Exception {
+
 		Sistema sistema = Sistema.getInstance();
 		PromocionTemporal promocionTemporal = sistema.getPromocionTemp().get(nombre);
-		
-		if(promocionTemporal == null)
-			throw new PromoInvalida_Exception("La promocion '"+nombre+"' no existe.");
-		
+
+		if (promocionTemporal == null)
+			throw new PromoInvalida_Exception("La promocion '" + nombre + "' no existe.");
+
 		promocionTemporal.setActiva(activo);
-		promocionTemporal.setPorcentajeDesc(porcentajeDescuento);				// controlar en la ventana que sea > 0
+		promocionTemporal.setPorcentajeDesc(porcentajeDescuento); // controlar en la ventana que sea > 0
 		promocionTemporal.setEsAcumulable(esAcumulable);
-		promocionTemporal.setHoraInicio(horaInicio);							// controlar en la ventana que sea  0< > 24
+		promocionTemporal.setHoraInicio(horaInicio); // controlar en la ventana que sea 0< > 24
 		promocionTemporal.setHoraFinal(horaFinal);
 		promocionTemporal.setFormaDePago(formaDePago);
 		promocionTemporal.setDiasDePromo(diasDePromo);
 	}
 
-	public void setEstadoMozo(Mozo mozo,Enumerados.estadoMozo estado) {
+	public void setEstadoMozo(Mozo mozo, Enumerados.estadoMozo estado) {
 		mozo.setEstado(estado);
 	}
 
@@ -236,34 +237,34 @@ public class FuncionalidadOperario {
 	}
 
 	// verifica promos, instancia MesaAtendida, y la agrega a el ArrayList del mozo
-	public void cierraMesa(Comanda comanda, Enumerados.formaDePago formaDePago) {	// forma de pago la eligen en la ventana
-		
-		Mozo mozo = comanda.getMesa().getMozo();
+	public void cierraMesa(Comanda comanda, Enumerados.formaDePago formaDePago) { // forma de pago la eligen en la
+																					// ventana
+
+		Mesa mesaActual = comanda.getMesa();
+		comanda.setEstado(Enumerados.estadoComanda.CERRADO);
+		Mozo mozo = mesaActual.getMozo();
 		double total = GestionComandas.totalComandaSinDescuento(comanda);
-										
+
 		MesaAtendida mesaAtendida = new MesaAtendida(comanda.getMesa(), comanda.getPedidos(), total, formaDePago);
 		GestionProdPromo.cargaPromosProd(comanda);
-		
-		comanda.getMesa().setEstado(Enumerados.estadoMesa.LIBRE);
-	}
+		// falta ver promos temporales
+		mozo.getMesasAtendidas().add(mesaAtendida);
 
-	public void cierraComanda(Comanda comanda) {
-		comanda.setEstado(Enumerados.estadoComanda.CERRADO);
-		//this.cierraMesa(comanda);  // o lo llamamos desde otro lado con la misma comanda
+		mesaActual.setEstado(Enumerados.estadoMesa.LIBRE);
 	}
 
 	// crea comanda
 	public void abreComanda(Mesa mesa) {
 		Sistema sistema = Sistema.getInstance();
-		
+
 		sistema.getComandas().add(new Comanda(mesa, Enumerados.estadoComanda.ABIERTO));
 	}
 
 	public void agregaPedidos(Comanda comanda, int cant, int idProd) {
-		
+
 		Producto producto = Sistema.getInstance().getProductos().get(idProd);
-		
-		comanda.agregaPedido(new Pedido(producto,cant));
+
+		comanda.agregaPedido(new Pedido(producto, cant));
 	}
 
 }
