@@ -1,5 +1,7 @@
 package negocio;
 
+import java.util.ArrayList;
+
 import excepciones.CantComensalesInvalida_Exception;
 import excepciones.CantHijosInvalida_Exception;
 import excepciones.NoExisteID_Exception;
@@ -195,7 +197,7 @@ public class FuncionalidadOperario {
 		Sistema.getInstance().getPromocionProds().remove(idProm);
 	}
 
-	public void agregaPromocionTemporal(boolean activa, modelo.Enumerados.diasDePromo diasDePromo, String nombre,
+	/*public void agregaPromocionTemporal(boolean activa, modelo.Enumerados.diasDePromo diasDePromo, String nombre,
 			modelo.Enumerados.formaDePago formaDePago, int porcentajeDesc, boolean esAcumulable, int horaInicio,
 			int horaFinal) throws PromoRepetida_Exception {
 
@@ -203,13 +205,31 @@ public class FuncionalidadOperario {
 				esAcumulable, horaInicio, horaFinal);
 		if (Sistema.getInstance().getPromocionTemp().put(nombre, promoActual) != null)
 			throw new PromoRepetida_Exception("Ya existe la promo '" + nombre + "'.");
+	}*/
+	public void agregaPromocionTemporal(boolean activa, modelo.Enumerados.diasDePromo diasDePromo, String nombre,
+			modelo.Enumerados.formaDePago formaDePago, int porcentajeDesc, boolean esAcumulable, int horaInicio,
+			int horaFinal) throws PromoRepetida_Exception {
+
+		ArrayList<PromocionTemporal> promosTemp = Sistema.getInstance().getPromocionesTemp();
+		PromocionTemporal promoActual = new PromocionTemporal(activa, diasDePromo, nombre, formaDePago, porcentajeDesc,
+				esAcumulable, horaInicio, horaFinal);
+		if (promosTemp.contains(promoActual))
+			throw new PromoRepetida_Exception("Ya existe la promo '" + nombre + "'.");
+		else
+			promosTemp.add(promoActual);
 	}
 
-	public void eliminaPromocionTemporal(String nombre) {
+	/*public void eliminaPromocionTemporal(String nombre) {
 		Sistema.getInstance().getPromocionTemp().remove(nombre);
+	}*/
+	public void eliminaPromocionTemporal(String nombre) {
+		ArrayList<PromocionTemporal> promosTemp = Sistema.getInstance().getPromocionesTemp();
+		for (int i = 0; i<promosTemp.size(); i++)
+			if (promosTemp.get(i).getNombre() == nombre)
+				promosTemp.remove(i);
 	}
 
-	public void modificaPromocionTemporal(String nombre, Enumerados.diasDePromo diasDePromo,
+	/*public void modificaPromocionTemporal(String nombre, Enumerados.diasDePromo diasDePromo,
 			Enumerados.formaDePago formaDePago, boolean activo, int porcentajeDescuento, boolean esAcumulable,
 			int horaInicio, int horaFinal) throws PromoInvalida_Exception {
 
@@ -226,6 +246,29 @@ public class FuncionalidadOperario {
 		promocionTemporal.setHoraFinal(horaFinal);
 		promocionTemporal.setFormaDePago(formaDePago);
 		promocionTemporal.setDiasDePromo(diasDePromo);
+	}*/
+	
+	public void modificaPromocionTemporal(String nombre, Enumerados.diasDePromo diasDePromo,
+			Enumerados.formaDePago formaDePago, boolean activo, int porcentajeDescuento, boolean esAcumulable,
+			int horaInicio, int horaFinal) throws PromoInvalida_Exception {
+
+		Sistema sistema = Sistema.getInstance();
+		ArrayList<PromocionTemporal> promosTemp = sistema.getPromocionesTemp();
+		PromocionTemporal promocionTemporal = null;
+		
+		for (int i = 0; i<promosTemp.size(); i++)
+			if (promosTemp.get(i).getNombre() == nombre) {
+				promocionTemporal = promosTemp.get(i);
+				promocionTemporal.setActiva(activo);
+				promocionTemporal.setPorcentajeDesc(porcentajeDescuento); // controlar en la ventana que sea > 0
+				promocionTemporal.setEsAcumulable(esAcumulable);
+				promocionTemporal.setHoraInicio(horaInicio); // controlar en la ventana que sea 0< > 24
+				promocionTemporal.setHoraFinal(horaFinal);
+				promocionTemporal.setFormaDePago(formaDePago);
+				promocionTemporal.setDiasDePromo(diasDePromo);
+			}
+		if (promocionTemporal == null)
+			throw new PromoInvalida_Exception("La promocion '" + nombre + "' no existe.");
 	}
 
 	public void setEstadoMozo(Mozo mozo, Enumerados.estadoMozo estado) {
@@ -247,7 +290,8 @@ public class FuncionalidadOperario {
 
 		MesaAtendida mesaAtendida = new MesaAtendida(comanda.getMesa(), comanda.getPedidos(), total, formaDePago);
 		GestionProdPromo.cargaPromosProd(comanda);
-		// falta ver promos temporales
+		GestionProdTemp.cargaPromosTemp(comanda);
+		//falta calcular el total con descuento. Maybe en GestionComanda.
 		mozo.getMesasAtendidas().add(mesaAtendida);
 
 		mesaActual.setEstado(Enumerados.estadoMesa.LIBRE);

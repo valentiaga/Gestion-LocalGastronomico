@@ -14,8 +14,8 @@ public class Cerveceria {
 	private HashMap<String, Operario> operariosRegistrados = new HashMap<String, Operario>();
 	private HashMap<Integer, Mesa> mesas = new HashMap<Integer, Mesa>();
 	private HashMap<Integer, PromocionProd> promocionProds = new HashMap<Integer, PromocionProd>();
-	private HashMap<String, PromocionTemporal> promocionTemp = new HashMap<String, PromocionTemporal>();
-	//private ArrayList<PromocionTemporal> promocionesTemp = new ArrayList<PromocionTemporal>();
+	//private HashMap<String, PromocionTemporal> promocionTemp = new HashMap<String, PromocionTemporal>();
+	private ArrayList<PromocionTemporal> promocionesTemp = new ArrayList<PromocionTemporal>();
 			
 	private ArrayList<Comanda> comandas = new ArrayList<Comanda>();
 	//private HashMap<Integer, Comanda> comandas = new HashMap<Integer, Comanda>();
@@ -54,17 +54,17 @@ public class Cerveceria {
 		return comandas;
 	}
 
-	public HashMap<String, PromocionTemporal> getPromocionTemp() {
+	/*public HashMap<String, PromocionTemporal> getPromocionTemp() {
 		return promocionTemp;
-	}
+	}*/
 
 	public HashMap<String, String> getContrasena() {
 		return contrasena;
 	}
 
-//	public ArrayList<PromocionTemporal> getPromocionesTemp() {
-//		return promocionesTemp;
-//	}
+	public ArrayList<PromocionTemporal> getPromocionesTemp() {
+		return promocionesTemp;
+	}
 	
 	
 	

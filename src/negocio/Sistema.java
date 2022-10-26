@@ -48,8 +48,8 @@ public class Sistema {
 	private HashMap<Integer, PromocionProd> promocionProds = Cerveceria.getInstance().getPromocionProds();
 	private ArrayList<Comanda> comandas = Cerveceria.getInstance().getComandas();
 	//private HashMap<Integer, Comanda> comandas
-	private HashMap<String, PromocionTemporal> promocionTemp = Cerveceria.getInstance().getPromocionTemp();
-	//private ArrayList<PromocionTemporal> promocionesTemp = Cerveceria.getInstance().getPromocionesTemp();
+	//private HashMap<String, PromocionTemporal> promocionTemp = Cerveceria.getInstance().getPromocionTemp();
+	private ArrayList<PromocionTemporal> promocionesTemp = Cerveceria.getInstance().getPromocionesTemp();
 	private HashMap<String, String> contrasena = Cerveceria.getInstance().getContrasena();
 	//private Operario operarioActual;
 	private FuncionalidadOperario funcionalidadOperario;
@@ -107,9 +107,9 @@ public class Sistema {
 	}
 
 
-	public HashMap<String, PromocionTemporal> getPromocionTemp() {
+	/*public HashMap<String, PromocionTemporal> getPromocionTemp() {
 		return promocionTemp;
-	}
+	}*/
 
 
 	public HashMap<String, String> getContrasena() {
@@ -117,9 +117,9 @@ public class Sistema {
 	}
 
 
-//	public ArrayList<PromocionTemporal> getPromocionesTemp() {
-//		return promocionesTemp;
-//	}
+	public ArrayList<PromocionTemporal> getPromocionesTemp() {
+		return promocionesTemp;
+	}
 
 
 	public FuncionalidadOperario getFuncionalidadOperario() {
