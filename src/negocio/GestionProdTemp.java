@@ -46,10 +46,6 @@ public class GestionProdTemp {
 			if (diaComanda == diaPromo && horaComanda<horaFinalPromo && horaComanda>horaInicioPromo) 
 				if (promoTemp.isEsAcumulable()== true || mesaAtendida.getPromociones().isEmpty()) //carga si es acumulable o si estaba vacio
 					mesaAtendida.agregaPromocion(promoTemp);
-		}
-		
-		
-		
-		
+		}	
 	}
 }

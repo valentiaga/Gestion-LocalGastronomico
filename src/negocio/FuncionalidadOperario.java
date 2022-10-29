@@ -56,7 +56,7 @@ public class FuncionalidadOperario {
 		this.operario.setNyA(NyA);
 		this.operario.setPassword(password);
 		this.operario.setUserName(userName);
-		this.operario.setActivo(activo); // El estado se modifica?
+		this.operario.setActivo(activo); // El estado se modifica? Se debería cerrar sesión si se pone en inactivo 
 	}
 
 	public void eliminaOperario() { // consideramos que el operario puede eliminarse por sï¿½ mismo al igual que
@@ -64,7 +64,7 @@ public class FuncionalidadOperario {
 									// eliminarlo el admin.
 		Sistema.getInstance().getOperariosRegistrados().remove(this.operario); // hay q volver a la vista inicial una
 																				// vez eliminado
-	}
+	} //hay q borrarlo 
 
 	/**
 	 * metodo para modificar el/los atributos del mozo que se desee/n.

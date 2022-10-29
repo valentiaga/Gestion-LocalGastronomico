@@ -2,6 +2,9 @@ package modelo;
 
 import excepciones.UserNameRepetido_Exception;
 
+//Invariante de clase -> nombre del operario distinto de null 
+//Poner asserts
+
 public class Operario
 {
     private String NyA;
@@ -9,6 +12,7 @@ public class Operario
     private String password;
     private boolean activo;
     
+    //Pre: nyA != null
     public Operario() {}
     public Operario(String nyA, String userName, String password, boolean activo) {
 		super();
