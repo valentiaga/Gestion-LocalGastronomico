@@ -265,11 +265,10 @@ public class FuncionalidadOperario {
 		comanda.setEstado(Enumerados.estadoComanda.CERRADO);
 		Mozo mozo = mesaActual.getMozo();
 		double total = GestionComandas.totalComandaSinDescuento(comanda);
-
 		MesaAtendida mesaAtendida = new MesaAtendida(comanda.getMesa(), comanda.getPedidos(), total, formaDePago);
 		GestionProdPromo.cargaPromosProd(comanda);
 		GestionProdTemp.cargaPromosTemp(comanda);
-		// falta calcular el total con descuento. Maybe en GestionComanda.
+		GestionComandas.totalComandaConDescuento(mesaAtendida, comanda);
 		mozo.getMesasAtendidas().add(mesaAtendida);
 		//falta clonar la comanda
 		mesaActual.setEstado(Enumerados.estadoMesa.LIBRE);

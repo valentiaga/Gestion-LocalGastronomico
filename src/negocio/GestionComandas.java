@@ -61,27 +61,25 @@ public class GestionComandas {
 			promoActual = promos.get(i);
 			for (int j = 0; j<comanda.getPedidos().size(); j++) {
 				pedidoActual = comanda.getPedidos().get(j);
-				if (pedidoActual.getProducto()==promoActual.getProducto()) {
+				cantActual = pedidoActual.getCant();
+				if (pedidoActual.getProducto() == promoActual.getProducto()) {
 					if (promoActual.isAplica2x1()) {
-						cantActual = pedidoActual.getCant();
-						if (cantActual>1)
+						if (cantActual>1)//si hay uno solo no se aplica dto
 							if (cantActual % 2 == 0)
-								total += cantActual * pedidoActual.getProducto().getPrecioVenta()*0.5;
+								descuento += cantActual * pedidoActual.getProducto().getPrecioVenta()*0.5;
 							else { //capaz tiene 5 productos pero se aplica 2x1 solo a 4
 								cantActual --;
-								total += cantActual * pedidoActual.getProducto().getPrecioVenta()*0.5 + pedidoActual.getProducto().getPrecioVenta();
+								descuento += cantActual * pedidoActual.getProducto().getPrecioVenta()*0.5;
 							}
-						else //solo hay un producto
-							total += comanda.getPedidos().get(i).getCant() * comanda.getPedidos().get(i).getProducto().getPrecioVenta();
 					}
 					else if (promoActual.isAplicaDtoPorCant() && pedidoActual.getCant()>=promoActual.getDtoPorCant_CantMinima()) { //que descuento se pone???? me tiene mal
-						total += pedidoActual.getCant() * promoActual.getDtoPorCant_PrecioUnitario();
+						descuento += cantActual * (pedidoActual.getProducto().getPrecioVenta() - promoActual.getDtoPorCant_PrecioUnitario());
 					}
 				}
-				else
-					total += comanda.getPedidos().get(i).getCant() * comanda.getPedidos().get(i).getProducto().getPrecioVenta();
 			}
 		}
+		total = totalComandaSinDescuento(comanda);
+		total -= descuento;
 		if (mesa.getPromoTemp()!=null)
 			total = total * (1-mesa.getPromoTemp().getPorcentajeDesc());
 		mesa.setTotal(total);
