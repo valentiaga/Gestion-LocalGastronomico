@@ -74,21 +74,17 @@ public class GestionComandas {
 						else //solo hay un producto
 							total += comanda.getPedidos().get(i).getCant() * comanda.getPedidos().get(i).getProducto().getPrecioVenta();
 					}
-					else if (promoActual.isAplicaDtoPorCant()) { //que descuento se pone???? me tiene mal
-						
-					}
-					else if (promoActual.getDtoPorCant_CantMinima()>0) { //es raro pq no entiendo si te devuelve la canidad minima para hacer el descuento o el valor del descuento. Pq si es la cantidad, que descuento le aplicas?????????????
-						descuento = 1-promoActual.getDtoPorCant_CantMinima()/100;
-						total +=  pedidoActual.getCant() * pedidoActual.getProducto().getPrecioVenta()*descuento;
-					}
-					else if (promoActual.getDtoPorCant_PrecioUnitario()>0) { //es double asi qeu ya te da el 0.4 por ej
-						descuento = 1-promoActual.getDtoPorCant_PrecioUnitario();
-						total +=  pedidoActual.getCant() * pedidoActual.getProducto().getPrecioVenta()*descuento;
+					else if (promoActual.isAplicaDtoPorCant() && pedidoActual.getCant()>=promoActual.getDtoPorCant_CantMinima()) { //que descuento se pone???? me tiene mal
+						total += pedidoActual.getCant() * promoActual.getDtoPorCant_PrecioUnitario();
 					}
 				}
 				else
 					total += comanda.getPedidos().get(i).getCant() * comanda.getPedidos().get(i).getProducto().getPrecioVenta();
 			}
 		}
+		if (mesa.getPromoTemp()!=null)
+			total = total * (1-mesa.getPromoTemp().getPorcentajeDesc());
+		mesa.setTotal(total);
 	}
+	
 }

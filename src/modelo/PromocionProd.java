@@ -47,6 +47,7 @@ public class PromocionProd extends Promocion
 		return aplicaDtoPorCant;
 	}
 
+	
 
 	public void setAplicaDtoPorCant(boolean aplicaDtoPorCant) {
 		this.aplicaDtoPorCant = aplicaDtoPorCant;
