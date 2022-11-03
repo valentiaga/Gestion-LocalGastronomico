@@ -39,6 +39,11 @@ public class FuncionalidadOperario {
 		return operario;
 	}
 
+	public void estableceEstadosMozos(Enumerados.estadoMozo estado, String nya) { //esto se hace al comienzo de cada dia 
+		Mozo mozoActual = Sistema.getInstance().getMozos().get(nya);
+		mozoActual.setEstado(estado);
+	}
+
 	/**
 	 * metodo utilizado para modificar el o los campos de Operario que se deseen.
 	 * 
@@ -49,7 +54,7 @@ public class FuncionalidadOperario {
 	 * @throws UserNameRepetido_Exception Se lanza si el nuevo nombre de usuario ya
 	 *                                    existe en el sistema.
 	 */
-	public void modificaOperario(String NyA, String userName, String password, boolean activo)
+	public void modificaOperario(String NyA, String userName, String password)
 			throws UserNameRepetido_Exception {
 		if (userName != this.operario.getUserName()
 				&& Sistema.getInstance().getOperariosRegistrados().containsKey(userName))
@@ -57,7 +62,6 @@ public class FuncionalidadOperario {
 		this.operario.setNyA(NyA);
 		this.operario.setPassword(password);
 		this.operario.setUserName(userName);
-		this.operario.setActivo(activo); // El estado se modifica? Se debería cerrar sesión si se pone en inactivo
 	}
 
 	/**
@@ -194,6 +198,7 @@ public class FuncionalidadOperario {
 			throw new PromoInvalida_Exception("No existe la promo que intenta eliminar");
 	}
 
+	
 	public void agregaPromocionTemporal(boolean activa, modelo.Enumerados.diasDePromo diasDePromo, String nombre,
 			modelo.Enumerados.formaDePago formaDePago, int porcentajeDesc, boolean esAcumulable, int horaInicio,
 			int horaFinal) throws PromoRepetida_Exception {
@@ -283,5 +288,6 @@ public class FuncionalidadOperario {
 
 		comanda.agregaPedido(new Pedido(producto, cant));
 	}
+	
 
 }

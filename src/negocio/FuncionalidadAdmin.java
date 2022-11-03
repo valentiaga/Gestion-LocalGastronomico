@@ -47,6 +47,14 @@ public class FuncionalidadAdmin extends FuncionalidadOperario {
 			throw new NoExisteMozo_Exception("El mozo que desea eliminar no existe");
 	}
 	
+	public void modificaEstadoOperario (String userName, boolean activo) throws NoExisteOperario_Exception{
+		Operario opActual = Sistema.getInstance().getOperariosRegistrados().get(userName);
+		if (opActual!=null)
+			opActual.setActivo(activo);
+		else
+			throw new NoExisteOperario_Exception("No existe el opeario que desea modificar");
+	}
+	
 	/**
 	 * Metodo que registra un nuevo operario en el sistema. <br>
 	 * Post: Agrega un nuevo operario al HashMap
