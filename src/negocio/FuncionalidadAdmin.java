@@ -8,6 +8,11 @@ import java.util.GregorianCalendar;
 
 import excepciones.CantHijosInvalida_Exception;
 import excepciones.EdadInvalida_Exception;
+import excepciones.MesaOcupada_Exception;
+import excepciones.NoExisteID_Exception;
+import excepciones.NoExisteMesa_Exception;
+import excepciones.NoExisteMozo_Exception;
+import excepciones.NoExisteOperario_Exception;
 import excepciones.UserNameRepetido_Exception;
 import excepciones.precioInvalido_Exception;
 import excepciones.prodEnUso_Exception;
@@ -35,8 +40,11 @@ public class FuncionalidadAdmin extends FuncionalidadOperario {
 		Sistema.getInstance().getMozos().put(NyA, new Mozo(NyA,cantHijos));
 	}
 
-	public void eliminaMozo(String NyA){				
-		Sistema.getInstance().getMozos().remove(NyA);
+	public void eliminaMozo(String NyA)throws NoExisteMozo_Exception{	
+		if (Sistema.getInstance().getMozos().get(NyA)!= null)
+			Sistema.getInstance().getMozos().remove(NyA);
+		else
+			throw new NoExisteMozo_Exception("El mozo que desea eliminar no existe");
 	}
 	
 	/**
@@ -58,8 +66,11 @@ public class FuncionalidadAdmin extends FuncionalidadOperario {
 			throw new UserNameRepetido_Exception("El userName '"+userName+"' ya esta asociado a un operario.");
 	}
 	
-	public void eliminaOperario(String userName){
-		Sistema.getInstance().getOperariosRegistrados().remove(userName);
+	public void eliminaOperario(String userName)throws NoExisteOperario_Exception{
+		if (Sistema.getInstance().getOperariosRegistrados().get(userName)!= null)
+			Sistema.getInstance().getOperariosRegistrados().remove(userName);
+		else
+			throw new NoExisteOperario_Exception("No existe el operario que desea eliminar");
 	}
 
 	public void agregaProducto(String nombre, double precioCosto, double precioVenta, int stockInicial) throws precioInvalido_Exception{
@@ -75,10 +86,12 @@ public class FuncionalidadAdmin extends FuncionalidadOperario {
 			
 	}
 
-	public void eliminaProducto(int idProd) throws prodEnUso_Exception {
-		
+	public void eliminaProducto(int idProd) throws prodEnUso_Exception, NoExisteID_Exception {
+		if (Sistema.getInstance().getProductos().get(idProd)==null) //fijarse de ponerlo en gestion prod venta
+			throw new NoExisteID_Exception("No existe el producto que desea eliminar");
 		if(GestionComandas.contieneProd(idProd) == true)
 			throw new prodEnUso_Exception("El producto esta en una comanda activa, no puede ser eliminado");
+		Sistema.getInstance().getProductos().remove(idProd);
 	}
 	
 	public void agregaMesa(int cantSillas) {
@@ -86,7 +99,11 @@ public class FuncionalidadAdmin extends FuncionalidadOperario {
 		Sistema.getInstance().getMesas().put(mesa.getNroMesa(), mesa);
 	}
 	
-	public void eliminaMesa(int nroMesa) {
+	public void eliminaMesa(int nroMesa) throws NoExisteMesa_Exception, MesaOcupada_Exception {
+		if (Sistema.getInstance().getMesas().get(nroMesa)==null) //fijarse de ponerlo en gestion mesa
+			throw new NoExisteMesa_Exception("No existe el producto que desea eliminar");
+		if (Sistema.getInstance().getMesas().get(nroMesa).getEstado() == Enumerados.estadoMesa.OCUPADA)
+			throw new MesaOcupada_Exception("Espere a que se libere la mesa para elimianrla.");
 		Sistema.getInstance().getMesas().remove(nroMesa);
 	}
 

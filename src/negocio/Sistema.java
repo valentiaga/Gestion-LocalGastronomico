@@ -130,9 +130,8 @@ public class Sistema {
 		this.funcionalidadOperario = funcionalidadOperario;
 	}
 	
-	public void registraAdmin() {
+	public void seteaAdmin() {
 		Administrador admin = Administrador.getInstance();
-		
 		if(this.operariosRegistrados.isEmpty() == true) {
 			admin.setActivo(true);
 			admin.setUserName(this.usuarioAdministrador);
@@ -155,13 +154,10 @@ public class Sistema {
 	 * @throws UserNameIncorrecto_Exception
 	 * @throws ContrasenaIncorrecta_Exception
 	 */
-
-//	public FuncionalidadOperario login(String userName, String password)
-//			throws UserNameIncorrecto_Exception, ContrasenaIncorrecta_Exception {
 	
-	public void login(String userName, String password)
+	public FuncionalidadOperario login(String userName, String password)
 			throws UserNameIncorrecto_Exception, ContrasenaIncorrecta_Exception, OperarioInactivo_Exception {
-		
+		FuncionalidadOperario funcionalidad = null;
 		if(this.operariosRegistrados.containsKey(userName)) {
 			Operario operario = this.operariosRegistrados.get(userName);
 			if(operario.verificaPassword(password) == true) {
@@ -169,9 +165,9 @@ public class Sistema {
 				if(operario.isActivo() == false)
 					throw new OperarioInactivo_Exception("El usuario '"+userName+"' se encuentra inactivo.");
 				if(userName == this.usuarioAdministrador)								// si la contrasena sigue siendo Admin1234 hay que obligarlo a cambiarla
-					this.funcionalidadOperario = new FuncionalidadAdmin(operario);
+					funcionalidad = new FuncionalidadAdmin(operario);
 				else
-					this.funcionalidadOperario = new FuncionalidadOperario(operario);
+					funcionalidad = new FuncionalidadOperario(operario);
 			}
 			else {	
 				throw new ContrasenaIncorrecta_Exception("Contrasena incorrecta.");
@@ -180,6 +176,7 @@ public class Sistema {
 		else {
 			throw new UserNameIncorrecto_Exception("El usuario '"+userName+"' no se encuentra registrado en el sistema.");
 		}
+		return funcionalidad;
 	}
 	
 	

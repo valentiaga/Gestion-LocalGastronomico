@@ -6,6 +6,7 @@ import excepciones.CantComensalesInvalida_Exception;
 import excepciones.CantHijosInvalida_Exception;
 import excepciones.NoExisteID_Exception;
 import excepciones.NoExisteMesa_Exception;
+import excepciones.NoExisteOperario_Exception;
 import excepciones.ProductoNulo_Exception;
 import excepciones.PromoIdRepetido_Exception;
 import excepciones.PromoInvalida_Exception;
@@ -56,15 +57,8 @@ public class FuncionalidadOperario {
 		this.operario.setNyA(NyA);
 		this.operario.setPassword(password);
 		this.operario.setUserName(userName);
-		this.operario.setActivo(activo); // El estado se modifica? Se debería cerrar sesión si se pone en inactivo 
+		this.operario.setActivo(activo); // El estado se modifica? Se debería cerrar sesión si se pone en inactivo
 	}
-
-	public void eliminaOperario() { // consideramos que el operario puede eliminarse por sï¿½ mismo al igual que
-									// puede
-									// eliminarlo el admin.
-		Sistema.getInstance().getOperariosRegistrados().remove(this.operario); // hay q volver a la vista inicial una
-																				// vez eliminado
-	} //hay q borrarlo 
 
 	/**
 	 * metodo para modificar el/los atributos del mozo que se desee/n.
@@ -75,7 +69,7 @@ public class FuncionalidadOperario {
 	 */
 	public void modificaMozo(Mozo mozo, String NyA, int cantHijos) throws CantHijosInvalida_Exception { // el estado lo
 																										// modifica el o
-																										// // el
+																										// // el //
 																										// sistema??
 		if (cantHijos < 0)
 			throw new CantHijosInvalida_Exception("Ingrese una cantidad de hijos valida.");
@@ -193,19 +187,13 @@ public class FuncionalidadOperario {
 	 * @param idProm identificador de la promo. <br>
 	 */
 
-	public void eliminaPromocionProd(int idProm) {
-		Sistema.getInstance().getPromocionProds().remove(idProm);
+	public void eliminaPromocionProd(int idProm) throws PromoInvalida_Exception {
+		if (Sistema.getInstance().getPromocionProds().get(idProm) != null)
+			Sistema.getInstance().getPromocionProds().remove(idProm);
+		else
+			throw new PromoInvalida_Exception("No existe la promo que intenta eliminar");
 	}
 
-	/*public void agregaPromocionTemporal(boolean activa, modelo.Enumerados.diasDePromo diasDePromo, String nombre,
-			modelo.Enumerados.formaDePago formaDePago, int porcentajeDesc, boolean esAcumulable, int horaInicio,
-			int horaFinal) throws PromoRepetida_Exception {
-
-		PromocionTemporal promoActual = new PromocionTemporal(activa, diasDePromo, nombre, formaDePago, porcentajeDesc,
-				esAcumulable, horaInicio, horaFinal);
-		if (Sistema.getInstance().getPromocionTemp().put(nombre, promoActual) != null)
-			throw new PromoRepetida_Exception("Ya existe la promo '" + nombre + "'.");
-	}*/
 	public void agregaPromocionTemporal(boolean activa, modelo.Enumerados.diasDePromo diasDePromo, String nombre,
 			modelo.Enumerados.formaDePago formaDePago, int porcentajeDesc, boolean esAcumulable, int horaInicio,
 			int horaFinal) throws PromoRepetida_Exception {
@@ -219,35 +207,20 @@ public class FuncionalidadOperario {
 			promosTemp.add(promoActual);
 	}
 
-	/*public void eliminaPromocionTemporal(String nombre) {
-		Sistema.getInstance().getPromocionTemp().remove(nombre);
-	}*/
-	public void eliminaPromocionTemporal(String nombre) {
+	public void eliminaPromocionTemporal(String nombre) throws PromoInvalida_Exception  {
 		ArrayList<PromocionTemporal> promosTemp = Sistema.getInstance().getPromocionesTemp();
-		for (int i = 0; i<promosTemp.size(); i++)
-			if (promosTemp.get(i).getNombre() == nombre)
+		int bandera = 0, i = 0;
+		while (i < promosTemp.size() && bandera == 0) {
+			if (promosTemp.get(i).getNombre() == nombre) {
 				promosTemp.remove(i);
+				bandera = 1;
+			}		
+			i++;
+		}
+		if (bandera == 0)
+			throw new PromoInvalida_Exception("No existe la promo que intenta eliminar");
 	}
 
-	/*public void modificaPromocionTemporal(String nombre, Enumerados.diasDePromo diasDePromo,
-			Enumerados.formaDePago formaDePago, boolean activo, int porcentajeDescuento, boolean esAcumulable,
-			int horaInicio, int horaFinal) throws PromoInvalida_Exception {
-
-		Sistema sistema = Sistema.getInstance();
-		PromocionTemporal promocionTemporal = sistema.getPromocionTemp().get(nombre);
-
-		if (promocionTemporal == null)
-			throw new PromoInvalida_Exception("La promocion '" + nombre + "' no existe.");
-
-		promocionTemporal.setActiva(activo);
-		promocionTemporal.setPorcentajeDesc(porcentajeDescuento); // controlar en la ventana que sea > 0
-		promocionTemporal.setEsAcumulable(esAcumulable);
-		promocionTemporal.setHoraInicio(horaInicio); // controlar en la ventana que sea 0< > 24
-		promocionTemporal.setHoraFinal(horaFinal);
-		promocionTemporal.setFormaDePago(formaDePago);
-		promocionTemporal.setDiasDePromo(diasDePromo);
-	}*/
-	
 	public void modificaPromocionTemporal(String nombre, Enumerados.diasDePromo diasDePromo,
 			Enumerados.formaDePago formaDePago, boolean activo, int porcentajeDescuento, boolean esAcumulable,
 			int horaInicio, int horaFinal) throws PromoInvalida_Exception {
@@ -255,8 +228,8 @@ public class FuncionalidadOperario {
 		Sistema sistema = Sistema.getInstance();
 		ArrayList<PromocionTemporal> promosTemp = sistema.getPromocionesTemp();
 		PromocionTemporal promocionTemporal = null;
-		
-		for (int i = 0; i<promosTemp.size(); i++)
+
+		for (int i = 0; i < promosTemp.size(); i++)
 			if (promosTemp.get(i).getNombre() == nombre) {
 				promocionTemporal = promosTemp.get(i);
 				promocionTemporal.setActiva(activo);
@@ -291,9 +264,9 @@ public class FuncionalidadOperario {
 		MesaAtendida mesaAtendida = new MesaAtendida(comanda.getMesa(), comanda.getPedidos(), total, formaDePago);
 		GestionProdPromo.cargaPromosProd(comanda);
 		GestionProdTemp.cargaPromosTemp(comanda);
-		//falta calcular el total con descuento. Maybe en GestionComanda.
+		// falta calcular el total con descuento. Maybe en GestionComanda.
 		mozo.getMesasAtendidas().add(mesaAtendida);
-
+		//falta clonar la comanda
 		mesaActual.setEstado(Enumerados.estadoMesa.LIBRE);
 	}
 
