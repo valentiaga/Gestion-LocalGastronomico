@@ -10,8 +10,8 @@ public class MesaAtendida {
 	private ArrayList<Pedido> pedidos = new ArrayList<Pedido>();
 	private double total;
 	private Enumerados.formaDePago formaDePago;							// hay que elegir la forma de pago por ventana cuando se cierra la mesa
-	private ArrayList<Promocion> promociones = new ArrayList<Promocion>();
-	
+	private ArrayList<PromocionProd> promociones;
+	private PromocionTemporal promoTemp;
 	
 	public MesaAtendida(Mesa mesa, ArrayList<Pedido> pedidos, double total,
 			modelo.Enumerados.formaDePago formaDePago) {
@@ -21,9 +21,19 @@ public class MesaAtendida {
 		this.pedidos = pedidos;
 		this.total = total;
 		this.formaDePago = formaDePago;
+		promociones = new ArrayList<PromocionProd>();
 	}
 	
-	public void agregaPromocion(Promocion promocion) {
+	
+	public PromocionTemporal getPromoTemp() {
+		return promoTemp;
+	}
+
+	public void setPromoTemp(PromocionTemporal promoTemp) {
+		this.promoTemp = promoTemp;
+	}
+
+	public void agregaPromocion(PromocionProd promocion) {
 		this.promociones.add(promocion);
 	}
 
@@ -59,11 +69,11 @@ public class MesaAtendida {
 		this.formaDePago = formaDePago;
 	}
 
-	public ArrayList<Promocion> getPromociones() {
+	public ArrayList<PromocionProd> getPromociones() {
 		return promociones;
 	}
 
-	public void setPromociones(ArrayList<Promocion> promociones) {
+	public void setPromociones(ArrayList<PromocionProd> promociones) {
 		this.promociones = promociones;
 	}
 	

@@ -20,8 +20,8 @@ public class GestionProdPromo {
 	public static void cargaPromosProd (Comanda comanda) {
 		
 		Mozo mozo = comanda.getMesa().getMozo();
-		int ultimo = mozo.getMesasAtendidas().size();
-		MesaAtendida mesaAtendida = mozo.getMesasAtendidas().get(ultimo); //no seria -1?
+		int ultimo = mozo.getMesasAtendidas().size()-1;
+		MesaAtendida mesaAtendida = mozo.getMesasAtendidas().get(ultimo); 
 		ArrayList<Pedido> pedidos = mesaAtendida.getPedidos();
 		PromocionProd promo;
 		

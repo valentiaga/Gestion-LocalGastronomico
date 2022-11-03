@@ -26,8 +26,8 @@ public class GestionProdTemp {
 	public static void cargaPromosTemp(Comanda comanda) { 
 		
 		Mozo mozo = comanda.getMesa().getMozo();
-		int ultimo = mozo.getMesasAtendidas().size();
-		MesaAtendida mesaAtendida = mozo.getMesasAtendidas().get(ultimo);
+		int ultimo = mozo.getMesasAtendidas().size()-1;
+		MesaAtendida mesaAtendida = mozo.getMesasAtendidas().get(ultimo); 
 		PromocionTemporal promoTemp;
 		ArrayList<PromocionTemporal> promos = Sistema.getInstance().getPromocionesTemp();
 		int diaComanda, diaPromo;
@@ -45,7 +45,7 @@ public class GestionProdTemp {
 			
 			if (diaComanda == diaPromo && horaComanda<horaFinalPromo && horaComanda>horaInicioPromo) 
 				if (promoTemp.isEsAcumulable()== true || mesaAtendida.getPromociones().isEmpty()) //carga si es acumulable o si estaba vacio
-					mesaAtendida.agregaPromocion(promoTemp);
+					mesaAtendida.setPromoTemp(promoTemp);
 		}	
 	}
 }
