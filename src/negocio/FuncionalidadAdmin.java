@@ -75,10 +75,10 @@ public class FuncionalidadAdmin extends FuncionalidadOperario {
 	}
 	
 	public void eliminaOperario(String userName)throws NoExisteOperario_Exception{
-		if (Sistema.getInstance().getOperariosRegistrados().get(userName)!= null)
-			Sistema.getInstance().getOperariosRegistrados().remove(userName);
-		else
+		if (GestionMozo.existeMozo(userName) == false)
 			throw new NoExisteOperario_Exception("No existe el operario que desea eliminar");
+		else
+			GestionMozo.eliminaMozo(userName);
 	}
 
 	public void agregaProducto(String nombre, double precioCosto, double precioVenta, int stockInicial) throws precioInvalido_Exception{
@@ -95,11 +95,11 @@ public class FuncionalidadAdmin extends FuncionalidadOperario {
 	}
 
 	public void eliminaProducto(int idProd) throws prodEnUso_Exception, NoExisteID_Exception {
-		if (Sistema.getInstance().getProductos().get(idProd)==null) //fijarse de ponerlo en gestion prod venta
+		if (GestionProductos.existeProducto(idProd) == false) //fijarse de ponerlo en gestion prod venta
 			throw new NoExisteID_Exception("No existe el producto que desea eliminar");
 		if(GestionComandas.contieneProd(idProd) == true)
 			throw new prodEnUso_Exception("El producto esta en una comanda activa, no puede ser eliminado");
-		Sistema.getInstance().getProductos().remove(idProd);
+		GestionProductos.eliminaProducto(idProd);
 	}
 	
 	public void agregaMesa(int cantSillas) {
@@ -108,11 +108,11 @@ public class FuncionalidadAdmin extends FuncionalidadOperario {
 	}
 	
 	public void eliminaMesa(int nroMesa) throws NoExisteMesa_Exception, MesaOcupada_Exception {
-		if (Sistema.getInstance().getMesas().get(nroMesa)==null) //fijarse de ponerlo en gestion mesa
+		if (GestionMesas.existeMesa(nroMesa) == false) //fijarse de ponerlo en gestion mesa
 			throw new NoExisteMesa_Exception("No existe el producto que desea eliminar");
 		if (Sistema.getInstance().getMesas().get(nroMesa).getEstado() == Enumerados.estadoMesa.OCUPADA)
 			throw new MesaOcupada_Exception("Espere a que se libere la mesa para elimianrla.");
-		Sistema.getInstance().getMesas().remove(nroMesa);
+		GestionMesas.eliminaMesa(nroMesa);
 	}
 
 	public void modificaPassword(String password) {
