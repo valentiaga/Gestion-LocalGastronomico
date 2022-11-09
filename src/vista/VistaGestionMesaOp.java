@@ -13,6 +13,7 @@ import java.awt.FlowLayout;
 import javax.swing.BoxLayout;
 import javax.swing.JLabel;
 import javax.swing.JTextField;
+import javax.swing.JComboBox;
 
 public class VistaGestionMesaOp extends JPanel implements IVistaGestionMesaOp {
 	private JTextField textField;
@@ -41,6 +42,30 @@ public class VistaGestionMesaOp extends JPanel implements IVistaGestionMesaOp {
 		
 		JButton btnSeteaMozo = new JButton("Setear Mozo");
 		panel_2.add(btnSeteaMozo);
+		
+		JPanel panel_7 = new JPanel();
+		panel_2.add(panel_7);
+		
+		JComboBox comboBox = new JComboBox<String>();
+		comboBox.setEditable(true);
+		GroupLayout gl_panel_7 = new GroupLayout(panel_7);
+		gl_panel_7.setHorizontalGroup(
+			gl_panel_7.createParallelGroup(Alignment.LEADING)
+				.addGroup(gl_panel_7.createSequentialGroup()
+					.addContainerGap()
+					.addComponent(comboBox, GroupLayout.PREFERRED_SIZE, 64, GroupLayout.PREFERRED_SIZE)
+					.addContainerGap(GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+		);
+		gl_panel_7.setVerticalGroup(
+			gl_panel_7.createParallelGroup(Alignment.LEADING)
+				.addGroup(Alignment.TRAILING, gl_panel_7.createSequentialGroup()
+					.addContainerGap(GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+					.addComponent(comboBox, GroupLayout.PREFERRED_SIZE, 22, GroupLayout.PREFERRED_SIZE)
+					.addContainerGap())
+		);
+		panel_7.setLayout(gl_panel_7);
+		
+		
 		
 		JPanel panel_3 = new JPanel();
 		panel.add(panel_3);

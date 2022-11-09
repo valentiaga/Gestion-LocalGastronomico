@@ -20,7 +20,7 @@ public class VistaAdmin extends JPanel implements IVistaAdmin {
 		
 		JPanel panel = new JPanel();
 		add(panel);
-		panel.setLayout(new GridLayout(5, 1, 0, 0));
+		panel.setLayout(new GridLayout(6, 1, 0, 0));
 		
 		JPanel panel_1 = new JPanel();
 		panel.add(panel_1);
@@ -51,6 +51,12 @@ public class VistaAdmin extends JPanel implements IVistaAdmin {
 		
 		JButton btnCerrarSesion = new JButton("Cerrar Sesion");
 		panel_5.add(btnCerrarSesion);
+		
+		JPanel panel_2_1 = new JPanel();
+		panel.add(panel_2_1);
+		
+		JButton btnGestionProducto_1 = new JButton("Gestion Producto");
+		panel_2_1.add(btnGestionProducto_1);
 
 	}
 
