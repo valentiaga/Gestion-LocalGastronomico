@@ -11,8 +11,11 @@ import javax.swing.SwingConstants;
 import javax.swing.SpringLayout;
 import java.awt.FlowLayout;
 import javax.swing.BoxLayout;
+import javax.swing.JLabel;
+import javax.swing.JTextField;
 
 public class VistaGestionMesaOp extends JPanel implements IVistaGestionMesaOp {
+	private JTextField textField;
 
 	/**
 	 * Create the panel.
@@ -46,6 +49,24 @@ public class VistaGestionMesaOp extends JPanel implements IVistaGestionMesaOp {
 		JButton btnCerrarMesa = new JButton("Cerrar Mesa");
 		btnCerrarMesa.setVerticalAlignment(SwingConstants.BOTTOM);
 		panel_3.add(btnCerrarMesa);
+		
+		JPanel panel_4 = new JPanel();
+		add(panel_4, BorderLayout.NORTH);
+		panel_4.setLayout(new FlowLayout(FlowLayout.CENTER, 5, 5));
+		
+		JPanel panel_6 = new JPanel();
+		panel_4.add(panel_6);
+		panel_6.setLayout(new FlowLayout(FlowLayout.CENTER, 5, 5));
+		
+		JLabel lblNewLabel = new JLabel("Numero de Mesa");
+		panel_6.add(lblNewLabel);
+		
+		JPanel panel_5 = new JPanel();
+		panel_4.add(panel_5);
+		
+		textField = new JTextField();
+		panel_5.add(textField);
+		textField.setColumns(10);
 
 	}
 
