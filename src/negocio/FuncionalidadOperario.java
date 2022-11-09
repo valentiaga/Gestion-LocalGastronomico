@@ -289,5 +289,8 @@ public class FuncionalidadOperario {
 		comanda.agregaPedido(new Pedido(producto, cant));
 	}
 	
-
+	public void modificaPassword(String password) {
+		this.getOperario().setPassword(password);
+	}
+	
 }

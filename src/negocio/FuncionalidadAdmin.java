@@ -115,7 +115,5 @@ public class FuncionalidadAdmin extends FuncionalidadOperario {
 		GestionMesas.eliminaMesa(nroMesa);
 	}
 
-	public void modificaPassword(String password) {
-		this.getOperario().setPassword(password);
-	}
+	
 }
