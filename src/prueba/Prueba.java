@@ -21,8 +21,7 @@ public class Prueba {
 
 		Ventana v = new Ventana(new VistaGestionMozoOp());
 		IVistaGestionMozoOp vista = new VistaGestionMozoOp();
-		ControladorVistaGestionMozoOp c = new ControladorVistaGestionMozoOp(v, vista);
-		
+		ControladorVistaGestionMozoOp c = new ControladorVistaGestionMozoOp(vista, v);
 	}
 
 }

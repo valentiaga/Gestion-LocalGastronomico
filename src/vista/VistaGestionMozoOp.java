@@ -19,18 +19,25 @@ import javax.swing.SwingConstants;
 import javax.swing.border.EtchedBorder;
 import javax.swing.border.TitledBorder;
 
+import controlador.ControladorVistaGestionMozoOp;
 import negocio.Sistema;
 
 public class VistaGestionMozoOp extends JPanel implements IVistaGestionMozoOp, ItemListener {
 
 	JComboBox comboBox;
-	ActionListener actionListener;
+	ActionListener actionListener = new ControladorVistaGestionMozoOp();
 	JButton btnModificaMozo;
 	JButton btnEstableceEstado;
+
+	@Override
+	public void addActionListener(ActionListener actionListener) {
+		this.actionListener = actionListener;
+	}
 	/**
 	 * Create the panel.
 	 */
 	public VistaGestionMozoOp() {
+		//this.actionListener = new ControladorVistaGestionMozoOp ();
 		setBorder(new TitledBorder(new EtchedBorder(EtchedBorder.LOWERED, new Color(255, 255, 255), new Color(160, 160, 160)), "Gestion Mozos", TitledBorder.LEADING, TitledBorder.TOP, null, new Color(0, 0, 0)));
 		setLayout(new BorderLayout(0, 0));
 		
@@ -80,6 +87,8 @@ public class VistaGestionMozoOp extends JPanel implements IVistaGestionMozoOp, I
 		btnModificaMozo = new JButton("Modificar Mozo");
 		btnModificaMozo.setActionCommand("MODIFICA");
 		panel_2.add(btnModificaMozo);
+		//btnModificaMozo.addActionListener(this.actionListener);
+		this.btnModificaMozo.addActionListener(actionListener);
 		
 		JPanel panel_3 = new JPanel();
 		panel.add(panel_3);
@@ -88,6 +97,7 @@ public class VistaGestionMozoOp extends JPanel implements IVistaGestionMozoOp, I
 		btnEstableceEstado = new JButton("Establecer estados");
 		btnEstableceEstado.setActionCommand("ESTABLECE");
 		panel_3.add(btnEstableceEstado);
+		this.btnEstableceEstado.addActionListener(actionListener);
 	}
 
 
@@ -100,13 +110,6 @@ public class VistaGestionMozoOp extends JPanel implements IVistaGestionMozoOp, I
 		}
 	}
 
-	
-	@Override
-	public void setActionListener(ActionListener actionListener) {
-		this.btnModificaMozo.addActionListener(actionListener);
-		this.btnEstableceEstado.addActionListener(actionListener);
-		this.actionListener=actionListener;
-	}
 
 	
 	

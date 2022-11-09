@@ -15,22 +15,38 @@ public class ControladorVistaGestionMozoOp implements ActionListener {
 	private Ventana ventana = null;
 	private JPanel contentPane = null;
 
-	public ControladorVistaGestionMozoOp(Ventana ventana, IVistaGestionMozoOp vista) {
+	private final String MODIFICA = "MODIFICA";
+	private final String ESTABLECE = "ESTABLECE";
+
+	
+	public ControladorVistaGestionMozoOp(IVistaGestionMozoOp vista, Ventana ventana) {
 		super();
 		this.vista = vista;
+		//this.vista.addActionListener(this);
 		this.ventana = ventana;
-		this.vista.setActionListener(this);
-		this.contentPane = ventana.getContentPane();
 	}
 	
+
+
+	public ControladorVistaGestionMozoOp() {
+		super();
+		// TODO Auto-generated constructor stub
+	}
+
+
+
 	@Override
 	public void actionPerformed(ActionEvent e) {
-		 String comando = e.getActionCommand(); 
-		 System.out.println("Entre");
-		 if (comando.equalsIgnoreCase ("MODIFICA"))
-				 JOptionPane.showMessageDialog(null, "Modifica.");
-		 else if (comando.equalsIgnoreCase ("ESTABLECE"))
-				 JOptionPane.showMessageDialog(null, "Estados.");
+		String comando = e.getActionCommand();
+		System.out.println(comando);
+		if (comando.equalsIgnoreCase(MODIFICA)) {
+			JOptionPane.showMessageDialog(null, "Modifica.");
+			System.out.println("Entre");
+		}
+		else if (comando.equalsIgnoreCase(ESTABLECE))
+			JOptionPane.showMessageDialog(null, "Estados.");
+		else
+			JOptionPane.showMessageDialog(null, "Seleccione una opcion.");
 	}
 
 }

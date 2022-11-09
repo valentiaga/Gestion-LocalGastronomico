@@ -43,13 +43,12 @@ public class Ventana extends JFrame {
 		this.contentPane = new JPanel();
 		setContentPane(contentPane);
 		contentPane.setLayout(new CardLayout(0, 0));
-		
-		
 		contentPane.add(vistaMozo);
 	}
 	
 	public JPanel getContentPane() {
 		return this.contentPane;
 	}
+
 
 }
