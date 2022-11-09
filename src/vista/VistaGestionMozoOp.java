@@ -30,8 +30,10 @@ public class VistaGestionMozoOp extends JPanel implements IVistaGestionMozoOp, I
 	JButton btnEstableceEstado;
 
 	@Override
-	public void addActionListener(ActionListener actionListener) {
+	public void addActionListener(ActionListener actionListener) { //basicamente no uso este metodo pq no me funciona. Si lo hago abajo en el constructor si.... FIJATE QUE ONDA
 		this.actionListener = actionListener;
+		this.btnModificaMozo.addActionListener(actionListener);
+		this.btnEstableceEstado.addActionListener(actionListener);
 	}
 	/**
 	 * Create the panel.
