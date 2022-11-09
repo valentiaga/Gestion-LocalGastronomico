@@ -54,6 +54,7 @@ public class FuncionalidadOperario {
 	 * @throws UserNameRepetido_Exception Se lanza si el nuevo nombre de usuario ya
 	 *                                    existe en el sistema.
 	 */
+	
 	public void modificaOperario(String NyA, String userName, String password)
 			throws UserNameRepetido_Exception {
 		if (userName != this.operario.getUserName()
