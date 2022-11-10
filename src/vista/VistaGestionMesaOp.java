@@ -49,22 +49,12 @@ public class VistaGestionMesaOp extends JPanel implements IVistaGestionMesaOp {
 
 	}
 
-	@Override
-	public void modificaMesa() {
-		// TODO Auto-generated method stub
-		
-	}
+
 
 	@Override
-	public void seteaMozo() {
+	public int getNroMesa() {
 		// TODO Auto-generated method stub
-		
-	}
-
-	@Override
-	public void cierraMesa() {
-		// TODO Auto-generated method stub
-		
+		return 0;
 	}
 
 }

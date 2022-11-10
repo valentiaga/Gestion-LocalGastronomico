@@ -38,15 +38,11 @@ public class ControladorVistaGestionMozoOp implements ActionListener {
 	@Override
 	public void actionPerformed(ActionEvent e) {
 		String comando = e.getActionCommand();
-		System.out.println(comando);
 		if (comando.equalsIgnoreCase(MODIFICA)) {
 			JOptionPane.showMessageDialog(null, "Modifica.");
-			System.out.println("Entre");
 		}
 		else if (comando.equalsIgnoreCase(ESTABLECE))
 			JOptionPane.showMessageDialog(null, "Estados.");
-		else
-			JOptionPane.showMessageDialog(null, "Seleccione una opcion.");
 	}
 
 }

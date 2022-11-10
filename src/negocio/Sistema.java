@@ -7,30 +7,20 @@
 package negocio;
 
 import java.util.ArrayList;
-
-import java.util.GregorianCalendar;
 import java.util.HashMap;
 
 import excepciones.ContrasenaIncorrecta_Exception;
-import excepciones.NoExisteID_Exception;
-import excepciones.NoExisteMesa_Exception;
-import excepciones.NoExisteMozo_Exception;
-import excepciones.NoExisteOperario_Exception;
 import excepciones.OperarioInactivo_Exception;
-import excepciones.PromoIdRepetido_Exception;
 import excepciones.UserNameIncorrecto_Exception;
-import excepciones.UserNameRepetido_Exception;
 import modelo.Administrador;
 import modelo.Cerveceria;
 import modelo.Comanda;
-import modelo.Enumerados;
 import modelo.Mesa;
 import modelo.Mozo;
 import modelo.Operario;
 import modelo.Producto;
 import modelo.PromocionProd;
 import modelo.PromocionTemporal;
-import modelo.Sueldo;
 
 /**
  * Clase Singleton que representa a la empresa gastronomica. mozos: Key -> Nya
@@ -53,6 +43,7 @@ public class Sistema {
 	private HashMap<String, String> contrasena = Cerveceria.getInstance().getContrasena();
 	//private Operario operarioActual;
 	private FuncionalidadOperario funcionalidadOperario;
+	private FuncionalidadAdmin funcionalidadAdmin;
 	//private boolean esAdmin;
 	private static Sistema instance = null;
 	private String usuarioAdministrador= "ADMIN";
@@ -130,6 +121,17 @@ public class Sistema {
 		this.funcionalidadOperario = funcionalidadOperario;
 	}
 	
+	
+	public FuncionalidadAdmin getFuncionalidadAdmin() {
+		return funcionalidadAdmin;
+	}
+
+
+	public void setFuncionalidadAdmin(FuncionalidadAdmin funcionalidadAdmin) {
+		this.funcionalidadAdmin = funcionalidadAdmin;
+	}
+
+
 	public void seteaAdmin() {
 		Administrador admin = Administrador.getInstance();
 		if(this.operariosRegistrados.isEmpty() == true) {
