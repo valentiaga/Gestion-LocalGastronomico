@@ -20,6 +20,7 @@ import javax.swing.border.TitledBorder;
 
 import controlador.ControladorVistaGestionMozoAdmin;
 import controlador.ControladorVistaGestionMozoOp;
+import modelo.Enumerados;
 import negocio.Sistema;
 import javax.swing.LayoutStyle.ComponentPlacement;
 import java.awt.event.ActionEvent;
@@ -61,6 +62,15 @@ public class VistaGestionMozoAdmin extends JPanel implements ItemListener, IVist
 		btnEstableceEstado = new JButton("Establecer estados");
 		panel_2.add(btnEstableceEstado);
 		btnEstableceEstado.setActionCommand("ESTABLECE");
+		
+		JComboBox comboBox_1 = new JComboBox<String>();
+		comboBox_1.setEnabled(false);
+		comboBox_1.setEditable(true);
+		comboBox_1.addItem(Enumerados.estadoMozo.ACTIVO);
+		comboBox_1.addItem(Enumerados.estadoMozo.AUSENTE);
+		comboBox_1.addItem(Enumerados.estadoMozo.DEFRANCO);
+		comboBox_1.addItemListener(this);
+		panel_2.add(comboBox_1);
 
 		JPanel panel_3 = new JPanel();
 		panel.add(panel_3);
