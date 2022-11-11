@@ -27,7 +27,7 @@ import java.awt.event.ActionEvent;
 public class VistaGestionMozoAdmin extends JPanel implements ItemListener, IVistaGestionMozoAdmin {
 
 	JComboBox comboBox;
-	ActionListener actionListener = new ControladorVistaGestionMozoOp();
+	ActionListener actionListener;
 	JButton btnModificaMozo;
 	JButton btnEstableceEstado;
 	JButton btnElimina;
@@ -37,7 +37,6 @@ public class VistaGestionMozoAdmin extends JPanel implements ItemListener, IVist
 	 * Create the panel.
 	 */
 	public VistaGestionMozoAdmin() {
-		this.actionListener = new ControladorVistaGestionMozoAdmin ();
 		setBorder(new TitledBorder(
 				new EtchedBorder(EtchedBorder.LOWERED, new Color(255, 255, 255), new Color(160, 160, 160)),
 				"Gestion Mozos", TitledBorder.LEADING, TitledBorder.TOP, null, new Color(0, 0, 0)));
@@ -54,7 +53,6 @@ public class VistaGestionMozoAdmin extends JPanel implements ItemListener, IVist
 		btnAltaMozo = new JButton("Alta Mozo");
 		btnAltaMozo.setActionCommand("ALTA");
 		panel_1.add(btnAltaMozo);
-		this.btnAltaMozo.addActionListener(actionListener);
 
 		JPanel panel_2 = new JPanel();
 		panel.add(panel_2);
@@ -63,7 +61,6 @@ public class VistaGestionMozoAdmin extends JPanel implements ItemListener, IVist
 		btnEstableceEstado = new JButton("Establecer estados");
 		panel_2.add(btnEstableceEstado);
 		btnEstableceEstado.setActionCommand("ESTABLECE");
-		this.btnEstableceEstado.addActionListener(actionListener);
 
 		JPanel panel_3 = new JPanel();
 		panel.add(panel_3);
@@ -108,8 +105,6 @@ public class VistaGestionMozoAdmin extends JPanel implements ItemListener, IVist
 		btnModificaMozo = new JButton("Modificar Mozo");
 		panel_5.add(btnModificaMozo);
 		btnModificaMozo.setActionCommand("MODIFICA");
-		// btnModificaMozo.addActionListener(this.actionListener);
-		this.btnModificaMozo.addActionListener(actionListener);
 
 		JPanel panel_6 = new JPanel();
 		panel.add(panel_6);
@@ -117,7 +112,6 @@ public class VistaGestionMozoAdmin extends JPanel implements ItemListener, IVist
 		btnElimina = new JButton("Eliminar Mozo");
 		btnElimina.setActionCommand("ELIMINA");
 		panel_6.add(btnElimina);
-		this.btnElimina.addActionListener(actionListener);
 	}
 
 	@Override
@@ -132,12 +126,13 @@ public class VistaGestionMozoAdmin extends JPanel implements ItemListener, IVist
 
 	@Override
 	public void addActionListener(ActionListener actionListener) {
-		this.actionListener = actionListener;
 		this.btnModificaMozo.addActionListener(actionListener);
 		this.btnEstableceEstado.addActionListener(actionListener);
 		this.btnAltaMozo.addActionListener(actionListener);
 		this.btnElimina.addActionListener(actionListener);
+		this.actionListener = actionListener;
 	}
+	
 
 	public JComboBox getComboBox() {
 		return comboBox;

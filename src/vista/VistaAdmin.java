@@ -3,6 +3,7 @@ package vista;
 import java.awt.BorderLayout;
 import java.awt.Color;
 import java.awt.GridLayout;
+import java.awt.event.ActionListener;
 
 import javax.swing.JButton;
 import javax.swing.JPanel;
@@ -58,6 +59,12 @@ public class VistaAdmin extends JPanel implements IVistaAdmin {
 		JButton btnGestionProducto_1 = new JButton("Gestion Producto");
 		panel_2_1.add(btnGestionProducto_1);
 
+	}
+
+	@Override
+	public void addActionListener(ActionListener actionListener) {
+		// TODO Auto-generated method stub
+		
 	}
 
 }

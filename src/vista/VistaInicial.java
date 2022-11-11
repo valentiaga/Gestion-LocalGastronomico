@@ -1,23 +1,146 @@
 package vista;
 
-import java.awt.BorderLayout;
-import java.awt.CardLayout;
-import java.awt.GridLayout;
-
-import javax.swing.GroupLayout;
-import javax.swing.JButton;
-import javax.swing.JLabel;
 import javax.swing.JPanel;
-import javax.swing.JTextField;
-import javax.swing.GroupLayout.Alignment;
-import javax.swing.border.EmptyBorder;
+import java.awt.GridLayout;
+import java.awt.event.ActionListener;
 
-public class VistaInicial implements IVistaInicial {
-	
-	private JPanel contentPane;
+import javax.swing.border.TitledBorder;
+import javax.swing.JLabel;
+import javax.swing.GroupLayout;
+import javax.swing.GroupLayout.Alignment;
+import javax.swing.JTextField;
+import javax.swing.JButton;
+import java.awt.event.KeyListener;
+import java.awt.event.KeyEvent;
+
+public class VistaInicial extends JPanel implements IVistaInicial, KeyListener{
 	private JTextField textFieldUsuario;
 	private JTextField textFieldContrasena;
+	private JButton btnAceptar;
 	
+	public VistaInicial() {
+		setBorder(new TitledBorder(null, "Iniciar Sesi\u00F3n", TitledBorder.LEADING, TitledBorder.TOP, null, null));
+		setLayout(new GridLayout(3, 0, 0, 0));
+		
+		JPanel panelNorte = new JPanel();
+		add(panelNorte);
+		panelNorte.setLayout(new GridLayout(0, 2, 0, 0));
+		
+		JPanel panel = new JPanel();
+		panelNorte.add(panel);
+		
+		JLabel lblUsuario = new JLabel("Usuario");
+		GroupLayout gl_panel = new GroupLayout(panel);
+		gl_panel.setHorizontalGroup(
+			gl_panel.createParallelGroup(Alignment.LEADING)
+				.addGroup(gl_panel.createSequentialGroup()
+					.addGap(89)
+					.addComponent(lblUsuario)
+					.addContainerGap(94, Short.MAX_VALUE))
+		);
+		gl_panel.setVerticalGroup(
+			gl_panel.createParallelGroup(Alignment.LEADING)
+				.addGroup(gl_panel.createSequentialGroup()
+					.addGap(39)
+					.addComponent(lblUsuario)
+					.addContainerGap(39, Short.MAX_VALUE))
+		);
+		panel.setLayout(gl_panel);
+		
+		JPanel panel_1 = new JPanel();
+		panelNorte.add(panel_1);
+		
+		textFieldUsuario = new JTextField();
+		textFieldUsuario.addKeyListener(this);
+		textFieldUsuario.setColumns(10);
+		GroupLayout gl_panel_1 = new GroupLayout(panel_1);
+		gl_panel_1.setHorizontalGroup(
+			gl_panel_1.createParallelGroup(Alignment.LEADING)
+				.addGroup(gl_panel_1.createSequentialGroup()
+					.addGap(59)
+					.addComponent(textFieldUsuario, GroupLayout.PREFERRED_SIZE, GroupLayout.DEFAULT_SIZE, GroupLayout.PREFERRED_SIZE)
+					.addContainerGap(74, Short.MAX_VALUE))
+		);
+		gl_panel_1.setVerticalGroup(
+			gl_panel_1.createParallelGroup(Alignment.LEADING)
+				.addGroup(Alignment.TRAILING, gl_panel_1.createSequentialGroup()
+					.addContainerGap(37, Short.MAX_VALUE)
+					.addComponent(textFieldUsuario, GroupLayout.PREFERRED_SIZE, GroupLayout.DEFAULT_SIZE, GroupLayout.PREFERRED_SIZE)
+					.addGap(35))
+		);
+		panel_1.setLayout(gl_panel_1);
+		
+		JPanel panelCentro = new JPanel();
+		add(panelCentro);
+		panelCentro.setLayout(new GridLayout(0, 2, 0, 0));
+		
+		JPanel panel_2 = new JPanel();
+		panelCentro.add(panel_2);
+		
+		JLabel lblNewLabel = new JLabel("Contrase\u00F1a");
+		GroupLayout gl_panel_2 = new GroupLayout(panel_2);
+		gl_panel_2.setHorizontalGroup(
+			gl_panel_2.createParallelGroup(Alignment.LEADING)
+				.addGroup(Alignment.TRAILING, gl_panel_2.createSequentialGroup()
+					.addContainerGap(84, Short.MAX_VALUE)
+					.addComponent(lblNewLabel)
+					.addGap(79))
+		);
+		gl_panel_2.setVerticalGroup(
+			gl_panel_2.createParallelGroup(Alignment.LEADING)
+				.addGroup(gl_panel_2.createSequentialGroup()
+					.addGap(39)
+					.addComponent(lblNewLabel)
+					.addContainerGap(39, Short.MAX_VALUE))
+		);
+		panel_2.setLayout(gl_panel_2);
+		
+		JPanel panel_3 = new JPanel();
+		panelCentro.add(panel_3);
+		
+		textFieldContrasena = new JTextField();
+		textFieldContrasena.addKeyListener(this);
+		textFieldContrasena.setColumns(10);
+		GroupLayout gl_panel_3 = new GroupLayout(panel_3);
+		gl_panel_3.setHorizontalGroup(
+			gl_panel_3.createParallelGroup(Alignment.LEADING)
+				.addGroup(gl_panel_3.createSequentialGroup()
+					.addGap(61)
+					.addComponent(textFieldContrasena, GroupLayout.PREFERRED_SIZE, GroupLayout.DEFAULT_SIZE, GroupLayout.PREFERRED_SIZE)
+					.addContainerGap(72, Short.MAX_VALUE))
+		);
+		gl_panel_3.setVerticalGroup(
+			gl_panel_3.createParallelGroup(Alignment.LEADING)
+				.addGroup(gl_panel_3.createSequentialGroup()
+					.addGap(35)
+					.addComponent(textFieldContrasena, GroupLayout.PREFERRED_SIZE, GroupLayout.DEFAULT_SIZE, GroupLayout.PREFERRED_SIZE)
+					.addContainerGap(37, Short.MAX_VALUE))
+		);
+		panel_3.setLayout(gl_panel_3);
+		
+		JPanel panelSur = new JPanel();
+		add(panelSur);
+		
+		btnAceptar = new JButton("Aceptar");
+		btnAceptar.setEnabled(false);
+		GroupLayout gl_panelSur = new GroupLayout(panelSur);
+		gl_panelSur.setHorizontalGroup(
+			gl_panelSur.createParallelGroup(Alignment.LEADING)
+				.addGroup(gl_panelSur.createSequentialGroup()
+					.addGap(183)
+					.addComponent(btnAceptar)
+					.addContainerGap(184, Short.MAX_VALUE))
+		);
+		gl_panelSur.setVerticalGroup(
+			gl_panelSur.createParallelGroup(Alignment.LEADING)
+				.addGroup(Alignment.TRAILING, gl_panelSur.createSequentialGroup()
+					.addContainerGap(36, Short.MAX_VALUE)
+					.addComponent(btnAceptar)
+					.addGap(33))
+		);
+		panelSur.setLayout(gl_panelSur);
+	}
+
 	@Override
 	public void limpiarVista() {
 		// TODO Auto-generated method stub
@@ -26,14 +149,13 @@ public class VistaInicial implements IVistaInicial {
 
 	@Override
 	public String getUsuario() {
-		// TODO Auto-generated method stub
-		return null;
+		return this.textFieldUsuario.getText();
 	}
 
 	@Override
 	public String getContrasena() {
 		// TODO Auto-generated method stub
-		return null;
+		return this.textFieldContrasena.getText();
 	}
 
 	@Override
@@ -41,119 +163,21 @@ public class VistaInicial implements IVistaInicial {
 		// TODO Auto-generated method stub
 		
 	}
-	
-	public VistaInicial() {
+
+	@Override
+	public void addActionListener(ActionListener actionListener) {
+		// TODO Auto-generated method stub
 		
-		contentPane = new JPanel();
-		contentPane.setBorder(new EmptyBorder(5, 5, 5, 5));
-		//setContentPane(contentPane);
-		contentPane.setLayout(new CardLayout(0, 0));
-		
-		JPanel panel = new JPanel();
-		contentPane.add(panel, "name_125158342663200");
-		panel.setLayout(new BorderLayout(0, 0));
-		
-		JPanel panel_1 = new JPanel();
-		panel.add(panel_1);
-		panel_1.setLayout(new GridLayout(2, 2, 0, 0));
-		
-		JPanel panel_5 = new JPanel();
-		panel_1.add(panel_5);
-		
-		JLabel LabelUsuario = new JLabel("Usuario");
-		GroupLayout gl_panel_5 = new GroupLayout(panel_5);
-		gl_panel_5.setHorizontalGroup(
-			gl_panel_5.createParallelGroup(Alignment.LEADING)
-				.addGroup(gl_panel_5.createSequentialGroup()
-					.addGap(99)
-					.addComponent(LabelUsuario)
-					.addContainerGap(99, Short.MAX_VALUE))
-		);
-		gl_panel_5.setVerticalGroup(
-			gl_panel_5.createParallelGroup(Alignment.LEADING)
-				.addGroup(gl_panel_5.createSequentialGroup()
-					.addGap(50)
-					.addComponent(LabelUsuario)
-					.addContainerGap(60, Short.MAX_VALUE))
-		);
-		panel_5.setLayout(gl_panel_5);
-		
-		JPanel panel_2 = new JPanel();
-		panel_1.add(panel_2);
-		
-		textFieldUsuario = new JTextField();
-		textFieldUsuario.setColumns(10);
-		GroupLayout gl_panel_2 = new GroupLayout(panel_2);
-		gl_panel_2.setHorizontalGroup(
-			gl_panel_2.createParallelGroup(Alignment.LEADING)
-				.addGroup(gl_panel_2.createSequentialGroup()
-					.addGap(73)
-					.addComponent(textFieldUsuario, GroupLayout.PREFERRED_SIZE, GroupLayout.DEFAULT_SIZE, GroupLayout.PREFERRED_SIZE)
-					.addContainerGap(75, Short.MAX_VALUE))
-		);
-		gl_panel_2.setVerticalGroup(
-			gl_panel_2.createParallelGroup(Alignment.LEADING)
-				.addGroup(gl_panel_2.createSequentialGroup()
-					.addGap(46)
-					.addComponent(textFieldUsuario, GroupLayout.PREFERRED_SIZE, GroupLayout.DEFAULT_SIZE, GroupLayout.PREFERRED_SIZE)
-					.addContainerGap(58, Short.MAX_VALUE))
-		);
-		panel_2.setLayout(gl_panel_2);
-		
-		JPanel panel_6 = new JPanel();
-		panel_1.add(panel_6);
-		
-		JLabel LabelContrasena = new JLabel("Contraseña");
-		GroupLayout gl_panel_6 = new GroupLayout(panel_6);
-		gl_panel_6.setHorizontalGroup(
-			gl_panel_6.createParallelGroup(Alignment.LEADING)
-				.addGroup(gl_panel_6.createSequentialGroup()
-					.addGap(89)
-					.addComponent(LabelContrasena)
-					.addContainerGap(89, Short.MAX_VALUE))
-		);
-		gl_panel_6.setVerticalGroup(
-			gl_panel_6.createParallelGroup(Alignment.LEADING)
-				.addGroup(gl_panel_6.createSequentialGroup()
-					.addGap(51)
-					.addComponent(LabelContrasena)
-					.addContainerGap(59, Short.MAX_VALUE))
-		);
-		panel_6.setLayout(gl_panel_6);
-		
-		JPanel panel_4 = new JPanel();
-		panel_1.add(panel_4);
-		
-		textFieldContrasena = new JTextField();
-		textFieldContrasena.setColumns(10);
-		GroupLayout gl_panel_4 = new GroupLayout(panel_4);
-		gl_panel_4.setHorizontalGroup(
-			gl_panel_4.createParallelGroup(Alignment.LEADING)
-				.addGroup(Alignment.TRAILING, gl_panel_4.createSequentialGroup()
-					.addContainerGap(76, Short.MAX_VALUE)
-					.addComponent(textFieldContrasena, GroupLayout.PREFERRED_SIZE, GroupLayout.DEFAULT_SIZE, GroupLayout.PREFERRED_SIZE)
-					.addGap(72))
-		);
-		gl_panel_4.setVerticalGroup(
-			gl_panel_4.createParallelGroup(Alignment.LEADING)
-				.addGroup(gl_panel_4.createSequentialGroup()
-					.addGap(48)
-					.addComponent(textFieldContrasena, GroupLayout.PREFERRED_SIZE, GroupLayout.DEFAULT_SIZE, GroupLayout.PREFERRED_SIZE)
-					.addContainerGap(56, Short.MAX_VALUE))
-		);
-		panel_4.setLayout(gl_panel_4);
-		
-		JPanel panel_3 = new JPanel();
-		panel.add(panel_3, BorderLayout.NORTH);
-		
-		JLabel LabelIniciaSesion = new JLabel("Inicia Sesion");
-		panel_3.add(LabelIniciaSesion);
-		
-		JPanel panel_7 = new JPanel();
-		panel.add(panel_7, BorderLayout.SOUTH);
-		
-		JButton btnAceptar = new JButton("Aceptar");
-		panel_7.add(btnAceptar);
 	}
 
+	
+
+	public void keyPressed(KeyEvent e) {
+	}
+	public void keyReleased(KeyEvent e) {
+		boolean condition = this.getContrasena().length()>0 && this.getUsuario().length()>0;
+		this.btnAceptar.setEnabled(condition);
+	}
+	public void keyTyped(KeyEvent e) {
+	}
 }

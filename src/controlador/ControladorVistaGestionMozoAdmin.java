@@ -13,27 +13,26 @@ import vista.IVistaGestionMozoAdmin;
 import vista.Ventana;
 import vista.VistaGestionMozoAdmin;
 
-public class ControladorVistaGestionMozoAdmin extends ControladorVistaGestionMozoOp implements ActionListener {
+public class ControladorVistaGestionMozoAdmin implements ActionListener {
 
 	private IVistaGestionMozoAdmin vista = null;
 	private Ventana ventana = null;
 	private JPanel contentPane = null;
 	
 	public ControladorVistaGestionMozoAdmin(IVistaGestionMozoAdmin vista, Ventana ventana) {
-		super();
 		this.vista = vista;
-		//this.vista.addActionListener(this);
+		this.vista.addActionListener(this);
 		this.ventana = ventana;
-	}
-	
-	public ControladorVistaGestionMozoAdmin() {
 	}
 
 	@Override
 	public void actionPerformed(ActionEvent e) {
-		super.actionPerformed(e);
 		String comando = e.getActionCommand();
-		if (comando.equalsIgnoreCase("ALTA"))
+		if (comando.equalsIgnoreCase("MODIFICA")) 
+			JOptionPane.showMessageDialog(null, "Modifica.");
+		else if (comando.equalsIgnoreCase("ESTABLECE"))
+			JOptionPane.showMessageDialog(null, "Estados.");
+		else if (comando.equalsIgnoreCase("ALTA"))
 			JOptionPane.showMessageDialog(null, "Alta.");
 		else if (comando.equalsIgnoreCase("ELIMINA"))
 			try {

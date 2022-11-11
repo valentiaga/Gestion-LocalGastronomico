@@ -3,6 +3,7 @@ package controlador;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 
+import javax.swing.JOptionPane;
 import javax.swing.JPanel;
 
 import vista.IVistaGestionMesaOp;
@@ -18,13 +19,18 @@ public class ControladorVistaGestionMesaOp implements ActionListener {
 	public ControladorVistaGestionMesaOp(IVistaGestionMesaOp vista, Ventana ventana) {
 		super();
 		this.vista = vista;
-		//this.vista.addActionListener(this);
+		this.vista.addActionListener(this);
 		this.ventana = ventana;
 	}
 	@Override
 	public void actionPerformed(ActionEvent e) {
-		// TODO Auto-generated method stub
-		
+		String comando = e.getActionCommand();
+		if (comando.equalsIgnoreCase("MODIFICAR")) 
+			JOptionPane.showMessageDialog(null, "Modifica.");
+		else if (comando.equalsIgnoreCase("SETEAR"))
+			JOptionPane.showMessageDialog(null, "Setear.");
+		else if (comando.equalsIgnoreCase("CERRAR"))
+			JOptionPane.showMessageDialog(null, "Cerrar.");
 	}
 
 }

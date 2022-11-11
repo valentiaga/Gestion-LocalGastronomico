@@ -8,6 +8,7 @@ import javax.swing.border.EmptyBorder;
 import java.awt.BorderLayout;
 import java.awt.CardLayout;
 import java.awt.GridLayout;
+import java.awt.event.ActionListener;
 
 import javax.swing.GroupLayout;
 import javax.swing.JButton;
@@ -153,5 +154,11 @@ public class VistaCambiaContrasena extends JPanel implements IVistaCambiaContras
 		
 		JButton btnAceptar = new JButton("Aceptar");
 		panel_7.add(btnAceptar);
+	}
+
+	@Override
+	public void addActionListener(ActionListener actionListener) {
+		// TODO Auto-generated method stub
+		
 	}
 }

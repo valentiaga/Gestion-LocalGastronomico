@@ -9,7 +9,6 @@ import javax.swing.JPanel;
 public class Ventana extends JFrame {
 
 	private JPanel contentPane;
-	
 	private ActionListener actionListener;
 	private VistaInicial vistaInicial;
 	private VistaGestionMozoOp vistaGestionMozoOp;
@@ -19,9 +18,6 @@ public class Ventana extends JFrame {
 	private VistaCambiaContrasena vistaCambiaContrasena;
 	private VistaOperario vistaOp;
 	private VistaAdmin vistaAdmin;
-
-	
-	
 
 	/**
 	 * Launch the application.
@@ -59,9 +55,10 @@ public class Ventana extends JFrame {
 		setContentPane(contentPane);
 		
 		contentPane.setLayout(new CardLayout(0, 0));
-		contentPane.add(vistaMozoAdmin);
-		contentPane.add(vistaMozoOp);
-		contentPane.add(vistaMesaAdmin);
+		contentPane.add(vistaInicial);
+		//contentPane.add(vistaMozoAdmin);
+		//contentPane.add(vistaMozoOp);
+		//contentPane.add(vistaMesaAdmin);
 		contentPane.add(vistaMesaOp);
 		contentPane.add(vistaOp);
 		contentPane.add(vistaAdmin);

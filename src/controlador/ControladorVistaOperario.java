@@ -18,7 +18,7 @@ public class ControladorVistaOperario implements ActionListener {
 	public ControladorVistaOperario(IVistaOperario vista, Ventana ventana) {
 		super();
 		this.vista = vista;
-		//this.vista.addActionListener(this);
+		this.vista.addActionListener(this);
 		this.ventana = ventana;
 	}
 	

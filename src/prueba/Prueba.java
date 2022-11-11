@@ -1,11 +1,10 @@
 package prueba;
 
+import controlador.ControladorVistaGestionMesaOp;
 import controlador.ControladorVistaGestionMozoAdmin;
 import controlador.ControladorVistaGestionMozoOp;
 import modelo.Mozo;
 import negocio.Sistema;
-import vista.IVistaGestionMozoAdmin;
-import vista.IVistaGestionMozoOp;
 import vista.Ventana;
 import vista.VistaAdmin;
 import vista.VistaCambiaContrasena;
@@ -47,7 +46,8 @@ public class Prueba {
 		 * botones pq le puse el conrolador a manopla con contructor vacio.
 		 **/
 		ControladorVistaGestionMozoOp cMozoOp = new ControladorVistaGestionMozoOp(vistaMozoOp, v);
-		// ControladorVistaGestionMozoAdmin cMozoAdmin = new ControladorVistaGestionMozoAdmin(vistaMozoAdmin, v);
+		ControladorVistaGestionMozoAdmin cMozoAdmin = new ControladorVistaGestionMozoAdmin(vistaMozoAdmin, v);
+		ControladorVistaGestionMesaOp cMesaOp = new ControladorVistaGestionMesaOp(vistaMesaOp, v);
 	}
 
 }

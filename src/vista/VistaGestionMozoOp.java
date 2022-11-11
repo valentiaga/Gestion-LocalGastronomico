@@ -25,12 +25,12 @@ import negocio.Sistema;
 public class VistaGestionMozoOp extends JPanel implements IVistaGestionMozoOp, ItemListener {
 
 	JComboBox comboBox;
-	ActionListener actionListener = new ControladorVistaGestionMozoOp();
+	ActionListener actionListener;
 	JButton btnModificaMozo;
 	JButton btnEstableceEstado;
 
 	@Override
-	public void addActionListener(ActionListener actionListener) { //basicamente no uso este metodo pq no me funciona. Si lo hago abajo en el constructor si.... FIJATE QUE ONDA
+	public void addActionListener(ActionListener actionListener) { 
 		this.actionListener = actionListener;
 		this.btnModificaMozo.addActionListener(actionListener);
 		this.btnEstableceEstado.addActionListener(actionListener);
@@ -39,7 +39,6 @@ public class VistaGestionMozoOp extends JPanel implements IVistaGestionMozoOp, I
 	 * Create the panel.
 	 */
 	public VistaGestionMozoOp() {
-		//this.actionListener = new ControladorVistaGestionMozoOp ();
 		setBorder(new TitledBorder(new EtchedBorder(EtchedBorder.LOWERED, new Color(255, 255, 255), new Color(160, 160, 160)), "Gestion Mozos", TitledBorder.LEADING, TitledBorder.TOP, null, new Color(0, 0, 0)));
 		setLayout(new BorderLayout(0, 0));
 		
@@ -88,9 +87,7 @@ public class VistaGestionMozoOp extends JPanel implements IVistaGestionMozoOp, I
 		
 		btnModificaMozo = new JButton("Modificar Mozo");
 		btnModificaMozo.setActionCommand("MODIFICA");
-		panel_2.add(btnModificaMozo);
-		//btnModificaMozo.addActionListener(this.actionListener);
-		this.btnModificaMozo.addActionListener(actionListener);
+		panel_2.add(btnModificaMozo);		
 		
 		JPanel panel_3 = new JPanel();
 		panel.add(panel_3);
@@ -99,7 +96,6 @@ public class VistaGestionMozoOp extends JPanel implements IVistaGestionMozoOp, I
 		btnEstableceEstado = new JButton("Establecer estados");
 		btnEstableceEstado.setActionCommand("ESTABLECE");
 		panel_3.add(btnEstableceEstado);
-		this.btnEstableceEstado.addActionListener(actionListener);
 	}
 
 

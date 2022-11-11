@@ -22,15 +22,8 @@ public class ControladorVistaGestionMozoOp implements ActionListener {
 	public ControladorVistaGestionMozoOp(IVistaGestionMozoOp vista, Ventana ventana) {
 		super();
 		this.vista = vista;
-		//this.vista.addActionListener(this);
+		this.vista.addActionListener(this);
 		this.ventana = ventana;
-	}
-	
-
-
-	public ControladorVistaGestionMozoOp() {
-		super();
-		// TODO Auto-generated constructor stub
 	}
 
 

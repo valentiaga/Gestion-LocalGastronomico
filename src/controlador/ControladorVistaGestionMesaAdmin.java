@@ -18,7 +18,7 @@ public class ControladorVistaGestionMesaAdmin implements ActionListener {
 	public ControladorVistaGestionMesaAdmin(IVistaGestionMesaAdmin vista, Ventana ventana) {
 		super();
 		this.vista = vista;
-		//this.vista.addActionListener(this);
+		this.vista.addActionListener(this);
 		this.ventana = ventana;
 	}
 	@Override
