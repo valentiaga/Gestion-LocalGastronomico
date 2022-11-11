@@ -1,5 +1,5 @@
 package vista;
 
-public class IVistaGestionMesaAdmin {
+public interface IVistaGestionMesaAdmin {
 
 }
