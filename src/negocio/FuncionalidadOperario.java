@@ -250,10 +250,7 @@ public class FuncionalidadOperario {
 			throw new PromoInvalida_Exception("La promocion '" + nombre + "' no existe.");
 	}
 
-	public void setEstadoMozo(Mozo mozo, Enumerados.estadoMozo estado) {
-		mozo.setEstado(estado);
-	}
-
+	
 	public void setMesaMozo(Mesa mesa, Mozo mozo) {
 		mesa.setMozo(mozo);
 	}

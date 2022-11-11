@@ -22,7 +22,7 @@ public class VistaOperario extends JPanel {
 		
 		JPanel panel = new JPanel();
 		add(panel);
-		panel.setLayout(new GridLayout(5, 1, 0, 0));
+		panel.setLayout(new GridLayout(6, 1, 0, 0));
 		
 		JPanel panel_1 = new JPanel();
 		panel.add(panel_1);
@@ -45,14 +45,20 @@ public class VistaOperario extends JPanel {
 		JPanel panel_3 = new JPanel();
 		panel.add(panel_3);
 		
-		JButton btnModificarOperario = new JButton("Modificar Datos Personales");
-		panel_3.add(btnModificarOperario);
+		JButton btnGestionPromociones = new JButton("Gestion Promociones");
+		panel_3.add(btnGestionPromociones);
 		
 		JPanel panel_5 = new JPanel();
 		panel.add(panel_5);
 		
+		JButton btnModificarOperario = new JButton("Modificar Datos Personales");
+		panel_5.add(btnModificarOperario);
+		
+		JPanel panel_6 = new JPanel();
+		panel.add(panel_6);
+		
 		JButton btnCerrarSesion = new JButton("Cerrar Sesion");
-		panel_5.add(btnCerrarSesion);
+		panel_6.add(btnCerrarSesion);
 
 	}
 
