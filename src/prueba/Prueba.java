@@ -1,9 +1,11 @@
 package prueba;
 
+import controlador.ControladorVistaAdmin;
 import controlador.ControladorVistaGestionMesaOp;
 import controlador.ControladorVistaGestionMozoAdmin;
 import controlador.ControladorVistaGestionMozoOp;
 import controlador.ControladorVistaInicial;
+import controlador.ControladorVistaOperario;
 import modelo.Mozo;
 import negocio.Sistema;
 import vista.Ventana;
@@ -13,6 +15,8 @@ import vista.VistaGestionMesaAdmin;
 import vista.VistaGestionMesaOp;
 import vista.VistaGestionMozoAdmin;
 import vista.VistaGestionMozoOp;
+import vista.VistaGestionProductoAdmin;
+import vista.VistaGestionProductoOp;
 import vista.VistaInicial;
 import vista.VistaOperario;
 
@@ -36,15 +40,18 @@ public class Prueba {
 		VistaCambiaContrasena vistaCambiaContra = new VistaCambiaContrasena();
 		VistaOperario vistaOp = new VistaOperario();
 		VistaAdmin vistaAdmin = new VistaAdmin();
+		VistaGestionProductoOp vistaProductoOp = new VistaGestionProductoOp();
+		VistaGestionProductoAdmin vistaProductoAdmin = new VistaGestionProductoAdmin();
 
 		Ventana v = new Ventana(vistaInicial, vistaMozoOp, vistaMozoAdmin, vistaMesaOp, vistaMesaAdmin,
-				vistaCambiaContra, vistaOp, vistaAdmin);
+				vistaCambiaContra, vistaOp, vistaAdmin, vistaProductoOp, vistaProductoAdmin);
 
+		ControladorVistaAdmin cAdmin = new ControladorVistaAdmin(vistaAdmin, v);
 		ControladorVistaInicial cInicial = new ControladorVistaInicial(vistaInicial, v);
 		ControladorVistaGestionMozoOp cMozoOp = new ControladorVistaGestionMozoOp(vistaMozoOp, v);
 		ControladorVistaGestionMozoAdmin cMozoAdmin = new ControladorVistaGestionMozoAdmin(vistaMozoAdmin, v);
 		ControladorVistaGestionMesaOp cMesaOp = new ControladorVistaGestionMesaOp(vistaMesaOp, v);
-	
+		ControladorVistaOperario cOperario = new ControladorVistaOperario(vistaOp, v);
 	}
 
 }

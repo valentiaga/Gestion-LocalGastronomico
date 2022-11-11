@@ -12,6 +12,12 @@ import javax.swing.border.TitledBorder;
 
 public class VistaAdmin extends JPanel implements IVistaAdmin {
 
+	private JButton btnCerrarSesion;
+	private JButton btnGestionMesa;
+	private JButton btnGestionMozo;
+	private JButton btnGestionProducto;
+	private JButton btnGestionarOperario;
+	private ActionListener actionListener;
 	/**
 	 * Create the panel.
 	 */
@@ -21,50 +27,53 @@ public class VistaAdmin extends JPanel implements IVistaAdmin {
 		
 		JPanel panel = new JPanel();
 		add(panel);
-		panel.setLayout(new GridLayout(6, 1, 0, 0));
+		panel.setLayout(new GridLayout(5, 1, 0, 0));
 		
 		JPanel panel_1 = new JPanel();
 		panel.add(panel_1);
 		
-		JButton btnGestionMesa = new JButton("Gestion Mesa");
+		btnGestionMesa = new JButton("Gestion Mesa");
+		btnGestionMesa.setActionCommand("GESTION_MESA");
 		panel_1.add(btnGestionMesa);
 		
 		JPanel panel_4 = new JPanel();
 		panel.add(panel_4);
 		
-		JButton btnGestionMozo = new JButton("Gestion Mozo");
+		btnGestionMozo = new JButton("Gestion Mozo");
+		btnGestionMozo.setActionCommand("GESTION_MOZO");
 		panel_4.add(btnGestionMozo);
 		
 		JPanel panel_2 = new JPanel();
 		panel.add(panel_2);
 		
-		JButton btnGestionProducto = new JButton("Gestion Producto");
+		btnGestionProducto = new JButton("Gestion Producto");
+		btnGestionProducto.setActionCommand("GESTION_PRODUCTO");
 		panel_2.add(btnGestionProducto);
 		
 		JPanel panel_3 = new JPanel();
 		panel.add(panel_3);
 		
-		JButton btnGestionarOperario = new JButton("Gestion Operario");
+		btnGestionarOperario = new JButton("Gestion Operario");
+		btnGestionarOperario.setActionCommand("GESTION_OPERARIO");
 		panel_3.add(btnGestionarOperario);
 		
 		JPanel panel_5 = new JPanel();
 		panel.add(panel_5);
 		
-		JButton btnCerrarSesion = new JButton("Cerrar Sesion");
+		btnCerrarSesion = new JButton("Cerrar Sesion");
+		btnCerrarSesion.setActionCommand("CERRAR_SESION");
 		panel_5.add(btnCerrarSesion);
-		
-		JPanel panel_2_1 = new JPanel();
-		panel.add(panel_2_1);
-		
-		JButton btnGestionProducto_1 = new JButton("Gestion Producto");
-		panel_2_1.add(btnGestionProducto_1);
 
 	}
 
 	@Override
 	public void addActionListener(ActionListener actionListener) {
-		// TODO Auto-generated method stub
-		
+		this.btnCerrarSesion.addActionListener(actionListener);
+		this.btnGestionarOperario.addActionListener(actionListener);
+		this.btnGestionMesa.addActionListener(actionListener);
+		this.btnGestionMozo.addActionListener(actionListener);
+		this.btnGestionProducto.addActionListener(actionListener);
+		this.actionListener = actionListener;
 	}
 
 }
