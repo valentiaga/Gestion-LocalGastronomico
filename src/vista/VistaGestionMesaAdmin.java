@@ -3,6 +3,7 @@ package vista;
 import java.awt.BorderLayout;
 import java.awt.FlowLayout;
 import java.awt.GridLayout;
+import java.awt.event.ActionListener;
 
 import javax.swing.GroupLayout;
 import javax.swing.JButton;
@@ -157,6 +158,11 @@ public class VistaGestionMesaAdmin extends JPanel implements IVistaGestionMesaAd
 //		
 //		JButton btnAgregaMesa = new JButton("Agrega Mesa");
 //		panel_2.add(btnAgregaMesa);
+	}
+	@Override
+	public void addActionListener(ActionListener actionListener) {
+		// TODO Auto-generated method stub
+		
 	}
 
 }

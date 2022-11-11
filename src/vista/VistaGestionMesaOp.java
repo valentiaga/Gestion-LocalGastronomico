@@ -28,6 +28,7 @@ public class VistaGestionMesaOp extends JPanel implements IVistaGestionMesaOp, I
 	private JButton btnModificaMesa;
 	private JComboBox comboBox;
 	private ActionListener actionListener;
+	private JButton btnVolver ;
 	
 	/**
 	 * Create the panel.
@@ -38,7 +39,7 @@ public class VistaGestionMesaOp extends JPanel implements IVistaGestionMesaOp, I
 		
 		JPanel panel = new JPanel();
 		add(panel);
-		panel.setLayout(new GridLayout(3, 0, 0, 0));
+		panel.setLayout(new GridLayout(4, 0, 0, 0));
 		
 		JPanel panel_1 = new JPanel();
 		panel.add(panel_1);
@@ -98,6 +99,13 @@ public class VistaGestionMesaOp extends JPanel implements IVistaGestionMesaOp, I
 		btnCerrarMesa.setVerticalAlignment(SwingConstants.BOTTOM);
 		panel_3.add(btnCerrarMesa);
 		
+		JPanel panel_8 = new JPanel();
+		panel.add(panel_8);
+		
+		btnVolver = new JButton("Volver");
+		btnVolver.setActionCommand("VOLVER");
+		panel_8.add(btnVolver);
+		
 		JPanel panel_4 = new JPanel();
 		add(panel_4, BorderLayout.NORTH);
 		panel_4.setLayout(new FlowLayout(FlowLayout.CENTER, 5, 5));
@@ -133,11 +141,10 @@ public class VistaGestionMesaOp extends JPanel implements IVistaGestionMesaOp, I
 		this.btnCerrarMesa.addActionListener(actionListener);
 		this.btnModificaMesa.addActionListener(actionListener);
 		this.btnSeteaMozo.addActionListener(actionListener);
+		this.btnVolver.addActionListener(actionListener);
 		this.actionListener = actionListener;
 		
 	}
-
-
 
 	@Override
 	public void itemStateChanged(ItemEvent e) {

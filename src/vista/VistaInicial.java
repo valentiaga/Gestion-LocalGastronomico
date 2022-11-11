@@ -17,6 +17,7 @@ public class VistaInicial extends JPanel implements IVistaInicial, KeyListener{
 	private JTextField textFieldUsuario;
 	private JTextField textFieldContrasena;
 	private JButton btnAceptar;
+	private ActionListener actionListener;
 	
 	public VistaInicial() {
 		setBorder(new TitledBorder(null, "Iniciar Sesi\u00F3n", TitledBorder.LEADING, TitledBorder.TOP, null, null));
@@ -122,6 +123,7 @@ public class VistaInicial extends JPanel implements IVistaInicial, KeyListener{
 		add(panelSur);
 		
 		btnAceptar = new JButton("Aceptar");
+		btnAceptar.setActionCommand("ACEPTAR");
 		btnAceptar.setEnabled(false);
 		GroupLayout gl_panelSur = new GroupLayout(panelSur);
 		gl_panelSur.setHorizontalGroup(
@@ -166,7 +168,8 @@ public class VistaInicial extends JPanel implements IVistaInicial, KeyListener{
 
 	@Override
 	public void addActionListener(ActionListener actionListener) {
-		// TODO Auto-generated method stub
+		this.actionListener = actionListener;
+		this.btnAceptar.addActionListener(actionListener);
 		
 	}
 

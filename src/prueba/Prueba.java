@@ -3,6 +3,7 @@ package prueba;
 import controlador.ControladorVistaGestionMesaOp;
 import controlador.ControladorVistaGestionMozoAdmin;
 import controlador.ControladorVistaGestionMozoOp;
+import controlador.ControladorVistaInicial;
 import modelo.Mozo;
 import negocio.Sistema;
 import vista.Ventana;
@@ -29,25 +30,21 @@ public class Prueba {
 
 		VistaGestionMozoOp vistaMozoOp = new VistaGestionMozoOp();
 		VistaGestionMozoAdmin vistaMozoAdmin = new VistaGestionMozoAdmin();
-		VistaInicial vistaIncial = new VistaInicial();
+		VistaInicial vistaInicial = new VistaInicial();
 		VistaGestionMesaOp vistaMesaOp = new VistaGestionMesaOp();
 		VistaGestionMesaAdmin vistaMesaAdmin = new VistaGestionMesaAdmin();
 		VistaCambiaContrasena vistaCambiaContra = new VistaCambiaContrasena();
 		VistaOperario vistaOp = new VistaOperario();
 		VistaAdmin vistaAdmin = new VistaAdmin();
 
-		Ventana v = new Ventana(vistaIncial, vistaMozoOp, vistaMozoAdmin, vistaMesaOp, vistaMesaAdmin,
+		Ventana v = new Ventana(vistaInicial, vistaMozoOp, vistaMozoAdmin, vistaMesaOp, vistaMesaAdmin,
 				vistaCambiaContra, vistaOp, vistaAdmin);
 
-		/**
-		 * ME DI CUENTA QUE NO ME RECONOCE LOS CONSTRUCTORES ESTOS, COMO Q YA SE VE LA
-		 * VENTANA EN LA DECLARACION DE VENTANA. POR ESO NO ANDA EL SET ACTIONLISTENER y
-		 * tambien toma la vista como nula ya que nunca se inicializo. Anda igual los
-		 * botones pq le puse el conrolador a manopla con contructor vacio.
-		 **/
+		ControladorVistaInicial cInicial = new ControladorVistaInicial(vistaInicial, v);
 		ControladorVistaGestionMozoOp cMozoOp = new ControladorVistaGestionMozoOp(vistaMozoOp, v);
 		ControladorVistaGestionMozoAdmin cMozoAdmin = new ControladorVistaGestionMozoAdmin(vistaMozoAdmin, v);
 		ControladorVistaGestionMesaOp cMesaOp = new ControladorVistaGestionMesaOp(vistaMesaOp, v);
+	
 	}
 
 }

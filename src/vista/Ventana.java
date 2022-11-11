@@ -55,14 +55,14 @@ public class Ventana extends JFrame {
 		setContentPane(contentPane);
 		
 		contentPane.setLayout(new CardLayout(0, 0));
-		contentPane.add(vistaInicial);
-		//contentPane.add(vistaMozoAdmin);
-		//contentPane.add(vistaMozoOp);
-		//contentPane.add(vistaMesaAdmin);
-		contentPane.add(vistaMesaOp);
-		contentPane.add(vistaOp);
-		contentPane.add(vistaAdmin);
-		contentPane.add(vistaCambiaContrasena);
+		//contentPane.add(vistaInicial, "vistaInicial");
+		//contentPane.add(vistaMozoAdmin, "vistaGestionMozoAdmin");
+		//contentPane.add(vistaMozoOp, "vistaGestionMozoOp");
+		//contentPane.add(vistaMesaAdmin, "vistaMesaAdmin");
+		contentPane.add(vistaMesaOp, "vistaMesaOp");
+		contentPane.add(vistaOp, "vistaOp");
+		contentPane.add(vistaAdmin, "vistaAdmin");
+		contentPane.add(vistaCambiaContrasena, "vistaCambiaContrasena");
 		//contentPane.add(vistaInicial); AHRE		
 	}
 	
@@ -70,36 +70,36 @@ public class Ventana extends JFrame {
 		return this.contentPane;
 	}
 
-	public VistaInicial getVistaInicial() {
-		return vistaInicial;
+	public String getVistaInicial() {
+		return "vistaInicial";
 	}
 
-	public VistaGestionMozoOp getVistaGestionMozoOp() {
-		return vistaGestionMozoOp;
+	public String getVistaGestionMozoOp() {
+		return "vistaGestionMozoOp";
 	}
 
-	public VistaGestionMozoAdmin getVistaGestionMozoAdmin() {
-		return vistaGestionMozoAdmin;
+	public String getVistaGestionMozoAdmin() {
+		return "vistaGestionMozoAdmin";
 	}
 
-	public VistaGestionMesaOp getVistaMesaOp() {
-		return vistaMesaOp;
+	public String getVistaMesaOp() {
+		return "vistaMesaOp";
 	}
 
-	public VistaGestionMesaAdmin getVistaMesaAdmin() {
-		return vistaMesaAdmin;
+	public String getVistaMesaAdmin() {
+		return "vistaMesaAdmin";
 	}
 
-	public VistaCambiaContrasena getVistaCambiaContrasena() {
-		return vistaCambiaContrasena;
+	public String getVistaCambiaContrasena() {
+		return "vistaCambiaContrasena";
 	}
 
-	public VistaOperario getVistaOp() {
-		return vistaOp;
+	public String getVistaOp() {
+		return "vistaOp";
 	}
 
-	public VistaAdmin getVistaAdmin() {
-		return vistaAdmin;
+	public String getVistaAdmin() {
+		return "vistaAdmin";
 	}
 
 
