@@ -31,7 +31,6 @@ public class ControladorVistaGestionMozoAdmin implements ActionListener {
 	public void actionPerformed(ActionEvent e) {
 		CardLayout cl = (CardLayout) contentPane.getLayout();
 		String comando = e.getActionCommand();
-		CardLayout cl = (CardLayout) contentPane.getLayout();
 		if (comando.equalsIgnoreCase("MODIFICA")) 
 			JOptionPane.showMessageDialog(null, "Modifica.");
 		else if (comando.equalsIgnoreCase("ESTABLECE"))
