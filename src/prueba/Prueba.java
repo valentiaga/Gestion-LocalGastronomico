@@ -51,7 +51,7 @@ public class Prueba {
 		ControladorVistaGestionMozoOp cMozoOp = new ControladorVistaGestionMozoOp(vistaMozoOp, v);
 		ControladorVistaGestionMozoAdmin cMozoAdmin = new ControladorVistaGestionMozoAdmin(vistaMozoAdmin, v);
 		ControladorVistaGestionMesaOp cMesaOp = new ControladorVistaGestionMesaOp(vistaMesaOp, v);
-		ControladorVistaOperario cOperario = new ControladorVistaOperario(vistaOp, v);
+		
 	}
 
 }
