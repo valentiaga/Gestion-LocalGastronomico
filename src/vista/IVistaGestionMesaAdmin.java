@@ -8,4 +8,6 @@ public interface IVistaGestionMesaAdmin {
 	int getCantPax();
 	void limpiarVista();
 	void ventanaEmergente(String mensaje);
+	int getCant();
+	int getIdProd();
 }

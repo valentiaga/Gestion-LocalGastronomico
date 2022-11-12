@@ -9,7 +9,10 @@ import controlador.ControladorVistaGestionProductoAdmin;
 import controlador.ControladorVistaInicial;
 import controlador.ControladorVistaModificaMesa;
 import controlador.ControladorVistaOperario;
+import excepciones.precioInvalido_Exception;
+import modelo.Administrador;
 import modelo.Mozo;
+import negocio.FuncionalidadAdmin;
 import negocio.Sistema;
 import vista.Ventana;
 import vista.VistaAdmin;
@@ -26,7 +29,7 @@ import vista.VistaOperario;
 
 public class Prueba {
 
-	public static void main(String[] args) {
+	public static void main(String[] args) throws precioInvalido_Exception {
 
 		Mozo mozo = new Mozo("Marti", 3);
 		Mozo mozo2 = new Mozo("Valen", 0);
@@ -48,6 +51,10 @@ public class Prueba {
 		VistaGestionProductoAdmin vistaProductoAdmin = new VistaGestionProductoAdmin();
 		VistaModificarMesa vistaModificarMesa = new VistaModificarMesa();
 		Sistema.getInstance().seteaAdmin();
+		Sistema.getInstance().setFuncionalidadAdmin(new FuncionalidadAdmin(Administrador.getInstance()));
+		Sistema.getInstance().getFuncionalidadAdmin().agregaProducto("Pizza", 10, 20, 10);
+		Sistema.getInstance().getFuncionalidadAdmin().agregaMesa(4);
+		Sistema.getInstance().getFuncionalidadAdmin().agregaMesa(5);
 		
 		Ventana v = new Ventana(vistaInicial, vistaMozoOp, vistaMozoAdmin, vistaMesaOp, vistaMesaAdmin,
 				vistaCambiaContra, vistaOp, vistaAdmin, vistaProductoOp, vistaProductoAdmin, vistaModificarMesa);

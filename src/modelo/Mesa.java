@@ -10,21 +10,21 @@ public class Mesa
     private int cantPax;
     private Enumerados.estadoMesa estado;
     private Mozo mozo;
+    private Comanda comanda;
     
-	/*public Mesa(int cantPax) {
+	public Mesa(int cantPax) {
+		super();
+		this.nroMesa = siguienteNroMesa++;
+		this.cantPax = cantPax;
+		this.estado = estado.LIBRE;
+	}
+	/*public Mesa() {
 		super();
 		this.nroMesa = siguienteNroMesa++;
 		this.cantPax = cantPax;
 		this.estado = estado.OCUPADA;
 		Sistema.getInstance().getMesas().put(nroMesa, this);
 	}*/
-	public Mesa() {
-		super();
-		this.nroMesa = siguienteNroMesa++;
-		this.cantPax = cantPax;
-		this.estado = estado.OCUPADA;
-		Sistema.getInstance().getMesas().put(nroMesa, this);
-	}
 
 	public int getNroMesa() {
 		return nroMesa;
@@ -53,7 +53,16 @@ public class Mesa
 	public void setMozo(Mozo mozo) {
 		this.mozo = mozo;
 	}
+
+	public Comanda getComanda() {
+		return comanda;
+	}
+
+	public void setComanda(Comanda comanda) {
+		this.comanda = comanda;
+	}
     
+	
     
     
 }

@@ -5,13 +5,14 @@ import java.util.ArrayList;
 import excepciones.CantComensalesInvalida_Exception;
 import excepciones.CantHijosInvalida_Exception;
 import excepciones.MesaNoOcupadaException;
+import excepciones.MesaOcupada_Exception;
 import excepciones.NoExisteID_Exception;
 import excepciones.NoExisteMesa_Exception;
-import excepciones.NoExisteOperario_Exception;
 import excepciones.ProductoNulo_Exception;
 import excepciones.PromoIdRepetido_Exception;
 import excepciones.PromoInvalida_Exception;
 import excepciones.PromoRepetida_Exception;
+import excepciones.StockInsuficiente_Exception;
 import excepciones.UserNameRepetido_Exception;
 import excepciones.precioInvalido_Exception;
 import excepciones.prodEnUso_Exception;
@@ -21,7 +22,6 @@ import modelo.Mesa;
 import modelo.MesaAtendida;
 import modelo.Mozo;
 import modelo.Operario;
-import modelo.Pedido;
 import modelo.Producto;
 import modelo.PromocionProd;
 import modelo.PromocionTemporal;
@@ -261,15 +261,16 @@ public class FuncionalidadOperario {
 		//System.out.println("Hola");
 		Mesa mesaActual = Sistema.getInstance().getMesas().get(nroMesa);
 		if (mesaActual!=null && mesaActual.getEstado() == Enumerados.estadoMesa.OCUPADA) {
-			Comanda comanda = Sistema.getInstance().getComandas().get(nroMesa); //pinta hacer un hashmappp
+			Comanda comanda = mesaActual.getComanda(); //pinta hacer un hashmappp
+			//System.out.println(comanda.getPedidos());
 			comanda.setEstado(Enumerados.estadoComanda.CERRADO);
 			Mozo mozo = mesaActual.getMozo();
 			double total = GestionComandas.totalComandaSinDescuento(comanda);
 			MesaAtendida mesaAtendida = new MesaAtendida(comanda.getMesa(), comanda.getPedidos(), total, formaDePago);
+			mozo.getMesasAtendidas().add(mesaAtendida);
 			GestionProdPromo.cargaPromosProd(comanda);
 			GestionProdTemp.cargaPromosTemp(comanda);
 			GestionComandas.totalComandaConDescuento(mesaAtendida, comanda);
-			mozo.getMesasAtendidas().add(mesaAtendida);
 			//falta clonar la comanda
 			mesaActual.setEstado(Enumerados.estadoMesa.LIBRE);
 		}
@@ -299,21 +300,30 @@ public class FuncionalidadOperario {
 	
 
 	// crea comanda
-	public void abreComanda(Mesa mesa, int cantPax) throws NoExisteMesa_Exception{ //seria la opcion agregar mesa de la ventana. Hay q agregar un maximo de mesas y tirar excepcion de q ya esta todo ocupado y aparte excepcion de si justo esa mesa esta ocupada.
-		if (Sistema.getInstance().getMesas().get(mesa.getNroMesa())!= null) { //la mesa existe en el local
-			Sistema sistema = Sistema.getInstance();
-			mesa.setCantPax(cantPax);
-			sistema.getComandas().add(new Comanda(mesa, Enumerados.estadoComanda.ABIERTO));			
+	public void abreComanda(Mesa mesa) throws NoExisteMesa_Exception, MesaOcupada_Exception{ //seria la opcion abrir mesa de la ventana. Hay q agregar un maximo de mesas y tirar excepcion de q ya esta todo ocupado y aparte excepcion de si justo esa mesa esta ocupada.
+		if (mesa != null) { //la mesa existe en el local
+			if (Sistema.getInstance().getMesas().get(mesa.getNroMesa()).getEstado()==Enumerados.estadoMesa.LIBRE) {
+				Sistema sistema = Sistema.getInstance();
+				Comanda comanda = new Comanda(mesa, Enumerados.estadoComanda.ABIERTO);
+				mesa.setComanda(comanda);
+				sistema.getComandas().add(comanda);	
+				mesa.setMozo(Sistema.getInstance().getMozos().get("Marti"));
+			}
+			else throw new MesaOcupada_Exception("La mesa se encuentra ocupada.");
 		}
 		else
 			throw new NoExisteMesa_Exception("No existe la mesa en el local");
 	}
 
-	public void agregaPedidos(Comanda comanda, int cant, int idProd) {
+	/*public void agregaPedidos(Comanda comanda, int cant, int idProd) {
 
 		Producto producto = Sistema.getInstance().getProductos().get(idProd);
 
 		comanda.agregaPedido(new Pedido(producto, cant));
+	}*/
+	
+	public void agregaPedidos(int nroMesa, int cant, int idProd) throws StockInsuficiente_Exception {
+		GestionMesas.agregaPedidos(Sistema.getInstance().getMesas().get(nroMesa), cant, idProd);
 	}
 	
 	public void modificaPassword(String password) {

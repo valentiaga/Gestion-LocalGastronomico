@@ -91,7 +91,6 @@ public class FuncionalidadAdmin extends FuncionalidadOperario {
 			
 		Producto producto = new Producto(nombre,precioCosto,precioVenta,stockInicial);
 		Sistema.getInstance().getProductos().put(producto.getIdProd(), producto);
-			
 	}
 
 	public void eliminaProducto(int idProd) throws prodEnUso_Exception, NoExisteID_Exception {
@@ -102,9 +101,9 @@ public class FuncionalidadAdmin extends FuncionalidadOperario {
 		GestionProductos.eliminaProducto(idProd);
 	}
 	
-	public void agregaMesa() {
-		//Mesa mesa = new Mesa(cantSillas);
-		Mesa mesa = new Mesa();
+	public void agregaMesa(int cantSillas) {
+		Mesa mesa = new Mesa(cantSillas);
+		//Mesa mesa = new Mesa();
 		Sistema.getInstance().getMesas().put(mesa.getNroMesa(), mesa);
 	}
 	

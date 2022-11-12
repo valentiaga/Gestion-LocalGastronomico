@@ -14,12 +14,14 @@ import javax.swing.GroupLayout.Alignment;
 import javax.swing.JButton;
 import javax.swing.JComboBox;
 import javax.swing.JLabel;
+import javax.swing.JOptionPane;
 import javax.swing.JPanel;
 import javax.swing.JTextField;
 import javax.swing.SwingConstants;
 import javax.swing.border.TitledBorder;
 
 import negocio.Sistema;
+import java.awt.event.ActionEvent;
 
 public class VistaGestionMesaOp extends JPanel implements IVistaGestionMesaOp, ItemListener, KeyListener {
 	private JTextField textFieldNroMesa;
@@ -29,7 +31,10 @@ public class VistaGestionMesaOp extends JPanel implements IVistaGestionMesaOp, I
 	private JComboBox comboBox;
 	private ActionListener actionListener;
 	private JButton btnVolver ;
-	
+	private JButton btnAbrirMesa;
+	private JButton btnAgregaPedido;
+	private JTextField textFieldCantidad;
+	private JTextField textFieldIdProd;
 	/**
 	 * Create the panel.
 	 */
@@ -39,7 +44,7 @@ public class VistaGestionMesaOp extends JPanel implements IVistaGestionMesaOp, I
 		
 		JPanel panel = new JPanel();
 		add(panel);
-		panel.setLayout(new GridLayout(4, 0, 0, 0));
+		panel.setLayout(new GridLayout(6, 0, 0, 0));
 		
 		JPanel panel_1 = new JPanel();
 		panel.add(panel_1);
@@ -102,9 +107,37 @@ public class VistaGestionMesaOp extends JPanel implements IVistaGestionMesaOp, I
 		JPanel panel_8 = new JPanel();
 		panel.add(panel_8);
 		
+		btnAbrirMesa = new JButton("Abrir mesa");
+		btnAbrirMesa.setEnabled(false);
+		btnAbrirMesa.setActionCommand("ABRIR_MESA");
+		panel_8.add(btnAbrirMesa);
+		
+		JPanel panel_9 = new JPanel();
+		panel.add(panel_9);
+		
+		textFieldIdProd = new JTextField();
+		textFieldIdProd.addKeyListener(this);
+		textFieldIdProd.setText("id Producto");
+		panel_9.add(textFieldIdProd);
+		textFieldIdProd.setColumns(10);
+		
+		textFieldCantidad = new JTextField();
+		textFieldCantidad.addKeyListener(this);
+		textFieldCantidad.setText("Cantidad");
+		panel_9.add(textFieldCantidad);
+		textFieldCantidad.setColumns(10);
+		
+		btnAgregaPedido = new JButton("Agregar pedido");
+		panel_9.add(btnAgregaPedido);
+		btnAgregaPedido.setEnabled(false);
+		btnAgregaPedido.setActionCommand("AGREGA_PEDIDO");
+		
+		JPanel panel_10 = new JPanel();
+		panel.add(panel_10);
+		
 		btnVolver = new JButton("Volver");
+		panel_10.add(btnVolver);
 		btnVolver.setActionCommand("VOLVER");
-		panel_8.add(btnVolver);
 		
 		JPanel panel_4 = new JPanel();
 		add(panel_4, BorderLayout.NORTH);
@@ -124,15 +157,19 @@ public class VistaGestionMesaOp extends JPanel implements IVistaGestionMesaOp, I
 		textFieldNroMesa.addKeyListener(this);
 		panel_5.add(textFieldNroMesa);
 		textFieldNroMesa.setColumns(10);
-
 	}
 
 
 
 	@Override
 	public int getNroMesa() {
-		// TODO Auto-generated method stub
-		return 0;
+		int nroMesa=-1;
+		try {
+			nroMesa = Integer.parseInt(this.textFieldNroMesa.getText());
+		}
+		catch (NumberFormatException e2) {
+		}
+		return nroMesa;
 	}
 
 
@@ -142,8 +179,8 @@ public class VistaGestionMesaOp extends JPanel implements IVistaGestionMesaOp, I
 		this.btnModificaMesa.addActionListener(actionListener);
 		this.btnSeteaMozo.addActionListener(actionListener);
 		this.btnVolver.addActionListener(actionListener);
+		this.btnAbrirMesa.addActionListener(actionListener);
 		this.actionListener = actionListener;
-		
 	}
 
 	@Override
@@ -155,19 +192,45 @@ public class VistaGestionMesaOp extends JPanel implements IVistaGestionMesaOp, I
 	public void keyPressed(KeyEvent e) {
 	}
 	public void keyReleased(KeyEvent e) {
-		int nroMesa = -1;
-		try {
-			nroMesa = Integer.parseInt(this.textFieldNroMesa.getText());	
-		}
-		catch (NumberFormatException ee) {
-			
-		}
-		boolean condition = nroMesa >= 0 ;
+		boolean condition = this.getNroMesa() >= 0 ;
+		boolean condPedido = this.getIdProd()>=0 && this.getCant()>0 && condition;
 		this.btnCerrarMesa.setEnabled(condition);
 		this.btnModificaMesa.setEnabled(condition);
 		this.btnSeteaMozo.setEnabled(condition);
+		this.btnAbrirMesa.setEnabled(condition);
 		this.comboBox.setEnabled(condition);
+		this.btnAgregaPedido.setEnabled(condPedido);
 	}
 	public void keyTyped(KeyEvent e) {
+	}
+
+	@Override
+	public void ventanaEmergente(String mensaje) {
+		JOptionPane.showMessageDialog(null,mensaje );
+	}
+
+
+
+	@Override
+	public int getIdProd() {
+		int id=-1;
+		try {
+			id = Integer.parseInt(this.textFieldIdProd.getText());
+
+		}
+		catch (NumberFormatException e2) {
+		}
+		return id;
+	}
+
+	@Override
+	public int getCant() {
+		int cant=-1;
+		try {
+			cant = Integer.parseInt(this.textFieldCantidad.getText());
+		}
+		catch (NumberFormatException e2) {
+		}
+		return cant;
 	}
 }

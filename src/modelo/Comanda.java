@@ -13,14 +13,12 @@ public class Comanda
     private ArrayList<Pedido> pedidos;
     private Enumerados.estadoComanda estado;
     
-    
-    
 	public Comanda(Mesa mesa, estadoComanda estado) {
 		super();
 		this.fecha = new GregorianCalendar();
 		this.mesa = mesa;
 		this.mesa.setEstado(Enumerados.estadoMesa.OCUPADA);
-		this.pedidos = pedidos;
+		this.pedidos = new ArrayList<Pedido>();
 		this.estado = estado;
 	}
 	

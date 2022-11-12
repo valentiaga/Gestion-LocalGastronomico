@@ -54,6 +54,12 @@ public class Producto
 		this.stockInicial = stockInicial;
 	}
 
+	@Override
+	public String toString() {
+		return "Producto [idProd=" + idProd + ", nombre=" + nombre + ", precioCosto=" + precioCosto + ", precioVenta="
+				+ precioVenta + ", stockInicial=" + stockInicial + "]";
+	}
+
 	
     
     

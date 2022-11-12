@@ -6,6 +6,10 @@ import java.awt.event.ActionListener;
 import javax.swing.JFrame;
 import javax.swing.JPanel;
 
+import modelo.Administrador;
+import negocio.FuncionalidadAdmin;
+import negocio.Sistema;
+
 public class Ventana extends JFrame {
 
 	private JPanel contentPane;
@@ -60,14 +64,15 @@ public class Ventana extends JFrame {
 		this.contentPane = new JPanel();
 		setContentPane(contentPane);
 		
+//		Sistema.getInstance().setFuncionalidadAdmin(new FuncionalidadAdmin(Administrador.getInstance()));
 		contentPane.setLayout(new CardLayout(0, 0));
-		contentPane.add(vistaInicial, "vistaInicial");
 		contentPane.add(vistaAdmin, "vistaAdmin");
+		contentPane.add(vistaMesaOp, "vistaMesaOp");
+		contentPane.add(vistaInicial, "vistaInicial");
 		contentPane.add(vistaOp, "vistaOp");
 		contentPane.add(vistaMozoAdmin, "vistaGestionMozoAdmin");
 		contentPane.add(vistaMozoOp, "vistaGestionMozoOp");
 		contentPane.add(vistaMesaAdmin, "vistaMesaAdmin");
-		contentPane.add(vistaMesaOp, "vistaMesaOp");
 		contentPane.add(vistaCambiaContrasena, "vistaCambiaContrasena");
 		contentPane.add(vistaProductoAdmin, "vistaProductoAdmin");
 		contentPane.add(vistaProductoOp, "vistaProductoOp");

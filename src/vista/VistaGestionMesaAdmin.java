@@ -20,7 +20,6 @@ import java.awt.event.KeyListener;
 import java.awt.event.KeyEvent;
 
 public class VistaGestionMesaAdmin extends JPanel implements IVistaGestionMesaAdmin, KeyListener{
-	private JTextField textFieldNroMesa;
 	private JTextField textFieldCantSillas;
 	private JButton btnVolver;
 	private JButton btnSeteaMozo;
@@ -29,7 +28,12 @@ public class VistaGestionMesaAdmin extends JPanel implements IVistaGestionMesaAd
 	private JButton btnAgrega;
 	private JButton btnCerrarMesa;
 	private JButton btnElimina;
+	private JButton btnAbrirMesa;
 	private ActionListener actionListener;
+	private JTextField textFieldNroMesa;
+	private JTextField textFieldIdProd;
+	private JTextField textFieldCant;
+	private JButton btnAgregaPedido;
 	
 	
 	/**
@@ -42,25 +46,19 @@ public class VistaGestionMesaAdmin extends JPanel implements IVistaGestionMesaAd
 		
 		JPanel panel = new JPanel();
 		add(panel);
-		panel.setLayout(new GridLayout(7, 0, 0, 0));
+		panel.setLayout(new GridLayout(10, 0, 0, 0));
 		
 		JPanel panel_1 = new JPanel();
 		panel.add(panel_1);
 		panel_1.setLayout(new FlowLayout(FlowLayout.CENTER, 5, 5));
 		
-		JPanel panel_11 = new JPanel();
-		panel_1.add(panel_11);
+		JLabel lblNewLabel = new JLabel("Numero de Mesa");
+		panel_1.add(lblNewLabel);
 		
-		JLabel lblNewLabel_1 = new JLabel("Ingresar la cantidad de sillas");
-		panel_11.add(lblNewLabel_1);
-		
-		JPanel panel_12 = new JPanel();
-		panel_1.add(panel_12);
-		
-		textFieldCantSillas = new JTextField();
-		textFieldCantSillas.addKeyListener(this);
-		panel_12.add(textFieldCantSillas);
-		textFieldCantSillas.setColumns(10);
+		textFieldNroMesa = new JTextField();
+		textFieldNroMesa.addKeyListener(this);
+		panel_1.add(textFieldNroMesa);
+		textFieldNroMesa.setColumns(10);
 		
 		JPanel panel_2 = new JPanel();
 		panel.add(panel_2);
@@ -114,98 +112,83 @@ public class VistaGestionMesaAdmin extends JPanel implements IVistaGestionMesaAd
 		panel.add(panel_3);
 		panel_3.setLayout(new FlowLayout(FlowLayout.CENTER, 5, 5));
 		
-		btnModificaMesa = new JButton("Modificar Mesa");
-		btnModificaMesa.setEnabled(false);
-		btnModificaMesa.setActionCommand("MODIFICA");
-		panel_3.add(btnModificaMesa);
+		btnAbrirMesa = new JButton("Abre Mesa");
+		btnAbrirMesa.setEnabled(false);
+		btnAbrirMesa.setActionCommand("ABRE_MESA");
+		panel_3.add(btnAbrirMesa);
 		
 		JPanel panel_8 = new JPanel();
 		panel.add(panel_8);
 		
-		btnCerrarMesa = new JButton("Cerrar Mesa");
-		panel_8.add(btnCerrarMesa);
-		btnCerrarMesa.setEnabled(false);
-		btnCerrarMesa.setActionCommand("CERRAR");
-		btnCerrarMesa.setVerticalAlignment(SwingConstants.BOTTOM);
+		textFieldIdProd = new JTextField();
+		textFieldIdProd.addKeyListener(this);
+		panel_8.add(textFieldIdProd);
+		textFieldIdProd.setText("id Producto");
+		textFieldIdProd.setColumns(10);
+		
+		textFieldCant = new JTextField();
+		textFieldCant.addKeyListener(this);
+		panel_8.add(textFieldCant);
+		textFieldCant.setText("Cantidad");
+		textFieldCant.setColumns(10);
+		
+		btnAgregaPedido = new JButton("Agregar pedido");
+		panel_8.add(btnAgregaPedido);
+		btnAgregaPedido.setEnabled(false);
+		btnAgregaPedido.setActionCommand("AGREGA_PEDIDO");
 		
 		JPanel panel_9 = new JPanel();
 		panel.add(panel_9);
 		
-		btnElimina = new JButton("Eliminar Mesa");
-		btnElimina.setEnabled(false);
-		btnElimina.setActionCommand("ELIMINA");
-		panel_9.add(btnElimina);
+		btnCerrarMesa = new JButton("Cerrar Mesa");
+		panel_9.add(btnCerrarMesa);
+		btnCerrarMesa.setEnabled(false);
+		btnCerrarMesa.setActionCommand("CERRAR");
+		btnCerrarMesa.setVerticalAlignment(SwingConstants.BOTTOM);
 		
 		JPanel panel_10 = new JPanel();
 		panel.add(panel_10);
 		
-		btnAgrega = new JButton("Agregar Mesa");
-		btnAgrega.setEnabled(false);
-		panel_10.add(btnAgrega);
-		btnAgrega.setActionCommand("AGREGA");
+		btnElimina = new JButton("Eliminar Mesa");
+		panel_10.add(btnElimina);
+		btnElimina.setEnabled(false);
+		btnElimina.setActionCommand("ELIMINA");
 		
 		JPanel panel_13 = new JPanel();
 		panel.add(panel_13);
 		
-		btnVolver = new JButton("Volver");
-		btnVolver.setActionCommand("VOLVER");
-		panel_13.add(btnVolver);
+		JLabel lblNewLabel_1 = new JLabel("Ingresar la cantidad de sillas");
+		panel_13.add(lblNewLabel_1);
+		
+		textFieldCantSillas = new JTextField();
+		panel_13.add(textFieldCantSillas);
+		textFieldCantSillas.addKeyListener(this);
+		textFieldCantSillas.setColumns(10);
 		
 		JPanel panel_4 = new JPanel();
-		add(panel_4, BorderLayout.NORTH);
+		panel.add(panel_4);
 		panel_4.setLayout(new FlowLayout(FlowLayout.CENTER, 5, 5));
 		
-		JPanel panel_6 = new JPanel();
-		panel_4.add(panel_6);
-		panel_6.setLayout(new FlowLayout(FlowLayout.CENTER, 5, 5));
-		
-		JLabel lblNewLabel = new JLabel("Numero de Mesa");
-		panel_6.add(lblNewLabel);
+		btnAgrega = new JButton("Agregar Mesa");
+		panel_4.add(btnAgrega);
+		btnAgrega.setEnabled(false);
+		btnAgrega.setActionCommand("AGREGA");
 		
 		JPanel panel_5 = new JPanel();
-		panel_4.add(panel_5);
+		panel.add(panel_5);
 		
-		textFieldNroMesa = new JTextField();
-		textFieldNroMesa.addKeyListener(this);
-		panel_5.add(textFieldNroMesa);
-		textFieldNroMesa.setColumns(10);
+		btnVolver = new JButton("Volver");
+		panel_5.add(btnVolver);
+		btnVolver.setActionCommand("VOLVER");
 		
-//		setLayout(new GridLayout(0, 1, 0, 0));
-//		
-//		JPanel panel = new JPanel();
-//		panel.setBackground(Color.PINK);
-//		FlowLayout flowLayout = (FlowLayout) panel.getLayout();
-//		add(panel);
-//		
-//		JButton btnEliminaMesa = new JButton("Elimina Mesa");
-//		panel.add(btnEliminaMesa);
-//		
-//		JPanel panel_1 = new JPanel();
-//		add(panel_1);
-//		panel_1.setLayout(new GridLayout(2, 1, 0, 0));
-//		
-//		JPanel panel_5 = new JPanel();
-//		panel_1.add(panel_5);
-//		
-//		JPanel panel_4 = new JPanel();
-//		panel_5.add(panel_4);
-//		
-//		JLabel lblCantSillas = new JLabel("Ingresar Cantidad de sillas");
-//		panel_4.add(lblCantSillas);
-//		
-//		JPanel panel_3 = new JPanel();
-//		panel_5.add(panel_3);
-//		
-//		textField = new JTextField();
-//		textField.setColumns(10);
-//		panel_3.add(textField);
-//		
-//		JPanel panel_2 = new JPanel();
-//		panel_1.add(panel_2);
-//		panel_2.setLayout(new FlowLayout(FlowLayout.CENTER, 5, 5));
-//		
-//		JButton btnAgregaMesa = new JButton("Agrega Mesa");
-//		panel_2.add(btnAgregaMesa);
+		JPanel panel_9_1 = new JPanel();
+		panel.add(panel_9_1);
+		
+		btnModificaMesa = new JButton("Modificar Mesa");
+		panel_9_1.add(btnModificaMesa);
+		btnModificaMesa.setEnabled(false);
+		btnModificaMesa.setActionCommand("MODIFICA");
+		
 	}
 	@Override
 	public void addActionListener(ActionListener actionListener) {
@@ -216,30 +199,35 @@ public class VistaGestionMesaAdmin extends JPanel implements IVistaGestionMesaAd
 		this.btnSeteaMozo.addActionListener(actionListener);
 		this.btnVolver.addActionListener(actionListener);
 		this.actionListener = actionListener;
-		
+		this.btnAbrirMesa.addActionListener(actionListener);
+		this.btnAgregaPedido.addActionListener(actionListener);
 	}
 
 	public void keyPressed(KeyEvent e) {
 	}
 	public void keyReleased(KeyEvent e) {
-		boolean condition1 = this.getNroMesa()>=0, condition2 = this.getCantPax()>0;
-		this.btnAgrega.setEnabled(condition2);
-		this.btnCerrarMesa.setEnabled(condition1);
-		this.btnElimina.setEnabled(condition1);
-		this.btnModificaMesa.setEnabled(condition1);
-		this.btnSeteaMozo.setEnabled(condition1);
-		
+		boolean conditionNroMesa = this.getNroMesa()>=0;
+		boolean conditionPedido = conditionNroMesa && this.getCant()>0 && this.getIdProd()>=0;
+		boolean condition2 = this.getCantPax()>0;
+		this.btnCerrarMesa.setEnabled(conditionNroMesa);
+		this.btnElimina.setEnabled(conditionNroMesa);
+		this.btnModificaMesa.setEnabled(conditionNroMesa);
+		this.btnSeteaMozo.setEnabled(conditionNroMesa);
+		this.btnAbrirMesa.setEnabled(conditionNroMesa);
+		this.btnAgrega.setEnabled(condition2);	
+		this.btnAgregaPedido.setEnabled(conditionPedido);
 	}
 	public void keyTyped(KeyEvent e) {
 	}
+	
 	@Override
 	public int getNroMesa() {
 		int nroMesa=-1;
 		try {
 			nroMesa = Integer.parseInt(this.textFieldNroMesa.getText());
+			System.out.println(nroMesa);
 		}
 		catch (NumberFormatException e2) {
-			
 		}
 		return nroMesa;
 	}
@@ -253,14 +241,38 @@ public class VistaGestionMesaAdmin extends JPanel implements IVistaGestionMesaAd
 		}
 		return cantPax;
 	}
+	
 	@Override
 	public void limpiarVista() {
 		this.textFieldNroMesa.setText("");
-		
+		this.textFieldCantSillas.setText("");
+		this.textFieldCant.setText("");
+		this.textFieldIdProd.setText("");
 	}
 	@Override
 	public void ventanaEmergente(String mensaje) {
 		JOptionPane.showMessageDialog(null,mensaje );
-		
+	}
+	@Override
+	public int getIdProd() {
+		int id=-1;
+		try {
+			id = Integer.parseInt(this.textFieldIdProd.getText());
+
+		}
+		catch (NumberFormatException e2) {
+		}
+		return id;
+	}
+
+	@Override
+	public int getCant() {
+		int cant=-1;
+		try {
+			cant = Integer.parseInt(this.textFieldCant.getText());
+		}
+		catch (NumberFormatException e2) {
+		}
+		return cant;
 	}
 }

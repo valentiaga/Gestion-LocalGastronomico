@@ -18,6 +18,11 @@ public class Pedido
 	public int getCant() {
 		return cant;
 	}
+
+	@Override
+	public String toString() {
+		return "Pedido [producto=" + producto.getNombre() + ", cant=" + cant + "]";
+	}
    
     
     
