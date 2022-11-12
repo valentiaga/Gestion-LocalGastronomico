@@ -20,7 +20,6 @@ import javax.swing.border.TitledBorder;
 
 import controlador.ControladorVistaGestionMozoAdmin;
 import controlador.ControladorVistaGestionMozoOp;
-import modelo.Enumerados;
 import negocio.Sistema;
 import javax.swing.LayoutStyle.ComponentPlacement;
 import java.awt.event.ActionEvent;
@@ -33,6 +32,7 @@ public class VistaGestionMozoAdmin extends JPanel implements ItemListener, IVist
 	JButton btnEstableceEstado;
 	JButton btnElimina;
 	JButton btnAltaMozo;
+	JButton btnVolver;
 
 	/**
 	 * Create the panel.
@@ -45,7 +45,7 @@ public class VistaGestionMozoAdmin extends JPanel implements ItemListener, IVist
 
 		JPanel panel = new JPanel();
 		add(panel);
-		panel.setLayout(new GridLayout(5, 0, 0, 0));
+		panel.setLayout(new GridLayout(6, 0, 0, 0));
 
 		JPanel panel_1 = new JPanel();
 		panel.add(panel_1);
@@ -62,15 +62,6 @@ public class VistaGestionMozoAdmin extends JPanel implements ItemListener, IVist
 		btnEstableceEstado = new JButton("Establecer estados");
 		panel_2.add(btnEstableceEstado);
 		btnEstableceEstado.setActionCommand("ESTABLECE");
-		
-		JComboBox comboBox_1 = new JComboBox<String>();
-		comboBox_1.setEnabled(false);
-		comboBox_1.setEditable(true);
-		comboBox_1.addItem(Enumerados.estadoMozo.ACTIVO);
-		comboBox_1.addItem(Enumerados.estadoMozo.AUSENTE);
-		comboBox_1.addItem(Enumerados.estadoMozo.DEFRANCO);
-		comboBox_1.addItemListener(this);
-		panel_2.add(comboBox_1);
 
 		JPanel panel_3 = new JPanel();
 		panel.add(panel_3);
@@ -122,6 +113,13 @@ public class VistaGestionMozoAdmin extends JPanel implements ItemListener, IVist
 		btnElimina = new JButton("Eliminar Mozo");
 		btnElimina.setActionCommand("ELIMINA");
 		panel_6.add(btnElimina);
+		
+		JPanel panel_7 = new JPanel();
+		panel.add(panel_7);
+		
+		btnVolver = new JButton("Volver");
+		btnVolver.setActionCommand("VOLVER");
+		panel_7.add(btnVolver);
 	}
 
 	@Override
@@ -140,6 +138,7 @@ public class VistaGestionMozoAdmin extends JPanel implements ItemListener, IVist
 		this.btnEstableceEstado.addActionListener(actionListener);
 		this.btnAltaMozo.addActionListener(actionListener);
 		this.btnElimina.addActionListener(actionListener);
+		this.btnVolver.addActionListener(actionListener);
 		this.actionListener = actionListener;
 	}
 	

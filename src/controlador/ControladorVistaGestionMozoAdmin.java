@@ -1,5 +1,6 @@
 package controlador;
 
+import java.awt.CardLayout;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 
@@ -23,10 +24,12 @@ public class ControladorVistaGestionMozoAdmin implements ActionListener {
 		this.vista = vista;
 		this.vista.addActionListener(this);
 		this.ventana = ventana;
+		this.contentPane = this.ventana.getContentPane();
 	}
 
 	@Override
 	public void actionPerformed(ActionEvent e) {
+		CardLayout cl = (CardLayout) contentPane.getLayout();
 		String comando = e.getActionCommand();
 		if (comando.equalsIgnoreCase("MODIFICA")) 
 			JOptionPane.showMessageDialog(null, "Modifica.");
@@ -34,6 +37,8 @@ public class ControladorVistaGestionMozoAdmin implements ActionListener {
 			JOptionPane.showMessageDialog(null, "Estados.");
 		else if (comando.equalsIgnoreCase("ALTA"))
 			JOptionPane.showMessageDialog(null, "Alta.");
+		else if (comando.equalsIgnoreCase("VOLVER"))
+			cl.show(contentPane, ventana.getVistaAdmin());
 		else if (comando.equalsIgnoreCase("ELIMINA"))
 			try {
 				Sistema.getInstance().getFuncionalidadAdmin().eliminaMozo(this.vista.getComboBox().getSelectedItem().toString());

@@ -1,42 +1,28 @@
 package vista;
 
-import javax.swing.JPanel;
 import java.awt.GridLayout;
-import javax.swing.JLabel;
-import javax.swing.JTextField;
-import java.awt.FlowLayout;
-import javax.swing.JSeparator;
+import java.awt.event.ActionListener;
 
-public class VistaModificarMesa extends JPanel {
-	private JTextField textFieldNroMesa;
+import javax.swing.JButton;
+import javax.swing.JLabel;
+import javax.swing.JPanel;
+import javax.swing.JTextField;
+import javax.swing.border.TitledBorder;
+
+import negocio.Sistema;
+
+public class VistaModificarMesa extends JPanel implements IVistaModificarMesa{
 	private JTextField textFieldCantSillas;
 	private JTextField textFieldEstado;
-
+	private JButton btnVolver;
+	private JButton btnConfirma;
+	private ActionListener actionListener;
 	/**
 	 * Create the panel.
 	 */
 	public VistaModificarMesa() {
-		setLayout(new GridLayout(3, 2, 0, 0));
-		
-		JPanel panel = new JPanel();
-		add(panel);
-		panel.setLayout(new FlowLayout(FlowLayout.CENTER, 5, 5));
-		
-		JPanel panel_3 = new JPanel();
-		panel.add(panel_3);
-		
-		JLabel lblNewLabel = new JLabel("Nro de Mesa");
-		panel_3.add(lblNewLabel);
-		
-		JSeparator separator = new JSeparator();
-		panel.add(separator);
-		
-		JPanel panel_4 = new JPanel();
-		panel.add(panel_4);
-		
-		textFieldNroMesa = new JTextField();
-		panel_4.add(textFieldNroMesa);
-		textFieldNroMesa.setColumns(10);
+		setBorder(new TitledBorder(null, "Modificar Mesa", TitledBorder.LEADING, TitledBorder.TOP, null, null));
+		setLayout(new GridLayout(4, 2, 0, 0));
 		
 		JPanel panel_1 = new JPanel();
 		add(panel_1);
@@ -71,7 +57,28 @@ public class VistaModificarMesa extends JPanel {
 		textFieldEstado = new JTextField();
 		panel_8.add(textFieldEstado);
 		textFieldEstado.setColumns(10);
+		
+		
+		JPanel panel_9 = new JPanel();
+		add(panel_9);
+		
+		btnConfirma = new JButton("Confirma");
+		btnConfirma.setActionCommand("CONFIRMA");
+		panel_9.add(btnConfirma);
+		
+		JPanel panel_10 = new JPanel();
+		add(panel_10);
+		
+		btnVolver = new JButton("Volver");
+		panel_10.add(btnVolver);
+		btnVolver.setActionCommand("VOLVER");
+	}
 
+	@Override
+	public void addActionListener(ActionListener actionListener) {
+		this.btnConfirma.addActionListener(actionListener);
+		this.btnVolver.addActionListener(actionListener);
+		this.actionListener = actionListener;
 	}
 
 }

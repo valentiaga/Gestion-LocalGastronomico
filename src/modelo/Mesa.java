@@ -1,6 +1,7 @@
 package modelo;
 
 import modelo.Enumerados.estadoMesa;
+import negocio.Sistema;
 
 public class Mesa
 {
@@ -10,11 +11,19 @@ public class Mesa
     private Enumerados.estadoMesa estado;
     private Mozo mozo;
     
-	public Mesa(int cantPax) {
+	/*public Mesa(int cantPax) {
 		super();
 		this.nroMesa = siguienteNroMesa++;
 		this.cantPax = cantPax;
-		this.estado = estado.LIBRE;
+		this.estado = estado.OCUPADA;
+		Sistema.getInstance().getMesas().put(nroMesa, this);
+	}*/
+	public Mesa() {
+		super();
+		this.nroMesa = siguienteNroMesa++;
+		this.cantPax = cantPax;
+		this.estado = estado.OCUPADA;
+		Sistema.getInstance().getMesas().put(nroMesa, this);
 	}
 
 	public int getNroMesa() {

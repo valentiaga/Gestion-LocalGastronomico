@@ -27,8 +27,10 @@ public class Operario
     // Al comienzo de la jornada, el operario asignará a cada mozo las mesas que le correspondan
     //public void asignaMesas(Mozo mozo, Mesa mesa) {}
     
-    public boolean verificaPassword(String password) {
-		return password == this.password;
+    public boolean verificaPassword(String password) { //PQ CARAJO DEVUELVE FALSE?
+    	//System.out.println(password);
+    	//System.out.println(this.password);
+		return password.equals(this.password);
 	}
 
 	public void setNyA(String nyA) {

@@ -4,6 +4,7 @@ import java.util.ArrayList;
 
 import excepciones.CantComensalesInvalida_Exception;
 import excepciones.CantHijosInvalida_Exception;
+import excepciones.MesaNoOcupadaException;
 import excepciones.NoExisteID_Exception;
 import excepciones.NoExisteMesa_Exception;
 import excepciones.NoExisteOperario_Exception;
@@ -254,29 +255,58 @@ public class FuncionalidadOperario {
 	public void setMesaMozo(Mesa mesa, Mozo mozo) {
 		mesa.setMozo(mozo);
 	}
+	
+	public void cierraMesa(int nroMesa, Enumerados.formaDePago formaDePago) throws MesaNoOcupadaException{ // forma de pago la eligen en la// ventana
 
-	// verifica promos, instancia MesaAtendida, y la agrega a el ArrayList del mozo
-	public void cierraMesa(Comanda comanda, Enumerados.formaDePago formaDePago) { // forma de pago la eligen en la
-																					// ventana
-
-		Mesa mesaActual = comanda.getMesa();
-		comanda.setEstado(Enumerados.estadoComanda.CERRADO);
-		Mozo mozo = mesaActual.getMozo();
-		double total = GestionComandas.totalComandaSinDescuento(comanda);
-		MesaAtendida mesaAtendida = new MesaAtendida(comanda.getMesa(), comanda.getPedidos(), total, formaDePago);
-		GestionProdPromo.cargaPromosProd(comanda);
-		GestionProdTemp.cargaPromosTemp(comanda);
-		GestionComandas.totalComandaConDescuento(mesaAtendida, comanda);
-		mozo.getMesasAtendidas().add(mesaAtendida);
-		//falta clonar la comanda
-		mesaActual.setEstado(Enumerados.estadoMesa.LIBRE);
+		//System.out.println("Hola");
+		Mesa mesaActual = Sistema.getInstance().getMesas().get(nroMesa);
+		if (mesaActual!=null && mesaActual.getEstado() == Enumerados.estadoMesa.OCUPADA) {
+			Comanda comanda = Sistema.getInstance().getComandas().get(nroMesa); //pinta hacer un hashmappp
+			comanda.setEstado(Enumerados.estadoComanda.CERRADO);
+			Mozo mozo = mesaActual.getMozo();
+			double total = GestionComandas.totalComandaSinDescuento(comanda);
+			MesaAtendida mesaAtendida = new MesaAtendida(comanda.getMesa(), comanda.getPedidos(), total, formaDePago);
+			GestionProdPromo.cargaPromosProd(comanda);
+			GestionProdTemp.cargaPromosTemp(comanda);
+			GestionComandas.totalComandaConDescuento(mesaAtendida, comanda);
+			mozo.getMesasAtendidas().add(mesaAtendida);
+			//falta clonar la comanda
+			mesaActual.setEstado(Enumerados.estadoMesa.LIBRE);
+		}
+		else
+			throw new MesaNoOcupadaException("La mesa no esta ocupada o no existe.");
 	}
 
-	// crea comanda
-	public void abreComanda(Mesa mesa) {
-		Sistema sistema = Sistema.getInstance();
+	// verifica promos, instancia MesaAtendida, y la agrega a el ArrayList del mozo
+	/*public void cierraMesa(Comanda comanda, Enumerados.formaDePago formaDePago) throws MesaNoOcupadaException{ // forma de pago la eligen en la// ventana
 
-		sistema.getComandas().add(new Comanda(mesa, Enumerados.estadoComanda.ABIERTO));
+		Mesa mesaActual = comanda.getMesa();
+		if (mesaActual.getEstado() == Enumerados.estadoMesa.OCUPADA) {
+			comanda.setEstado(Enumerados.estadoComanda.CERRADO);
+			Mozo mozo = mesaActual.getMozo();
+			double total = GestionComandas.totalComandaSinDescuento(comanda);
+			MesaAtendida mesaAtendida = new MesaAtendida(comanda.getMesa(), comanda.getPedidos(), total, formaDePago);
+			GestionProdPromo.cargaPromosProd(comanda);
+			GestionProdTemp.cargaPromosTemp(comanda);
+			GestionComandas.totalComandaConDescuento(mesaAtendida, comanda);
+			mozo.getMesasAtendidas().add(mesaAtendida);
+			//falta clonar la comanda
+			mesaActual.setEstado(Enumerados.estadoMesa.LIBRE);
+		}
+		else
+			throw new MesaNoOcupadaException("La mesa no esta ocupada o no existe.")
+	}*/
+	
+
+	// crea comanda
+	public void abreComanda(Mesa mesa, int cantPax) throws NoExisteMesa_Exception{ //seria la opcion agregar mesa de la ventana. Hay q agregar un maximo de mesas y tirar excepcion de q ya esta todo ocupado y aparte excepcion de si justo esa mesa esta ocupada.
+		if (Sistema.getInstance().getMesas().get(mesa.getNroMesa())!= null) { //la mesa existe en el local
+			Sistema sistema = Sistema.getInstance();
+			mesa.setCantPax(cantPax);
+			sistema.getComandas().add(new Comanda(mesa, Enumerados.estadoComanda.ABIERTO));			
+		}
+		else
+			throw new NoExisteMesa_Exception("No existe la mesa en el local");
 	}
 
 	public void agregaPedidos(Comanda comanda, int cant, int idProd) {

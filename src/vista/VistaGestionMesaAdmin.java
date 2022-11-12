@@ -9,15 +9,29 @@ import javax.swing.GroupLayout;
 import javax.swing.JButton;
 import javax.swing.JComboBox;
 import javax.swing.JLabel;
+import javax.swing.JOptionPane;
 import javax.swing.JPanel;
 import javax.swing.JTextField;
 import javax.swing.SwingConstants;
 import javax.swing.GroupLayout.Alignment;
 import javax.swing.border.TitledBorder;
+import javax.swing.LayoutStyle.ComponentPlacement;
+import java.awt.event.KeyListener;
+import java.awt.event.KeyEvent;
 
-public class VistaGestionMesaAdmin extends JPanel implements IVistaGestionMesaAdmin{
-	private JTextField textField;
-	private JTextField textField_1;
+public class VistaGestionMesaAdmin extends JPanel implements IVistaGestionMesaAdmin, KeyListener{
+	private JTextField textFieldNroMesa;
+	private JTextField textFieldCantSillas;
+	private JButton btnVolver;
+	private JButton btnSeteaMozo;
+	private JComboBox comboBox;
+	private JButton btnModificaMesa;
+	private JButton btnAgrega;
+	private JButton btnCerrarMesa;
+	private JButton btnElimina;
+	private ActionListener actionListener;
+	
+	
 	/**
 	 * Create the panel.
 	 */
@@ -28,7 +42,7 @@ public class VistaGestionMesaAdmin extends JPanel implements IVistaGestionMesaAd
 		
 		JPanel panel = new JPanel();
 		add(panel);
-		panel.setLayout(new GridLayout(6, 0, 0, 0));
+		panel.setLayout(new GridLayout(7, 0, 0, 0));
 		
 		JPanel panel_1 = new JPanel();
 		panel.add(panel_1);
@@ -43,21 +57,22 @@ public class VistaGestionMesaAdmin extends JPanel implements IVistaGestionMesaAd
 		JPanel panel_12 = new JPanel();
 		panel_1.add(panel_12);
 		
-		textField_1 = new JTextField();
-		panel_12.add(textField_1);
-		textField_1.setColumns(10);
+		textFieldCantSillas = new JTextField();
+		textFieldCantSillas.addKeyListener(this);
+		panel_12.add(textFieldCantSillas);
+		textFieldCantSillas.setColumns(10);
 		
 		JPanel panel_2 = new JPanel();
 		panel.add(panel_2);
-		panel_2.setLayout(new FlowLayout(FlowLayout.CENTER, 5, 5));
 		
-		JButton btnSeteaMozo = new JButton("Setear Mozo");
-		panel_2.add(btnSeteaMozo);
+		btnSeteaMozo = new JButton("Setear Mozo");
+		btnSeteaMozo.setActionCommand("SETEAR");
+		btnSeteaMozo.setEnabled(false);
 		
 		JPanel panel_7 = new JPanel();
-		panel_2.add(panel_7);
 		
-		JComboBox comboBox = new JComboBox<String>();
+		comboBox = new JComboBox<String>();
+		comboBox.setEnabled(false);
 		comboBox.setEditable(true);
 		GroupLayout gl_panel_7 = new GroupLayout(panel_7);
 		gl_panel_7.setHorizontalGroup(
@@ -68,13 +83,30 @@ public class VistaGestionMesaAdmin extends JPanel implements IVistaGestionMesaAd
 					.addContainerGap(GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
 		);
 		gl_panel_7.setVerticalGroup(
-			gl_panel_7.createParallelGroup(Alignment.LEADING)
-				.addGroup(Alignment.TRAILING, gl_panel_7.createSequentialGroup()
-					.addContainerGap(GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+			gl_panel_7.createParallelGroup(Alignment.TRAILING)
+				.addGroup(Alignment.LEADING, gl_panel_7.createSequentialGroup()
 					.addComponent(comboBox, GroupLayout.PREFERRED_SIZE, 22, GroupLayout.PREFERRED_SIZE)
-					.addContainerGap())
+					.addContainerGap(22, Short.MAX_VALUE))
 		);
 		panel_7.setLayout(gl_panel_7);
+		GroupLayout gl_panel_2 = new GroupLayout(panel_2);
+		gl_panel_2.setHorizontalGroup(
+			gl_panel_2.createParallelGroup(Alignment.LEADING)
+				.addGroup(gl_panel_2.createSequentialGroup()
+					.addGap(123)
+					.addComponent(btnSeteaMozo)
+					.addPreferredGap(ComponentPlacement.UNRELATED)
+					.addComponent(panel_7, GroupLayout.PREFERRED_SIZE, GroupLayout.DEFAULT_SIZE, GroupLayout.PREFERRED_SIZE))
+		);
+		gl_panel_2.setVerticalGroup(
+			gl_panel_2.createParallelGroup(Alignment.LEADING)
+				.addGroup(gl_panel_2.createSequentialGroup()
+					.addGap(5)
+					.addGroup(gl_panel_2.createParallelGroup(Alignment.LEADING)
+						.addComponent(btnSeteaMozo)
+						.addComponent(panel_7, GroupLayout.PREFERRED_SIZE, GroupLayout.DEFAULT_SIZE, GroupLayout.PREFERRED_SIZE)))
+		);
+		panel_2.setLayout(gl_panel_2);
 		
 		
 		
@@ -82,27 +114,42 @@ public class VistaGestionMesaAdmin extends JPanel implements IVistaGestionMesaAd
 		panel.add(panel_3);
 		panel_3.setLayout(new FlowLayout(FlowLayout.CENTER, 5, 5));
 		
-		JButton btnModificaMesa = new JButton("Modificar Mesa");
+		btnModificaMesa = new JButton("Modificar Mesa");
+		btnModificaMesa.setEnabled(false);
+		btnModificaMesa.setActionCommand("MODIFICA");
 		panel_3.add(btnModificaMesa);
 		
 		JPanel panel_8 = new JPanel();
 		panel.add(panel_8);
 		
-		JButton btnNewButton = new JButton("Agregar Mesa");
-		panel_8.add(btnNewButton);
+		btnCerrarMesa = new JButton("Cerrar Mesa");
+		panel_8.add(btnCerrarMesa);
+		btnCerrarMesa.setEnabled(false);
+		btnCerrarMesa.setActionCommand("CERRAR");
+		btnCerrarMesa.setVerticalAlignment(SwingConstants.BOTTOM);
 		
 		JPanel panel_9 = new JPanel();
 		panel.add(panel_9);
 		
-		JButton btnNewButton_1 = new JButton("Eliminar Mesa");
-		panel_9.add(btnNewButton_1);
+		btnElimina = new JButton("Eliminar Mesa");
+		btnElimina.setEnabled(false);
+		btnElimina.setActionCommand("ELIMINA");
+		panel_9.add(btnElimina);
 		
 		JPanel panel_10 = new JPanel();
 		panel.add(panel_10);
 		
-		JButton btnCerrarMesa = new JButton("Cerrar Mesa");
-		btnCerrarMesa.setVerticalAlignment(SwingConstants.BOTTOM);
-		panel_10.add(btnCerrarMesa);
+		btnAgrega = new JButton("Agregar Mesa");
+		btnAgrega.setEnabled(false);
+		panel_10.add(btnAgrega);
+		btnAgrega.setActionCommand("AGREGA");
+		
+		JPanel panel_13 = new JPanel();
+		panel.add(panel_13);
+		
+		btnVolver = new JButton("Volver");
+		btnVolver.setActionCommand("VOLVER");
+		panel_13.add(btnVolver);
 		
 		JPanel panel_4 = new JPanel();
 		add(panel_4, BorderLayout.NORTH);
@@ -118,9 +165,10 @@ public class VistaGestionMesaAdmin extends JPanel implements IVistaGestionMesaAd
 		JPanel panel_5 = new JPanel();
 		panel_4.add(panel_5);
 		
-		textField = new JTextField();
-		panel_5.add(textField);
-		textField.setColumns(10);
+		textFieldNroMesa = new JTextField();
+		textFieldNroMesa.addKeyListener(this);
+		panel_5.add(textFieldNroMesa);
+		textFieldNroMesa.setColumns(10);
 		
 //		setLayout(new GridLayout(0, 1, 0, 0));
 //		
@@ -161,8 +209,58 @@ public class VistaGestionMesaAdmin extends JPanel implements IVistaGestionMesaAd
 	}
 	@Override
 	public void addActionListener(ActionListener actionListener) {
-		// TODO Auto-generated method stub
+		this.btnAgrega.addActionListener(actionListener);
+		this.btnCerrarMesa.addActionListener(actionListener);
+		this.btnElimina.addActionListener(actionListener);
+		this.btnModificaMesa.addActionListener(actionListener);
+		this.btnSeteaMozo.addActionListener(actionListener);
+		this.btnVolver.addActionListener(actionListener);
+		this.actionListener = actionListener;
 		
 	}
 
+	public void keyPressed(KeyEvent e) {
+	}
+	public void keyReleased(KeyEvent e) {
+		boolean condition1 = this.getNroMesa()>=0, condition2 = this.getCantPax()>0;
+		this.btnAgrega.setEnabled(condition2);
+		this.btnCerrarMesa.setEnabled(condition1);
+		this.btnElimina.setEnabled(condition1);
+		this.btnModificaMesa.setEnabled(condition1);
+		this.btnSeteaMozo.setEnabled(condition1);
+		
+	}
+	public void keyTyped(KeyEvent e) {
+	}
+	@Override
+	public int getNroMesa() {
+		int nroMesa=-1;
+		try {
+			nroMesa = Integer.parseInt(this.textFieldNroMesa.getText());
+		}
+		catch (NumberFormatException e2) {
+			
+		}
+		return nroMesa;
+	}
+	@Override
+	public int getCantPax() {
+		int cantPax=-1;
+		try {
+			cantPax = Integer.parseInt(this.textFieldCantSillas.getText());
+		}
+		catch (NumberFormatException e2) {
+		}
+		return cantPax;
+	}
+	@Override
+	public void limpiarVista() {
+		this.textFieldNroMesa.setText("");
+		
+	}
+	@Override
+	public void ventanaEmergente(String mensaje) {
+		JOptionPane.showMessageDialog(null,mensaje );
+		
+	}
 }

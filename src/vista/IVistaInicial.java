@@ -5,8 +5,8 @@ import java.awt.event.ActionListener;
 public interface IVistaInicial {
 	
 	void limpiarVista();
+	void ventanaEmergente(String mensaje);
 	String getUsuario();
 	String getContrasena();
-	void ventanaEmergente(String mensaje);
 	void addActionListener(ActionListener actionListener);
 }

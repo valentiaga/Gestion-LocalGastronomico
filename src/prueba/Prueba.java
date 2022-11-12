@@ -1,10 +1,13 @@
 package prueba;
 
 import controlador.ControladorVistaAdmin;
+import controlador.ControladorVistaGestionMesaAdmin;
 import controlador.ControladorVistaGestionMesaOp;
 import controlador.ControladorVistaGestionMozoAdmin;
 import controlador.ControladorVistaGestionMozoOp;
+import controlador.ControladorVistaGestionProductoAdmin;
 import controlador.ControladorVistaInicial;
+import controlador.ControladorVistaModificaMesa;
 import controlador.ControladorVistaOperario;
 import modelo.Mozo;
 import negocio.Sistema;
@@ -18,6 +21,7 @@ import vista.VistaGestionMozoOp;
 import vista.VistaGestionProductoAdmin;
 import vista.VistaGestionProductoOp;
 import vista.VistaInicial;
+import vista.VistaModificarMesa;
 import vista.VistaOperario;
 
 public class Prueba {
@@ -42,16 +46,21 @@ public class Prueba {
 		VistaAdmin vistaAdmin = new VistaAdmin();
 		VistaGestionProductoOp vistaProductoOp = new VistaGestionProductoOp();
 		VistaGestionProductoAdmin vistaProductoAdmin = new VistaGestionProductoAdmin();
-
+		VistaModificarMesa vistaModificarMesa = new VistaModificarMesa();
+		Sistema.getInstance().seteaAdmin();
+		
 		Ventana v = new Ventana(vistaInicial, vistaMozoOp, vistaMozoAdmin, vistaMesaOp, vistaMesaAdmin,
-				vistaCambiaContra, vistaOp, vistaAdmin, vistaProductoOp, vistaProductoAdmin);
+				vistaCambiaContra, vistaOp, vistaAdmin, vistaProductoOp, vistaProductoAdmin, vistaModificarMesa);
 
+		ControladorVistaOperario cOperario = new ControladorVistaOperario(vistaOp, v);
 		ControladorVistaAdmin cAdmin = new ControladorVistaAdmin(vistaAdmin, v);
 		ControladorVistaInicial cInicial = new ControladorVistaInicial(vistaInicial, v);
 		ControladorVistaGestionMozoOp cMozoOp = new ControladorVistaGestionMozoOp(vistaMozoOp, v);
 		ControladorVistaGestionMozoAdmin cMozoAdmin = new ControladorVistaGestionMozoAdmin(vistaMozoAdmin, v);
 		ControladorVistaGestionMesaOp cMesaOp = new ControladorVistaGestionMesaOp(vistaMesaOp, v);
-		
+		ControladorVistaGestionMesaAdmin cMesaAdmin = new ControladorVistaGestionMesaAdmin(vistaMesaAdmin, v);
+		ControladorVistaGestionProductoAdmin cProductoAdmin = new ControladorVistaGestionProductoAdmin(vistaProductoAdmin, v);
+		ControladorVistaModificaMesa cModificaMesa = new ControladorVistaModificaMesa(vistaModificarMesa, v);
 	}
 
 }

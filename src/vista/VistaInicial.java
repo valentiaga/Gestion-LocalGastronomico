@@ -6,6 +6,7 @@ import java.awt.event.ActionListener;
 
 import javax.swing.border.TitledBorder;
 import javax.swing.JLabel;
+import javax.swing.JOptionPane;
 import javax.swing.GroupLayout;
 import javax.swing.GroupLayout.Alignment;
 import javax.swing.JTextField;
@@ -142,10 +143,11 @@ public class VistaInicial extends JPanel implements IVistaInicial, KeyListener{
 		);
 		panelSur.setLayout(gl_panelSur);
 	}
-
+	
 	@Override
 	public void limpiarVista() {
-		// TODO Auto-generated method stub
+		this.textFieldContrasena.setText("");
+		this.textFieldUsuario.setText("");
 		
 	}
 
@@ -162,8 +164,16 @@ public class VistaInicial extends JPanel implements IVistaInicial, KeyListener{
 
 	@Override
 	public void ventanaEmergente(String mensaje) {
-		// TODO Auto-generated method stub
-		
+		JOptionPane.showMessageDialog(null,mensaje );
+	}
+	
+
+	public JTextField getTextFieldUsuario() {
+		return textFieldUsuario;
+	}
+
+	public JTextField getTextFieldContrasena() {
+		return textFieldContrasena;
 	}
 
 	@Override
@@ -173,8 +183,6 @@ public class VistaInicial extends JPanel implements IVistaInicial, KeyListener{
 		
 	}
 
-	
-
 	public void keyPressed(KeyEvent e) {
 	}
 	public void keyReleased(KeyEvent e) {
@@ -183,4 +191,6 @@ public class VistaInicial extends JPanel implements IVistaInicial, KeyListener{
 	}
 	public void keyTyped(KeyEvent e) {
 	}
+	
+
 }

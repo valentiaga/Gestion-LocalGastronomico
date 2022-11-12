@@ -19,6 +19,7 @@ public class Comanda
 		super();
 		this.fecha = new GregorianCalendar();
 		this.mesa = mesa;
+		this.mesa.setEstado(Enumerados.estadoMesa.OCUPADA);
 		this.pedidos = pedidos;
 		this.estado = estado;
 	}

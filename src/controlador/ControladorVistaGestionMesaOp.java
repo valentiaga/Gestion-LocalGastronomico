@@ -1,6 +1,5 @@
 package controlador;
 
-import java.awt.BorderLayout;
 import java.awt.CardLayout;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
@@ -8,8 +7,10 @@ import java.awt.event.ActionListener;
 import javax.swing.JOptionPane;
 import javax.swing.JPanel;
 
+import modelo.Enumerados;
+import modelo.Mesa;
+import negocio.Sistema;
 import vista.IVistaGestionMesaOp;
-import vista.IVistaGestionMozoOp;
 import vista.Ventana;
 
 public class ControladorVistaGestionMesaOp implements ActionListener {
@@ -31,10 +32,10 @@ public class ControladorVistaGestionMesaOp implements ActionListener {
 		CardLayout cl = (CardLayout) contentPane.getLayout();
 		String comando = e.getActionCommand();
 		if (comando.equalsIgnoreCase("MODIFICAR")) 
-			JOptionPane.showMessageDialog(null, "Modifica.");
+			cl.show(contentPane, ventana.getVistaModificaMesa());
 		else if (comando.equalsIgnoreCase("SETEAR"))
 			JOptionPane.showMessageDialog(null, "Setear.");
-		else if (comando.equalsIgnoreCase("CERRAR"))
+		else if (comando.equalsIgnoreCase("CERRAR")) 
 			JOptionPane.showMessageDialog(null, "Cerrar.");
 		else if (comando.equalsIgnoreCase("VOLVER")) {
 			cl.show(contentPane, ventana.getVistaOp());

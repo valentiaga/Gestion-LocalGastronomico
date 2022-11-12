@@ -102,14 +102,15 @@ public class FuncionalidadAdmin extends FuncionalidadOperario {
 		GestionProductos.eliminaProducto(idProd);
 	}
 	
-	public void agregaMesa(int cantSillas) {
-		Mesa mesa = new Mesa(cantSillas);
+	public void agregaMesa() {
+		//Mesa mesa = new Mesa(cantSillas);
+		Mesa mesa = new Mesa();
 		Sistema.getInstance().getMesas().put(mesa.getNroMesa(), mesa);
 	}
 	
 	public void eliminaMesa(int nroMesa) throws NoExisteMesa_Exception, MesaOcupada_Exception {
 		if (GestionMesas.existeMesa(nroMesa) == false) //fijarse de ponerlo en gestion mesa
-			throw new NoExisteMesa_Exception("No existe el producto que desea eliminar");
+			throw new NoExisteMesa_Exception("No existe la mesa que desea eliminar");
 		if (Sistema.getInstance().getMesas().get(nroMesa).getEstado() == Enumerados.estadoMesa.OCUPADA)
 			throw new MesaOcupada_Exception("Espere a que se libere la mesa para elimianrla.");
 		GestionMesas.eliminaMesa(nroMesa);

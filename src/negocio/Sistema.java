@@ -48,6 +48,7 @@ public class Sistema {
 	private static Sistema instance = null;
 	private String usuarioAdministrador= "ADMIN";
 	private String codigoAdministrador = "ADMIN1234";
+	private Operario operarioActual;
 	
 	// private Sueldo sueldo; //ESTO ACA ESTA
 	// RAROOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOO, hay que volarlo y explicar que
@@ -157,7 +158,7 @@ public class Sistema {
 	 * @throws ContrasenaIncorrecta_Exception
 	 */
 	
-	public FuncionalidadOperario login(String userName, String password)
+/*	public FuncionalidadOperario login(String userName, String password)
 			throws UserNameIncorrecto_Exception, ContrasenaIncorrecta_Exception, OperarioInactivo_Exception {
 		FuncionalidadOperario funcionalidad = null;
 		if(this.operariosRegistrados.containsKey(userName)) {
@@ -179,7 +180,30 @@ public class Sistema {
 			throw new UserNameIncorrecto_Exception("El usuario '"+userName+"' no se encuentra registrado en el sistema.");
 		}
 		return funcionalidad;
+	}*/
+	public void login(String userName, String password)
+			throws UserNameIncorrecto_Exception, ContrasenaIncorrecta_Exception, OperarioInactivo_Exception {
+		//FuncionalidadOperario funcionalidad = null;
+		if(this.operariosRegistrados.containsKey(userName)) {
+			Operario operario = this.operariosRegistrados.get(userName);
+			if(operario.verificaPassword(password) == true) {
+				this.operarioActual = operario;										// podriamos tener solo funcionalidad, porque tiene el operario
+				if(operario.isActivo() == false)
+					throw new OperarioInactivo_Exception("El usuario '"+userName+"' se encuentra inactivo.");
+				if(userName.equals(this.usuarioAdministrador))								// si la contrasena sigue siendo Admin1234 hay que obligarlo a cambiarla
+					this.funcionalidadAdmin = new FuncionalidadAdmin(operario);
+				else
+					this.funcionalidadOperario = new FuncionalidadOperario(operario);
+			}
+			else {	
+				throw new ContrasenaIncorrecta_Exception("Contrasena incorrecta.");
+			}
+		}
+		else {
+			throw new UserNameIncorrecto_Exception("El usuario '"+userName+"' no se encuentra registrado en el sistema.");
+		}
 	}
+	
 	
 	
 
