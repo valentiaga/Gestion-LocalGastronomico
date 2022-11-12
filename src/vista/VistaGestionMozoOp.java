@@ -28,12 +28,14 @@ public class VistaGestionMozoOp extends JPanel implements IVistaGestionMozoOp, I
 	ActionListener actionListener;
 	JButton btnModificaMozo;
 	JButton btnEstableceEstado;
+	private JButton btnVolver;
 
 	@Override
 	public void addActionListener(ActionListener actionListener) { 
 		this.actionListener = actionListener;
 		this.btnModificaMozo.addActionListener(actionListener);
 		this.btnEstableceEstado.addActionListener(actionListener);
+		this.btnVolver.addActionListener(actionListener);
 	}
 	/**
 	 * Create the panel.
@@ -44,7 +46,7 @@ public class VistaGestionMozoOp extends JPanel implements IVistaGestionMozoOp, I
 		
 		JPanel panel = new JPanel();
 		add(panel);
-		panel.setLayout(new GridLayout(3, 0, 0, 0));
+		panel.setLayout(new GridLayout(4, 0, 0, 0));
 		
 		JPanel panel_1 = new JPanel();
 		panel.add(panel_1);
@@ -96,6 +98,12 @@ public class VistaGestionMozoOp extends JPanel implements IVistaGestionMozoOp, I
 		btnEstableceEstado = new JButton("Establecer estados");
 		btnEstableceEstado.setActionCommand("ESTABLECE");
 		panel_3.add(btnEstableceEstado);
+		
+		JPanel panel_5 = new JPanel();
+		panel.add(panel_5);
+		
+		btnVolver = new JButton("Volver");
+		panel_5.add(btnVolver);
 	}
 
 
