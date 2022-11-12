@@ -117,8 +117,11 @@ public class VistaGestionMozoAdmin extends JPanel implements ItemListener, IVist
 		JPanel panel_7 = new JPanel();
 		panel.add(panel_7);
 		
+
 		btnVolver = new JButton("Volver");
 		btnVolver.setActionCommand("VOLVER");
+
+		btnVolver = new JButton("VOLVER");
 		panel_7.add(btnVolver);
 	}
 
