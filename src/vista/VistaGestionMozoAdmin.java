@@ -33,6 +33,7 @@ public class VistaGestionMozoAdmin extends JPanel implements ItemListener, IVist
 	JButton btnEstableceEstado;
 	JButton btnElimina;
 	JButton btnAltaMozo;
+	JButton btnVolver;
 
 	/**
 	 * Create the panel.
@@ -45,7 +46,7 @@ public class VistaGestionMozoAdmin extends JPanel implements ItemListener, IVist
 
 		JPanel panel = new JPanel();
 		add(panel);
-		panel.setLayout(new GridLayout(5, 0, 0, 0));
+		panel.setLayout(new GridLayout(6, 0, 0, 0));
 
 		JPanel panel_1 = new JPanel();
 		panel.add(panel_1);
@@ -122,6 +123,12 @@ public class VistaGestionMozoAdmin extends JPanel implements ItemListener, IVist
 		btnElimina = new JButton("Eliminar Mozo");
 		btnElimina.setActionCommand("ELIMINA");
 		panel_6.add(btnElimina);
+		
+		JPanel panel_7 = new JPanel();
+		panel.add(panel_7);
+		
+		btnVolver = new JButton("VOLVER");
+		panel_7.add(btnVolver);
 	}
 
 	@Override
@@ -140,6 +147,7 @@ public class VistaGestionMozoAdmin extends JPanel implements ItemListener, IVist
 		this.btnEstableceEstado.addActionListener(actionListener);
 		this.btnAltaMozo.addActionListener(actionListener);
 		this.btnElimina.addActionListener(actionListener);
+		this.btnVolver.addActionListener(actionListener);
 		this.actionListener = actionListener;
 	}
 	
