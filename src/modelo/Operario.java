@@ -10,7 +10,7 @@ public class Operario
     private String NyA;
     private String userName;
     private String password;
-    private boolean activo;
+    private boolean activo; 
     
     //Pre: nyA != null
     public Operario() {}

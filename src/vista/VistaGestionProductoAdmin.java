@@ -8,53 +8,70 @@ import javax.swing.border.TitledBorder;
 import java.awt.GridLayout;
 import java.awt.event.ActionListener;
 import java.awt.FlowLayout;
+import javax.swing.JLabel;
+import javax.swing.JTextField;
 
 public class VistaGestionProductoAdmin extends JPanel implements IVistaGestionProductoAdmin {
-
-	private JButton btnModificaProducto;
-	private JButton btnAgregaProducto;
-	private JButton btnEliminaProducto;
-	private JButton btnVolver;
 	private ActionListener actionListener;
+	private JTextField textFieldIdProducto;
 	/**
 	 * Create the panel.
 	 */
 	public VistaGestionProductoAdmin() {
 		setBorder(new TitledBorder(null, "Gestion Productos Operario", TitledBorder.LEADING, TitledBorder.TOP, null,
 				null));
-		setLayout(new GridLayout(4, 1, 0, 0));
+		setLayout(new GridLayout(5, 1, 0, 0));
 		JPanel panel = new JPanel();
 		add(panel);
-		btnModificaProducto = new JButton("Modifica Producto");
-		btnModificaProducto.setActionCommand("MODIFICA");
-		panel.add(btnModificaProducto);
+		
+		JPanel panel_5 = new JPanel();
+		panel.add(panel_5);
+		
+		JLabel lblIdProducto = new JLabel("Id del producto");
+		panel_5.add(lblIdProducto);
+		
+		JPanel panel_6 = new JPanel();
+		panel.add(panel_6);
+		
+		textFieldIdProducto = new JTextField();
+		panel_6.add(textFieldIdProducto);
+		textFieldIdProducto.setColumns(10);
 		JPanel panel_1 = new JPanel();
 		add(panel_1);
-		btnAgregaProducto = new JButton("Agregar Producto");
-		btnAgregaProducto.setActionCommand("AGREGA");
-		panel_1.add(btnAgregaProducto);
+		
+		JButton btnModificaProducto = new JButton("Modifica Producto");
+		btnModificaProducto.setActionCommand("MODIFICA");
+		panel_1.add(btnModificaProducto);
 		JPanel panel_2 = new JPanel();
 		add(panel_2);
-		btnEliminaProducto = new JButton("Eliminar Producto");
-		btnEliminaProducto.setActionCommand("ELIMINA");
-		panel_2.add(btnEliminaProducto);
+		
+		JButton btnAgregaProducto = new JButton("Agregar Producto");
+		btnAgregaProducto.setActionCommand("AGREGA");
+		panel_2.add(btnAgregaProducto);
 		
 		JPanel panel_3 = new JPanel();
 		add(panel_3);
 		
-		btnVolver = new JButton("Volver");
+		JButton btnEliminaProducto = new JButton("Eliminar Producto");
+		btnEliminaProducto.setActionCommand("ELIMINA");
+		panel_3.add(btnEliminaProducto);
+		
+		JPanel panel_4 = new JPanel();
+		add(panel_4);
+		
+		JButton btnVolver = new JButton("Volver");
 		btnVolver.setActionCommand("VOLVER");
-		panel_3.add(btnVolver);
+		panel_4.add(btnVolver);
 
 	}
 
 	@Override
 	public void addActionListener(ActionListener actionListener) {
-		this.btnAgregaProducto.addActionListener(actionListener);
-		this.btnEliminaProducto.addActionListener(actionListener);
-		this.btnModificaProducto.addActionListener(actionListener);
-		this.btnVolver.addActionListener(actionListener);
-		this.actionListener = actionListener;
+//		this.btnAgregaProducto.addActionListener(actionListener);
+//		this.btnEliminaProducto.addActionListener(actionListener);
+//		this.btnModificaProducto.addActionListener(actionListener);
+//		this.btnVolver.addActionListener(actionListener);
+//		this.actionListener = actionListener;
 		
 	}
 

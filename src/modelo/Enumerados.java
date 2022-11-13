@@ -43,5 +43,9 @@ public class Enumerados
 		ADMINISTRADO,
 		OPERARIO;
 	}
+	public enum estadoOperario{
+		ACTIVO,
+		INACTIVO;
+	}
 }
 

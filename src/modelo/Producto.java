@@ -9,7 +9,7 @@ public class Producto
     private double precioVenta;
     private int stockInicial;
     
-	public Producto( String nombre, double precioCosto, double precioVenta, int stockInicial) {
+	public Producto(String nombre, double precioCosto, double precioVenta, int stockInicial) {
 		super();
 		this.idProd = siguienteIdProd++;
 		this.nombre = nombre;
