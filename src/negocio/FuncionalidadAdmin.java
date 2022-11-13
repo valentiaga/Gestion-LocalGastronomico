@@ -6,6 +6,7 @@ import java.time.temporal.ChronoUnit;
 import java.util.Calendar;
 import java.util.GregorianCalendar;
 
+import excepciones.CantComensalesInvalida_Exception;
 import excepciones.CantHijosInvalida_Exception;
 import excepciones.EdadInvalida_Exception;
 import excepciones.MesaOcupada_Exception;
@@ -101,9 +102,11 @@ public class FuncionalidadAdmin extends FuncionalidadOperario {
 		GestionProductos.eliminaProducto(idProd);
 	}
 	
-	public void agregaMesa(int cantSillas) {
+	public void agregaMesa(int cantSillas) throws CantComensalesInvalida_Exception {
+		if (Mesa.getSiguienteNroMesa()>0 && cantSillas < 2) {
+			throw new CantComensalesInvalida_Exception("Solo se permiten menos de dos comensales en la barra");
+		}
 		Mesa mesa = new Mesa(cantSillas);
-		//Mesa mesa = new Mesa();
 		Sistema.getInstance().getMesas().put(mesa.getNroMesa(), mesa);
 	}
 	

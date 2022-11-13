@@ -12,6 +12,7 @@ import javax.swing.GroupLayout;
 import javax.swing.JButton;
 import javax.swing.JComboBox;
 import javax.swing.JLabel;
+import javax.swing.JOptionPane;
 import javax.swing.JPanel;
 import javax.swing.SwingConstants;
 import javax.swing.GroupLayout.Alignment;
@@ -23,6 +24,7 @@ import controlador.ControladorVistaGestionMozoOp;
 import negocio.Sistema;
 import javax.swing.LayoutStyle.ComponentPlacement;
 import java.awt.event.ActionEvent;
+import javax.swing.JTextField;
 
 public class VistaGestionMozoAdmin extends JPanel implements ItemListener, IVistaGestionMozoAdmin {
 
@@ -33,6 +35,8 @@ public class VistaGestionMozoAdmin extends JPanel implements ItemListener, IVist
 	JButton btnElimina;
 	JButton btnAltaMozo;
 	JButton btnVolver;
+	private JTextField textFieldCantHijos;
+	private JTextField textFieldNyA;
 
 	/**
 	 * Create the panel.
@@ -50,6 +54,16 @@ public class VistaGestionMozoAdmin extends JPanel implements ItemListener, IVist
 		JPanel panel_1 = new JPanel();
 		panel.add(panel_1);
 		panel_1.setLayout(new FlowLayout(FlowLayout.CENTER, 5, 5));
+		
+		textFieldNyA = new JTextField();
+		textFieldNyA.setText("Nombre");
+		panel_1.add(textFieldNyA);
+		textFieldNyA.setColumns(10);
+		
+		textFieldCantHijos = new JTextField();
+		textFieldCantHijos.setText("Cantidad Hijos");
+		panel_1.add(textFieldCantHijos);
+		textFieldCantHijos.setColumns(10);
 
 		btnAltaMozo = new JButton("Alta Mozo");
 		btnAltaMozo.setActionCommand("ALTA");
@@ -135,6 +149,31 @@ public class VistaGestionMozoAdmin extends JPanel implements ItemListener, IVist
 
 	}
 
+	
+	public JTextField getTextFieldCantHijos() {
+		return textFieldCantHijos;
+	}
+
+	public JTextField getTextFieldNyA() {
+		return textFieldNyA;
+	}
+	@Override
+	public int getCantHijos() {
+		int cantHijos=-1;
+		try {
+			cantHijos = Integer.parseInt(this.textFieldCantHijos.getText());
+			
+		}
+		catch (NumberFormatException e2) {
+		}
+		return cantHijos;
+	}
+	
+	@Override
+	public String getNyA() {
+		return textFieldNyA.getText();
+	}
+
 	@Override
 	public void addActionListener(ActionListener actionListener) {
 		this.btnModificaMozo.addActionListener(actionListener);
@@ -148,6 +187,17 @@ public class VistaGestionMozoAdmin extends JPanel implements ItemListener, IVist
 
 	public JComboBox getComboBox() {
 		return comboBox;
+	}
+
+	@Override
+	public void limpiarVista() {
+		// TODO Auto-generated method stub
+		
+	}
+
+	@Override
+	public void ventanaEmergente(String mensaje) {
+		JOptionPane.showMessageDialog(null, mensaje);
 	}
 
 	

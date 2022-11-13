@@ -7,6 +7,7 @@ import java.awt.event.ActionListener;
 import javax.swing.JOptionPane;
 import javax.swing.JPanel;
 
+import excepciones.CantComensalesInvalida_Exception;
 import excepciones.MesaNoOcupadaException;
 import excepciones.MesaOcupada_Exception;
 import excepciones.NoExisteMesa_Exception;
@@ -40,9 +41,13 @@ public class ControladorVistaGestionMesaAdmin implements ActionListener {
 		if (comando.equalsIgnoreCase("MODIFICA"))
 			cl.show(contentPane, ventana.getVistaModificaMesa());
 		else if (comando.equalsIgnoreCase("AGREGA")) {
-			Sistema.getInstance().getFuncionalidadAdmin().agregaMesa(cantSillas);
-			this.vista.ventanaEmergente("Anadida con exito");
-			this.vista.limpiarVista();
+			try {
+				Sistema.getInstance().getFuncionalidadAdmin().agregaMesa(cantSillas);
+				this.vista.ventanaEmergente("Anadida con exito");
+				this.vista.limpiarVista();
+			} catch (CantComensalesInvalida_Exception e1) {
+				this.vista.ventanaEmergente(e1.getMessage());
+			}
 		} else if (comando.equalsIgnoreCase("ABRE_MESA")) {
 			try {
 				Sistema.getInstance().getFuncionalidadAdmin()

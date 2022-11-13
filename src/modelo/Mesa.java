@@ -61,6 +61,11 @@ public class Mesa
 	public void setComanda(Comanda comanda) {
 		this.comanda = comanda;
 	}
+
+	public static int getSiguienteNroMesa() {
+		return siguienteNroMesa;
+	}
+	
     
 	
     

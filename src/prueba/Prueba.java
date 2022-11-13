@@ -7,8 +7,10 @@ import controlador.ControladorVistaGestionMozoAdmin;
 import controlador.ControladorVistaGestionMozoOp;
 import controlador.ControladorVistaGestionProductoAdmin;
 import controlador.ControladorVistaInicial;
-import controlador.ControladorVistaModificaMesa;
+import controlador.ControladorVistaModificaMesaAdmin;
+import controlador.ControladorVistaModificaMozoAdmin;
 import controlador.ControladorVistaOperario;
+import excepciones.CantComensalesInvalida_Exception;
 import excepciones.precioInvalido_Exception;
 import modelo.Administrador;
 import modelo.Mozo;
@@ -24,12 +26,13 @@ import vista.VistaGestionMozoOp;
 import vista.VistaGestionProductoAdmin;
 import vista.VistaGestionProductoOp;
 import vista.VistaInicial;
-import vista.VistaModificarMesa;
+import vista.VistaModificaMozo;
+import vista.VistaModificarMesaAdmin;
 import vista.VistaOperario;
 
 public class Prueba {
 
-	public static void main(String[] args) throws precioInvalido_Exception {
+	public static void main(String[] args) {
 
 		Mozo mozo = new Mozo("Marti", 3);
 		Mozo mozo2 = new Mozo("Valen", 0);
@@ -49,15 +52,26 @@ public class Prueba {
 		VistaAdmin vistaAdmin = new VistaAdmin();
 		VistaGestionProductoOp vistaProductoOp = new VistaGestionProductoOp();
 		VistaGestionProductoAdmin vistaProductoAdmin = new VistaGestionProductoAdmin();
-		VistaModificarMesa vistaModificarMesa = new VistaModificarMesa();
+		VistaModificarMesaAdmin vistaModificarMesa = new VistaModificarMesaAdmin();
+		VistaModificaMozo vistaModificaMozoAdmin = new VistaModificaMozo();
 		Sistema.getInstance().seteaAdmin();
 		Sistema.getInstance().setFuncionalidadAdmin(new FuncionalidadAdmin(Administrador.getInstance()));
-		Sistema.getInstance().getFuncionalidadAdmin().agregaProducto("Pizza", 10, 20, 10);
-		Sistema.getInstance().getFuncionalidadAdmin().agregaMesa(4);
-		Sistema.getInstance().getFuncionalidadAdmin().agregaMesa(5);
+		try {
+			Sistema.getInstance().getFuncionalidadAdmin().agregaProducto("Pizza", 10, 20, 10);
+		} catch (precioInvalido_Exception e1) {
+			// TODO Auto-generated catch block
+			e1.printStackTrace();
+		}
+		try {
+			Sistema.getInstance().getFuncionalidadAdmin().agregaMesa(4);
+			Sistema.getInstance().getFuncionalidadAdmin().agregaMesa(5);
+		} catch (CantComensalesInvalida_Exception e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
 		
 		Ventana v = new Ventana(vistaInicial, vistaMozoOp, vistaMozoAdmin, vistaMesaOp, vistaMesaAdmin,
-				vistaCambiaContra, vistaOp, vistaAdmin, vistaProductoOp, vistaProductoAdmin, vistaModificarMesa);
+				vistaCambiaContra, vistaOp, vistaAdmin, vistaProductoOp, vistaProductoAdmin, vistaModificarMesa, vistaModificaMozoAdmin);
 
 		ControladorVistaOperario cOperario = new ControladorVistaOperario(vistaOp, v);
 		ControladorVistaAdmin cAdmin = new ControladorVistaAdmin(vistaAdmin, v);
@@ -67,7 +81,8 @@ public class Prueba {
 		ControladorVistaGestionMesaOp cMesaOp = new ControladorVistaGestionMesaOp(vistaMesaOp, v);
 		ControladorVistaGestionMesaAdmin cMesaAdmin = new ControladorVistaGestionMesaAdmin(vistaMesaAdmin, v);
 		ControladorVistaGestionProductoAdmin cProductoAdmin = new ControladorVistaGestionProductoAdmin(vistaProductoAdmin, v);
-		ControladorVistaModificaMesa cModificaMesa = new ControladorVistaModificaMesa(vistaModificarMesa, v);
+		ControladorVistaModificaMesaAdmin cModificaMesa = new ControladorVistaModificaMesaAdmin(vistaModificarMesa, v);
+		ControladorVistaModificaMozoAdmin cModificaMozoAdmin = new ControladorVistaModificaMozoAdmin(vistaModificaMozoAdmin, v);
 	}
 
 }

@@ -157,37 +157,37 @@ public class VistaGestionMesaAdmin extends JPanel implements IVistaGestionMesaAd
 		JPanel panel_13 = new JPanel();
 		panel.add(panel_13);
 		
-		JLabel lblNewLabel_1 = new JLabel("Ingresar la cantidad de sillas");
-		panel_13.add(lblNewLabel_1);
-		
-		textFieldCantSillas = new JTextField();
-		panel_13.add(textFieldCantSillas);
-		textFieldCantSillas.addKeyListener(this);
-		textFieldCantSillas.setColumns(10);
+		btnModificaMesa = new JButton("Modificar Mesa");
+		panel_13.add(btnModificaMesa);
+		btnModificaMesa.setEnabled(false);
+		btnModificaMesa.setActionCommand("MODIFICA");
 		
 		JPanel panel_4 = new JPanel();
 		panel.add(panel_4);
 		panel_4.setLayout(new FlowLayout(FlowLayout.CENTER, 5, 5));
 		
-		btnAgrega = new JButton("Agregar Mesa");
-		panel_4.add(btnAgrega);
-		btnAgrega.setEnabled(false);
-		btnAgrega.setActionCommand("AGREGA");
+		JLabel lblNewLabel_1 = new JLabel("Ingresar la cantidad de sillas");
+		panel_4.add(lblNewLabel_1);
+		
+		textFieldCantSillas = new JTextField();
+		panel_4.add(textFieldCantSillas);
+		textFieldCantSillas.addKeyListener(this);
+		textFieldCantSillas.setColumns(10);
 		
 		JPanel panel_5 = new JPanel();
 		panel.add(panel_5);
 		
-		btnVolver = new JButton("Volver");
-		panel_5.add(btnVolver);
-		btnVolver.setActionCommand("VOLVER");
+		btnAgrega = new JButton("Agregar Mesa");
+		panel_5.add(btnAgrega);
+		btnAgrega.setEnabled(false);
+		btnAgrega.setActionCommand("AGREGA");
 		
 		JPanel panel_9_1 = new JPanel();
 		panel.add(panel_9_1);
 		
-		btnModificaMesa = new JButton("Modificar Mesa");
-		panel_9_1.add(btnModificaMesa);
-		btnModificaMesa.setEnabled(false);
-		btnModificaMesa.setActionCommand("MODIFICA");
+		btnVolver = new JButton("Volver");
+		panel_9_1.add(btnVolver);
+		btnVolver.setActionCommand("VOLVER");
 		
 	}
 	@Override
@@ -225,7 +225,7 @@ public class VistaGestionMesaAdmin extends JPanel implements IVistaGestionMesaAd
 		int nroMesa=-1;
 		try {
 			nroMesa = Integer.parseInt(this.textFieldNroMesa.getText());
-			System.out.println(nroMesa);
+			
 		}
 		catch (NumberFormatException e2) {
 		}

@@ -24,7 +24,8 @@ public class Ventana extends JFrame {
 	private VistaAdmin vistaAdmin;
 	private VistaGestionProductoOp vistaProductoOp;
 	private VistaGestionProductoAdmin vistaProductoAdmin;
-	private VistaModificarMesa vistaModificaMesa;
+	private VistaModificarMesaAdmin vistaModificaMesa;
+	private VistaModificaMozo vistaModificaMozoAdmin;
 
 	/**
 	 * Launch the application.
@@ -45,7 +46,7 @@ public class Ventana extends JFrame {
 	/**
 	 * Create the frame.
 	 */
-	public Ventana(VistaInicial vistaInicial, VistaGestionMozoOp vistaMozoOp, VistaGestionMozoAdmin vistaMozoAdmin, VistaGestionMesaOp vistaMesaOp, VistaGestionMesaAdmin vistaMesaAdmin, VistaCambiaContrasena vistaCambiaContrasena, VistaOperario vistaOp, VistaAdmin vistaAdmin, VistaGestionProductoOp vistaProductoOp, VistaGestionProductoAdmin vistaProductoAdmin, VistaModificarMesa vistaModificaMesa) {
+	public Ventana(VistaInicial vistaInicial, VistaGestionMozoOp vistaMozoOp, VistaGestionMozoAdmin vistaMozoAdmin, VistaGestionMesaOp vistaMesaOp, VistaGestionMesaAdmin vistaMesaAdmin, VistaCambiaContrasena vistaCambiaContrasena, VistaOperario vistaOp, VistaAdmin vistaAdmin, VistaGestionProductoOp vistaProductoOp, VistaGestionProductoAdmin vistaProductoAdmin, VistaModificarMesaAdmin vistaModificaMesa, VistaModificaMozo vistaModificaMozoAdmin) {
 		this.vistaGestionMozoOp = vistaMozoOp;
 		this.vistaGestionMozoAdmin = vistaMozoAdmin;
 		this.vistaAdmin = vistaAdmin;
@@ -57,6 +58,7 @@ public class Ventana extends JFrame {
 		this.vistaProductoAdmin = vistaProductoAdmin;
 		this.vistaProductoOp = vistaProductoOp;
 		this.vistaModificaMesa = vistaModificaMesa;
+		this.vistaModificaMozoAdmin = vistaModificaMozoAdmin;
 		
 		this.setVisible(true);
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
@@ -77,6 +79,7 @@ public class Ventana extends JFrame {
 		contentPane.add(vistaProductoAdmin, "vistaProductoAdmin");
 		contentPane.add(vistaProductoOp, "vistaProductoOp");
 		contentPane.add(vistaModificaMesa, "vistaModificaMesa");
+		contentPane.add(vistaModificaMozoAdmin, "vistaModificaMozoAdmin");
 	}
 	
 	public JPanel getContentPane() {
@@ -127,7 +130,9 @@ public class Ventana extends JFrame {
 		return "vistaModificaMesa";
 	}
 	
-	
+	public String getVistaModificaMozo() {
+		return "vistaModificaMozoAdmin";
+	}
 	
 
 

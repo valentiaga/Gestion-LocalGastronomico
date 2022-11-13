@@ -11,12 +11,12 @@ import vista.IVistaGestionMesaAdmin;
 import vista.IVistaModificarMesa;
 import vista.Ventana;
 
-public class ControladorVistaModificaMesa implements ActionListener {
+public class ControladorVistaModificaMesaAdmin implements ActionListener {
 	private IVistaModificarMesa vista = null;
 	private Ventana ventana = null;
 	private JPanel contentPane = null;
 	
-	public ControladorVistaModificaMesa(IVistaModificarMesa vista, Ventana ventana) {
+	public ControladorVistaModificaMesaAdmin(IVistaModificarMesa vista, Ventana ventana) {
 		super();
 		this.vista = vista;
 		this.vista.addActionListener(this);
