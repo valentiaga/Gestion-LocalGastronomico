@@ -7,6 +7,7 @@ import java.awt.event.ActionListener;
 import javax.swing.JOptionPane;
 import javax.swing.JPanel;
 
+import negocio.Sistema;
 import vista.IVistaAdmin;
 import vista.IVistaGestionMesaAdmin;
 import vista.Ventana;
@@ -39,6 +40,7 @@ public class ControladorVistaAdmin implements ActionListener {
 			cl.show(contentPane, ventana.getVistaRegistraOp());
 		}
 		else if (comando.equalsIgnoreCase("CERRAR_SESION")) {
+			Sistema.getInstance().setFuncionalidadAdmin(null);
 			cl.show(contentPane, ventana.getVistaInicial());
 		}
 	}

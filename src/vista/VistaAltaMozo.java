@@ -208,12 +208,14 @@ public class VistaAltaMozo extends JPanel implements ItemListener, IVistaAltaMoz
 		}
 		return cantHijos;
 	}
-
 	
 	@Override
 	public void limpiarVista() {
-		// TODO Auto-generated method stub
-		
+		this.textFieldAnio.setText("");
+		this.textFieldCantHijos.setText("");
+		this.textFieldDia.setText("");
+		this.textFieldMes.setText("");
+		this.textFieldNyA.setText("");
 	}
 
 	@Override

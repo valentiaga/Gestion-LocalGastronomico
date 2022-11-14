@@ -108,7 +108,6 @@ public class VistaGestionMozoAdmin extends JPanel implements ItemListener, IVist
 		this.actionListener = actionListener;
 	}
 	
-
 	public JComboBox getComboBox() {
 		return comboBox;
 	}

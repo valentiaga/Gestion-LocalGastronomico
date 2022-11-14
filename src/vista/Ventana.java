@@ -170,6 +170,9 @@ public class Ventana extends JFrame {
 	public VistaGestionMesaOp getVistaMesaaOp() {
 		return this.vistaGestionMesaOp;
 	}
+	public VistaGestionProductoOp getVistaProductooOp() {
+		return this.vistaGestionProductoOp;
+	}
 
 	public String getVistaOp() {
 		return "vistaOp";

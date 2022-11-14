@@ -9,6 +9,7 @@ import java.awt.GridLayout;
 import java.awt.event.ActionListener;
 import java.awt.FlowLayout;
 import javax.swing.JLabel;
+import javax.swing.JOptionPane;
 import javax.swing.JTextField;
 import javax.swing.border.EtchedBorder;
 import java.awt.Color;
@@ -54,22 +55,16 @@ public class VistaGestionProductoAdmin extends JPanel implements IVistaGestionPr
 		JPanel panel_2 = new JPanel();
 		add(panel_2);
 		
-		JPanel panel_8 = new JPanel();
-		panel_2.add(panel_8);
-		
-		this.btnAgregaProducto = new JButton("Agregar Producto");
-		panel_8.add(btnAgregaProducto);
-		btnAgregaProducto.setActionCommand("AGREGA");
+		this.btnEliminaProducto = new JButton("Eliminar Producto");
+		panel_2.add(btnEliminaProducto);
+		btnEliminaProducto.setActionCommand("ELIMINA");
 		
 		JPanel panel_3 = new JPanel();
 		add(panel_3);
 		
-		JPanel panel_9 = new JPanel();
-		panel_3.add(panel_9);
-		
-		this.btnEliminaProducto = new JButton("Eliminar Producto");
-		panel_9.add(btnEliminaProducto);
-		btnEliminaProducto.setActionCommand("ELIMINA");
+		this.btnAgregaProducto = new JButton("Agregar Producto");
+		panel_3.add(btnAgregaProducto);
+		btnAgregaProducto.setActionCommand("AGREGA");
 		
 		JPanel panel_4 = new JPanel();
 		add(panel_4);
@@ -90,30 +85,29 @@ public class VistaGestionProductoAdmin extends JPanel implements IVistaGestionPr
 		this.btnModificaProducto.addActionListener(actionListener);
 		this.btnEliminaProducto.addActionListener(actionListener);
 		this.btnVolver.addActionListener(actionListener);
-//		this.btnAgregaProducto.addActionListener(actionListener);
-//		this.btnEliminaProducto.addActionListener(actionListener);
-//		this.btnModificaProducto.addActionListener(actionListener);
-//		this.btnVolver.addActionListener(actionListener);
-//		this.actionListener = actionListener;
+		this.actionListener = actionListener;
 		
 	}
 
 	@Override
 	public void limpiarVista() {
-		// TODO Auto-generated method stub
-		
+		this.textFieldIdProducto.setText("");
 	}
 
 	@Override
 	public void ventanaEmergente(String mensaje) {
-		// TODO Auto-generated method stub
-		
+		JOptionPane.showMessageDialog(null, mensaje);
 	}
 
 	@Override
 	public int getIdProd() {
-		// TODO Auto-generated method stub
-		return 0;
+		int id=-1;
+		try {
+			id = Integer.parseInt(this.textFieldIdProducto.getText());
+		}
+		catch (NumberFormatException e2) {
+		}
+		return id;
 	}
 
 }
