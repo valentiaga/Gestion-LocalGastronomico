@@ -163,6 +163,18 @@ public class VistaGestionMozoAdmin extends JPanel implements ItemListener, IVist
 		JOptionPane.showMessageDialog(null, mensaje);
 	}
 
+	@Override
+	public String getNyA() {
+		// TODO Auto-generated method stub
+		return null;
+	}
+
+	@Override
+	public int getCantHijos() {
+		// TODO Auto-generated method stub
+		return 0;
+	}
+
 	
 
 }

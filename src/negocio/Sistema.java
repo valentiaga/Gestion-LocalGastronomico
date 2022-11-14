@@ -46,7 +46,7 @@ public class Sistema {
 	private FuncionalidadAdmin funcionalidadAdmin;
 	//private boolean esAdmin;
 	private static Sistema instance = null;
-	private String usuarioAdministrador= "ADMIN";
+	private String usuarioAdministrador = "ADMIN";
 	private String codigoAdministrador = "ADMIN1234";
 	private Operario operarioActual;
 	
@@ -144,6 +144,46 @@ public class Sistema {
 		}
 	}
 	
+	public void setMozos(HashMap<String, Mozo> mozos) {
+		this.mozos = mozos;
+	}
+
+
+	public void setProductos(HashMap<Integer, Producto> productos) {
+		this.productos = productos;
+	}
+
+
+	public void setOperariosRegistrados(HashMap<String, Operario> operariosRegistrados) {
+		this.operariosRegistrados = operariosRegistrados;
+	}
+
+
+	public void setMesas(HashMap<Integer, Mesa> mesas) {
+		this.mesas = mesas;
+	}
+
+
+	public void setPromocionProds(HashMap<Integer, PromocionProd> promocionProds) {
+		this.promocionProds = promocionProds;
+	}
+
+
+	public void setComandas(ArrayList<Comanda> comandas) {
+		this.comandas = comandas;
+	}
+
+
+	public void setPromocionesTemp(ArrayList<PromocionTemporal> promocionesTemp) {
+		this.promocionesTemp = promocionesTemp;
+	}
+
+
+	public void setContrasena(HashMap<String, String> contrasena) {
+		this.contrasena = contrasena;
+	}
+
+
 	/**
 	 * metodo para logear un operario. <br>
 	 * Pre: El operario debe estar activo <br>
