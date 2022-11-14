@@ -8,6 +8,7 @@ import controlador.ControladorVistaGestionMozoOp;
 import controlador.ControladorVistaGestionProductoAdmin;
 import controlador.ControladorVistaInicial;
 import controlador.ControladorVistaModificaMesaAdmin;
+import controlador.ControladorVistaModificaMesaOp;
 import controlador.ControladorVistaModificaMozoAdmin;
 import controlador.ControladorVistaOperario;
 import excepciones.CantComensalesInvalida_Exception;
@@ -18,6 +19,7 @@ import negocio.FuncionalidadAdmin;
 import negocio.Sistema;
 import vista.Ventana;
 import vista.VistaAdmin;
+import vista.VistaAltaMozo;
 import vista.VistaCambiaContrasena;
 import vista.VistaGestionMesaAdmin;
 import vista.VistaGestionMesaOp;
@@ -28,6 +30,7 @@ import vista.VistaGestionProductoOp;
 import vista.VistaInicial;
 import vista.VistaModificaMozo;
 import vista.VistaModificarMesaAdmin;
+import vista.VistaModificarMesaOp;
 import vista.VistaOperario;
 
 public class Prueba {
@@ -53,7 +56,10 @@ public class Prueba {
 		VistaGestionProductoOp vistaProductoOp = new VistaGestionProductoOp();
 		VistaGestionProductoAdmin vistaProductoAdmin = new VistaGestionProductoAdmin();
 		VistaModificarMesaAdmin vistaModificarMesa = new VistaModificarMesaAdmin();
+		VistaModificarMesaOp vistaModificaMesaOp = new VistaModificarMesaOp();
 		VistaModificaMozo vistaModificaMozoAdmin = new VistaModificaMozo();
+		VistaAltaMozo vistaAltaMozo = new VistaAltaMozo();
+		
 		Sistema.getInstance().seteaAdmin();
 		Sistema.getInstance().setFuncionalidadAdmin(new FuncionalidadAdmin(Administrador.getInstance()));
 		try {
@@ -71,7 +77,7 @@ public class Prueba {
 		}
 		
 		Ventana v = new Ventana(vistaInicial, vistaMozoOp, vistaMozoAdmin, vistaMesaOp, vistaMesaAdmin,
-				vistaCambiaContra, vistaOp, vistaAdmin, vistaProductoOp, vistaProductoAdmin, vistaModificarMesa, vistaModificaMozoAdmin);
+				vistaCambiaContra, vistaOp, vistaAdmin, vistaProductoOp, vistaProductoAdmin, vistaModificarMesa, vistaModificaMesaOp, vistaModificaMozoAdmin, vistaAltaMozo);
 
 		ControladorVistaOperario cOperario = new ControladorVistaOperario(vistaOp, v);
 		ControladorVistaAdmin cAdmin = new ControladorVistaAdmin(vistaAdmin, v);
@@ -82,6 +88,7 @@ public class Prueba {
 		ControladorVistaGestionMesaAdmin cMesaAdmin = new ControladorVistaGestionMesaAdmin(vistaMesaAdmin, v);
 		ControladorVistaGestionProductoAdmin cProductoAdmin = new ControladorVistaGestionProductoAdmin(vistaProductoAdmin, v);
 		ControladorVistaModificaMesaAdmin cModificaMesa = new ControladorVistaModificaMesaAdmin(vistaModificarMesa, v);
+		ControladorVistaModificaMesaOp cModificaMesaOp = new ControladorVistaModificaMesaOp(vistaModificaMesaOp, v);
 		ControladorVistaModificaMozoAdmin cModificaMozoAdmin = new ControladorVistaModificaMozoAdmin(vistaModificaMozoAdmin, v);
 	}
 

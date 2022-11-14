@@ -6,20 +6,22 @@ import java.awt.event.ItemEvent;
 import java.awt.event.ItemListener;
 
 import javax.swing.JButton;
+import javax.swing.JComboBox;
 import javax.swing.JLabel;
 import javax.swing.JPanel;
 import javax.swing.JTextField;
 import javax.swing.border.TitledBorder;
 
 import modelo.Enumerados;
-import negocio.Sistema;
-import javax.swing.JComboBox;
+import modelo.Enumerados.estadoMesa;
+import modelo.Enumerados.estadoMozo;
 
 public class VistaModificarMesaAdmin extends JPanel implements IVistaModificarMesa, ItemListener{
 	private JTextField textFieldCantSillas;
 	private JButton btnVolver;
 	private JButton btnConfirma;
 	private ActionListener actionListener;
+	private JComboBox comboBoxEstado;
 	/**
 	 * Create the panel.
 	 */
@@ -58,7 +60,7 @@ public class VistaModificarMesaAdmin extends JPanel implements IVistaModificarMe
 		JPanel panel_8 = new JPanel();
 		panel_2.add(panel_8);
 		
-		JComboBox comboBoxEstado = new JComboBox<String>();
+		comboBoxEstado = new JComboBox<String>();
 		panel_8.add(comboBoxEstado);
 		comboBoxEstado.setEditable(true);
 		comboBoxEstado.addItem( Enumerados.estadoMesa.LIBRE);
@@ -92,5 +94,22 @@ public class VistaModificarMesaAdmin extends JPanel implements IVistaModificarMe
 		// TODO Auto-generated method stub
 		
 	}
+
+	@Override
+	public int getCantSillas() {
+		int cantSillas = -1;
+		try {
+			cantSillas = Integer.parseInt(this.textFieldCantSillas.getText());
+		} catch (NumberFormatException e2) {
+		}
+		return cantSillas;
+	}
+
+	@Override
+	public estadoMesa getEstado() {
+		//System.out.println((estadoMesa) this.comboBoxEstado.getSelectedItem());
+		return (estadoMesa) this.comboBoxEstado.getSelectedItem();
+	}
+	
 
 }

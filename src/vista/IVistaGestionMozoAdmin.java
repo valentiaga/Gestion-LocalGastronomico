@@ -8,9 +8,10 @@ import controlador.ControladorVistaGestionMozoAdmin;
 
 public interface IVistaGestionMozoAdmin {
 
+
 	String getNyA();
 	int getCantHijos();
-	JComboBox getComboBox();
+	public JComboBox getComboBox();
 	void addActionListener(ActionListener actionListener);
 	void limpiarVista();
 	void ventanaEmergente(String mensaje);

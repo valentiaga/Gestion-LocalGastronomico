@@ -7,7 +7,8 @@ import java.awt.event.ActionListener;
 import javax.swing.JOptionPane;
 import javax.swing.JPanel;
 
-import vista.IVistaGestionMesaAdmin;
+import modelo.Mesa;
+import negocio.Sistema;
 import vista.IVistaModificarMesa;
 import vista.Ventana;
 
@@ -27,8 +28,13 @@ public class ControladorVistaModificaMesaAdmin implements ActionListener {
 	public void actionPerformed(ActionEvent e) {
 		CardLayout cl = (CardLayout) contentPane.getLayout();
 		String comando = e.getActionCommand();
-		if (comando.equalsIgnoreCase("CONFIRMA")) 
+		if (comando.equalsIgnoreCase("CONFIRMA")) {
+			Mesa mesa = Sistema.getInstance().getMesas().get(this.ventana.getVistaMesaaAdmin().getNroMesa());
+			mesa.setCantPax(this.vista.getCantSillas());
+			mesa.setEstado(this.vista.getEstado());
+			System.out.println(mesa.getEstado()+" "+mesa.getCantPax());
 			JOptionPane.showMessageDialog(null, "Confirma.");
+		}
 		else if (comando.equalsIgnoreCase("VOLVER")) 
 			cl.show(contentPane, ventana.getVistaMesaAdmin());
 

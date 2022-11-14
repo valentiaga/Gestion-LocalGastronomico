@@ -12,13 +12,15 @@ import javax.swing.JTextField;
 import javax.swing.border.TitledBorder;
 
 import modelo.Enumerados;
+import modelo.Enumerados.estadoMesa;
 import negocio.Sistema;
 import javax.swing.JComboBox;
 
-public class VistaModificarMesaOp extends JPanel implements IVistaModificarMesa, ItemListener{
+public class VistaModificarMesaOp extends JPanel implements IVistaModificarMesaOp, ItemListener{
 	private JButton btnVolver;
 	private JButton btnConfirma;
 	private ActionListener actionListener;
+	private JComboBox comboBoxEstado;
 	/**
 	 * Create the panel.
 	 */
@@ -39,7 +41,7 @@ public class VistaModificarMesaOp extends JPanel implements IVistaModificarMesa,
 		JPanel panel_8 = new JPanel();
 		panel_2.add(panel_8);
 		
-		JComboBox comboBoxEstado = new JComboBox<String>();
+		comboBoxEstado = new JComboBox<String>();
 		panel_8.add(comboBoxEstado);
 		comboBoxEstado.setEditable(true);
 		comboBoxEstado.addItem( Enumerados.estadoMesa.LIBRE);
@@ -72,6 +74,11 @@ public class VistaModificarMesaOp extends JPanel implements IVistaModificarMesa,
 	public void itemStateChanged(ItemEvent e) {
 		// TODO Auto-generated method stub
 		
+	}
+
+	@Override
+	public estadoMesa getEstado() {
+		return (estadoMesa) this.comboBoxEstado.getSelectedItem();
 	}
 
 }

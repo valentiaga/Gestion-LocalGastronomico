@@ -41,14 +41,7 @@ public class ControladorVistaGestionMozoAdmin implements ActionListener {
 		else if (comando.equalsIgnoreCase("ESTABLECE"))
 			JOptionPane.showMessageDialog(null, "Estados.");
 		else if (comando.equalsIgnoreCase("ALTA")) {
-			try {
-				Sistema.getInstance().getFuncionalidadAdmin().agregaMozo(this.vista.getNyA(), null, this.vista.getCantHijos(), Enumerados.estadoMozo.ACTIVO);
-				JOptionPane.showMessageDialog(null, "Alta.");
-			} catch (EdadInvalida_Exception e1) {
-				this.vista.ventanaEmergente(e1.getMessage());
-			} catch (CantHijosInvalida_Exception e1) {
-				this.vista.ventanaEmergente(e1.getMessage());
-			}
+			
 		}
 		else if (comando.equalsIgnoreCase("VOLVER"))
 			cl.show(contentPane, ventana.getVistaAdmin());

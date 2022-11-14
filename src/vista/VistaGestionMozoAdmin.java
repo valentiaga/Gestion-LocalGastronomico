@@ -35,8 +35,6 @@ public class VistaGestionMozoAdmin extends JPanel implements ItemListener, IVist
 	JButton btnElimina;
 	JButton btnAltaMozo;
 	JButton btnVolver;
-	private JTextField textFieldCantHijos;
-	private JTextField textFieldNyA;
 
 	/**
 	 * Create the panel.
@@ -54,16 +52,6 @@ public class VistaGestionMozoAdmin extends JPanel implements ItemListener, IVist
 		JPanel panel_1 = new JPanel();
 		panel.add(panel_1);
 		panel_1.setLayout(new FlowLayout(FlowLayout.CENTER, 5, 5));
-		
-		textFieldNyA = new JTextField();
-		textFieldNyA.setText("Nombre");
-		panel_1.add(textFieldNyA);
-		textFieldNyA.setColumns(10);
-		
-		textFieldCantHijos = new JTextField();
-		textFieldCantHijos.setText("Cantidad Hijos");
-		panel_1.add(textFieldCantHijos);
-		textFieldCantHijos.setColumns(10);
 
 		btnAltaMozo = new JButton("Alta Mozo");
 		btnAltaMozo.setActionCommand("ALTA");
@@ -147,31 +135,6 @@ public class VistaGestionMozoAdmin extends JPanel implements ItemListener, IVist
 			// comboBox.setSelectedItem(comboBox.getSelectedItem());
 		}
 
-	}
-
-	
-	public JTextField getTextFieldCantHijos() {
-		return textFieldCantHijos;
-	}
-
-	public JTextField getTextFieldNyA() {
-		return textFieldNyA;
-	}
-	@Override
-	public int getCantHijos() {
-		int cantHijos=-1;
-		try {
-			cantHijos = Integer.parseInt(this.textFieldCantHijos.getText());
-			
-		}
-		catch (NumberFormatException e2) {
-		}
-		return cantHijos;
-	}
-	
-	@Override
-	public String getNyA() {
-		return textFieldNyA.getText();
 	}
 
 	@Override
