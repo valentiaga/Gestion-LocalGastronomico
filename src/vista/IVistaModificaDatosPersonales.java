@@ -10,6 +10,6 @@ public interface IVistaModificaDatosPersonales {
 	String getNyA();
     String getUserName();
     String getPassword();
-    boolean getActivo();
+
     
 }

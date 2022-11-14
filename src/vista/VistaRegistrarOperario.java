@@ -19,6 +19,9 @@ public class VistaRegistrarOperario extends JPanel implements IVistaRegistrarOpe
 	private JTextField textFieldNyA;
 	private JTextField textFieldUserName;
 	private JTextField textField;
+	private JButton btnVolver;
+	private JButton btnConfirmar;
+	private ActionListener actionListener;
 
 	/**
 	 * Create the panel.
@@ -100,21 +103,24 @@ public class VistaRegistrarOperario extends JPanel implements IVistaRegistrarOpe
 		JPanel panel_13 = new JPanel();
 		panel_4.add(panel_13);
 		
-		JButton btnConfirmar = new JButton("Confirmar");
+		btnConfirmar = new JButton("Confirmar");
+		btnConfirmar.setActionCommand("CONFIRMA");
 		panel_13.add(btnConfirmar);
 		
 		JPanel panel_14 = new JPanel();
 		add(panel_14);
 		
-		JButton btnVolver = new JButton("Volver");
+		btnVolver = new JButton("Volver");
+		btnVolver.setActionCommand("VOLVER");
 		panel_14.add(btnVolver);
 
 	}
 
 	@Override
 	public void addActionListener(ActionListener actionListener) {
-		// TODO Auto-generated method stub
-		
+		this.btnConfirmar.addActionListener(actionListener);
+		this.btnVolver.addActionListener(actionListener);
+		this.actionListener = actionListener;
 	}
 
 	@Override

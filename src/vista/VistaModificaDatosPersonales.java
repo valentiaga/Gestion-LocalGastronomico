@@ -13,6 +13,8 @@ public class VistaModificaDatosPersonales extends JPanel implements IVistaModifi
 	private JTextField textFieldNyA;
 	private JTextField textFieldUserName;
 	private JTextField textField;
+	private JButton btnConfirmar;
+	private ActionListener actionListener;
 
 	/**
 	 * Create the panel.
@@ -54,7 +56,8 @@ public class VistaModificaDatosPersonales extends JPanel implements IVistaModifi
 		JPanel panel_3 = new JPanel();
 		add(panel_3);
 		
-		JButton btnConfirmar = new JButton("Confirmar");
+		btnConfirmar = new JButton("Confirmar");
+		btnConfirmar.setActionCommand("CONFIRMA");
 		panel_3.add(btnConfirmar);
 
 	}
@@ -78,15 +81,9 @@ public class VistaModificaDatosPersonales extends JPanel implements IVistaModifi
 	}
 
 	@Override
-	public boolean getActivo() {
-		// TODO Auto-generated method stub
-		return false;
-	}
-
-	@Override
 	public void addActionListener(ActionListener actionListener) {
-		// TODO Auto-generated method stub
-		
+		this.btnConfirmar.addActionListener(actionListener);
+		this.actionListener = actionListener;
 	}
 
 	@Override

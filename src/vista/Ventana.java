@@ -33,7 +33,6 @@ public class Ventana extends JFrame {
 	private VistaModificaProductoPromocion vistaModificaProductoPromocion;
 	private VistaModificaPromocionTemporal vistaModificaPromocionTemporal;
 	private VistaRegistrarOperario vistaRegistraOp;
-	private VistaModificaOp vistaModificaOp;
 
 	/**
 	 * Launch the application.
@@ -61,7 +60,7 @@ public class Ventana extends JFrame {
 			VistaModificaDatosPersonales vistaModificaDatosPersonales, VistaModificaProducto vistaModificaProducto,
 			VistaModificaProductoPromocion vistaModificaProductoPromocion,
 			VistaModificaPromocionTemporal vistaModificaPromocionTemporal, VistaRegistrarOperario vistaRegistraOp,
-			VistaModificaMozoOp vistaModificaMozoOp, VistaModificaOp vistaModificaOp) {
+			VistaModificaMozoOp vistaModificaMozoOp) {
 		this.vistaInicial = vistaInicial;
 		this.vistaGestionMozoOp = vistaGestionMozoOp;
 		this.vistaGestionMozoAdmin = vistaGestionMozoAdmin;
@@ -85,7 +84,6 @@ public class Ventana extends JFrame {
 		this.vistaModificaProductoPromocion = vistaModificaProductoPromocion;
 		this.vistaModificaPromocionTemporal = vistaModificaPromocionTemporal;
 		this.vistaRegistraOp = vistaRegistraOp;
-		this.vistaModificaOp = vistaModificaOp;
 
 		this.setVisible(true);
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
@@ -94,8 +92,8 @@ public class Ventana extends JFrame {
 		setContentPane(contentPane);
 
 		contentPane.setLayout(new CardLayout(0, 0));
-		contentPane.add(vistaOp, "vistaOp");
 		contentPane.add(vistaAdmin, "vistaAdmin");
+		contentPane.add(vistaOp, "vistaOp");
 		contentPane.add(vistaGestionMesaOp, "vistaMesaOp");
 		contentPane.add(vistaInicial, "vistaInicial");
 		contentPane.add(vistaGestionMozoAdmin, "vistaGestionMozoAdmin");
@@ -120,7 +118,6 @@ public class Ventana extends JFrame {
 		contentPane.add(vistaAltaMozo, "vistaAltaMozo");
 		contentPane.add(vistaGestionProductoAdmin, "vistaGestionProductoAdmin");
 		contentPane.add(vistaGestionProductoOp, "vistaGestionProductoOp");
-		contentPane.add(vistaModificaOp, "vistaModificaOp");
 	}
 
 	public JPanel getContentPane() {
@@ -163,8 +160,8 @@ public class Ventana extends JFrame {
 		return "vistaCambiaContrasena";
 	}
 
-	public String getVistaModificaOp() {
-		return "vistaModificaOp";
+	public String getVistaModificaDatosPersonales() {
+		return "vistaModificaDatosPersonales";
 	}
 	public VistaGestionMesaAdmin getVistaMesaaAdmin() {
 		return this.vistaGestionMesaAdmin;
