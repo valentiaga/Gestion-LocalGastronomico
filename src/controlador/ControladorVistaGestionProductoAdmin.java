@@ -29,6 +29,7 @@ public class ControladorVistaGestionProductoAdmin implements ActionListener {
 	
 	@Override
 	public void actionPerformed(ActionEvent e) {
+		
 		CardLayout cl = (CardLayout) contentPane.getLayout();
 		String comando = e.getActionCommand();
 		if (comando.equalsIgnoreCase("MODIFICA")) {

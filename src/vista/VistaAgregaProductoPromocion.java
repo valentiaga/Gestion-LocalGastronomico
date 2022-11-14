@@ -6,6 +6,7 @@ import javax.swing.JPanel;
 import java.awt.GridLayout;
 import javax.swing.border.TitledBorder;
 
+import modelo.Enumerados;
 import modelo.Enumerados.diasDePromo;
 import modelo.Producto;
 
@@ -18,15 +19,20 @@ import javax.swing.JTextField;
 import javax.swing.JButton;
 
 public class VistaAgregaProductoPromocion extends JPanel implements IVistaAgregaProductoPromocion{
+	
+	private ActionListener actionListener;
 	private JTextField textFieldCantMinima;
 	private JTextField textFieldPrecioUnitarioConDescuento;
-
-	/**
-	 * Create the panel.
-	 */
+	private JComboBox comboBoxProductos;
+	private JComboBox comboBox2x1;
+	private JComboBox comboBoxDescuentoPorCantidad;
+	private JComboBox comboBoxDiasDePromo;
+	private JButton btnVolver;
+	private JButton btnConfirmar;
+	
 	public VistaAgregaProductoPromocion() {
 		setBorder(new TitledBorder(new EtchedBorder(EtchedBorder.LOWERED, new Color(255, 255, 255), new Color(160, 160, 160)), "Agrega Promocion", TitledBorder.LEADING, TitledBorder.TOP, null, new Color(0, 0, 0)));
-		setLayout(new GridLayout(6, 0, 0, 0));
+		setLayout(new GridLayout(7, 0, 0, 0));
 		
 		JPanel panel = new JPanel();
 		add(panel);
@@ -40,7 +46,8 @@ public class VistaAgregaProductoPromocion extends JPanel implements IVistaAgrega
 		JPanel panel_19 = new JPanel();
 		panel.add(panel_19);
 		
-		JComboBox comboBoxProductos = new JComboBox();
+		comboBoxProductos = new JComboBox();
+		comboBoxProductos.setEditable(true);
 		panel_19.add(comboBoxProductos);
 		
 		JPanel panel_1 = new JPanel();
@@ -55,7 +62,7 @@ public class VistaAgregaProductoPromocion extends JPanel implements IVistaAgrega
 		JPanel panel_13 = new JPanel();
 		panel_1.add(panel_13);
 		
-		JComboBox comboBox2x1 = new JComboBox<String>();
+		comboBox2x1 = new JComboBox<String>();
 		panel_13.add(comboBox2x1);
 		comboBox2x1.setEditable(true);
 		comboBox2x1.addItem("Si");
@@ -73,7 +80,7 @@ public class VistaAgregaProductoPromocion extends JPanel implements IVistaAgrega
 		JPanel panel_14 = new JPanel();
 		panel_2.add(panel_14);
 		
-		JComboBox comboBoxDescuentoPorCantidad = new JComboBox<String>();
+		comboBoxDescuentoPorCantidad = new JComboBox<String>();
 		panel_14.add(comboBoxDescuentoPorCantidad);
 		comboBoxDescuentoPorCantidad.setEditable(true);
 		comboBoxDescuentoPorCantidad.addItem("Si");
@@ -114,25 +121,50 @@ public class VistaAgregaProductoPromocion extends JPanel implements IVistaAgrega
 		JPanel panel_5 = new JPanel();
 		add(panel_5);
 		
-		JPanel panel_6 = new JPanel();
-		panel_5.add(panel_6);
+		JPanel panel_17 = new JPanel();
+		panel_5.add(panel_17);
 		
-		JButton btnVolver = new JButton("Volver");
+		JLabel lblNewLabel_5 = new JLabel("Dias de promo");
+		panel_17.add(lblNewLabel_5);
+		
+		JPanel panel_20 = new JPanel();
+		panel_5.add(panel_20);
+		
+		comboBoxDiasDePromo = new JComboBox();
+		this.comboBoxDiasDePromo.addItem(Enumerados.diasDePromo.DOMINGO);
+		this.comboBoxDiasDePromo.addItem(Enumerados.diasDePromo.LUNES);
+		this.comboBoxDiasDePromo.addItem(Enumerados.diasDePromo.MARTES);
+		this.comboBoxDiasDePromo.addItem(Enumerados.diasDePromo.MIERCOLES);
+		this.comboBoxDiasDePromo.addItem(Enumerados.diasDePromo.JUEVES);
+		this.comboBoxDiasDePromo.addItem(Enumerados.diasDePromo.VIERNES);
+		this.comboBoxDiasDePromo.addItem(Enumerados.diasDePromo.SABADO);
+		panel_20.add(comboBoxDiasDePromo);
+		
+		JPanel panel_16 = new JPanel();
+		add(panel_16);
+		
+		JPanel panel_6 = new JPanel();
+		panel_16.add(panel_6);
+		
+		btnVolver = new JButton("Volver");
+		btnVolver.setActionCommand("VOLVER");
 		panel_6.add(btnVolver);
 		
 		JPanel panel_7 = new JPanel();
-		panel_5.add(panel_7);
-
-		JButton btnConfimar =new JButton("Confimar");
-		panel_7.add(btnConfimar);
+		panel_16.add(panel_7);
 		
+		this.btnConfirmar = new JButton("Confimar");
+		btnConfirmar.setActionCommand("CONFIRMAR");
+		panel_7.add(btnConfirmar);
 		
 	}
 
 	@Override
 	public void addActionListener(ActionListener actionListener) {
-		// TODO Auto-generated method stub
 		
+		this.actionListener = actionListener;
+		this.btnConfirmar.addActionListener(actionListener);
+		this.btnVolver.addActionListener(actionListener);
 	}
 
 	@Override
@@ -149,7 +181,7 @@ public class VistaAgregaProductoPromocion extends JPanel implements IVistaAgrega
 
 	@Override
 	public int getIdProm() {
-		// TODO Auto-generated method stub
+		this.comboBoxProductos.getSelectedItem()ABORT;
 		return 0;
 	}
 
@@ -161,38 +193,55 @@ public class VistaAgregaProductoPromocion extends JPanel implements IVistaAgrega
 
 	@Override
 	public boolean isAplica2x1() {
-		// TODO Auto-generated method stub
-		return false;
+		String aux = null;
+		boolean booleano = true;
+		
+		aux = (String)this.comboBox2x1.getSelectedItem();
+		if(aux == "Si")
+			booleano = true;
+		else
+			if(aux == "No")
+				booleano = false;
+		
+		return booleano;
 	}
 
 	@Override
 	public boolean isAplicaDtoPorCant() {
-		// TODO Auto-generated method stub
-		return false;
+		String aux = null;
+		boolean booleano = true;
+		
+		aux = (String)this.comboBoxDescuentoPorCantidad.getSelectedItem();
+		if(aux == "Si")
+			booleano = true;
+		else
+			if(aux == "No")
+				booleano = false;
+		return booleano;
 	}
 
 	@Override
 	public int getDtoPorCant_CantMinima() {
-		// TODO Auto-generated method stub
-		return 0;
+		
+		return Integer.valueOf(this.textFieldCantMinima.getText());
 	}
 
 	@Override
 	public double getDtoPorCant_PrecioUnitario() {
-		// TODO Auto-generated method stub
-		return 0;
+		
+		return Double.valueOf(this.textFieldPrecioUnitarioConDescuento.getText());
 	}
 
 	@Override
 	public boolean getActiva() {
-		// TODO Auto-generated method stub
-		return false;
+		
+		return true;
 	}
 
 	@Override
 	public diasDePromo getDiasDePromo() {
-		// TODO Auto-generated method stub
-		return null;
+		
+		return (Enumerados.diasDePromo)this.comboBoxDiasDePromo.getSelectedItem();
 	}
 
 }
