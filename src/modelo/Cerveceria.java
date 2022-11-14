@@ -15,8 +15,7 @@ public class Cerveceria {
 	private HashMap<Integer, Mesa> mesas = new HashMap<Integer, Mesa>();
 	private HashMap<Integer, PromocionProd> promocionProds = new HashMap<Integer, PromocionProd>();
 	//private HashMap<String, PromocionTemporal> promocionTemp = new HashMap<String, PromocionTemporal>();
-	private ArrayList<PromocionTemporal> promocionesTemp = new ArrayList<PromocionTemporal>();
-			
+	private ArrayList<PromocionTemporal> promocionesTemp = new ArrayList<PromocionTemporal>();	
 	private ArrayList<Comanda> comandas = new ArrayList<Comanda>();
 	//private HashMap<Integer, Comanda> comandas = new HashMap<Integer, Comanda>();
 	private HashMap<String, String> contrasena = new HashMap<String, String>();
