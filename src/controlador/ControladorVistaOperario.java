@@ -29,16 +29,17 @@ public class ControladorVistaOperario implements ActionListener {
 	@Override
 	public void actionPerformed(ActionEvent e) {
 		CardLayout cl = (CardLayout) contentPane.getLayout();
-		System.out.println("hola");
 		String comando = e.getActionCommand();
 		if (comando.equalsIgnoreCase("GESTION_MESA")) 
 			cl.show(contentPane, ventana.getVistaMesaOp());
 		else if (comando.equalsIgnoreCase("GESTION_MOZO"))
 			cl.show(contentPane, ventana.getVistaGestionMozoOp());
 		else if (comando.equalsIgnoreCase("GESTION_PRODUCTO"))
-			cl.show(contentPane, ventana.getVistaProductoOp());
-		else if (comando.equalsIgnoreCase("GESTION_PROMOCIONES")) 
+			cl.show(contentPane, ventana.getVistaGestionProductoOp());
+		else if (comando.equalsIgnoreCase("GESTION_PROMOCIONES")) {
+			cl.show(contentPane, ventana.getVistaGestionPromociones());
 			JOptionPane.showMessageDialog(null, "promos.");
+		}
 		else if (comando.equalsIgnoreCase("MODIFICAR")) {
 			this.ventana.obtieneVistaModificaDatos().getTextField().setText(Sistema.getInstance().getOperarioActual().getPassword());
 			this.ventana.obtieneVistaModificaDatos().getTextFieldUserName().setText(Sistema.getInstance().getOperarioActual().getUserName());

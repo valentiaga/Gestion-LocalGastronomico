@@ -6,6 +6,7 @@ import java.awt.event.ActionListener;
 import javax.swing.JFrame;
 import javax.swing.JPanel;
 
+
 public class Ventana extends JFrame {
 
 	private JPanel contentPane;
@@ -27,7 +28,7 @@ public class Ventana extends JFrame {
 	private VistaModificaMozoOp vistaModificaMozoOp;
 	private VistaAltaMozo vistaAltaMozo;
 	private VistaAgregaProducto vistaAgregaProducto;
-	private VistaAgregaProducto vistaAgregaProductoPromocion;
+	private VistaAgregaProductoPromocion vistaAgregaProductoPromocion;
 	private VistaModificaDatosPersonales vistaModificaDatosPersonales;
 	private VistaModificaProducto vistaModificaProducto;
 	private VistaModificaProductoPromocion vistaModificaProductoPromocion;
@@ -56,7 +57,7 @@ public class Ventana extends JFrame {
 			VistaGestionProductoOp vistaGestionProductoOp, VistaGestionProductoAdmin vistaGestionProductoAdmin,
 			VistaModificarMesaAdmin vistaModificaMesa, VistaModificarMesaOp vistaModificaMesaOp,
 			VistaModificaMozoAdmin vistaModificaMozoAdmin, VistaAltaMozo vistaAltaMozo,
-			VistaAgregaProducto vistaAgregaProducto, VistaAgregaProducto vistaAgregaProductoPromocion,
+			VistaAgregaProducto vistaAgregaProducto, VistaAgregaProductoPromocion vistaAgregaProductoPromocion,
 			VistaModificaDatosPersonales vistaModificaDatosPersonales, VistaModificaProducto vistaModificaProducto,
 			VistaModificaProductoPromocion vistaModificaProductoPromocion,
 			VistaModificaPromocionTemporal vistaModificaPromocionTemporal, VistaRegistrarOperario vistaRegistraOp,
@@ -92,8 +93,8 @@ public class Ventana extends JFrame {
 		setContentPane(contentPane);
 
 		contentPane.setLayout(new CardLayout(0, 0));
-		contentPane.add(vistaAdmin, "vistaAdmin");
 		contentPane.add(vistaOp, "vistaOp");
+		contentPane.add(vistaAdmin, "vistaAdmin");
 		contentPane.add(vistaGestionMesaOp, "vistaMesaOp");
 		contentPane.add(vistaInicial, "vistaInicial");
 		contentPane.add(vistaGestionMozoAdmin, "vistaGestionMozoAdmin");
@@ -113,12 +114,12 @@ public class Ventana extends JFrame {
 		contentPane.add(vistaModificaProducto, "vistaModificaProducto");
 		contentPane.add(vistaModificaDatosPersonales, "vistaModificaDatosPersonales");
 		contentPane.add(vistaAgregaProductoPromocion, "vistaAgregaProductoPromocion");
-		// contentPane.add(vistaGestionPromociones, "vistaGestionPromociones");
 		contentPane.add(vistaAgregaProducto, "vistaAgregaProducto");
 		contentPane.add(vistaAltaMozo, "vistaAltaMozo");
 		contentPane.add(vistaGestionProductoAdmin, "vistaGestionProductoAdmin");
 		contentPane.add(vistaGestionProductoOp, "vistaGestionProductoOp");
-		
+		contentPane.add(vistaGestionPromociones, "vistaGestionPromociones");
+		contentPane.add(vistaAgregaProductoPromocion, "vistaAgregaProductoPromocion");
 	}
 
 	public JPanel getContentPane() {
@@ -191,13 +192,6 @@ public class Ventana extends JFrame {
 		return "vistaAdmin";
 	}
 
-	public String getVistaProductoOp() {
-		return "vistaProductoOp";
-	}
-
-	public String getVistaProductoAdmin() {
-		return "vistaProductoAdmin";
-	}
 
 	public String getVistaModificaMesa() {
 		return "vistaModificaMesa";
@@ -217,6 +211,9 @@ public class Ventana extends JFrame {
 
 	public String getVistaModificaMesaOp() {
 		return "vistaModificaMesaOp";
+	}
+	public String getVistaAgregaProductoPromocion() {
+		return "vistaAgregaProductoPromocion";
 	}
 	
 	public VistaGestionMozoAdmin vistaGestionMozoAdmin() {
@@ -241,7 +238,7 @@ public class Ventana extends JFrame {
 		return vistaAgregaProducto;
 	}
 
-	public VistaAgregaProducto getVistaAgregaProductoPromocion() {
+	public VistaAgregaProductoPromocion getVistaAgregaaProductoPromocion() {
 		return vistaAgregaProductoPromocion;
 	}
 
@@ -259,14 +256,8 @@ public class Ventana extends JFrame {
 	
 	public String getVistaGestionPromociones() {
 		return "vistaGestionPromociones";
-
-	/*public VistaGestionProductoOp VistaProductooOp() {
-		return this.vistaGestionProductoOp;
 	}
-	public VistaGestionProductoAdmin VistaProductooAdmin() {
-		return this.vistaGestionProductoAdmin;
-    */
-
-	}
+	
+	
 
 }

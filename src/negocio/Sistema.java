@@ -248,6 +248,7 @@ public class Sistema {
 	public Operario getOperarioActual() {
 		return operarioActual;
 	}
+	
 
 
 	public void setOperarioActual(Operario operarioActual) {

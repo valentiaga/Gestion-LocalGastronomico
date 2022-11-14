@@ -165,6 +165,7 @@ public class VistaAgregaProductoPromocion extends JPanel implements IVistaAgrega
 		this.actionListener = actionListener;
 		this.btnConfirmar.addActionListener(actionListener);
 		this.btnVolver.addActionListener(actionListener);
+	
 	}
 
 	@Override
@@ -181,7 +182,7 @@ public class VistaAgregaProductoPromocion extends JPanel implements IVistaAgrega
 
 	@Override
 	public int getIdProm() {
-		this.comboBoxProductos.getSelectedItem()ABORT;
+		this.comboBoxProductos.getSelectedItem();
 		return 0;
 	}
 

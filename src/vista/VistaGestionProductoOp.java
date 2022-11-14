@@ -16,13 +16,14 @@ import javax.swing.JTextField;
 
 public class VistaGestionProductoOp extends JPanel implements IVistaGestionProductoOp{
 	private JButton btnModificaProducto;
+	private JButton btnVolver;
 	private ActionListener actionListener;
 	/**
 	 * Create the panel.
 	 */
 	public VistaGestionProductoOp() {
 		setBorder(new TitledBorder(null, "Gestion Productos Operario", TitledBorder.LEADING, TitledBorder.TOP, null, null));
-		setLayout(new GridLayout(1, 0, 0, 0));
+		setLayout(new GridLayout(2, 0, 0, 0));
 		
 		JPanel panel_1 = new JPanel();
 		add(panel_1);
@@ -31,15 +32,22 @@ public class VistaGestionProductoOp extends JPanel implements IVistaGestionProdu
 		panel_1.add(panel_4);
 		
 		btnModificaProducto = new JButton("Modifica Producto");
+		btnModificaProducto.setActionCommand("MODIFICAR");
 		panel_4.add(btnModificaProducto);
-
+		
+		JPanel panel = new JPanel();
+		add(panel);
+		
+		btnVolver = new JButton("Volver");
+		btnVolver.setActionCommand("VOLVER");
+		panel.add(btnVolver);
 	}
 
 	@Override
 	public void addActionListener(ActionListener actionListener) {
 		this.btnModificaProducto.addActionListener(actionListener);
-		this.actionListener = actionListener;
-		
+		this.btnVolver.addActionListener(actionListener);
+		this.actionListener = actionListener;	
 	}
 
 	@Override

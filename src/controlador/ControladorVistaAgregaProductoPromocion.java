@@ -10,7 +10,6 @@ import excepciones.NoExisteID_Exception;
 import excepciones.PromoInvalida_Exception;
 import negocio.Sistema;
 import vista.IVistaAgregaProductoPromocion;
-import vista.IVistaGestionProductoOp;
 import vista.Ventana;
 
 public class ControladorVistaAgregaProductoPromocion implements ActionListener{
@@ -19,6 +18,12 @@ public class ControladorVistaAgregaProductoPromocion implements ActionListener{
 	private Ventana ventana = null;
 	private JPanel contentPane = null;
 	
+	public ControladorVistaAgregaProductoPromocion(IVistaAgregaProductoPromocion vista, Ventana ventana) {
+		this.vista = vista;
+		this.vista.addActionListener(this);
+		this.ventana = ventana;
+		this.contentPane = this.ventana.getContentPane();
+	}
 	
 	@Override
 	public void actionPerformed(ActionEvent e) {

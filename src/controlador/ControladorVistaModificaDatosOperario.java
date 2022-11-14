@@ -41,7 +41,6 @@ public class ControladorVistaModificaDatosOperario implements ActionListener {
 				this.vista.ventanaEmergente(e1.getMessage());
 			}
 		}
-		
 	}
 	
 
