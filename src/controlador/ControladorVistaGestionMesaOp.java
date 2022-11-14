@@ -7,7 +7,9 @@ import java.awt.event.ActionListener;
 import javax.swing.JOptionPane;
 import javax.swing.JPanel;
 
+import excepciones.MesaNoOcupadaException;
 import excepciones.MesaOcupada_Exception;
+import excepciones.NoExisteID_Exception;
 import excepciones.NoExisteMesa_Exception;
 import excepciones.StockInsuficiente_Exception;
 import negocio.Sistema;
@@ -38,13 +40,13 @@ public class ControladorVistaGestionMesaOp implements ActionListener {
 		else if (comando.equalsIgnoreCase("SETEAR"))
 			JOptionPane.showMessageDialog(null, "Setear.");
 		else if (comando.equalsIgnoreCase("CERRAR")) {
-			/*try {
+			try {
 				Sistema.getInstance().getFuncionalidadAdmin().cierraMesa(this.vista.getNroMesa(), null);
-				this.vista.limpiarVista();
+				//this.vista.limpiarVista();
+				JOptionPane.showMessageDialog(null, "Cerrar.");
 			} catch (MesaNoOcupadaException e1) {
 				this.vista.ventanaEmergente(e1.getMessage());
 			} // falta ver forma de pago !!!!!!*/
-			JOptionPane.showMessageDialog(null, "Cerrar.");
 		}
 		else if (comando.equalsIgnoreCase("ABRIR_MESA")) {
 			try {
@@ -60,10 +62,11 @@ public class ControladorVistaGestionMesaOp implements ActionListener {
 		else if (comando.equalsIgnoreCase("VOLVER")) {
 			cl.show(contentPane, ventana.getVistaOp());
 		}
-		else if (comando.equalsIgnoreCase("AGREGA_PEDIDO")) {
+		else if (comando.equalsIgnoreCase("AGREGA_PEDIDO")) { ///FIJATE Q NO ANDA
 			try {
 				Sistema.getInstance().getFuncionalidadAdmin().agregaPedidos(nroMesa, this.vista.getIdProd(), this.vista.getCant());
-			} catch (StockInsuficiente_Exception e1) {
+				this.vista.ventanaEmergente("Pedido agregado con exito");
+			} catch (StockInsuficiente_Exception | NoExisteID_Exception e1) {
 				this.vista.ventanaEmergente(e1.getMessage());
 			}
 		}

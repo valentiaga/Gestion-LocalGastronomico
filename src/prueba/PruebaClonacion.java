@@ -11,7 +11,7 @@ import negocio.Sistema;
 public class PruebaClonacion {
 
 	public static void main(String[] args) {
-		// TODO Auto-generated method stub
+	/*	// TODO Auto-generated method stub
 		
 		Operario op = new Operario();
 		FuncionalidadAdmin f =  new FuncionalidadAdmin(op);
@@ -43,7 +43,7 @@ public class PruebaClonacion {
 		System.out.println(mesa.getComanda().getPedidos().get(0).getProducto());
 		Sistema.getInstance().getProductos().get(1).setPrecioVenta(100);;
 		System.out.println(Sistema.getInstance().getProductos().get(1));
-		System.out.println(mesa.getComanda().getPedidos().get(0).getProducto());
+		System.out.println(mesa.getComanda().getPedidos().get(0).getProducto());*/
 		
 	}	
 

@@ -10,6 +10,7 @@ import javax.swing.JPanel;
 import excepciones.CantComensalesInvalida_Exception;
 import excepciones.MesaNoOcupadaException;
 import excepciones.MesaOcupada_Exception;
+import excepciones.NoExisteID_Exception;
 import excepciones.NoExisteMesa_Exception;
 import excepciones.StockInsuficiente_Exception;
 import modelo.Comanda;
@@ -91,7 +92,7 @@ public class ControladorVistaGestionMesaAdmin implements ActionListener {
 				Sistema.getInstance().getFuncionalidadAdmin().agregaPedidos(this.vista.getNroMesa(), this.vista.getCant(), this.vista.getIdProd());
 				this.vista.ventanaEmergente("Pedido agregado");
 				this.vista.limpiarVista();
-			} catch (StockInsuficiente_Exception e1) {
+			} catch (StockInsuficiente_Exception | NoExisteID_Exception e1) {
 				this.vista.ventanaEmergente(e1.getMessage());
 			}
 		}

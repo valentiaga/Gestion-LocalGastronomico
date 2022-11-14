@@ -1,29 +1,40 @@
 package vista;
 
+import java.awt.Color;
 import java.awt.GridLayout;
 import java.awt.event.ActionListener;
+import java.awt.event.KeyEvent;
+import java.awt.event.KeyListener;
 
 import javax.swing.JButton;
 import javax.swing.JComboBox;
 import javax.swing.JLabel;
+import javax.swing.JOptionPane;
 import javax.swing.JPanel;
-import javax.swing.JRadioButton;
 import javax.swing.JTextField;
+import javax.swing.border.EtchedBorder;
 import javax.swing.border.TitledBorder;
 
+import modelo.Enumerados;
 import modelo.Enumerados.diasDePromo;
 import modelo.Enumerados.formaDePago;
-import javax.swing.border.EtchedBorder;
-import java.awt.Color;
+import modelo.PromocionProd;
+import modelo.PromocionTemporal;
+import negocio.Sistema;
 
-public class VistaModificaPromocionTemporal extends JPanel implements IVistaAgregarPromocionTemporal{
+public class VistaModificaPromocionTemporal extends JPanel implements IVistaAgregarPromocionTemporal, KeyListener{
 	
 	private JTextField textFieldNombre;
-	private JTextField textField;
+	private JTextField textFieldPorcentaje;
 	private JTextField textField_1;
 	private JTextField textField_2;
-	private JComboBox comboBoxDiaDePromo;
+	private JComboBox comboBoxDiasDePromo;
 	private JComboBox comboBoxFormaDePago;
+	private JButton btnConfirmar;
+	private JButton btnVolver;
+	private ActionListener actionListener;
+	private JComboBox comboBoxAcumulable;
+	private JComboBox comboBoxActiva;
 	
 	/**
 	 * Create the panel.
@@ -45,6 +56,7 @@ public class VistaModificaPromocionTemporal extends JPanel implements IVistaAgre
 		panel.add(panel_10);
 		
 		textFieldNombre = new JTextField();
+		textFieldNombre.addKeyListener(this);
 		panel_10.add(textFieldNombre);
 		textFieldNombre.setColumns(10);
 		
@@ -60,9 +72,16 @@ public class VistaModificaPromocionTemporal extends JPanel implements IVistaAgre
 		JPanel panel_12 = new JPanel();
 		panel_1.add(panel_12);
 		
-		comboBoxDiaDePromo = new JComboBox();
-		comboBoxDiaDePromo.setEditable(true);
-		panel_12.add(comboBoxDiaDePromo);
+		comboBoxDiasDePromo = new JComboBox();
+		comboBoxDiasDePromo.setEditable(true);
+		this.comboBoxDiasDePromo.addItem(Enumerados.diasDePromo.DOMINGO);
+		this.comboBoxDiasDePromo.addItem(Enumerados.diasDePromo.LUNES);
+		this.comboBoxDiasDePromo.addItem(Enumerados.diasDePromo.MARTES);
+		this.comboBoxDiasDePromo.addItem(Enumerados.diasDePromo.MIERCOLES);
+		this.comboBoxDiasDePromo.addItem(Enumerados.diasDePromo.JUEVES);
+		this.comboBoxDiasDePromo.addItem(Enumerados.diasDePromo.VIERNES);
+		this.comboBoxDiasDePromo.addItem(Enumerados.diasDePromo.SABADO);
+		panel_12.add(comboBoxDiasDePromo);
 		
 		JPanel panel_2 = new JPanel();
 		add(panel_2);
@@ -78,6 +97,10 @@ public class VistaModificaPromocionTemporal extends JPanel implements IVistaAgre
 		
 		comboBoxFormaDePago = new JComboBox();
 		comboBoxFormaDePago.setEditable(true);
+		comboBoxFormaDePago.addItem(Enumerados.formaDePago.CTADNI);
+		comboBoxFormaDePago.addItem(Enumerados.formaDePago.EFECTIVO);
+		comboBoxFormaDePago.addItem(Enumerados.formaDePago.MERCPAGO);
+		comboBoxFormaDePago.addItem(Enumerados.formaDePago.TARJETA);
 		panel_14.add(comboBoxFormaDePago);
 		
 		JPanel panel_3 = new JPanel();
@@ -92,7 +115,7 @@ public class VistaModificaPromocionTemporal extends JPanel implements IVistaAgre
 		JPanel panel_25 = new JPanel();
 		panel_3.add(panel_25);
 		
-		JComboBox comboBoxActiva = new JComboBox<String>();
+		comboBoxActiva = new JComboBox<String>();
 		comboBoxActiva.setEditable(true);
 		comboBoxActiva.addItem("Si");
 		comboBoxActiva.addItem("No");
@@ -110,7 +133,7 @@ public class VistaModificaPromocionTemporal extends JPanel implements IVistaAgre
 		JPanel panel_26 = new JPanel();
 		panel_4.add(panel_26);
 		
-		JComboBox comboBoxAcumulable = new JComboBox<String>();
+		comboBoxAcumulable = new JComboBox<String>();
 		comboBoxAcumulable.setEditable(true);
 		comboBoxAcumulable.addItem("Si");
 		comboBoxAcumulable.addItem("No");
@@ -128,9 +151,9 @@ public class VistaModificaPromocionTemporal extends JPanel implements IVistaAgre
 		JPanel panel_18 = new JPanel();
 		panel_5.add(panel_18);
 		
-		textField = new JTextField();
-		panel_18.add(textField);
-		textField.setColumns(10);
+		textFieldPorcentaje = new JTextField();
+		panel_18.add(textFieldPorcentaje);
+		textFieldPorcentaje.setColumns(10);
 		
 		JPanel panel_6 = new JPanel();
 		add(panel_6);
@@ -170,82 +193,135 @@ public class VistaModificaPromocionTemporal extends JPanel implements IVistaAgre
 		JPanel panel_23 = new JPanel();
 		panel_8.add(panel_23);
 		
-		JButton btnVolver = new JButton("Volver");
+		btnVolver = new JButton("Volver");
 		panel_23.add(btnVolver);
 		
 		JPanel panel_24 = new JPanel();
 		panel_8.add(panel_24);
 		
-		JButton btnConfirmar = new JButton("Confirmar");
+		btnConfirmar = new JButton("Confirmar");
 		panel_24.add(btnConfirmar);
 	}
-
-	
 	
 	@Override
 	public void addActionListener(ActionListener actionListener) {
-		// TODO Auto-generated method stub
-		
+		this.btnConfirmar.addActionListener(actionListener);
+		this.btnVolver.addActionListener(actionListener);
+		this.actionListener = actionListener;
 	}
 
 	@Override
 	public void limpiarVista() {
-		// TODO Auto-generated method stub
-		
+		this.textFieldNombre.setText("");
+		this.textField_1.setText("");
+		this.textField_2.setText("");
+		this.textFieldPorcentaje.setText("");
 	}
 
 	@Override
 	public void ventanaEmergente(String mensaje) {
-		// TODO Auto-generated method stub
-		
+		JOptionPane.showMessageDialog(null, mensaje);
+
 	}
 
 	@Override
 	public boolean getActiva() {
-		
-		return false;
+		boolean res=true;
+		if (this.comboBoxActiva.getSelectedItem().toString()=="No")
+			res=false;
+		return res;
 	}
 
 	@Override
 	public diasDePromo getDiasDePromo() {
 		// TODO Auto-generated method stub
-		return null;
+		return (diasDePromo) this.comboBoxDiasDePromo.getSelectedItem();
 	}
 
 	@Override
 	public String getNombre() {
 		// TODO Auto-generated method stub
-		return null;
+		return this.textFieldNombre.getText();
 	}
 
 	@Override
 	public formaDePago getFormaDePago() {
 		// TODO Auto-generated method stub
-		return null;
+		return (formaDePago) this.comboBoxFormaDePago.getSelectedItem();
 	}
 
 	@Override
 	public int getPorcentajeDesc() {
-		// TODO Auto-generated method stub
-		return 0;
+		int porcen=-1;
+		try {
+			porcen = Integer.parseInt(this.textFieldPorcentaje.getText());
+		}
+		catch (NumberFormatException e2) {
+		}
+		return porcen;
 	}
 
 	@Override
 	public boolean isAcumulable() {
-		// TODO Auto-generated method stub
-		return false;
+		boolean res=true;
+		if (this.comboBoxAcumulable.getSelectedItem().toString()=="No")
+			res=false;
+		return res;
 	}
 
 	@Override
 	public int getHoraInicio() {
-		// TODO Auto-generated method stub
-		return 0;
+		int hora=-1;
+		try {
+			hora = Integer.parseInt(this.textField_1.getText());
+		}
+		catch (NumberFormatException e2) {
+		}
+		return hora;
 	}
 
 	@Override
 	public int getHoraFinal() {
-		// TODO Auto-generated method stub
-		return 0;
+		int hora=-1;
+		try {
+			hora = Integer.parseInt(this.textField_2.getText());
+		}
+		catch (NumberFormatException e2) {
+		}
+		return hora;
 	}
 
+	public void keyPressed(KeyEvent e) {
+	}
+	public void keyReleased(KeyEvent e) {
+		boolean condition = this.getNombre().length()>0;
+		String resActiva="Si", resAcum = "Si";
+		if (condition) {
+			for (int i=0; i<Sistema.getInstance().getPromocionesTemp().size(); i++) {
+				PromocionTemporal promo = Sistema.getInstance().getPromocionesTemp().get(i);
+				if (promo.getNombre().equalsIgnoreCase(this.getNombre())) {
+					this.textField_1.setText(String.valueOf(promo.getHoraInicio()));
+					this.textField_2.setText(String.valueOf(promo.getHoraFinal()));
+					this.textFieldPorcentaje.setText(String.valueOf(promo.getPorcentajeDesc()));
+					if (promo.isActiva()==false)
+						resActiva = "No";
+					if (promo.isEsAcumulable()==false)
+						resAcum = "No";
+					this.comboBoxActiva.setSelectedItem(resActiva);
+					this.comboBoxAcumulable.setSelectedItem(resAcum);
+					this.comboBoxDiasDePromo.setSelectedItem(promo.getDiasDePromo());
+					this.comboBoxFormaDePago.setSelectedItem(promo.getFormaDePago());
+				}
+				else {
+					this.textField_1.setText("");
+					this.textField_2.setText("");
+					this.textFieldPorcentaje.setText("");
+				}
+			}
+			
+			
+		}
+	}
+	public void keyTyped(KeyEvent e) {
+	}
 }

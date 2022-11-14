@@ -3,7 +3,9 @@ package prueba;
 import java.io.IOException;
 
 import controlador.ControladorVistaAdmin;
+import controlador.ControladorVistaAgregaProducto;
 import controlador.ControladorVistaAgregaProductoPromocion;
+import controlador.ControladorVistaAgregaPromocionTemporal;
 import controlador.ControladorVistaAltaMozo;
 import controlador.ControladorVistaGestionMesaAdmin;
 import controlador.ControladorVistaGestionMesaOp;
@@ -19,11 +21,17 @@ import controlador.ControladorVistaModificaMesaOp;
 import controlador.ControladorVistaModificaMozoAdmin;
 import controlador.ControladorVistaModificaMozoOp;
 import controlador.ControladorVistaModificaProducto;
+import controlador.ControladorVistaModificaProductoPromocion;
+import controlador.ControladorVistaModificaPromocionTemporal;
 import controlador.ControladorVistaOperario;
 import controlador.ControladorVistaRegistrarOperario;
 import excepciones.CantComensalesInvalida_Exception;
+import excepciones.NoExisteID_Exception;
+import excepciones.PromoInvalida_Exception;
+import excepciones.PromoRepetida_Exception;
 import excepciones.precioInvalido_Exception;
 import modelo.Administrador;
+import modelo.Enumerados;
 import modelo.Mozo;
 import negocio.FuncionalidadAdmin;
 import negocio.FuncionalidadOperario;
@@ -33,6 +41,7 @@ import vista.Ventana;
 import vista.VistaAdmin;
 import vista.VistaAgregaProducto;
 import vista.VistaAgregaProductoPromocion;
+import vista.VistaAgregarPromocionTemporal;
 import vista.VistaAltaMozo;
 import vista.VistaCambiaContrasena;
 import vista.VistaGestionMesaAdmin;
@@ -83,6 +92,18 @@ public class Prueba {
 		}
 		Sistema.getInstance().setFuncionalidadOperario(new FuncionalidadOperario(Administrador.getInstance()));
 		Sistema.getInstance().setOperarioActual(Administrador.getInstance());
+		try {
+			Sistema.getInstance().getFuncionalidadOperario().agregaPromocionProd(0, Enumerados.diasDePromo.LUNES, false, true, 3, 12, true);
+		} catch (PromoInvalida_Exception | NoExisteID_Exception e1) {
+			// TODO Auto-generated catch block
+			e1.printStackTrace();
+		}
+		try {
+			Sistema.getInstance().getFuncionalidadOperario().agregaPromocionTemporal(true, Enumerados.diasDePromo.LUNES, "Promo1", Enumerados.formaDePago.CTADNI, 20, false, 12, 14);
+		} catch (PromoRepetida_Exception e1) {
+			// TODO Auto-generated catch block
+			e1.printStackTrace();
+		}
 
 		VistaGestionMozoOp vistaMozoOp = new VistaGestionMozoOp();
 		VistaGestionMozoAdmin vistaMozoAdmin = new VistaGestionMozoAdmin();
@@ -107,6 +128,8 @@ public class Prueba {
 		VistaModificaProductoPromocion vistaModificaProductoPromocion = new VistaModificaProductoPromocion();
 		VistaModificaPromocionTemporal vistaModificaPromocionTemporal = new VistaModificaPromocionTemporal();
 		VistaRegistrarOperario vistaRegistraOp = new VistaRegistrarOperario();
+		VistaAgregarPromocionTemporal vistaAgregaPromoTemp = new VistaAgregarPromocionTemporal();
+		VistaModificaPromocionTemporal vistaModificaPromoTemp = new VistaModificaPromocionTemporal();
 		
 		try {
 			Sistema.getInstance().getFuncionalidadAdmin().agregaMesa(4);
@@ -122,7 +145,7 @@ public class Prueba {
 				vistaCambiaContra, vistaOp, vistaAdmin, vistaProductoOp, vistaProductoAdmin, vistaModificarMesa,
 				vistaModificaMesaOp, vistaModificaMozoAdmin, vistaAltaMozo, vistaAgregaProducto,
 				vistaAgregaProductoPromocion, vistaModificaDatosPersonales, vistaModificaProducto,
-				vistaModificaProductoPromocion, vistaModificaPromocionTemporal, vistaRegistraOp, vistaModificaMozoOp);
+				vistaModificaProductoPromocion, vistaModificaPromocionTemporal, vistaRegistraOp, vistaModificaMozoOp, vistaAgregaPromoTemp);
 		
 		ControladorVistaOperario cOperario = new ControladorVistaOperario(vistaOp, v);
 		ControladorVistaAdmin cAdmin = new ControladorVistaAdmin(vistaAdmin, v);
@@ -144,7 +167,11 @@ public class Prueba {
 		ControladorVistaAltaMozo cAltaMozo = new ControladorVistaAltaMozo(vistaAltaMozo, v);
 		ControladorVistaModificaProducto cModificaProducto = new ControladorVistaModificaProducto(vistaModificaProducto, v);
 		ControladorVistaGestionPromociones cGestionPromociones = new ControladorVistaGestionPromociones(vistaGestionPromociones, v);
+		ControladorVistaAgregaProducto cAgregaProd = new ControladorVistaAgregaProducto(vistaAgregaProducto, v);
 		ControladorVistaAgregaProductoPromocion cAgregaProdPromo = new ControladorVistaAgregaProductoPromocion(vistaAgregaProductoPromocion, v);
+		ControladorVistaModificaProductoPromocion cModificaProdPromo = new ControladorVistaModificaProductoPromocion(vistaModificaProductoPromocion, v);
+		ControladorVistaAgregaPromocionTemporal cModificaTemp = new ControladorVistaAgregaPromocionTemporal(vistaAgregaPromoTemp, v);
+		ControladorVistaModificaPromocionTemporal cModificaPromoTemp = new ControladorVistaModificaPromocionTemporal(vistaModificaPromocionTemporal, v);
 	}
 
 }

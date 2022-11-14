@@ -153,14 +153,16 @@ public class FuncionalidadOperario {
 	 * @param dtoPorCantidad_PrecioUnitario tipo de descuento. <br>
 	 * @param activa                        determina si esta activa o no en el
 	 *                                      momento actual. <br>
+	 * @throws NoExisteID_Exception 
 	 * @throws PromoIdRepetido_Exception Se lanza si se intenta asignar un
 	 *                                   identificador de promo existente. <br>
 	 */
-	public void agregaPromocionProd(Producto producto, Enumerados.diasDePromo dia, boolean aplica2x1,
+	public void agregaPromocionProd(int idProd, Enumerados.diasDePromo dia, boolean aplica2x1,
 			boolean aplicaDtoPorCantidad, int dtoPorCantidad_CantMinima, double dtoPorCantidad_PrecioUnitario,
-			boolean activa) throws ProductoNulo_Exception, PromoInvalida_Exception {
+			boolean activa) throws PromoInvalida_Exception, NoExisteID_Exception {
+		Producto producto = Sistema.getInstance().getProductos().get(idProd);
 		if (producto == null)
-			throw new ProductoNulo_Exception("El producto no puede ser nulo.");
+			throw new NoExisteID_Exception("No existe el producto con id " + idProd + ".");
 		if (aplica2x1 == false && aplicaDtoPorCantidad == false)
 			throw new PromoInvalida_Exception("Alguna de las promos 2x1 o dto por cantidad debe ser verdadera.");
 		PromocionProd promoNueva = new PromocionProd(activa, dia, producto, aplica2x1, aplicaDtoPorCantidad,
@@ -178,13 +180,12 @@ public class FuncionalidadOperario {
 	public void modificaPromocionProd(int idProm, boolean activa, Enumerados.diasDePromo dia, boolean aplica2x1,
 			boolean aplicaDtoPorCantidad, int dtoPorCantidad_CantMinima, double dtoPorCantidad_PrecioUnitario)
 			throws PromoInvalida_Exception, NoExisteID_Exception {
+		PromocionProd promoActual = Sistema.getInstance().getPromocionProds().get(idProm);
+		if (promoActual == null)
+			throw new NoExisteID_Exception("No existe la promo " + idProm + ".");
 
 		if (aplica2x1 == false && aplicaDtoPorCantidad == false)
 			throw new PromoInvalida_Exception("Alguna de las promos 2x1 o dto por cantidad debe ser verdadera.");
-		PromocionProd promoActual = Sistema.getInstance().getPromocionProds().get(idProm);
-
-		if (promoActual == null)
-			throw new NoExisteID_Exception("No existe la promo " + idProm + ".");
 
 		promoActual.setAplica2x1(aplica2x1);
 		promoActual.setAplicaDtoPorCant(aplicaDtoPorCantidad);
@@ -210,7 +211,6 @@ public class FuncionalidadOperario {
 	public void agregaPromocionTemporal(boolean activa, modelo.Enumerados.diasDePromo diasDePromo, String nombre,
 			modelo.Enumerados.formaDePago formaDePago, int porcentajeDesc, boolean esAcumulable, int horaInicio,
 			int horaFinal) throws PromoRepetida_Exception {
-
 		ArrayList<PromocionTemporal> promosTemp = Sistema.getInstance().getPromocionesTemp();
 		PromocionTemporal promoActual = new PromocionTemporal(activa, diasDePromo, nombre, formaDePago, porcentajeDesc,
 				esAcumulable, horaInicio, horaFinal);
@@ -329,7 +329,7 @@ public class FuncionalidadOperario {
 		comanda.agregaPedido(new Pedido(producto, cant));
 	}*/
 	
-	public void agregaPedidos(int nroMesa, int cant, int idProd) throws StockInsuficiente_Exception {
+	public void agregaPedidos(int nroMesa, int cant, int idProd) throws StockInsuficiente_Exception, NoExisteID_Exception {
 		GestionMesas.agregaPedidos(Sistema.getInstance().getMesas().get(nroMesa), cant, idProd);
 	}
 	

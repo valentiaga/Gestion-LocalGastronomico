@@ -10,7 +10,6 @@ public class PromocionTemporal extends Promocion
     private int horaInicio;
     private int horaFinal;
     
-    
 	public int getPorcentajeDesc() {
 		return porcentajeDesc;
 	}

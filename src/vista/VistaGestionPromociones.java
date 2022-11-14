@@ -11,9 +11,7 @@ import javax.swing.JOptionPane;
 import javax.swing.JTextField;
 
 public class VistaGestionPromociones extends JPanel implements IVistaGestionPromociones {
-	private JTextField textFieldIDModif;
 	private JTextField textFieldIDelim;
-	private JTextField textFieldModifTemp;
 	private JTextField textFieldElimTemp;
 	private JButton btnAgregarProdProm;
 	private JButton btnVolver;
@@ -52,13 +50,6 @@ public class VistaGestionPromociones extends JPanel implements IVistaGestionProm
 		btnModificarPromo.setActionCommand("MODIF_PROMO");
 		panel_9.add(btnModificarPromo);
 		
-		JLabel lblNewLabel_1 = new JLabel("Id promocion");
-		panel_1.add(lblNewLabel_1);
-		
-		textFieldIDModif = new JTextField();
-		textFieldIDModif.setColumns(10);
-		panel_1.add(textFieldIDModif);
-		
 		JPanel panel_2 = new JPanel();
 		add(panel_2);
 		
@@ -95,13 +86,6 @@ public class VistaGestionPromociones extends JPanel implements IVistaGestionProm
 		btnModificaTemp = new JButton("Modificar promocion temporal");
 		btnModificaTemp.setActionCommand("MODIF_PROMO_TEMP");
 		panel_12.add(btnModificaTemp);
-		
-		JLabel lblNombrePromocion = new JLabel("Nombre promocion");
-		panel_4.add(lblNombrePromocion);
-		
-		textFieldModifTemp = new JTextField();
-		textFieldModifTemp.setColumns(10);
-		panel_4.add(textFieldModifTemp);
 		
 		JPanel panel_5 = new JPanel();
 		add(panel_5);
@@ -146,9 +130,7 @@ public class VistaGestionPromociones extends JPanel implements IVistaGestionProm
 
 	@Override
 	public void limpiarVista() {
-		this.textFieldIDModif.setText("");
 		this.textFieldIDelim.setText("");
-		this.textFieldModifTemp.setText("");
 		this.textFieldElimTemp.setText("");
 	}
 
@@ -157,18 +139,7 @@ public class VistaGestionPromociones extends JPanel implements IVistaGestionProm
 		JOptionPane.showMessageDialog(null, mensaje);
 		
 	}
-
-	@Override
-	public int getIdModif() {
-		int id=-1;
-		try {
-			id = Integer.parseInt(this.textFieldIDModif.getText());
-		}
-		catch (NumberFormatException e2) {
-		}
-		return id;
-	}
-
+	
 	@Override
 	public int getIdElim() {
 		int id=-1;
@@ -180,11 +151,6 @@ public class VistaGestionPromociones extends JPanel implements IVistaGestionProm
 		return id;
 	}
 
-	@Override
-	public String getNameModif() {
-		// TODO Auto-generated method stub
-		return this.textFieldModifTemp.getText();
-	}
 
 	@Override
 	public String getNameElim() {

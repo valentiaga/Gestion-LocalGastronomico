@@ -8,24 +8,26 @@ import javax.swing.JPanel;
 
 import excepciones.NoExisteID_Exception;
 import excepciones.PromoInvalida_Exception;
-import modelo.Producto;
+import excepciones.PromoRepetida_Exception;
 import negocio.Sistema;
-import vista.IVistaAgregaProductoPromocion;
+import vista.IVistaAgregarPromocionTemporal;
 import vista.Ventana;
+import vista.VistaAgregarPromocionTemporal;
 
-public class ControladorVistaAgregaProductoPromocion implements ActionListener{
+public class ControladorVistaModificaPromocionTemporal implements ActionListener{
 	
-	private IVistaAgregaProductoPromocion vista = null;
+	private IVistaAgregarPromocionTemporal vista = null;
 	private Ventana ventana = null;
 	private JPanel contentPane = null;
+
 	
-	public ControladorVistaAgregaProductoPromocion(IVistaAgregaProductoPromocion vista, Ventana ventana) {
+	public ControladorVistaModificaPromocionTemporal(IVistaAgregarPromocionTemporal vista, Ventana ventana) {
 		this.vista = vista;
 		this.vista.addActionListener(this);
 		this.ventana = ventana;
 		this.contentPane = this.ventana.getContentPane();
 	}
-	
+
 	@Override
 	public void actionPerformed(ActionEvent e) {
 
@@ -34,13 +36,12 @@ public class ControladorVistaAgregaProductoPromocion implements ActionListener{
 		
 		if (comando.equalsIgnoreCase("CONFIRMAR")) {
 			try {
-			Sistema.getInstance().getFuncionalidadOperario().agregaPromocionProd(this.vista.getIdProd(), this.vista.getDiasDePromo(), this.vista.isAplica2x1(),this.vista.isAplicaDtoPorCant(),this.vista.getDtoPorCant_CantMinima(), this.vista.getDtoPorCant_PrecioUnitario(),  this.vista.getActiva());
-			} catch (PromoInvalida_Exception e1) {
-				this.vista.ventanaEmergente(e1.getMessage());
-			} catch (NoExisteID_Exception e1) {
+				Sistema.getInstance().getFuncionalidadOperario().agregaPromocionTemporal(this.vista.getActiva(), this.vista.getDiasDePromo(), this.vista.getNombre(), this.vista.getFormaDePago(), this.vista.getPorcentajeDesc(), this.vista.isAcumulable(), this.vista.getHoraInicio(), this.vista.getHoraFinal());
+				this.vista.ventanaEmergente("Promo agregada con exito.");
+				this.vista.limpiarVista();
+			} catch (PromoRepetida_Exception e1) {
 				this.vista.ventanaEmergente(e1.getMessage());
 			}
-			cl.show(contentPane, ventana.getVistaGestionPromociones());
 		}
 		else if (comando.equalsIgnoreCase("VOLVER")) 
 			cl.show(contentPane, ventana.getVistaGestionPromociones());

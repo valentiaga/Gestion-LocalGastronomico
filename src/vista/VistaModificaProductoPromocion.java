@@ -3,30 +3,38 @@ package vista;
 import java.awt.Color;
 import java.awt.GridLayout;
 import java.awt.event.ActionListener;
+import java.awt.event.KeyEvent;
+import java.awt.event.KeyListener;
 
 import javax.swing.JButton;
 import javax.swing.JComboBox;
 import javax.swing.JLabel;
+import javax.swing.JOptionPane;
 import javax.swing.JPanel;
-import javax.swing.JRadioButton;
 import javax.swing.JTextField;
 import javax.swing.border.EtchedBorder;
 import javax.swing.border.TitledBorder;
 
+import modelo.Enumerados;
 import modelo.Enumerados.diasDePromo;
-import modelo.Producto;
+import modelo.PromocionProd;
+import negocio.Sistema;
 
-public class VistaModificaProductoPromocion extends JPanel implements IVistaAgregaProductoPromocion{
-
+public class VistaModificaProductoPromocion extends JPanel implements IVistaAgregaProductoPromocion, KeyListener{
+	
+	private ActionListener actionListener;
 	private JTextField textFieldCantMinima;
 	private JTextField textFieldPrecioUnitarioConDescuento;
-
-	/**
-	 * Create the panel.
-	 */
+	private JComboBox comboBox2x1;
+	private JComboBox comboBoxDescuentoPorCantidad;
+	private JComboBox comboBoxDiasDePromo;
+	private JButton btnVolver;
+	private JButton btnConfirmar;
+	private JTextField textFieldIdProd;
+	
 	public VistaModificaProductoPromocion() {
-		setBorder(new TitledBorder(new EtchedBorder(EtchedBorder.LOWERED, new Color(255, 255, 255), new Color(160, 160, 160)), "Modificar Promocion", TitledBorder.LEADING, TitledBorder.TOP, null, new Color(0, 0, 0)));
-		setLayout(new GridLayout(6, 0, 0, 0));
+		setBorder(new TitledBorder(new EtchedBorder(EtchedBorder.LOWERED, new Color(255, 255, 255), new Color(160, 160, 160)), "Modifica Promocion", TitledBorder.LEADING, TitledBorder.TOP, null, new Color(0, 0, 0)));
+		setLayout(new GridLayout(7, 0, 0, 0));
 		
 		JPanel panel = new JPanel();
 		add(panel);
@@ -34,14 +42,16 @@ public class VistaModificaProductoPromocion extends JPanel implements IVistaAgre
 		JPanel panel_18 = new JPanel();
 		panel.add(panel_18);
 		
-		JLabel lblNewLabel = new JLabel("Producto");
+		JLabel lblNewLabel = new JLabel("Id Promocion");
 		panel_18.add(lblNewLabel);
 		
 		JPanel panel_19 = new JPanel();
 		panel.add(panel_19);
 		
-		JComboBox comboBoxProductos = new JComboBox();
-		panel_19.add(comboBoxProductos);
+		textFieldIdProd = new JTextField();
+		textFieldIdProd.addKeyListener(this);
+		panel_19.add(textFieldIdProd);
+		textFieldIdProd.setColumns(10);
 		
 		JPanel panel_1 = new JPanel();
 		add(panel_1);
@@ -52,17 +62,14 @@ public class VistaModificaProductoPromocion extends JPanel implements IVistaAgre
 		JLabel lblNewLabel_1 = new JLabel("Aplica 2x1");
 		panel_15.add(lblNewLabel_1);
 		
-		JPanel panel_16 = new JPanel();
-		panel_1.add(panel_16);
+		JPanel panel_13 = new JPanel();
+		panel_1.add(panel_13);
 		
-		JRadioButton rdbtnNewRadioButton = new JRadioButton("Si");
-		panel_16.add(rdbtnNewRadioButton);
-		
-		JPanel panel_17 = new JPanel();
-		panel_1.add(panel_17);
-		
-		JRadioButton rdbtnNewRadioButton_1 = new JRadioButton("No");
-		panel_17.add(rdbtnNewRadioButton_1);
+		comboBox2x1 = new JComboBox<String>();
+		panel_13.add(comboBox2x1);
+		comboBox2x1.setEditable(true);
+		comboBox2x1.addItem("Si");
+		comboBox2x1.addItem("No");
 		
 		JPanel panel_2 = new JPanel();
 		add(panel_2);
@@ -73,17 +80,14 @@ public class VistaModificaProductoPromocion extends JPanel implements IVistaAgre
 		JLabel lblNewLabel_2 = new JLabel("Aplica descuento por cantidad");
 		panel_12.add(lblNewLabel_2);
 		
-		JPanel panel_13 = new JPanel();
-		panel_2.add(panel_13);
-		
-		JRadioButton rdbtnNewRadioButton_2 = new JRadioButton("Si");
-		panel_13.add(rdbtnNewRadioButton_2);
-		
 		JPanel panel_14 = new JPanel();
 		panel_2.add(panel_14);
 		
-		JRadioButton rdbtnNewRadioButton_3 = new JRadioButton("No");
-		panel_14.add(rdbtnNewRadioButton_3);
+		comboBoxDescuentoPorCantidad = new JComboBox<String>();
+		panel_14.add(comboBoxDescuentoPorCantidad);
+		comboBoxDescuentoPorCantidad.setEditable(true);
+		comboBoxDescuentoPorCantidad.addItem("Si");
+		comboBoxDescuentoPorCantidad.addItem("No");
 		
 		JPanel panel_3 = new JPanel();
 		add(panel_3);
@@ -120,25 +124,49 @@ public class VistaModificaProductoPromocion extends JPanel implements IVistaAgre
 		JPanel panel_5 = new JPanel();
 		add(panel_5);
 		
-		JPanel panel_6 = new JPanel();
-		panel_5.add(panel_6);
+		JPanel panel_17 = new JPanel();
+		panel_5.add(panel_17);
 		
-		JButton btnVolver = new JButton("Volver");
+		JLabel lblNewLabel_5 = new JLabel("Dias de promo");
+		panel_17.add(lblNewLabel_5);
+		
+		JPanel panel_20 = new JPanel();
+		panel_5.add(panel_20);
+		
+		comboBoxDiasDePromo = new JComboBox();
+		this.comboBoxDiasDePromo.addItem(Enumerados.diasDePromo.DOMINGO);
+		this.comboBoxDiasDePromo.addItem(Enumerados.diasDePromo.LUNES);
+		this.comboBoxDiasDePromo.addItem(Enumerados.diasDePromo.MARTES);
+		this.comboBoxDiasDePromo.addItem(Enumerados.diasDePromo.MIERCOLES);
+		this.comboBoxDiasDePromo.addItem(Enumerados.diasDePromo.JUEVES);
+		this.comboBoxDiasDePromo.addItem(Enumerados.diasDePromo.VIERNES);
+		this.comboBoxDiasDePromo.addItem(Enumerados.diasDePromo.SABADO);
+		panel_20.add(comboBoxDiasDePromo);
+		
+		JPanel panel_16 = new JPanel();
+		add(panel_16);
+		
+		JPanel panel_6 = new JPanel();
+		panel_16.add(panel_6);
+		
+		btnVolver = new JButton("Volver");
+		btnVolver.setActionCommand("VOLVER");
 		panel_6.add(btnVolver);
 		
 		JPanel panel_7 = new JPanel();
-		panel_5.add(panel_7);
-
-		JButton btnConfimar =new JButton("Confimar");
-		panel_7.add(btnConfimar);
+		panel_16.add(panel_7);
 		
+		this.btnConfirmar = new JButton("Confimar");
+		btnConfirmar.setActionCommand("CONFIRMAR");
+		panel_7.add(btnConfirmar);
 		
 	}
 
 	@Override
 	public void addActionListener(ActionListener actionListener) {
-		// TODO Auto-generated method stub
-		
+		this.actionListener = actionListener;
+		this.btnConfirmar.addActionListener(actionListener);
+		this.btnVolver.addActionListener(actionListener);
 	}
 
 	@Override
@@ -149,57 +177,111 @@ public class VistaModificaProductoPromocion extends JPanel implements IVistaAgre
 
 	@Override
 	public void ventanaEmergente(String mensaje) {
-		// TODO Auto-generated method stub
-		
+		JOptionPane.showMessageDialog(null, mensaje);	
 	}
 
-	@Override
-	public int getIdProm() {
-		// TODO Auto-generated method stub
-		return 0;
-	}
 
 	@Override
-	public Producto getProducto() {
-		// TODO Auto-generated method stub
-		return null;
+	public int getIdProd() {
+		int id=-1;
+		try {
+			id = Integer.parseInt(this.textFieldIdProd.getText());
+		}
+		catch (NumberFormatException e2) {
+		}
+		return id;
 	}
+
 
 	@Override
 	public boolean isAplica2x1() {
-		// TODO Auto-generated method stub
-		return false;
+		String aux = null;
+		boolean booleano = true;
+		
+		aux = (String)this.comboBox2x1.getSelectedItem();
+		if(aux == "Si")
+			booleano = true;
+		else
+			if(aux == "No")
+				booleano = false;
+		
+		return booleano;
 	}
 
 	@Override
 	public boolean isAplicaDtoPorCant() {
-		// TODO Auto-generated method stub
-		return false;
+		String aux = null;
+		boolean booleano = true;
+		
+		aux = (String)this.comboBoxDescuentoPorCantidad.getSelectedItem();
+		if(aux == "Si")
+			booleano = true;
+		else
+			if(aux == "No")
+				booleano = false;
+		return booleano;
 	}
 
 	@Override
 	public int getDtoPorCant_CantMinima() {
-		// TODO Auto-generated method stub
-		return 0;
+		int cant=-1;
+		try {
+			cant = Integer.valueOf(this.textFieldCantMinima.getText());
+		}
+		catch (NumberFormatException e2) {
+		}
+		return cant;
 	}
 
 	@Override
 	public double getDtoPorCant_PrecioUnitario() {
-		// TODO Auto-generated method stub
-		return 0;
+		double precioUnit=-1;
+		try {
+			precioUnit = Double.valueOf(this.textFieldPrecioUnitarioConDescuento.getText());
+		}
+		catch (NumberFormatException e2) {
+		}
+		return precioUnit;
 	}
 
 	@Override
 	public boolean getActiva() {
-		// TODO Auto-generated method stub
-		return false;
+		
+		return true;
 	}
 
 	@Override
 	public diasDePromo getDiasDePromo() {
-		// TODO Auto-generated method stub
-		return null;
+		
+		return (Enumerados.diasDePromo)this.comboBoxDiasDePromo.getSelectedItem();
 	}
 
+	public void keyPressed(KeyEvent e) {
+	}
+	public void keyReleased(KeyEvent e) {
+		boolean condition = this.getIdProd()!=-1;
+		String res2x1="Si", resCant = "Si";
+		if (condition) {
+	
+			PromocionProd promo =Sistema.getInstance().getPromocionProds().get(this.getIdProd());
+			if (promo!=null) {
+				this.textFieldPrecioUnitarioConDescuento.setText(String.valueOf(promo.getDtoPorCant_PrecioUnitario()));
+				this.textFieldCantMinima.setText(String.valueOf(promo.getDtoPorCant_CantMinima()));
+				if (promo.isAplica2x1()== false)
+					res2x1 = "No";
+				if (promo.isAplicaDtoPorCant()== false)
+					resCant="No";
+				this.comboBox2x1.setSelectedItem(res2x1);
+				this.comboBoxDescuentoPorCantidad.setSelectedItem(resCant);
+				this.comboBoxDiasDePromo.setSelectedItem(promo.getDiasDePromo());
 
+			}
+		}
+		else {
+			this.textFieldPrecioUnitarioConDescuento.setText("");
+			this.textFieldCantMinima.setText("");
+		}
+	}
+	public void keyTyped(KeyEvent e) {
+	}
 }

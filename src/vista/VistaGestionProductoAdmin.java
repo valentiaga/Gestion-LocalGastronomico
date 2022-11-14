@@ -28,22 +28,13 @@ public class VistaGestionProductoAdmin extends JPanel implements IVistaGestionPr
 	 */
 	public VistaGestionProductoAdmin() {
 		setBorder(new TitledBorder(new EtchedBorder(EtchedBorder.LOWERED, new Color(255, 255, 255), new Color(160, 160, 160)), "Gestion Productos Admin", TitledBorder.LEADING, TitledBorder.TOP, null, new Color(0, 0, 0)));
-		setLayout(new GridLayout(5, 1, 0, 0));
+		setLayout(new GridLayout(4, 1, 0, 0));
 		JPanel panel = new JPanel();
 		add(panel);
 		
-		JPanel panel_5 = new JPanel();
-		panel.add(panel_5);
-		
-		JLabel lblIdProducto = new JLabel("Id del producto");
-		panel_5.add(lblIdProducto);
-		
-		JPanel panel_6 = new JPanel();
-		panel.add(panel_6);
-		
-		textFieldIdProducto = new JTextField();
-		panel_6.add(textFieldIdProducto);
-		textFieldIdProducto.setColumns(10);
+		this.btnAgregaProducto = new JButton("Agregar Producto");
+		panel.add(btnAgregaProducto);
+		btnAgregaProducto.setActionCommand("AGREGA");
 		JPanel panel_1 = new JPanel();
 		add(panel_1);
 		
@@ -56,6 +47,13 @@ public class VistaGestionProductoAdmin extends JPanel implements IVistaGestionPr
 		JPanel panel_2 = new JPanel();
 		add(panel_2);
 		
+		JLabel lblIdProducto = new JLabel("Id del producto");
+		panel_2.add(lblIdProducto);
+		
+		textFieldIdProducto = new JTextField();
+		panel_2.add(textFieldIdProducto);
+		textFieldIdProducto.setColumns(10);
+		
 		this.btnEliminaProducto = new JButton("Eliminar Producto");
 		panel_2.add(btnEliminaProducto);
 		btnEliminaProducto.setActionCommand("ELIMINA");
@@ -63,18 +61,8 @@ public class VistaGestionProductoAdmin extends JPanel implements IVistaGestionPr
 		JPanel panel_3 = new JPanel();
 		add(panel_3);
 		
-		this.btnAgregaProducto = new JButton("Agregar Producto");
-		panel_3.add(btnAgregaProducto);
-		btnAgregaProducto.setActionCommand("AGREGA");
-		
-		JPanel panel_4 = new JPanel();
-		add(panel_4);
-		
-		JPanel panel_10 = new JPanel();
-		panel_4.add(panel_10);
-		
 		this.btnVolver = new JButton("Volver");
-		panel_10.add(btnVolver);
+		panel_3.add(btnVolver);
 		btnVolver.setActionCommand("VOLVER");
 
 	}

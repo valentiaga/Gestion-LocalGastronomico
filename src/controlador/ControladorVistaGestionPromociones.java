@@ -34,7 +34,7 @@ public class ControladorVistaGestionPromociones implements ActionListener {
 			cl.show(contentPane, ventana.getVistaAgregaProductoPromocion());
 		}
 		else if (comando.equalsIgnoreCase("MODIF_PROMO"))
-			cl.show(contentPane, ventana.getVistaAgregaProducto());
+			cl.show(contentPane, ventana.getVistaModificaProductoPromocion());
 		else if (comando.equalsIgnoreCase("ELIM_PROMO")) {
 			try {
 				op.eliminaPromocionProd(this.vista.getIdElim());
@@ -44,14 +44,18 @@ public class ControladorVistaGestionPromociones implements ActionListener {
 			}
 		}
 		else if (comando.equalsIgnoreCase("AGREGA_PROMO_TEMP")) {
-			cl.show(contentPane, ventana.getVistaAgregaProductoPromocion());
+			cl.show(contentPane, ventana.getVistaAgregarPromocionTemporal());
 		}
 		else if (comando.equalsIgnoreCase("MODIF_PROMO_TEMP")) {
-			cl.show(contentPane, ventana.getVistaModificaProducto());
+			cl.show(contentPane, ventana.getVistaModificaPromocionTemporal());
 		}
 		else if (comando.equalsIgnoreCase("ELIM_PROMO_TEMP")) {
-			
-			cl.show(contentPane, ventana.getVistaModificaProducto());
+			try {
+				Sistema.getInstance().getFuncionalidadOperario().eliminaPromocionTemporal(this.vista.getNameElim());
+				this.vista.ventanaEmergente("Promo elimianda con exito.");
+			} catch (PromoInvalida_Exception e1) {
+				this.vista.ventanaEmergente(e1.getMessage());
+			}
 		}
 		else if (comando.equalsIgnoreCase("VOLVER")) 
 			cl.show(contentPane, ventana.getVistaOp());

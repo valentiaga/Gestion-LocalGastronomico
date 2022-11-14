@@ -34,7 +34,7 @@ public class Ventana extends JFrame {
 	private VistaModificaProductoPromocion vistaModificaProductoPromocion;
 	private VistaModificaPromocionTemporal vistaModificaPromocionTemporal;
 	private VistaRegistrarOperario vistaRegistraOp;
-
+	private VistaAgregarPromocionTemporal vistaAgregaPromoTemp;
 	/**
 	 * Launch the application.
 	 */
@@ -61,7 +61,7 @@ public class Ventana extends JFrame {
 			VistaModificaDatosPersonales vistaModificaDatosPersonales, VistaModificaProducto vistaModificaProducto,
 			VistaModificaProductoPromocion vistaModificaProductoPromocion,
 			VistaModificaPromocionTemporal vistaModificaPromocionTemporal, VistaRegistrarOperario vistaRegistraOp,
-			VistaModificaMozoOp vistaModificaMozoOp) {
+			VistaModificaMozoOp vistaModificaMozoOp, VistaAgregarPromocionTemporal vistaAgregaPromoTemp) {
 		this.vistaInicial = vistaInicial;
 		this.vistaGestionMozoOp = vistaGestionMozoOp;
 		this.vistaGestionMozoAdmin = vistaGestionMozoAdmin;
@@ -85,6 +85,7 @@ public class Ventana extends JFrame {
 		this.vistaModificaProductoPromocion = vistaModificaProductoPromocion;
 		this.vistaModificaPromocionTemporal = vistaModificaPromocionTemporal;
 		this.vistaRegistraOp = vistaRegistraOp;
+		this.vistaAgregaPromoTemp = vistaAgregaPromoTemp;
 
 		this.setVisible(true);
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
@@ -120,6 +121,7 @@ public class Ventana extends JFrame {
 		contentPane.add(vistaGestionProductoOp, "vistaGestionProductoOp");
 		contentPane.add(vistaGestionPromociones, "vistaGestionPromociones");
 		contentPane.add(vistaAgregaProductoPromocion, "vistaAgregaProductoPromocion");
+		contentPane.add(vistaAgregaPromoTemp, "vistaAgregaPromoTemp");
 	}
 
 	public JPanel getContentPane() {
@@ -128,6 +130,9 @@ public class Ventana extends JFrame {
 	
 	public String getVistaGestionProductoAdmin() {
 		return "vistaGestionProductoAdmin";
+	}
+	public String getVistaAgregarPromocionTemporal() {
+		return "vistaAgregaPromoTemp";
 	}
 	public VistaModificaDatosPersonales obtieneVistaModificaDatos() {
 		return vistaModificaDatosPersonales;
@@ -242,12 +247,12 @@ public class Ventana extends JFrame {
 		return vistaAgregaProductoPromocion;
 	}
 
-	public VistaModificaProductoPromocion getVistaModificaProductoPromocion() {
-		return vistaModificaProductoPromocion;
+	public String getVistaModificaProductoPromocion() {
+		return "vistaModificaProductoPromocion";
 	}
 
-	public VistaModificaPromocionTemporal getVistaModificaPromocionTemporal() {
-		return vistaModificaPromocionTemporal;
+	public String getVistaModificaPromocionTemporal() {
+		return "vistaModificaPromocionTemporal";
 	}
 
 	public String getVistaModificaaProducto() {

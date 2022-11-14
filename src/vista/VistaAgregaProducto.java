@@ -6,6 +6,7 @@ import java.awt.event.ActionListener;
 
 import javax.swing.JButton;
 import javax.swing.JLabel;
+import javax.swing.JOptionPane;
 import javax.swing.JPanel;
 import javax.swing.JTextField;
 import javax.swing.border.EtchedBorder;
@@ -13,13 +14,13 @@ import javax.swing.border.TitledBorder;
 
 public class VistaAgregaProducto extends JPanel implements IVistaAgregaProducto{
 	
-	private JTextField textFieldNyA;
-	private JTextField textFieldCantHijos;
-	private JTextField textFieldFecha;
+	private JTextField textFieldCosto;
+	private JTextField textFieldVenta;
+	private JTextField textFieldStock;
 	private JButton btnVolver;
 	private JButton btnConfirmar;
 	private ActionListener actionListener;
-	private JTextField textField;
+	private JTextField textFieldNombre;
 	/**
 	 * Create the panel.
 	 */
@@ -38,9 +39,9 @@ public class VistaAgregaProducto extends JPanel implements IVistaAgregaProducto{
 		JLabel lblNombre = new JLabel("Nombre del producto");
 		panel_1.add(lblNombre);
 		
-		textField = new JTextField();
-		panel_1.add(textField);
-		textField.setColumns(10);
+		textFieldNombre = new JTextField();
+		panel_1.add(textFieldNombre);
+		textFieldNombre.setColumns(10);
 		
 		JPanel panel_2 = new JPanel();
 		panel.add(panel_2);
@@ -48,9 +49,9 @@ public class VistaAgregaProducto extends JPanel implements IVistaAgregaProducto{
 		JLabel lblCosto = new JLabel("Costo del producto");
 		panel_2.add(lblCosto);
 		
-		textFieldNyA = new JTextField();
-		panel_2.add(textFieldNyA);
-		textFieldNyA.setColumns(10);
+		textFieldCosto = new JTextField();
+		panel_2.add(textFieldCosto);
+		textFieldCosto.setColumns(10);
 		
 		JPanel panel_3 = new JPanel();
 		panel.add(panel_3);
@@ -58,9 +59,9 @@ public class VistaAgregaProducto extends JPanel implements IVistaAgregaProducto{
 		JLabel lblPrecioVenta = new JLabel("Precio de venta ");
 		panel_3.add(lblPrecioVenta);
 		
-		textFieldCantHijos = new JTextField();
-		panel_3.add(textFieldCantHijos);
-		textFieldCantHijos.setColumns(10);
+		textFieldVenta = new JTextField();
+		panel_3.add(textFieldVenta);
+		textFieldVenta.setColumns(10);
 		
 		JPanel panel_4 = new JPanel();
 		panel.add(panel_4);
@@ -68,9 +69,9 @@ public class VistaAgregaProducto extends JPanel implements IVistaAgregaProducto{
 		JLabel lblStock = new JLabel("Stock inicial");
 		panel_4.add(lblStock);
 		
-		textFieldFecha = new JTextField();
-		panel_4.add(textFieldFecha);
-		textFieldFecha.setColumns(10);
+		textFieldStock = new JTextField();
+		panel_4.add(textFieldStock);
+		textFieldStock.setColumns(10);
 		
 		JPanel panel_5 = new JPanel();
 		panel.add(panel_5);
@@ -89,51 +90,63 @@ public class VistaAgregaProducto extends JPanel implements IVistaAgregaProducto{
 	}
 
 	@Override
-	public int getidProd() {
-		// TODO Auto-generated method stub
-		return 0;
-	}
-
-	@Override
 	public String getNombre() {
 		// TODO Auto-generated method stub
-		return null;
+		return this.textFieldNombre.getText();
 	}
 
 	@Override
-	public double getPrecioCosto() {
-		// TODO Auto-generated method stub
-		return 0;
+	public float getPrecioCosto() {
+		float costo=-1;
+		try {
+			costo = Float.parseFloat(this.textFieldCosto.getText());
+		}
+		catch (NumberFormatException e2) {
+		}
+		return costo;
 	}
 
 	@Override
-	public double getPrecioVenta() {
-		// TODO Auto-generated method stub
-		return 0;
+	public float getPrecioVenta() {
+		float venta=-1;
+		try {
+			venta = Float.parseFloat(this.textFieldVenta.getText());
+		}
+		catch (NumberFormatException e2) {
+		}
+		return venta;
 	}
 
 	@Override
 	public int getStockInicial() {
-		// TODO Auto-generated method stub
-		return 0;
+		int stock=-1;
+		try {
+			stock = Integer.parseInt(this.textFieldStock.getText());
+		}
+		catch (NumberFormatException e2) {
+		}
+		return stock;
 	}
 
 	@Override
 	public void addAcionListener(ActionListener actionListener) {
-		// TODO Auto-generated method stub
+		this.btnConfirmar.addActionListener(actionListener);
+		this.btnVolver.addActionListener(actionListener);
+		this.actionListener = actionListener;
 		
 	}
 
 	@Override
 	public void limpiarVista() {
-		// TODO Auto-generated method stub
-		
+		this.textFieldCosto.setText("");
+		this.textFieldVenta.setText("");
+		this.textFieldStock.setText("");
+		this.textFieldNombre.setText("");
 	}
 
 	@Override
 	public void ventanaEmergente(String mensaje) {
-		// TODO Auto-generated method stub
-		
+		JOptionPane.showMessageDialog(null, mensaje);
 	}
 
 }

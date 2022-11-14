@@ -13,6 +13,7 @@ import modelo.Producto;
 import javax.swing.border.EtchedBorder;
 import java.awt.Color;
 import javax.swing.JLabel;
+import javax.swing.JOptionPane;
 import javax.swing.JComboBox;
 import javax.swing.JRadioButton;
 import javax.swing.JTextField;
@@ -175,21 +176,21 @@ public class VistaAgregaProductoPromocion extends JPanel implements IVistaAgrega
 
 	@Override
 	public void ventanaEmergente(String mensaje) {
-		// TODO Auto-generated method stub
+		JOptionPane.showMessageDialog(null, mensaje);
 		
 	}
 
 	@Override
-	public int getIdProm() {
-		
-		return Integer.valueOf(this.textFieldIdProd.getText());
+	public int getIdProd() {
+		int id=-1;
+		try {
+			id = Integer.parseInt(this.textFieldIdProd.getText());
+		}
+		catch (NumberFormatException e2) {
+		}
+		return id;
 	}
 
-	@Override
-	public Producto getProducto() {
-		// TODO Auto-generated method stub
-		return null;
-	}
 
 	@Override
 	public boolean isAplica2x1() {
@@ -222,14 +223,24 @@ public class VistaAgregaProductoPromocion extends JPanel implements IVistaAgrega
 
 	@Override
 	public int getDtoPorCant_CantMinima() {
-		
-		return Integer.valueOf(this.textFieldCantMinima.getText());
+		int cant=-1;
+		try {
+			cant = Integer.valueOf(this.textFieldCantMinima.getText());
+		}
+		catch (NumberFormatException e2) {
+		}
+		return cant;
 	}
 
 	@Override
 	public double getDtoPorCant_PrecioUnitario() {
-		
-		return Double.valueOf(this.textFieldPrecioUnitarioConDescuento.getText());
+		double precioUnit=-1;
+		try {
+			precioUnit = Double.valueOf(this.textFieldPrecioUnitarioConDescuento.getText());
+		}
+		catch (NumberFormatException e2) {
+		}
+		return precioUnit;
 	}
 
 	@Override

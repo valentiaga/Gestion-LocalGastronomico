@@ -7,8 +7,6 @@ public interface IVistaGestionPromociones {
 	void addActionListener(ActionListener actionListener);
 	void limpiarVista();
 	void ventanaEmergente(String mensaje);
-	int getIdModif();
 	int getIdElim();
-	String getNameModif();
 	String getNameElim();
 }
