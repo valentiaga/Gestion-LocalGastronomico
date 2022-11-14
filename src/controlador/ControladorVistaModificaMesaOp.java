@@ -4,19 +4,19 @@ import java.awt.CardLayout;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 
-import javax.swing.JOptionPane;
 import javax.swing.JPanel;
 
-import vista.IVistaGestionMesaAdmin;
-import vista.IVistaModificarMesa;
+import modelo.Mesa;
+import negocio.Sistema;
+import vista.IVistaModificarMesaOp;
 import vista.Ventana;
 
 public class ControladorVistaModificaMesaOp implements ActionListener {
-	private IVistaModificarMesa vista = null;
+	private IVistaModificarMesaOp vista = null;
 	private Ventana ventana = null;
 	private JPanel contentPane = null;
 	
-	public ControladorVistaModificaMesaOp(IVistaModificarMesa vista, Ventana ventana) {
+	public ControladorVistaModificaMesaOp(IVistaModificarMesaOp vista, Ventana ventana) {
 		super();
 		this.vista = vista;
 		this.vista.addActionListener(this);
@@ -27,8 +27,10 @@ public class ControladorVistaModificaMesaOp implements ActionListener {
 	public void actionPerformed(ActionEvent e) {
 		CardLayout cl = (CardLayout) contentPane.getLayout();
 		String comando = e.getActionCommand();
-		if (comando.equalsIgnoreCase("CONFIRMA")) 
-			JOptionPane.showMessageDialog(null, "Confirma.");
+		if (comando.equalsIgnoreCase("CONFIRMA")) {
+			Mesa mesa = Sistema.getInstance().getMesas().get(this.ventana.getVistaMesaaAdmin().getNroMesa());
+			mesa.setEstado(this.vista.getEstado());
+		}
 		else if (comando.equalsIgnoreCase("VOLVER")) 
 			cl.show(contentPane, ventana.getVistaMesaOp());
 	}

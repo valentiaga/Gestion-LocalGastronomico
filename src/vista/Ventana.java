@@ -25,7 +25,9 @@ public class Ventana extends JFrame {
 	private VistaGestionProductoOp vistaProductoOp;
 	private VistaGestionProductoAdmin vistaProductoAdmin;
 	private VistaModificarMesaAdmin vistaModificaMesa;
+	private VistaModificarMesaOp vistaModificaMesaOp;
 	private VistaModificaMozo vistaModificaMozoAdmin;
+	private VistaAltaMozo vistaAltaMozo;
 
 	/**
 	 * Launch the application.
@@ -45,8 +47,9 @@ public class Ventana extends JFrame {
 
 	/**
 	 * Create the frame.
+	 * @param vistaModificaMesaOp 
 	 */
-	public Ventana(VistaInicial vistaInicial, VistaGestionMozoOp vistaMozoOp, VistaGestionMozoAdmin vistaMozoAdmin, VistaGestionMesaOp vistaMesaOp, VistaGestionMesaAdmin vistaMesaAdmin, VistaCambiaContrasena vistaCambiaContrasena, VistaOperario vistaOp, VistaAdmin vistaAdmin, VistaGestionProductoOp vistaProductoOp, VistaGestionProductoAdmin vistaProductoAdmin, VistaModificarMesaAdmin vistaModificaMesa, VistaModificaMozo vistaModificaMozoAdmin) {
+	public Ventana(VistaInicial vistaInicial, VistaGestionMozoOp vistaMozoOp, VistaGestionMozoAdmin vistaMozoAdmin, VistaGestionMesaOp vistaMesaOp, VistaGestionMesaAdmin vistaMesaAdmin, VistaCambiaContrasena vistaCambiaContrasena, VistaOperario vistaOp, VistaAdmin vistaAdmin, VistaGestionProductoOp vistaProductoOp, VistaGestionProductoAdmin vistaProductoAdmin, VistaModificarMesaAdmin vistaModificaMesa, VistaModificarMesaOp vistaModificaMesaOp, VistaModificaMozo vistaModificaMozoAdmin, VistaAltaMozo vistaAltaMozo) {
 		this.vistaGestionMozoOp = vistaMozoOp;
 		this.vistaGestionMozoAdmin = vistaMozoAdmin;
 		this.vistaAdmin = vistaAdmin;
@@ -59,6 +62,8 @@ public class Ventana extends JFrame {
 		this.vistaProductoOp = vistaProductoOp;
 		this.vistaModificaMesa = vistaModificaMesa;
 		this.vistaModificaMozoAdmin = vistaModificaMozoAdmin;
+		this.vistaModificaMesaOp = vistaModificaMesaOp;
+		this.vistaAltaMozo = vistaAltaMozo;
 		
 		this.setVisible(true);
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
@@ -68,10 +73,10 @@ public class Ventana extends JFrame {
 		
 //		Sistema.getInstance().setFuncionalidadAdmin(new FuncionalidadAdmin(Administrador.getInstance()));
 		contentPane.setLayout(new CardLayout(0, 0));
+		contentPane.add(vistaOp, "vistaOp");
 		contentPane.add(vistaAdmin, "vistaAdmin");
 		contentPane.add(vistaMesaOp, "vistaMesaOp");
 		contentPane.add(vistaInicial, "vistaInicial");
-		contentPane.add(vistaOp, "vistaOp");
 		contentPane.add(vistaMozoAdmin, "vistaGestionMozoAdmin");
 		contentPane.add(vistaMozoOp, "vistaGestionMozoOp");
 		contentPane.add(vistaMesaAdmin, "vistaMesaAdmin");
@@ -79,7 +84,9 @@ public class Ventana extends JFrame {
 		contentPane.add(vistaProductoAdmin, "vistaProductoAdmin");
 		contentPane.add(vistaProductoOp, "vistaProductoOp");
 		contentPane.add(vistaModificaMesa, "vistaModificaMesa");
+		contentPane.add(vistaModificaMesaOp, "vistaModificaMesaOp");
 		contentPane.add(vistaModificaMozoAdmin, "vistaModificaMozoAdmin");
+		contentPane.add(vistaAltaMozo, "vistaAltaMozo");
 	}
 	
 	public JPanel getContentPane() {
@@ -90,6 +97,9 @@ public class Ventana extends JFrame {
 		return "vistaInicial";
 	}
 
+	public String getVistaAltaMozo() {
+		return "vistaAltaMozo";
+	}
 	public String getVistaGestionMozoOp() {
 		return "vistaGestionMozoOp";
 	}
@@ -110,6 +120,10 @@ public class Ventana extends JFrame {
 		return "vistaCambiaContrasena";
 	}
 
+	public VistaGestionMesaAdmin getVistaMesaaAdmin() {
+		return this.vistaMesaAdmin;
+	}
+	
 	public String getVistaOp() {
 		return "vistaOp";
 	}
