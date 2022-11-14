@@ -17,7 +17,13 @@ public class GestionMesas {
 	}
 	
 	public static void agregaPedidos(Mesa mesa, int cant, int idProd) throws StockInsuficiente_Exception {
-		Producto producto = Sistema.getInstance().getProductos().get(idProd);
+		Producto producto = null;
+		try {
+			producto = (Producto) Sistema.getInstance().getProductos().get(idProd).clone();
+		} catch (CloneNotSupportedException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
 		if (producto.getStockInicial()>=cant) {
 			Comanda comanda = mesa.getComanda();
 			comanda.agregaPedido(new Pedido(producto, cant));
