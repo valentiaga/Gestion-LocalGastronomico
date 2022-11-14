@@ -89,8 +89,8 @@ public class VistaRegistrarOperario extends JPanel implements IVistaRegistrarOpe
 		
 		JComboBox comboBox = new JComboBox<String>();
 		panel_12.add(comboBox);
-		comboBox.add(null,Enumerados.estadoOperario.ACTIVO);
-		comboBox.add(null,Enumerados.estadoOperario.INACTIVO);
+		comboBox.addItem(Enumerados.estadoOperario.ACTIVO);
+		comboBox.addItem(Enumerados.estadoOperario.INACTIVO);
 		
 		
 		

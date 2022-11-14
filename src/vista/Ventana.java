@@ -105,8 +105,8 @@ public class Ventana extends JFrame {
 		
 //		Sistema.getInstance().setFuncionalidadAdmin(new FuncionalidadAdmin(Administrador.getInstance()));
 		contentPane.setLayout(new CardLayout(0, 0));
-		contentPane.add(vistaAdmin, "vistaAdmin");
 		contentPane.add(vistaOp, "vistaOp");
+		contentPane.add(vistaAdmin, "vistaAdmin");
 		contentPane.add(vistaGestionMesaOp, "vistaMesaOp");
 		contentPane.add(vistaInicial, "vistaInicial");
 		contentPane.add(vistaGestionMozoAdmin, "vistaGestionMozoAdmin");

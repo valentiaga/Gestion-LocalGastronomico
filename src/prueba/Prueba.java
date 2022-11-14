@@ -41,7 +41,7 @@ import vista.VistaRegistrarOperario;
 
 public class Prueba {
 
-	public static void main(String[] args) {
+	public static void main(String[] args) throws CantComensalesInvalida_Exception {
 
 		Mozo mozo = new Mozo("Marti", 3);
 		Mozo mozo2 = new Mozo("Valen", 0);
@@ -65,13 +65,13 @@ public class Prueba {
 		VistaModificarMesaOp vistaModificaMesaOp = new VistaModificarMesaOp();
 		VistaModificaMozo vistaModificaMozoAdmin = new VistaModificaMozo();
 		VistaAltaMozo vistaAltaMozo = new VistaAltaMozo();
-		VistaAgregaProducto vistaAgregaProducto, 
-		VistaAgregaProducto vistaAgregaProductoPromocion,
-		VistaModificaDatosPersonales vistaModificaDatosPersonales, 
-		VistaModificaProducto vistaModificaProducto,
-		VistaModificaProductoPromocion vistaModificaProductoPromocion,
-		VistaModificaPromocionTemporal vistaModificaPromocionTemporal, 
-		VistaRegistrarOperario vistaRegistraOp
+		VistaAgregaProducto vistaAgregaProducto = new  VistaAgregaProducto();
+		VistaAgregaProducto vistaAgregaProductoPromocion = new VistaAgregaProducto();
+		VistaModificaDatosPersonales vistaModificaDatosPersonales= new  VistaModificaDatosPersonales();
+		VistaModificaProducto vistaModificaProducto = new VistaModificaProducto();
+		VistaModificaProductoPromocion vistaModificaProductoPromocion = new VistaModificaProductoPromocion();
+		VistaModificaPromocionTemporal vistaModificaPromocionTemporal = new VistaModificaPromocionTemporal();
+		VistaRegistrarOperario vistaRegistraOp = new VistaRegistrarOperario();
 
 		Sistema.getInstance().seteaAdmin();
 		Sistema.getInstance().setFuncionalidadAdmin(new FuncionalidadAdmin(Administrador.getInstance()));
