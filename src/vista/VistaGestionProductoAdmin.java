@@ -75,4 +75,22 @@ public class VistaGestionProductoAdmin extends JPanel implements IVistaGestionPr
 		
 	}
 
+	@Override
+	public void limpiarVista() {
+		// TODO Auto-generated method stub
+		
+	}
+
+	@Override
+	public void ventanaEmergente(String mensaje) {
+		// TODO Auto-generated method stub
+		
+	}
+
+	@Override
+	public int getIdProd() {
+		// TODO Auto-generated method stub
+		return 0;
+	}
+
 }

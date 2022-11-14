@@ -10,7 +10,7 @@ public interface IVistaGestionMozoAdmin {
 
 	String getNyA();
 	int getCantHijos();
-	public JComboBox getComboBox();
+	JComboBox getComboBox();
 	void addActionListener(ActionListener actionListener);
 	void limpiarVista();
 	void ventanaEmergente(String mensaje);

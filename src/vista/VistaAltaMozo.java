@@ -37,59 +37,90 @@ public class VistaAltaMozo extends JPanel implements ItemListener, IVistaAltaMoz
 		JPanel panel_1 = new JPanel();
 		panel.add(panel_1);
 		
+		JPanel panel_7 = new JPanel();
+		panel_1.add(panel_7);
+		
+		JLabel lblNewLabel = new JLabel("Estado");
+		panel_7.add(lblNewLabel);
+		
+		JPanel panel_8 = new JPanel();
+		panel_1.add(panel_8);
+		
 		JComboBox comboBox = new JComboBox();
+		comboBox.setEditable(true);
+		panel_8.add(comboBox);
 		comboBox.addItem(Enumerados.estadoMozo.ACTIVO);
 		comboBox.addItem(Enumerados.estadoMozo.AUSENTE);
 		comboBox.addItem(Enumerados.estadoMozo.DEFRANCO);
 		comboBox.addItemListener(this);
 		
-		JLabel lblNewLabel = new JLabel("Estado");
-		panel_1.add(lblNewLabel);
-		panel_1.add(comboBox);
-		
 		JPanel panel_2 = new JPanel();
 		panel.add(panel_2);
 		
+		JPanel panel_9 = new JPanel();
+		panel_2.add(panel_9);
+		
 		JLabel lblNyA = new JLabel("Nombre y apellido");
-		panel_2.add(lblNyA);
+		panel_9.add(lblNyA);
+		
+		JPanel panel_10 = new JPanel();
+		panel_2.add(panel_10);
 		
 		textFieldNyA = new JTextField();
-		panel_2.add(textFieldNyA);
+		panel_10.add(textFieldNyA);
 		textFieldNyA.setColumns(10);
 		
 		JPanel panel_3 = new JPanel();
 		panel.add(panel_3);
 		
+		JPanel panel_11 = new JPanel();
+		panel_3.add(panel_11);
+		
 		JLabel lblCantHijos = new JLabel("Cantidad  de hijos");
-		panel_3.add(lblCantHijos);
+		panel_11.add(lblCantHijos);
+		
+		JPanel panel_12 = new JPanel();
+		panel_3.add(panel_12);
 		
 		textFieldCantHijos = new JTextField();
-		panel_3.add(textFieldCantHijos);
+		panel_12.add(textFieldCantHijos);
 		textFieldCantHijos.setColumns(10);
 		
 		JPanel panel_4 = new JPanel();
 		panel.add(panel_4);
 		
+		JPanel panel_13 = new JPanel();
+		panel_4.add(panel_13);
+		
 		JLabel lblFecha = new JLabel("Fecha de Nacimiento");
-		panel_4.add(lblFecha);
+		panel_13.add(lblFecha);
+		
+		JPanel panel_14 = new JPanel();
+		panel_4.add(panel_14);
 		
 		textFieldFecha = new JTextField();
-		panel_4.add(textFieldFecha);
+		panel_14.add(textFieldFecha);
 		textFieldFecha.setColumns(10);
 		
 		JPanel panel_5 = new JPanel();
 		panel.add(panel_5);
 		
+		JPanel panel_15 = new JPanel();
+		panel_5.add(panel_15);
+		
 		btnConfirmar = new JButton("Confirmar");
+		panel_15.add(btnConfirmar);
 		btnConfirmar.setActionCommand("CONFIRMAR");
-		panel_5.add(btnConfirmar);
 		
 		JPanel panel_6 = new JPanel();
 		panel.add(panel_6);
 		
+		JPanel panel_16 = new JPanel();
+		panel_6.add(panel_16);
+		
 		btnVolver = new JButton("Volver");
+		panel_16.add(btnVolver);
 		btnVolver.setActionCommand("VOLVER");
-		panel_6.add(btnVolver);
 
 	}
 

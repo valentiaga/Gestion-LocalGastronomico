@@ -6,6 +6,8 @@ import javax.swing.JButton;
 import javax.swing.border.TitledBorder;
 import java.awt.FlowLayout;
 import java.awt.GridLayout;
+import java.awt.event.ActionListener;
+
 import javax.swing.GroupLayout;
 import javax.swing.GroupLayout.Alignment;
 import javax.swing.JLabel;
@@ -46,6 +48,30 @@ public class VistaGestionProductoOp extends JPanel implements IVistaGestionProdu
 		JButton btnModificaProducto = new JButton("Modifica Producto");
 		panel_4.add(btnModificaProducto);
 
+	}
+
+	@Override
+	public void addActionListener(ActionListener actionListener) {
+		// TODO Auto-generated method stub
+		
+	}
+
+	@Override
+	public void limpiarVista() {
+		// TODO Auto-generated method stub
+		
+	}
+
+	@Override
+	public void ventanaEmergente(String mensaje) {
+		// TODO Auto-generated method stub
+		
+	}
+
+	@Override
+	public int getIdProd() {
+		// TODO Auto-generated method stub
+		return 0;
 	}
 
 }
