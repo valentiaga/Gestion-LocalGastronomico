@@ -27,6 +27,7 @@ public class VistaModificaMozoAdmin extends JPanel implements ItemListener, IVis
 	private JButton btnConfirmar;
 	private JComboBox comboBox;
 	private JComboBox<String> comboBoxMozo;
+	private JComboBox<String> comboBoxMozo_1;
 	private ActionListener actionListener;
 	private Mozo mozo;
 	/**
@@ -43,58 +44,92 @@ public class VistaModificaMozoAdmin extends JPanel implements ItemListener, IVis
 		JPanel panel_1 = new JPanel();
 		panel.add(panel_1);
 		
+		JPanel panel_7 = new JPanel();
+		panel_1.add(panel_7);
+		
 		JLabel lblSeleccionaMozo = new JLabel("Seleccione Mozo");
-		panel_1.add(lblSeleccionaMozo);
+		panel_7.add(lblSeleccionaMozo);
 		lblSeleccionaMozo.setHorizontalAlignment(SwingConstants.CENTER);
 		
 		comboBoxMozo = new JComboBox<String>();
-		comboBoxMozo = new JComboBox<String>();
-		comboBoxMozo.setEditable(true);
-		comboBoxMozo.addItem(Sistema.getInstance().getMozos().get("Marti").getNyA());
-		comboBoxMozo.addItem(Sistema.getInstance().getMozos().get("Valen").getNyA());
-		comboBoxMozo.addItem(Sistema.getInstance().getMozos().get("Pau").getNyA());
-		comboBoxMozo.addItemListener(this);
-		panel_1.add(comboBoxMozo);
+		
+		JPanel panel_8 = new JPanel();
+		panel_1.add(panel_8);
+		comboBoxMozo_1 = new JComboBox<String>();
+		panel_8.add(comboBoxMozo_1);
+		comboBoxMozo_1.setEditable(true);
+		comboBoxMozo_1.addItem(Sistema.getInstance().getMozos().get("Marti").getNyA());
+		comboBoxMozo_1.addItem(Sistema.getInstance().getMozos().get("Valen").getNyA());
+		comboBoxMozo_1.addItem(Sistema.getInstance().getMozos().get("Pau").getNyA());
+		comboBoxMozo_1.addItemListener(this);
+		mozo = Sistema.getInstance().getMozos().get(this.comboBoxMozo_1.getSelectedItem().toString());
 
 		
 		JPanel panel_2 = new JPanel();
 		panel.add(panel_2);
 		
+		JPanel panel_9 = new JPanel();
+		panel_2.add(panel_9);
+		
 		JLabel lblNyA = new JLabel("Nombre y apellido");
-		panel_2.add(lblNyA);
+		panel_9.add(lblNyA);
+		
+		JPanel panel_10 = new JPanel();
+		panel_2.add(panel_10);
 		
 		textFieldNyA = new JTextField();
-		panel_2.add(textFieldNyA);
+		panel_10.add(textFieldNyA);
 		textFieldNyA.setColumns(10);
+		textFieldNyA.setText(mozo.getNyA());
 		
 		JPanel panel_3 = new JPanel();
 		panel.add(panel_3);
 		
+		JPanel panel_11 = new JPanel();
+		panel_3.add(panel_11);
+		
 		JLabel lblCantHijos = new JLabel("Cantidad  de hijos");
-		panel_3.add(lblCantHijos);
+		panel_11.add(lblCantHijos);
+		
+		JPanel panel_12 = new JPanel();
+		panel_3.add(panel_12);
 		
 		textFieldCantHijos = new JTextField();
-		panel_3.add(textFieldCantHijos);
+		panel_12.add(textFieldCantHijos);
 		textFieldCantHijos.setColumns(10);
+		textFieldCantHijos.setText(String.valueOf(mozo.getCantHijos()));
 		
 		JPanel panel_4 = new JPanel();
 		panel.add(panel_4);
 		
+		JPanel panel_13 = new JPanel();
+		panel_4.add(panel_13);
+		
 		JLabel lblSueldo = new JLabel("Sueldo");
-		panel_4.add(lblSueldo);
+		panel_13.add(lblSueldo);
+		
+		JPanel panel_14 = new JPanel();
+		panel_4.add(panel_14);
 		
 		textFieldSueldo = new JTextField();
-		panel_4.add(textFieldSueldo);
+		panel_14.add(textFieldSueldo);
 		textFieldSueldo.setColumns(10);
+		textFieldSueldo.setText(String.valueOf(mozo.getSueldo()));
 		
 		JPanel panel_5 = new JPanel();
 		panel.add(panel_5);
 		
+		JPanel panel_15 = new JPanel();
+		panel_5.add(panel_15);
+		
 		JLabel lblNewLabel = new JLabel("Estado");
-		panel_5.add(lblNewLabel);
+		panel_15.add(lblNewLabel);
+		
+		JPanel panel_16 = new JPanel();
+		panel_5.add(panel_16);
 		
 		comboBox = new JComboBox();
-		panel_5.add(comboBox);
+		panel_16.add(comboBox);
 		comboBox.addItem(Enumerados.estadoMozo.ACTIVO);
 		comboBox.addItem(Enumerados.estadoMozo.AUSENTE);
 		comboBox.addItem(Enumerados.estadoMozo.DEFRANCO);
@@ -103,25 +138,27 @@ public class VistaModificaMozoAdmin extends JPanel implements ItemListener, IVis
 		JPanel panel_6 = new JPanel();
 		panel.add(panel_6);
 		
+		JPanel panel_17 = new JPanel();
+		panel_6.add(panel_17);
+		
 		btnConfirmar = new JButton("Confirmar");
-		panel_6.add(btnConfirmar);
+		panel_17.add(btnConfirmar);
 		btnConfirmar.setActionCommand("CONFIRMAR");
 		
 		JPanel panel_1_1 = new JPanel();
 		panel.add(panel_1_1);
 		
+		JPanel panel_18 = new JPanel();
+		panel_1_1.add(panel_18);
+		
 		btnVolver = new JButton("Volver");
-		panel_1_1.add(btnVolver);
+		panel_18.add(btnVolver);
 		btnVolver.setActionCommand("VOLVER");
-		mozo = Sistema.getInstance().getMozos().get(this.comboBoxMozo.getSelectedItem().toString());
-		textFieldCantHijos.setText(String.valueOf(mozo.getCantHijos()));
-		textFieldNyA.setText(mozo.getNyA());
-		textFieldSueldo.setText(String.valueOf(mozo.getSueldo()));
 	}
 
 	@Override
 	public void itemStateChanged(ItemEvent e) {
-		mozo = Sistema.getInstance().getMozos().get(this.comboBoxMozo.getSelectedItem().toString());
+		mozo = Sistema.getInstance().getMozos().get(this.comboBoxMozo_1.getSelectedItem().toString());
 		textFieldCantHijos.setText(String.valueOf(mozo.getCantHijos()));
 		textFieldNyA.setText(mozo.getNyA());
 		textFieldSueldo.setText(String.valueOf(mozo.getSueldo()));

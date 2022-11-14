@@ -19,10 +19,12 @@ public class VistaAltaMozo extends JPanel implements ItemListener, IVistaAltaMoz
 	
 	private JTextField textFieldNyA;
 	private JTextField textFieldCantHijos;
-	private JTextField textFieldFecha;
 	private JButton btnVolver;
 	private JButton btnConfirmar;
 	private ActionListener actionListener;
+	private JTextField textFieldDia;
+	private JTextField textFieldMes;
+	private JTextField textFieldAnio;
 	/**
 	 * Create the panel.
 	 */
@@ -88,19 +90,68 @@ public class VistaAltaMozo extends JPanel implements ItemListener, IVistaAltaMoz
 		
 		JPanel panel_4 = new JPanel();
 		panel.add(panel_4);
+		panel_4.setLayout(new GridLayout(0, 2, 0, 0));
 		
 		JPanel panel_13 = new JPanel();
 		panel_4.add(panel_13);
 		
+		JPanel panel_20 = new JPanel();
+		panel_13.add(panel_20);
+		
 		JLabel lblFecha = new JLabel("Fecha de Nacimiento");
-		panel_13.add(lblFecha);
+		panel_20.add(lblFecha);
 		
 		JPanel panel_14 = new JPanel();
 		panel_4.add(panel_14);
+		panel_14.setLayout(new GridLayout(3, 1, 0, 0));
 		
-		textFieldFecha = new JTextField();
-		panel_14.add(textFieldFecha);
-		textFieldFecha.setColumns(10);
+		JPanel panel_17 = new JPanel();
+		panel_14.add(panel_17);
+		
+		JPanel panel_21 = new JPanel();
+		panel_17.add(panel_21);
+		
+		JLabel lblNewLabel_1 = new JLabel("Dia");
+		panel_21.add(lblNewLabel_1);
+		
+		JPanel panel_26 = new JPanel();
+		panel_17.add(panel_26);
+		
+		textFieldDia = new JTextField();
+		panel_26.add(textFieldDia);
+		textFieldDia.setColumns(10);
+		
+		JPanel panel_18 = new JPanel();
+		panel_14.add(panel_18);
+		
+		JPanel panel_22 = new JPanel();
+		panel_18.add(panel_22);
+		
+		JLabel lblNewLabel_2 = new JLabel("Mes");
+		panel_22.add(lblNewLabel_2);
+		
+		JPanel panel_25 = new JPanel();
+		panel_18.add(panel_25);
+		
+		textFieldMes = new JTextField();
+		panel_25.add(textFieldMes);
+		textFieldMes.setColumns(10);
+		
+		JPanel panel_19 = new JPanel();
+		panel_14.add(panel_19);
+		
+		JPanel panel_23 = new JPanel();
+		panel_19.add(panel_23);
+		
+		JLabel lblNewLabel_3 = new JLabel("Año");
+		panel_23.add(lblNewLabel_3);
+		
+		JPanel panel_24 = new JPanel();
+		panel_19.add(panel_24);
+		
+		textFieldAnio = new JTextField();
+		panel_24.add(textFieldAnio);
+		textFieldAnio.setColumns(10);
 		
 		JPanel panel_5 = new JPanel();
 		panel.add(panel_5);
@@ -155,10 +206,7 @@ public class VistaAltaMozo extends JPanel implements ItemListener, IVistaAltaMoz
 		return cantHijos;
 	}
 
-	public String fechaNacimiento() {
-		return this.textFieldFecha.getText();
-	}
-
+	
 	@Override
 	public void limpiarVista() {
 		// TODO Auto-generated method stub
@@ -168,6 +216,24 @@ public class VistaAltaMozo extends JPanel implements ItemListener, IVistaAltaMoz
 	@Override
 	public void ventanaEmergente(String mensaje) {
 		JOptionPane.showMessageDialog(null, mensaje);		
+	}
+
+	@Override
+	public String getDiaNacimiento() {
+		
+		return this.textFieldDia.getText();
+	}
+
+	@Override
+	public String getMesNacimiento() {
+		// TODO Auto-generated method stub
+		return this.textFieldMes.getText();
+	}
+
+	@Override
+	public String getAnioNacimiento() {
+		// TODO Auto-generated method stub
+		return this.textFieldAnio.getText();
 	}
 
 
