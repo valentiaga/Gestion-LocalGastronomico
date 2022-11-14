@@ -11,6 +11,7 @@ import java.awt.event.ActionListener;
 import javax.swing.GroupLayout;
 import javax.swing.GroupLayout.Alignment;
 import javax.swing.JLabel;
+import javax.swing.JOptionPane;
 import javax.swing.JTextField;
 
 public class VistaGestionProductoOp extends JPanel implements IVistaGestionProductoOp{
@@ -65,7 +66,7 @@ public class VistaGestionProductoOp extends JPanel implements IVistaGestionProdu
 	@Override
 	public void ventanaEmergente(String mensaje) {
 		// TODO Auto-generated method stub
-		
+		JOptionPane.showMessageDialog(null,mensaje );
 	}
 
 	@Override
