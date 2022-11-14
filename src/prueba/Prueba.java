@@ -19,6 +19,7 @@ import negocio.FuncionalidadAdmin;
 import negocio.Sistema;
 import vista.Ventana;
 import vista.VistaAdmin;
+import vista.VistaAgregaProducto;
 import vista.VistaAltaMozo;
 import vista.VistaCambiaContrasena;
 import vista.VistaGestionMesaAdmin;
@@ -28,10 +29,15 @@ import vista.VistaGestionMozoOp;
 import vista.VistaGestionProductoAdmin;
 import vista.VistaGestionProductoOp;
 import vista.VistaInicial;
+import vista.VistaModificaDatosPersonales;
 import vista.VistaModificaMozo;
+import vista.VistaModificaProducto;
+import vista.VistaModificaProductoPromocion;
+import vista.VistaModificaPromocionTemporal;
 import vista.VistaModificarMesaAdmin;
 import vista.VistaModificarMesaOp;
 import vista.VistaOperario;
+import vista.VistaRegistrarOperario;
 
 public class Prueba {
 
@@ -59,7 +65,14 @@ public class Prueba {
 		VistaModificarMesaOp vistaModificaMesaOp = new VistaModificarMesaOp();
 		VistaModificaMozo vistaModificaMozoAdmin = new VistaModificaMozo();
 		VistaAltaMozo vistaAltaMozo = new VistaAltaMozo();
-		
+		VistaAgregaProducto vistaAgregaProducto, 
+		VistaAgregaProducto vistaAgregaProductoPromocion,
+		VistaModificaDatosPersonales vistaModificaDatosPersonales, 
+		VistaModificaProducto vistaModificaProducto,
+		VistaModificaProductoPromocion vistaModificaProductoPromocion,
+		VistaModificaPromocionTemporal vistaModificaPromocionTemporal, 
+		VistaRegistrarOperario vistaRegistraOp
+
 		Sistema.getInstance().seteaAdmin();
 		Sistema.getInstance().setFuncionalidadAdmin(new FuncionalidadAdmin(Administrador.getInstance()));
 		try {
@@ -75,9 +88,12 @@ public class Prueba {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
-		
-		Ventana v = new Ventana(vistaInicial, vistaMozoOp, vistaMozoAdmin, vistaMesaOp, vistaMesaAdmin,
-				vistaCambiaContra, vistaOp, vistaAdmin, vistaProductoOp, vistaProductoAdmin, vistaModificarMesa, vistaModificaMesaOp, vistaModificaMozoAdmin, vistaAltaMozo);
+
+		Ventana v = new Ventana(vistaInicial, vistaMozoOp, vistaMozoAdmin, vistaMesaOp, vistaMesaAdmin, null,
+				vistaCambiaContra, vistaOp, vistaAdmin, vistaProductoOp, vistaProductoAdmin, vistaModificarMesa,
+				vistaModificaMesaOp, vistaModificaMozoAdmin, vistaAltaMozo, vistaAgregaProducto,
+				vistaAgregaProductoPromocion, vistaModificaDatosPersonales, vistaModificaProducto,
+				vistaModificaProductoPromocion, vistaModificaPromocionTemporal, vistaRegistraOp);
 
 		ControladorVistaOperario cOperario = new ControladorVistaOperario(vistaOp, v);
 		ControladorVistaAdmin cAdmin = new ControladorVistaAdmin(vistaAdmin, v);
@@ -86,10 +102,12 @@ public class Prueba {
 		ControladorVistaGestionMozoAdmin cMozoAdmin = new ControladorVistaGestionMozoAdmin(vistaMozoAdmin, v);
 		ControladorVistaGestionMesaOp cMesaOp = new ControladorVistaGestionMesaOp(vistaMesaOp, v);
 		ControladorVistaGestionMesaAdmin cMesaAdmin = new ControladorVistaGestionMesaAdmin(vistaMesaAdmin, v);
-		ControladorVistaGestionProductoAdmin cProductoAdmin = new ControladorVistaGestionProductoAdmin(vistaProductoAdmin, v);
+		ControladorVistaGestionProductoAdmin cProductoAdmin = new ControladorVistaGestionProductoAdmin(
+				vistaProductoAdmin, v);
 		ControladorVistaModificaMesaAdmin cModificaMesa = new ControladorVistaModificaMesaAdmin(vistaModificarMesa, v);
 		ControladorVistaModificaMesaOp cModificaMesaOp = new ControladorVistaModificaMesaOp(vistaModificaMesaOp, v);
-		ControladorVistaModificaMozoAdmin cModificaMozoAdmin = new ControladorVistaModificaMozoAdmin(vistaModificaMozoAdmin, v);
+		ControladorVistaModificaMozoAdmin cModificaMozoAdmin = new ControladorVistaModificaMozoAdmin(
+				vistaModificaMozoAdmin, v);
 	}
 
 }

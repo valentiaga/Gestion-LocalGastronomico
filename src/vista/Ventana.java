@@ -1,14 +1,11 @@
 package vista;
 
 import java.awt.CardLayout;
+import java.awt.HeadlessException;
 import java.awt.event.ActionListener;
 
 import javax.swing.JFrame;
 import javax.swing.JPanel;
-
-import modelo.Administrador;
-import negocio.FuncionalidadAdmin;
-import negocio.Sistema;
 
 public class Ventana extends JFrame {
 
@@ -17,17 +14,26 @@ public class Ventana extends JFrame {
 	private VistaInicial vistaInicial;
 	private VistaGestionMozoOp vistaGestionMozoOp;
 	private VistaGestionMozoAdmin vistaGestionMozoAdmin;
-	private VistaGestionMesaOp vistaMesaOp;
-	private VistaGestionMesaAdmin vistaMesaAdmin;
+	private VistaGestionMesaOp vistaGestionMesaOp;
+	private VistaGestionMesaAdmin vistaGestionMesaAdmin;
+	private VistaGestionPromociones vistaGestionPromociones;
 	private VistaCambiaContrasena vistaCambiaContrasena;
 	private VistaOperario vistaOp;
 	private VistaAdmin vistaAdmin;
-	private VistaGestionProductoOp vistaProductoOp;
-	private VistaGestionProductoAdmin vistaProductoAdmin;
+	private VistaGestionProductoOp vistaGestionProductoOp;
+	private VistaGestionProductoAdmin vistaGestionProductoAdmin;
 	private VistaModificarMesaAdmin vistaModificaMesa;
 	private VistaModificarMesaOp vistaModificaMesaOp;
 	private VistaModificaMozo vistaModificaMozoAdmin;
 	private VistaAltaMozo vistaAltaMozo;
+	private VistaAgregaProducto vistaAgregaProducto;
+	private VistaAgregaProducto vistaAgregaProductoPromocion;
+	private VistaModificaDatosPersonales vistaModificaDatosPersonales;
+	private VistaModificaProducto vistaModificaProducto;
+	private VistaModificaProductoPromocion vistaModificaProductoPromocion;
+	private VistaModificaPromocionTemporal vistaModificaPromocionTemporal;
+	private VistaRegistrarOperario vistaRegistraOp;
+
 
 	/**
 	 * Launch the application.
@@ -49,21 +55,47 @@ public class Ventana extends JFrame {
 	 * Create the frame.
 	 * @param vistaModificaMesaOp 
 	 */
-	public Ventana(VistaInicial vistaInicial, VistaGestionMozoOp vistaMozoOp, VistaGestionMozoAdmin vistaMozoAdmin, VistaGestionMesaOp vistaMesaOp, VistaGestionMesaAdmin vistaMesaAdmin, VistaCambiaContrasena vistaCambiaContrasena, VistaOperario vistaOp, VistaAdmin vistaAdmin, VistaGestionProductoOp vistaProductoOp, VistaGestionProductoAdmin vistaProductoAdmin, VistaModificarMesaAdmin vistaModificaMesa, VistaModificarMesaOp vistaModificaMesaOp, VistaModificaMozo vistaModificaMozoAdmin, VistaAltaMozo vistaAltaMozo) {
-		this.vistaGestionMozoOp = vistaMozoOp;
-		this.vistaGestionMozoAdmin = vistaMozoAdmin;
-		this.vistaAdmin = vistaAdmin;
-		this.vistaCambiaContrasena = vistaCambiaContrasena;
+
+	
+	public JPanel getContentPane() {
+		return this.contentPane;
+	}
+
+	public Ventana(VistaInicial vistaInicial, VistaGestionMozoOp vistaGestionMozoOp,
+			VistaGestionMozoAdmin vistaGestionMozoAdmin, VistaGestionMesaOp vistaGestionMesaOp,
+			VistaGestionMesaAdmin vistaGestionMesaAdmin, VistaGestionPromociones vistaGestionPromociones,
+			VistaCambiaContrasena vistaCambiaContrasena, VistaOperario vistaOp, VistaAdmin vistaAdmin,
+			VistaGestionProductoOp vistaGestionProductoOp, VistaGestionProductoAdmin vistaGestionProductoAdmin,
+			VistaModificarMesaAdmin vistaModificaMesa, VistaModificarMesaOp vistaModificaMesaOp,
+			VistaModificaMozo vistaModificaMozoAdmin, VistaAltaMozo vistaAltaMozo,
+			VistaAgregaProducto vistaAgregaProducto, VistaAgregaProducto vistaAgregaProductoPromocion,
+			VistaModificaDatosPersonales vistaModificaDatosPersonales, VistaModificaProducto vistaModificaProducto,
+			VistaModificaProductoPromocion vistaModificaProductoPromocion,
+			VistaModificaPromocionTemporal vistaModificaPromocionTemporal, VistaRegistrarOperario vistaRegistraOp)
+			throws HeadlessException {
+		super();
 		this.vistaInicial = vistaInicial;
-		this.vistaMesaAdmin = vistaMesaAdmin;
-		this.vistaMesaOp = vistaMesaOp;
+		this.vistaGestionMozoOp = vistaGestionMozoOp;
+		this.vistaGestionMozoAdmin = vistaGestionMozoAdmin;
+		this.vistaGestionMesaOp = vistaGestionMesaOp;
+		this.vistaGestionMesaAdmin = vistaGestionMesaAdmin;
+		this.vistaGestionPromociones = vistaGestionPromociones;
+		this.vistaCambiaContrasena = vistaCambiaContrasena;
 		this.vistaOp = vistaOp;
-		this.vistaProductoAdmin = vistaProductoAdmin;
-		this.vistaProductoOp = vistaProductoOp;
+		this.vistaAdmin = vistaAdmin;
+		this.vistaGestionProductoOp = vistaGestionProductoOp;
+		this.vistaGestionProductoAdmin = vistaGestionProductoAdmin;
 		this.vistaModificaMesa = vistaModificaMesa;
-		this.vistaModificaMozoAdmin = vistaModificaMozoAdmin;
 		this.vistaModificaMesaOp = vistaModificaMesaOp;
+		this.vistaModificaMozoAdmin = vistaModificaMozoAdmin;
 		this.vistaAltaMozo = vistaAltaMozo;
+		this.vistaAgregaProducto = vistaAgregaProducto;
+		this.vistaAgregaProductoPromocion = vistaAgregaProductoPromocion;
+		this.vistaModificaDatosPersonales = vistaModificaDatosPersonales;
+		this.vistaModificaProducto = vistaModificaProducto;
+		this.vistaModificaProductoPromocion = vistaModificaProductoPromocion;
+		this.vistaModificaPromocionTemporal = vistaModificaPromocionTemporal;
+		this.vistaRegistraOp = vistaRegistraOp;
 		
 		this.setVisible(true);
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
@@ -73,24 +105,32 @@ public class Ventana extends JFrame {
 		
 //		Sistema.getInstance().setFuncionalidadAdmin(new FuncionalidadAdmin(Administrador.getInstance()));
 		contentPane.setLayout(new CardLayout(0, 0));
-		contentPane.add(vistaOp, "vistaOp");
 		contentPane.add(vistaAdmin, "vistaAdmin");
-		contentPane.add(vistaMesaOp, "vistaMesaOp");
+		contentPane.add(vistaOp, "vistaOp");
+		contentPane.add(vistaGestionMesaOp, "vistaMesaOp");
 		contentPane.add(vistaInicial, "vistaInicial");
-		contentPane.add(vistaMozoAdmin, "vistaGestionMozoAdmin");
-		contentPane.add(vistaMozoOp, "vistaGestionMozoOp");
-		contentPane.add(vistaMesaAdmin, "vistaMesaAdmin");
+		contentPane.add(vistaGestionMozoAdmin, "vistaGestionMozoAdmin");
+		contentPane.add(vistaGestionMozoOp, "vistaGestionMozoOp");
+		contentPane.add(vistaGestionMesaAdmin, "vistaMesaAdmin");
 		contentPane.add(vistaCambiaContrasena, "vistaCambiaContrasena");
-		contentPane.add(vistaProductoAdmin, "vistaProductoAdmin");
-		contentPane.add(vistaProductoOp, "vistaProductoOp");
+		contentPane.add(vistaGestionProductoAdmin, "vistaGestionProductoAdmin");
+		contentPane.add(vistaGestionProductoOp, "vistaGestionProductoOp");
 		contentPane.add(vistaModificaMesa, "vistaModificaMesa");
 		contentPane.add(vistaModificaMesaOp, "vistaModificaMesaOp");
 		contentPane.add(vistaModificaMozoAdmin, "vistaModificaMozoAdmin");
 		contentPane.add(vistaAltaMozo, "vistaAltaMozo");
-	}
-	
-	public JPanel getContentPane() {
-		return this.contentPane;
+		contentPane.add(vistaRegistraOp, "vistaRegistraOp");
+		contentPane.add(vistaModificaPromocionTemporal, "vistaModificaPromocionTemporal");
+		contentPane.add(vistaModificaProductoPromocion, "vistaModificaProductoPromocion");
+		contentPane.add(vistaModificaProducto, "vistaModificaProducto");
+		contentPane.add(vistaModificaDatosPersonales, "vistaModificaDatosPersonales");
+		contentPane.add(vistaAgregaProductoPromocion, "vistaAgregaProductoPromocion");
+		contentPane.add(vistaAgregaProducto, "vistaAgregaProducto");
+		contentPane.add(vistaAltaMozo, "vistaAltaMozo");
+		contentPane.add(vistaGestionProductoAdmin, "vistaGestionProductoAdmin");
+		contentPane.add(vistaGestionProductoOp, "vistaGestionProductoOp");
+		contentPane.add(vistaGestionPromociones, "vistaGestionPromociones");
+		
 	}
 
 	public String getVistaInicial() {
@@ -121,7 +161,7 @@ public class Ventana extends JFrame {
 	}
 
 	public VistaGestionMesaAdmin getVistaMesaaAdmin() {
-		return this.vistaMesaAdmin;
+		return this.vistaGestionMesaAdmin;
 	}
 	
 	public String getVistaOp() {
