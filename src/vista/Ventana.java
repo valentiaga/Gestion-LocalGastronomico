@@ -135,6 +135,7 @@ public class Ventana extends JFrame {
 	public String getVistaGestionProductoOp() {
 		return "vistaGestionProductoOp";
 	}
+	
 	public String getVistaModificaProducto() {
 		return "vistaModificaProducto";
 	}
@@ -236,7 +237,7 @@ public class Ventana extends JFrame {
 
 	
 
-	public VistaAgregaProducto getVistaAgregaProducto() {
+	public VistaAgregaProducto getVistaAgregaaProducto() {
 		return vistaAgregaProducto;
 	}
 
@@ -252,7 +253,7 @@ public class Ventana extends JFrame {
 		return vistaModificaPromocionTemporal;
 	}
 
-	public String getVistaModificaProducto() {
+	public String getVistaModificaaProducto() {
 		return "vistaModificaProducto";
 	}
 	
