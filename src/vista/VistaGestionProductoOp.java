@@ -15,8 +15,11 @@ import javax.swing.JOptionPane;
 import javax.swing.JTextField;
 
 public class VistaGestionProductoOp extends JPanel implements IVistaGestionProductoOp{
+	
+	private ActionListener actionListener;
 	private JTextField textFieldIdProducto;
-
+	JButton btnModificaProducto;
+	JButton btnVolver;
 	/**
 	 * Create the panel.
 	 */
@@ -43,18 +46,28 @@ public class VistaGestionProductoOp extends JPanel implements IVistaGestionProdu
 		JPanel panel_1 = new JPanel();
 		add(panel_1);
 		
+		JPanel panel_5 = new JPanel();
+		panel_1.add(panel_5);
+		
+		btnVolver = new JButton("Volver");
+		btnVolver.setActionCommand("VOLVER");
+		panel_5.add(btnVolver);
+		
 		JPanel panel_4 = new JPanel();
 		panel_1.add(panel_4);
 		
-		JButton btnModificaProducto = new JButton("Modifica Producto");
+		this.btnModificaProducto = new JButton("Modifica Producto");
+		this.btnModificaProducto.setActionCommand("MODIFICA");
 		panel_4.add(btnModificaProducto);
 
 	}
 
 	@Override
 	public void addActionListener(ActionListener actionListener) {
-		// TODO Auto-generated method stub
 		
+		this.actionListener = actionListener;
+		this.btnModificaProducto.addActionListener(actionListener);
+		this.btnVolver.addActionListener(actionListener);
 	}
 
 	@Override
@@ -71,8 +84,8 @@ public class VistaGestionProductoOp extends JPanel implements IVistaGestionProdu
 
 	@Override
 	public int getIdProd() {
-		// TODO Auto-generated method stub
-		return 0;
+		
+		return Integer.valueOf(this.textFieldIdProducto.getText());
 	}
 
 }

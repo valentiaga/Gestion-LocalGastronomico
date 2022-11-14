@@ -209,13 +209,47 @@ public class Ventana extends JFrame {
 	public String getVistaModificaMesaOp() {
 		return "vistaModificaMesaOp";
 	}
-
+	
 	public VistaGestionMozoAdmin vistaGestionMozoAdmin() {
 		return this.vistaGestionMozoAdmin;
 	}
 
 	public VistaGestionMozoOp vistaGestionMozoOp() {
 		return this.vistaGestionMozoOp;
+	}
+	
+	public VistaGestionMesaOp getVistaGestionMesaOp() {
+		return vistaGestionMesaOp;
+	}
+
+	public VistaGestionMesaAdmin getVistaGestionMesaAdmin() {
+		return vistaGestionMesaAdmin;
+	}
+
+	
+
+	public VistaAgregaProducto getVistaAgregaProducto() {
+		return vistaAgregaProducto;
+	}
+
+	public VistaAgregaProducto getVistaAgregaProductoPromocion() {
+		return vistaAgregaProductoPromocion;
+	}
+
+	public VistaModificaProductoPromocion getVistaModificaProductoPromocion() {
+		return vistaModificaProductoPromocion;
+	}
+
+	public VistaModificaPromocionTemporal getVistaModificaPromocionTemporal() {
+		return vistaModificaPromocionTemporal;
+	}
+
+	public String getVistaModificaProducto() {
+		return "vistaModificaProducto";
+	}
+	
+	public String getVistaGestionPromociones() {
+		return "vistaGestionPromociones";
 	}
 
 }

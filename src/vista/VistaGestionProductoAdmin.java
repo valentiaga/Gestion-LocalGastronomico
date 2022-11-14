@@ -15,6 +15,7 @@ import javax.swing.border.EtchedBorder;
 import java.awt.Color;
 
 public class VistaGestionProductoAdmin extends JPanel implements IVistaGestionProductoAdmin {
+	
 	private ActionListener actionListener;
 	private JTextField textFieldIdProducto;
 	private JButton btnModificaProducto;
@@ -81,11 +82,12 @@ public class VistaGestionProductoAdmin extends JPanel implements IVistaGestionPr
 	@Override
 	public void addActionListener(ActionListener actionListener) {
 		
+		this.actionListener = actionListener;
 		this.btnAgregaProducto.addActionListener(actionListener);
 		this.btnModificaProducto.addActionListener(actionListener);
 		this.btnEliminaProducto.addActionListener(actionListener);
 		this.btnVolver.addActionListener(actionListener);
-		this.actionListener = actionListener;
+		
 		
 	}
 
