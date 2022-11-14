@@ -23,12 +23,12 @@ public class VistaAgregaProductoPromocion extends JPanel implements IVistaAgrega
 	private ActionListener actionListener;
 	private JTextField textFieldCantMinima;
 	private JTextField textFieldPrecioUnitarioConDescuento;
-	private JComboBox comboBoxProductos;
 	private JComboBox comboBox2x1;
 	private JComboBox comboBoxDescuentoPorCantidad;
 	private JComboBox comboBoxDiasDePromo;
 	private JButton btnVolver;
 	private JButton btnConfirmar;
+	private JTextField textFieldIdProd;
 	
 	public VistaAgregaProductoPromocion() {
 		setBorder(new TitledBorder(new EtchedBorder(EtchedBorder.LOWERED, new Color(255, 255, 255), new Color(160, 160, 160)), "Agrega Promocion", TitledBorder.LEADING, TitledBorder.TOP, null, new Color(0, 0, 0)));
@@ -40,15 +40,15 @@ public class VistaAgregaProductoPromocion extends JPanel implements IVistaAgrega
 		JPanel panel_18 = new JPanel();
 		panel.add(panel_18);
 		
-		JLabel lblNewLabel = new JLabel("Producto");
+		JLabel lblNewLabel = new JLabel("Id Producto");
 		panel_18.add(lblNewLabel);
 		
 		JPanel panel_19 = new JPanel();
 		panel.add(panel_19);
 		
-		comboBoxProductos = new JComboBox();
-		comboBoxProductos.setEditable(true);
-		panel_19.add(comboBoxProductos);
+		textFieldIdProd = new JTextField();
+		panel_19.add(textFieldIdProd);
+		textFieldIdProd.setColumns(10);
 		
 		JPanel panel_1 = new JPanel();
 		add(panel_1);
@@ -165,7 +165,6 @@ public class VistaAgregaProductoPromocion extends JPanel implements IVistaAgrega
 		this.actionListener = actionListener;
 		this.btnConfirmar.addActionListener(actionListener);
 		this.btnVolver.addActionListener(actionListener);
-	
 	}
 
 	@Override
@@ -182,8 +181,8 @@ public class VistaAgregaProductoPromocion extends JPanel implements IVistaAgrega
 
 	@Override
 	public int getIdProm() {
-		this.comboBoxProductos.getSelectedItem();
-		return 0;
+		
+		return Integer.valueOf(this.textFieldIdProd.getText());
 	}
 
 	@Override
