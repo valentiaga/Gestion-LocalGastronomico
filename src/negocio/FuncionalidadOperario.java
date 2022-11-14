@@ -308,10 +308,11 @@ public class FuncionalidadOperario {
 	// crea comanda
 	public void abreComanda(Mesa mesa) throws NoExisteMesa_Exception, MesaOcupada_Exception{ //seria la opcion abrir mesa de la ventana. Hay q agregar un maximo de mesas y tirar excepcion de q ya esta todo ocupado y aparte excepcion de si justo esa mesa esta ocupada.
 		if (mesa != null) { //la mesa existe en el local
-			if (Sistema.getInstance().getMesas().get(mesa.getNroMesa()).getEstado()==Enumerados.estadoMesa.LIBRE) {
+			if (Sistema.getInstance().getMesas().get(mesa.getNroMesa()).getEstado() == Enumerados.estadoMesa.LIBRE) {
+				Sistema.getInstance().getMesas().get(mesa.getNroMesa()).setEstado(Enumerados.estadoMesa.OCUPADA);
 				Sistema sistema = Sistema.getInstance();
 				Comanda comanda = new Comanda(mesa, Enumerados.estadoComanda.ABIERTO);
-				mesa.setComanda(comanda);
+				mesa.setComanda(comanda); 
 				sistema.getComandas().add(comanda);	
 				mesa.setMozo(Sistema.getInstance().getMozos().get("Marti"));
 			}

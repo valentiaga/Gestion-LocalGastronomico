@@ -1,30 +1,33 @@
 package vista;
 
+import java.awt.Color;
 import java.awt.GridLayout;
 import java.awt.event.ActionListener;
-import java.awt.event.ItemListener;
+import java.awt.event.KeyEvent;
+import java.awt.event.KeyListener;
 
 import javax.swing.JButton;
-import javax.swing.JComboBox;
 import javax.swing.JLabel;
+import javax.swing.JOptionPane;
 import javax.swing.JPanel;
 import javax.swing.JTextField;
+import javax.swing.border.EtchedBorder;
 import javax.swing.border.TitledBorder;
 
-import modelo.Enumerados;
-import javax.swing.border.EtchedBorder;
-import java.awt.Color;
+import modelo.Producto;
+import negocio.Sistema;
 
-public class VistaModificaProducto extends JPanel implements IVistaModificaProducto{
+public class VistaModificaProducto extends JPanel implements IVistaModificaProducto, KeyListener{
 	
 
-	private JTextField textFieldNyA;
-	private JTextField textFieldCantHijos;
-	private JTextField textFieldFecha;
+	private JTextField textFieldCosto;
+	private JTextField textFieldVenta;
+	private JTextField textFieldStock;
 	private JButton btnVolver;
 	private JButton btnConfirmar;
 	private ActionListener actionListener;
-	private JTextField textField;
+	private JTextField textFieldNombre;
+	private JTextField textFieldIdProd;
 	/**
 	 * Create the panel.
 	 */
@@ -34,111 +37,166 @@ public class VistaModificaProducto extends JPanel implements IVistaModificaProdu
 		
 		JPanel panel = new JPanel();
 		add(panel);
-		panel.setLayout(new GridLayout(6, 1, 0, 0));
+		panel.setLayout(new GridLayout(7, 1, 0, 0));
 		
 		JPanel panel_1 = new JPanel();
 		panel.add(panel_1);
-		//comboBox.addItemListener(this);
 		
-		JLabel lblNombre = new JLabel("Nombre del producto");
-		panel_1.add(lblNombre);
+		JLabel lblNewLabel = new JLabel("Id Prod");
+		panel_1.add(lblNewLabel);
 		
-		textField = new JTextField();
-		panel_1.add(textField);
-		textField.setColumns(10);
+		textFieldIdProd = new JTextField();
+		textFieldIdProd.addKeyListener(this);
+		panel_1.add(textFieldIdProd);
+		textFieldIdProd.setColumns(10);
 		
 		JPanel panel_2 = new JPanel();
 		panel.add(panel_2);
+		//comboBox.addItemListener(this);
 		
-		JLabel lblCosto = new JLabel("Costo del producto");
-		panel_2.add(lblCosto);
+		JLabel lblNombre = new JLabel("Nombre del producto");
+		panel_2.add(lblNombre);
 		
-		textFieldNyA = new JTextField();
-		panel_2.add(textFieldNyA);
-		textFieldNyA.setColumns(10);
+		textFieldNombre = new JTextField();
+		panel_2.add(textFieldNombre);
+		textFieldNombre.setColumns(10);
 		
 		JPanel panel_3 = new JPanel();
 		panel.add(panel_3);
 		
-		JLabel lblPrecioVenta = new JLabel("Precio de venta ");
-		panel_3.add(lblPrecioVenta);
+		JLabel lblCosto = new JLabel("Costo del producto");
+		panel_3.add(lblCosto);
 		
-		textFieldCantHijos = new JTextField();
-		panel_3.add(textFieldCantHijos);
-		textFieldCantHijos.setColumns(10);
+		textFieldCosto = new JTextField();
+		panel_3.add(textFieldCosto);
+		textFieldCosto.setColumns(10);
 		
 		JPanel panel_4 = new JPanel();
 		panel.add(panel_4);
 		
-		JLabel lblStock = new JLabel("Stock ");
-		panel_4.add(lblStock);
+		JLabel lblPrecioVenta = new JLabel("Precio de venta ");
+		panel_4.add(lblPrecioVenta);
 		
-		textFieldFecha = new JTextField();
-		panel_4.add(textFieldFecha);
-		textFieldFecha.setColumns(10);
+		textFieldVenta = new JTextField();
+		panel_4.add(textFieldVenta);
+		textFieldVenta.setColumns(10);
 		
 		JPanel panel_5 = new JPanel();
 		panel.add(panel_5);
 		
-		btnConfirmar = new JButton("Confirmar");
-		btnConfirmar.setActionCommand("CONFIRMAR");
-		panel_5.add(btnConfirmar);
+		JLabel lblStock = new JLabel("Stock ");
+		panel_5.add(lblStock);
+		
+		textFieldStock = new JTextField();
+		panel_5.add(textFieldStock);
+		textFieldStock.setColumns(10);
 		
 		JPanel panel_6 = new JPanel();
 		panel.add(panel_6);
 		
+		btnConfirmar = new JButton("Confirmar");
+		panel_6.add(btnConfirmar);
+		btnConfirmar.setActionCommand("CONFIRMAR");
+		
+		JPanel panel_7 = new JPanel();
+		panel.add(panel_7);
+		
 		btnVolver = new JButton("Volver");
+		panel_7.add(btnVolver);
 		btnVolver.setActionCommand("VOLVER");
-		panel_6.add(btnVolver);
 
-	}
-
-	@Override
-	public int getidProd() {
-		// TODO Auto-generated method stub
-		return 0;
 	}
 
 	@Override
 	public String getNombre() {
-		// TODO Auto-generated method stub
-		return null;
+		return this.textFieldNombre.getText();
 	}
 
 	@Override
-	public double getPrecioCosto() {
-		// TODO Auto-generated method stub
-		return 0;
+	public float getPrecioCosto() {
+		float costo=-1;
+		try {
+			costo = Float.valueOf(this.textFieldCosto.getText());
+		}
+		catch (NumberFormatException e2) {
+		}
+		return costo;
 	}
 
 	@Override
-	public double getPrecioVenta() {
-		// TODO Auto-generated method stub
-		return 0;
+	public float getPrecioVenta() {
+		float venta=-1;
+		try {
+			venta = Float.valueOf(this.textFieldVenta.getText());
+		}
+		catch (NumberFormatException e2) {
+		}
+		return venta;
 	}
 
 	@Override
 	public int getStockInicial() {
-		// TODO Auto-generated method stub
-		return 0;
+		int stock=-1;
+		try {
+			stock = Integer.parseInt(this.textFieldStock.getText());
+		}
+		catch (NumberFormatException e2) {
+		}
+		return stock;
 	}
 
 	@Override
 	public void addAcionListener(ActionListener actionListener) {
-		// TODO Auto-generated method stub
-		
+		this.btnConfirmar.addActionListener(actionListener);
+		this.btnVolver.addActionListener(actionListener);
+		this.actionListener = actionListener;
 	}
 
 	@Override
 	public void limpiarVista() {
-		// TODO Auto-generated method stub
-		
+		this.textFieldIdProd.setText("");
+		this.textFieldNombre.setText("");
+		this.textFieldCosto.setText("");
+		this.textFieldVenta.setText("");
+		this.textFieldStock.setText("");
 	}
 
 	@Override
 	public void ventanaEmergente(String mensaje) {
-		// TODO Auto-generated method stub
-		
+		JOptionPane.showMessageDialog(null, mensaje);
 	}
 
+	@Override
+	public int getIdProd() {
+		int id=-1;
+		try {
+			id = Integer.parseInt(this.textFieldIdProd.getText());
+		}
+		catch (NumberFormatException e2) {
+		}
+		return id;
+	}
+
+	public void keyPressed(KeyEvent e) {
+	}
+	public void keyReleased(KeyEvent e) {
+		boolean condition = this.getIdProd()!=-1;
+		if (condition) {
+			Producto producto = Sistema.getInstance().getProductos().get(this.getIdProd());
+			if (producto!=null) {
+				this.textFieldNombre.setText(producto.getNombre());
+				this.textFieldCosto.setText(String.valueOf(producto.getPrecioCosto()));
+				this.textFieldVenta.setText(String.valueOf(producto.getPrecioVenta()));
+				this.textFieldStock.setText(String.valueOf(producto.getStockInicial()));
+			}
+		}
+		else {
+			this.textFieldNombre.setText("");
+			this.textFieldCosto.setText("");
+			this.textFieldVenta.setText("");
+			this.textFieldStock.setText("");
+		}
+	}
+	public void keyTyped(KeyEvent e) {
+	}
 }

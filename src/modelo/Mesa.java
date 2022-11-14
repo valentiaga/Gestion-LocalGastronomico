@@ -17,7 +17,7 @@ public class Mesa
 		this.nroMesa = siguienteNroMesa++;
 		this.cantPax = cantPax;
 		this.estado = estado.LIBRE;
-		this.comanda = new Comanda(this,Enumerados.estadoComanda.ABIERTO);
+		//this.comanda = new Comanda(this,Enumerados.estadoComanda.ABIERTO);
 	}
 	/*public Mesa() {
 		super();

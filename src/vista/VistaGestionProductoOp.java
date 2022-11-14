@@ -16,7 +16,8 @@ import javax.swing.JTextField;
 
 public class VistaGestionProductoOp extends JPanel implements IVistaGestionProductoOp{
 	private JTextField textFieldIdProducto;
-
+	private JButton btnModificaProducto;
+	private ActionListener actionListener;
 	/**
 	 * Create the panel.
 	 */
@@ -46,14 +47,15 @@ public class VistaGestionProductoOp extends JPanel implements IVistaGestionProdu
 		JPanel panel_4 = new JPanel();
 		panel_1.add(panel_4);
 		
-		JButton btnModificaProducto = new JButton("Modifica Producto");
+		btnModificaProducto = new JButton("Modifica Producto");
 		panel_4.add(btnModificaProducto);
 
 	}
 
 	@Override
 	public void addActionListener(ActionListener actionListener) {
-		// TODO Auto-generated method stub
+		this.btnModificaProducto.addActionListener(actionListener);
+		this.actionListener = actionListener;
 		
 	}
 
@@ -71,8 +73,13 @@ public class VistaGestionProductoOp extends JPanel implements IVistaGestionProdu
 
 	@Override
 	public int getIdProd() {
-		// TODO Auto-generated method stub
-		return 0;
+		int id=-1;
+		try {
+			id = Integer.parseInt(this.textFieldIdProducto.getText());
+		}
+		catch (NumberFormatException e2) {
+		}
+		return id;
 	}
 
 }

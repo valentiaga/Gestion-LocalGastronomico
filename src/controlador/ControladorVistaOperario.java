@@ -39,8 +39,12 @@ public class ControladorVistaOperario implements ActionListener {
 			cl.show(contentPane, ventana.getVistaProductoOp());
 		else if (comando.equalsIgnoreCase("GESTION_PROMOCIONES")) 
 			JOptionPane.showMessageDialog(null, "promos.");
-		else if (comando.equalsIgnoreCase("MODIFICAR")) 
+		else if (comando.equalsIgnoreCase("MODIFICAR")) {
+			this.ventana.obtieneVistaModificaDatos().getTextField().setText(Sistema.getInstance().getOperarioActual().getPassword());
+			this.ventana.obtieneVistaModificaDatos().getTextFieldUserName().setText(Sistema.getInstance().getOperarioActual().getUserName());
+			this.ventana.obtieneVistaModificaDatos().getTextFieldNyA().setText(Sistema.getInstance().getOperarioActual().getNyA());
 			cl.show(contentPane, ventana.getVistaModificaDatosPersonales());
+		}
 		else if (comando.equalsIgnoreCase("CERRAR_SESION")) {
 			cl.show(contentPane, ventana.getVistaInicial());
 			Sistema.getInstance().setFuncionalidadOperario(null);

@@ -15,6 +15,7 @@ import controlador.ControladorVistaModificaMesaAdmin;
 import controlador.ControladorVistaModificaMesaOp;
 import controlador.ControladorVistaModificaMozoAdmin;
 import controlador.ControladorVistaModificaMozoOp;
+import controlador.ControladorVistaModificaProducto;
 import controlador.ControladorVistaOperario;
 import controlador.ControladorVistaRegistrarOperario;
 import excepciones.CantComensalesInvalida_Exception;
@@ -65,6 +66,15 @@ public class Prueba {
 		Sistema.getInstance().getMozos().put("Marti", mozo);
 		Sistema.getInstance().getMozos().put("Valen", mozo2);
 		Sistema.getInstance().getMozos().put("Pau", mozo3);
+		Sistema.getInstance().seteaAdmin();
+		Sistema.getInstance().setFuncionalidadAdmin(new FuncionalidadAdmin(Administrador.getInstance()));
+		try {
+			Sistema.getInstance().getFuncionalidadAdmin().agregaProducto("Pizza", 10, 20, 10);
+			Sistema.getInstance().getFuncionalidadAdmin().agregaProducto("Agua", 10, 20, 10);
+		} catch (precioInvalido_Exception e1) {
+			// TODO Auto-generated catch block
+			e1.printStackTrace();
+		}
 
 		VistaGestionMozoOp vistaMozoOp = new VistaGestionMozoOp();
 		VistaGestionMozoAdmin vistaMozoAdmin = new VistaGestionMozoAdmin();
@@ -89,14 +99,6 @@ public class Prueba {
 		VistaModificaPromocionTemporal vistaModificaPromocionTemporal = new VistaModificaPromocionTemporal();
 		VistaRegistrarOperario vistaRegistraOp = new VistaRegistrarOperario();
 		
-		Sistema.getInstance().seteaAdmin();
-		Sistema.getInstance().setFuncionalidadAdmin(new FuncionalidadAdmin(Administrador.getInstance()));
-		try {
-			Sistema.getInstance().getFuncionalidadAdmin().agregaProducto("Pizza", 10, 20, 10);
-		} catch (precioInvalido_Exception e1) {
-			// TODO Auto-generated catch block
-			e1.printStackTrace();
-		}
 		try {
 			Sistema.getInstance().getFuncionalidadAdmin().agregaMesa(4);
 			Sistema.getInstance().getFuncionalidadAdmin().agregaMesa(5);
@@ -132,7 +134,7 @@ public class Prueba {
 		ControladorVistaModificaDatosOperario cModificaDatosOp = new ControladorVistaModificaDatosOperario(vistaModificaDatosPersonales, v);
 		ControladorVistaRegistrarOperario cRegistraOp = new ControladorVistaRegistrarOperario(vistaRegistraOp, v);
 		ControladorVistaAltaMozo cAltaMozo = new ControladorVistaAltaMozo(vistaAltaMozo, v);
-		
+		ControladorVistaModificaProducto cModificaProducto = new ControladorVistaModificaProducto(vistaModificaProducto, v);
 	}
 
 }
