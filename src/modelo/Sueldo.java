@@ -13,8 +13,8 @@ public class Sueldo
         return remBasic*(1+0.05*cantHijos);
     }
 
-	public void setRemBasic(double remBasic) {
-        this.remBasic = remBasic;
+	public static void setRemBasic(double remBasic) {
+       remBasic = remBasic;
     }
 
     public double getRemBasic() {

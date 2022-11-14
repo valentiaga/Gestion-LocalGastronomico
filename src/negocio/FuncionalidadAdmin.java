@@ -24,6 +24,7 @@ import modelo.Mesa;
 import modelo.Mozo;
 import modelo.Operario;
 import modelo.Producto;
+import modelo.Sueldo;
 
 public class FuncionalidadAdmin extends FuncionalidadOperario {
 
@@ -80,7 +81,7 @@ public class FuncionalidadAdmin extends FuncionalidadOperario {
 		if (estado == Enumerados.estadoOperario.INACTIVO)
 			activo = false;
 		if (this.verificaPassword(password)== false)
-			throw new ContrasenaIncorrecta_Exception("El campo contraseña debe contener entre 6 y 12 caracteres. Con al menos 1 dígito y 1 mayúscula");
+			throw new ContrasenaIncorrecta_Exception("El campo contraseï¿½a debe contener entre 6 y 12 caracteres. Con al menos 1 dï¿½gito y 1 mayï¿½scula");
 		else if(Sistema.getInstance().getOperariosRegistrados().putIfAbsent(userName, new Operario(NyA,userName,password,activo)) != null)	// si ya estaba registrado tiramos excepcion????
 			throw new UserNameRepetido_Exception("El userName '"+userName+"' ya esta asociado a un operario.");
 	}
@@ -128,6 +129,9 @@ public class FuncionalidadAdmin extends FuncionalidadOperario {
 			throw new MesaOcupada_Exception("Espere a que se libere la mesa para elimianrla.");
 		GestionMesas.eliminaMesa(nroMesa);
 	}
-
+	
+	public void modificaRemuneracionBasica(double remBasica) {
+		Sueldo.setRemBasic(remBasica);
+	}
 	
 }
