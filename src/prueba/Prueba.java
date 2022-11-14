@@ -1,5 +1,7 @@
 package prueba;
 
+import java.io.IOException;
+
 import controlador.ControladorVistaAdmin;
 import controlador.ControladorVistaGestionMesaAdmin;
 import controlador.ControladorVistaGestionMesaOp;
@@ -17,6 +19,7 @@ import modelo.Administrador;
 import modelo.Mozo;
 import negocio.FuncionalidadAdmin;
 import negocio.Sistema;
+import persistencia.Persiste;
 import vista.Ventana;
 import vista.VistaAdmin;
 import vista.VistaAgregaProducto;
@@ -41,8 +44,15 @@ import vista.VistaRegistrarOperario;
 
 public class Prueba {
 
-	public static void main(String[] args) throws CantComensalesInvalida_Exception {
-
+	public static void main(String[] args) {
+		
+		try {
+			Persiste.getInstancia().leer();
+		} catch (IOException e2) {
+			// TODO Auto-generated catch block
+			e2.printStackTrace();
+		}
+		
 		Mozo mozo = new Mozo("Marti", 3);
 		Mozo mozo2 = new Mozo("Valen", 0);
 		Mozo mozo3 = new Mozo("Pau", 2);
