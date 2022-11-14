@@ -1,6 +1,6 @@
 package modelo;
 
-public class Producto
+public class Producto implements Cloneable
 {
     private static int siguienteIdProd = 0;
     private int idProd;
@@ -11,7 +11,7 @@ public class Producto
     
 	public Producto(String nombre, double precioCosto, double precioVenta, int stockInicial) {
 		super();
-		this.idProd = siguienteIdProd++;
+		this.idProd = ++siguienteIdProd;
 		this.nombre = nombre;
 		this.precioCosto = precioCosto;
 		this.precioVenta = precioVenta;
@@ -58,6 +58,12 @@ public class Producto
 	public String toString() {
 		return "Producto [idProd=" + idProd + ", nombre=" + nombre + ", precioCosto=" + precioCosto + ", precioVenta="
 				+ precioVenta + ", stockInicial=" + stockInicial + "]";
+	}
+
+	@Override
+	public Object clone() throws CloneNotSupportedException {
+		// TODO Auto-generated method stub
+		return super.clone();
 	}
 
 	
