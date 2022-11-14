@@ -3,6 +3,7 @@ package negocio;
 import java.util.ArrayList;
 
 import modelo.Comanda;
+import modelo.Enumerados;
 import modelo.MesaAtendida;
 import modelo.Pedido;
 import modelo.PromocionProd;
@@ -31,7 +32,7 @@ public class GestionComandas {
 		
 		while( bool == false && i < comandas.size() ) {
 			while(bool == false && j < comandas.get(i).getPedidos().size()) {
-				if(comandas.get(i).getPedidos().get(i).getProducto().getIdProd() == idProd)
+				if(comandas.get(i).getPedidos().get(i).getProducto().getIdProd() == idProd && comandas.get(i).getEstado()==Enumerados.estadoComanda.ABIERTO)
 					bool = true;
 				j++;
 			}

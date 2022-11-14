@@ -11,7 +11,7 @@ public class Producto implements Cloneable
     
 	public Producto(String nombre, double precioCosto, double precioVenta, int stockInicial) {
 		super();
-		this.idProd = ++siguienteIdProd;
+		this.idProd = siguienteIdProd++;
 		this.nombre = nombre;
 		this.precioCosto = precioCosto;
 		this.precioVenta = precioVenta;

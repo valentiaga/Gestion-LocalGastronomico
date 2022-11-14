@@ -77,7 +77,7 @@ public class Ventana extends JFrame {
 		this.vistaModificaMozoAdmin = vistaModificaMozoAdmin;
 		this.vistaModificaMozoOp = vistaModificaMozoOp;
 		this.vistaAltaMozo = vistaAltaMozo;
-		this.vistaAgregaProducto = vistaAgregaProducto;
+		this.vistaAgregaProducto = vistaAgregaProducto; 
 		this.vistaAgregaProductoPromocion = vistaAgregaProductoPromocion;
 		this.vistaModificaDatosPersonales = vistaModificaDatosPersonales;
 		this.vistaModificaProducto = vistaModificaProducto;
@@ -118,6 +118,7 @@ public class Ventana extends JFrame {
 		contentPane.add(vistaAltaMozo, "vistaAltaMozo");
 		contentPane.add(vistaGestionProductoAdmin, "vistaGestionProductoAdmin");
 		contentPane.add(vistaGestionProductoOp, "vistaGestionProductoOp");
+		
 	}
 
 	public JPanel getContentPane() {
@@ -127,11 +128,16 @@ public class Ventana extends JFrame {
 	public String getVistaGestionProductoAdmin() {
 		return "vistaGestionProductoAdmin";
 	}
+	public VistaModificaDatosPersonales obtieneVistaModificaDatos() {
+		return vistaModificaDatosPersonales;
+	}
 	
 	public String getVistaGestionProductoOp() {
 		return "vistaGestionProductoOp";
 	}
-	
+	public String getVistaModificaProducto() {
+		return "vistaModificaProducto";
+	}
 	public String getVistaInicial() {
 		return "vistaInicial";
 	}
@@ -140,6 +146,10 @@ public class Ventana extends JFrame {
 		return "vistaAltaMozo";
 	}
 
+	public String getVistaAgregaProducto() {
+		return "vistaAgregaProducto";
+	}
+	
 	public String getVistaGestionMozoOp() {
 		return "vistaGestionMozoOp";
 	}
@@ -170,9 +180,7 @@ public class Ventana extends JFrame {
 	public VistaGestionMesaOp getVistaMesaaOp() {
 		return this.vistaGestionMesaOp;
 	}
-	public VistaGestionProductoOp getVistaProductooOp() {
-		return this.vistaGestionProductoOp;
-	}
+	
 
 	public String getVistaOp() {
 		return "vistaOp";
@@ -217,7 +225,7 @@ public class Ventana extends JFrame {
 	public VistaGestionMozoOp vistaGestionMozoOp() {
 		return this.vistaGestionMozoOp;
 	}
-	
+
 	public VistaGestionMesaOp getVistaGestionMesaOp() {
 		return vistaGestionMesaOp;
 	}
@@ -250,6 +258,14 @@ public class Ventana extends JFrame {
 	
 	public String getVistaGestionPromociones() {
 		return "vistaGestionPromociones";
+
+	/*public VistaGestionProductoOp VistaProductooOp() {
+		return this.vistaGestionProductoOp;
+	}
+	public VistaGestionProductoAdmin VistaProductooAdmin() {
+		return this.vistaGestionProductoAdmin;
+    */
+
 	}
 
 }

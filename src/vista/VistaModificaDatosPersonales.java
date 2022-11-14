@@ -5,7 +5,11 @@ import java.awt.GridLayout;
 import java.awt.event.ActionListener;
 
 import javax.swing.border.TitledBorder;
+
+import negocio.Sistema;
+
 import javax.swing.JLabel;
+import javax.swing.JOptionPane;
 import javax.swing.JTextField;
 import javax.swing.JButton;
 
@@ -33,6 +37,7 @@ public class VistaModificaDatosPersonales extends JPanel implements IVistaModifi
 		panel.add(textFieldNyA);
 		textFieldNyA.setColumns(10);
 		
+		
 		JPanel panel_1 = new JPanel();
 		add(panel_1);
 		
@@ -43,6 +48,7 @@ public class VistaModificaDatosPersonales extends JPanel implements IVistaModifi
 		panel_1.add(textFieldUserName);
 		textFieldUserName.setColumns(10);
 		
+		
 		JPanel panel_2 = new JPanel();
 		add(panel_2);
 		
@@ -52,6 +58,7 @@ public class VistaModificaDatosPersonales extends JPanel implements IVistaModifi
 		textField = new JTextField();
 		panel_2.add(textField);
 		textField.setColumns(10);
+		
 		
 		JPanel panel_3 = new JPanel();
 		add(panel_3);
@@ -88,13 +95,29 @@ public class VistaModificaDatosPersonales extends JPanel implements IVistaModifi
 
 	@Override
 	public void limpiarVista() {
-		// TODO Auto-generated method stub
+		textFieldUserName.setText("");
+		textField.setText("");
+		textFieldNyA.setText("");
 		
 	}
 
 	@Override
 	public void ventanaEmergente(String mensaje) {
-		// TODO Auto-generated method stu	
+		JOptionPane.showMessageDialog(null, mensaje);
 		}
+
+	public JTextField getTextFieldNyA() {
+		return textFieldNyA;
+	}
+
+
+	public JTextField getTextFieldUserName() {
+		return textFieldUserName;
+	}
+
+	public JTextField getTextField() {
+		return textField;
+	}
+
 
 }

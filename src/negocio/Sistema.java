@@ -243,6 +243,16 @@ public class Sistema {
 			throw new UserNameIncorrecto_Exception("El usuario '"+userName+"' no se encuentra registrado en el sistema.");
 		}
 	}
+
+
+	public Operario getOperarioActual() {
+		return operarioActual;
+	}
+
+
+	public void setOperarioActual(Operario operarioActual) {
+		this.operarioActual = operarioActual;
+	}
 	
 	
 	
