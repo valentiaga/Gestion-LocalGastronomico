@@ -7,6 +7,7 @@ import java.awt.event.ActionListener;
 import javax.swing.JOptionPane;
 import javax.swing.JPanel;
 
+import negocio.Sistema;
 import vista.IVistaGestionMozoOp;
 import vista.IVistaOperario;
 import vista.Ventana;
@@ -40,8 +41,10 @@ public class ControladorVistaOperario implements ActionListener {
 			JOptionPane.showMessageDialog(null, "promos.");
 		else if (comando.equalsIgnoreCase("MODIFICAR")) 
 			cl.show(contentPane, ventana.getVistaModificaDatosPersonales());
-		else if (comando.equalsIgnoreCase("CERRAR_SESION")) 
+		else if (comando.equalsIgnoreCase("CERRAR_SESION")) {
 			cl.show(contentPane, ventana.getVistaInicial());
+			Sistema.getInstance().setFuncionalidadOperario(null);
+		}
 	}
 
 }
