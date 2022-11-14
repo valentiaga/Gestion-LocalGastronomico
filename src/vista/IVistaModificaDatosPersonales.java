@@ -2,12 +2,14 @@ package vista;
 
 import java.awt.event.ActionListener;
 
-public interface IVistaInicial {
+public interface IVistaModificaDatosPersonales {
 	
 	void addActionListener(ActionListener actionListener);
 	void limpiarVista();
 	void ventanaEmergente(String mensaje);
-	String getUsuario();
-	String getContrasena();
-	
+	String getNyA();
+    String getUserName();
+    String getPassword();
+    boolean getActivo();
+    
 }

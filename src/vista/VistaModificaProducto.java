@@ -2,32 +2,34 @@ package vista;
 
 import java.awt.GridLayout;
 import java.awt.event.ActionListener;
-import java.awt.event.ItemEvent;
 import java.awt.event.ItemListener;
 
 import javax.swing.JButton;
 import javax.swing.JComboBox;
 import javax.swing.JLabel;
-import javax.swing.JOptionPane;
 import javax.swing.JPanel;
 import javax.swing.JTextField;
 import javax.swing.border.TitledBorder;
 
 import modelo.Enumerados;
+import javax.swing.border.EtchedBorder;
+import java.awt.Color;
 
-public class VistaAltaMozo extends JPanel implements ItemListener, IVistaAltaMozo{
+public class VistaModificaProducto extends JPanel implements IVistaModificaProducto{
 	
+
 	private JTextField textFieldNyA;
 	private JTextField textFieldCantHijos;
 	private JTextField textFieldFecha;
 	private JButton btnVolver;
 	private JButton btnConfirmar;
 	private ActionListener actionListener;
+	private JTextField textField;
 	/**
 	 * Create the panel.
 	 */
-	public VistaAltaMozo () {
-		setBorder(new TitledBorder(null, "Alta Mozo", TitledBorder.LEADING, TitledBorder.TOP, null, null));
+	public VistaModificaProducto () {
+		setBorder(new TitledBorder(new EtchedBorder(EtchedBorder.LOWERED, new Color(255, 255, 255), new Color(160, 160, 160)), "Modifica Producto", TitledBorder.LEADING, TitledBorder.TOP, null, new Color(0, 0, 0)));
 		setLayout(new GridLayout(1, 1, 0, 0));
 		
 		JPanel panel = new JPanel();
@@ -36,22 +38,20 @@ public class VistaAltaMozo extends JPanel implements ItemListener, IVistaAltaMoz
 		
 		JPanel panel_1 = new JPanel();
 		panel.add(panel_1);
+		//comboBox.addItemListener(this);
 		
-		JComboBox comboBox = new JComboBox();
-		comboBox.addItem(Enumerados.estadoMozo.ACTIVO);
-		comboBox.addItem(Enumerados.estadoMozo.AUSENTE);
-		comboBox.addItem(Enumerados.estadoMozo.DEFRANCO);
-		comboBox.addItemListener(this);
+		JLabel lblNombre = new JLabel("Nombre del producto");
+		panel_1.add(lblNombre);
 		
-		JLabel lblNewLabel = new JLabel("Estado");
-		panel_1.add(lblNewLabel);
-		panel_1.add(comboBox);
+		textField = new JTextField();
+		panel_1.add(textField);
+		textField.setColumns(10);
 		
 		JPanel panel_2 = new JPanel();
 		panel.add(panel_2);
 		
-		JLabel lblNyA = new JLabel("Nombre y apellido");
-		panel_2.add(lblNyA);
+		JLabel lblCosto = new JLabel("Costo del producto");
+		panel_2.add(lblCosto);
 		
 		textFieldNyA = new JTextField();
 		panel_2.add(textFieldNyA);
@@ -60,8 +60,8 @@ public class VistaAltaMozo extends JPanel implements ItemListener, IVistaAltaMoz
 		JPanel panel_3 = new JPanel();
 		panel.add(panel_3);
 		
-		JLabel lblCantHijos = new JLabel("Cantidad  de hijos");
-		panel_3.add(lblCantHijos);
+		JLabel lblPrecioVenta = new JLabel("Precio de venta ");
+		panel_3.add(lblPrecioVenta);
 		
 		textFieldCantHijos = new JTextField();
 		panel_3.add(textFieldCantHijos);
@@ -70,8 +70,8 @@ public class VistaAltaMozo extends JPanel implements ItemListener, IVistaAltaMoz
 		JPanel panel_4 = new JPanel();
 		panel.add(panel_4);
 		
-		JLabel lblFecha = new JLabel("Fecha de Nacimiento");
-		panel_4.add(lblFecha);
+		JLabel lblStock = new JLabel("Stock ");
+		panel_4.add(lblStock);
 		
 		textFieldFecha = new JTextField();
 		panel_4.add(textFieldFecha);
@@ -94,38 +94,39 @@ public class VistaAltaMozo extends JPanel implements ItemListener, IVistaAltaMoz
 	}
 
 	@Override
-	public void itemStateChanged(ItemEvent e) {
+	public int getidProd() {
 		// TODO Auto-generated method stub
-		
+		return 0;
+	}
+
+	@Override
+	public String getNombre() {
+		// TODO Auto-generated method stub
+		return null;
+	}
+
+	@Override
+	public double getPrecioCosto() {
+		// TODO Auto-generated method stub
+		return 0;
+	}
+
+	@Override
+	public double getPrecioVenta() {
+		// TODO Auto-generated method stub
+		return 0;
+	}
+
+	@Override
+	public int getStockInicial() {
+		// TODO Auto-generated method stub
+		return 0;
 	}
 
 	@Override
 	public void addAcionListener(ActionListener actionListener) {
-		this.btnConfirmar.addActionListener(actionListener);
-		this.btnVolver.addActionListener(actionListener);
-		this.actionListener = actionListener;
-		
-	}
-
-	@Override
-	public String getNyA() {
 		// TODO Auto-generated method stub
-		return this.textFieldNyA.getText();
-	}
-
-	@Override
-	public int getCantHijos() {
-		int cantHijos=-1;
-		try {
-			cantHijos = Integer.parseInt(this.textFieldCantHijos.getText());
-		}
-		catch (NumberFormatException e2) {
-		}
-		return cantHijos;
-	}
-
-	public String fechaNacimiento() {
-		return this.textFieldFecha.getText();
+		
 	}
 
 	@Override
@@ -136,8 +137,8 @@ public class VistaAltaMozo extends JPanel implements ItemListener, IVistaAltaMoz
 
 	@Override
 	public void ventanaEmergente(String mensaje) {
-		JOptionPane.showMessageDialog(null, mensaje);		
+		// TODO Auto-generated method stub
+		
 	}
-
 
 }

@@ -8,34 +8,43 @@ import java.awt.FlowLayout;
 import java.awt.GridLayout;
 import javax.swing.GroupLayout;
 import javax.swing.GroupLayout.Alignment;
+import javax.swing.JLabel;
+import javax.swing.JTextField;
 
 public class VistaGestionProductoOp extends JPanel implements IVistaGestionProductoOp{
+	private JTextField textFieldIdProducto;
 
 	/**
 	 * Create the panel.
 	 */
 	public VistaGestionProductoOp() {
 		setBorder(new TitledBorder(null, "Gestion Productos Operario", TitledBorder.LEADING, TitledBorder.TOP, null, null));
+		setLayout(new GridLayout(2, 0, 0, 0));
+		
+		JPanel panel = new JPanel();
+		add(panel);
+		
+		JPanel panel_2 = new JPanel();
+		panel.add(panel_2);
+		
+		JLabel lblIdProducto = new JLabel("Id del producto");
+		panel_2.add(lblIdProducto);
+		
+		JPanel panel_3 = new JPanel();
+		panel.add(panel_3);
+		
+		textFieldIdProducto = new JTextField();
+		panel_3.add(textFieldIdProducto);
+		textFieldIdProducto.setColumns(10);
 		
 		JPanel panel_1 = new JPanel();
+		add(panel_1);
+		
+		JPanel panel_4 = new JPanel();
+		panel_1.add(panel_4);
 		
 		JButton btnModificaProducto = new JButton("Modifica Producto");
-		panel_1.add(btnModificaProducto);
-		GroupLayout groupLayout = new GroupLayout(this);
-		groupLayout.setHorizontalGroup(
-			groupLayout.createParallelGroup(Alignment.LEADING)
-				.addGroup(Alignment.TRAILING, groupLayout.createSequentialGroup()
-					.addComponent(panel_1, GroupLayout.DEFAULT_SIZE, 448, Short.MAX_VALUE)
-					.addContainerGap())
-		);
-		groupLayout.setVerticalGroup(
-			groupLayout.createParallelGroup(Alignment.LEADING)
-				.addGroup(groupLayout.createSequentialGroup()
-					.addGap(123)
-					.addComponent(panel_1, GroupLayout.PREFERRED_SIZE, GroupLayout.DEFAULT_SIZE, GroupLayout.PREFERRED_SIZE)
-					.addContainerGap(132, Short.MAX_VALUE))
-		);
-		setLayout(groupLayout);
+		panel_4.add(btnModificaProducto);
 
 	}
 

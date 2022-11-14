@@ -14,6 +14,7 @@ import javax.swing.JLabel;
 import javax.swing.JOptionPane;
 import javax.swing.JTextField;
 import javax.swing.JButton;
+import javax.swing.border.TitledBorder;
 
 public class VistaModificaMozo extends JPanel implements ItemListener, IVistaModificaMozo{
 	private JTextField textFieldNyA;
@@ -26,6 +27,7 @@ public class VistaModificaMozo extends JPanel implements ItemListener, IVistaMod
 	 * Create the panel.
 	 */
 	public VistaModificaMozo() {
+		setBorder(new TitledBorder(null, "Modifica Mozo", TitledBorder.LEADING, TitledBorder.TOP, null, null));
 		setLayout(new GridLayout(1, 1, 0, 0));
 		
 		JPanel panel = new JPanel();
