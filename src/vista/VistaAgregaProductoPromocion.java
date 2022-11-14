@@ -52,17 +52,14 @@ public class VistaAgregaProductoPromocion extends JPanel implements IVistaAgrega
 		JLabel lblNewLabel_1 = new JLabel("Aplica 2x1");
 		panel_15.add(lblNewLabel_1);
 		
-		JPanel panel_16 = new JPanel();
-		panel_1.add(panel_16);
+		JPanel panel_13 = new JPanel();
+		panel_1.add(panel_13);
 		
-		JRadioButton rdbtnNewRadioButton = new JRadioButton("Si");
-		panel_16.add(rdbtnNewRadioButton);
-		
-		JPanel panel_17 = new JPanel();
-		panel_1.add(panel_17);
-		
-		JRadioButton rdbtnNewRadioButton_1 = new JRadioButton("No");
-		panel_17.add(rdbtnNewRadioButton_1);
+		JComboBox comboBox2x1 = new JComboBox<String>();
+		panel_13.add(comboBox2x1);
+		comboBox2x1.setEditable(true);
+		comboBox2x1.addItem("Si");
+		comboBox2x1.addItem("No");
 		
 		JPanel panel_2 = new JPanel();
 		add(panel_2);
@@ -73,17 +70,14 @@ public class VistaAgregaProductoPromocion extends JPanel implements IVistaAgrega
 		JLabel lblNewLabel_2 = new JLabel("Aplica descuento por cantidad");
 		panel_12.add(lblNewLabel_2);
 		
-		JPanel panel_13 = new JPanel();
-		panel_2.add(panel_13);
-		
-		JRadioButton rdbtnNewRadioButton_2 = new JRadioButton("Si");
-		panel_13.add(rdbtnNewRadioButton_2);
-		
 		JPanel panel_14 = new JPanel();
 		panel_2.add(panel_14);
 		
-		JRadioButton rdbtnNewRadioButton_3 = new JRadioButton("No");
-		panel_14.add(rdbtnNewRadioButton_3);
+		JComboBox comboBoxDescuentoPorCantidad = new JComboBox<String>();
+		panel_14.add(comboBoxDescuentoPorCantidad);
+		comboBoxDescuentoPorCantidad.setEditable(true);
+		comboBoxDescuentoPorCantidad.addItem("Si");
+		comboBoxDescuentoPorCantidad.addItem("No");
 		
 		JPanel panel_3 = new JPanel();
 		add(panel_3);
