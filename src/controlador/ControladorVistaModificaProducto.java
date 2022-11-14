@@ -36,38 +36,25 @@ public class ControladorVistaModificaProducto implements ActionListener {
 		String comando = e.getActionCommand();
 		if (comando.equalsIgnoreCase("CONFIRMAR")) {
 			try {
-				System.out.println(this.vista.getPrecioCosto());
-				Sistema.getInstance().getFuncionalidadAdmin().modificaProducto(
+				if (Sistema.getInstance().getFuncionalidadOperario() != null) {
+				Sistema.getInstance().getFuncionalidadOperario().modificaProducto(
 						this.vista.getIdProd(), this.vista.getNombre(),
 						this.vista.getPrecioCosto(), this.vista.getPrecioVenta(), this.vista.getStockInicial());
 				JOptionPane.showMessageDialog(null, "Datos actualizados.");
-				cl.show(contentPane, ventana.getVistaGestionProductoAdmin());
+				cl.show(contentPane, ventana.getVistaGestionProductoOp());
+				}
+				else {
+					Sistema.getInstance().getFuncionalidadAdmin().modificaProducto(
+							this.vista.getIdProd(), this.vista.getNombre(),
+							this.vista.getPrecioCosto(), this.vista.getPrecioVenta(), this.vista.getStockInicial());
+					JOptionPane.showMessageDialog(null, "Datos actualizados.");
+					cl.show(contentPane, ventana.getVistaGestionProductoAdmin());
+				}
 				this.vista.limpiarVista();
 			} catch (precioInvalido_Exception | prodEnUso_Exception | NoExisteID_Exception e1) {
 				this.vista.ventanaEmergente(e1.getMessage());
 			}
 		}
-		/*if (comando.equalsIgnoreCase("CONFIRMAR")) {
-			try {
-				if (Sistema.getInstance().getFuncionalidadOperario() != null) {
-					System.out.println(this.ventana.VistaProductooOp().getIdProd());
-					Sistema.getInstance().getFuncionalidadOperario().modificaProducto(
-							this.ventana.VistaProductooOp().getIdProd(), this.vista.getNombre(),
-							this.vista.getPrecioCosto(), this.vista.getPrecioVenta(), this.vista.getStockInicial());
-					JOptionPane.showMessageDialog(null, "Datos actualizados.");
-					cl.show(contentPane, ventana.getVistaGestionProductoOp());					
-				}
-				else {
-					Sistema.getInstance().getFuncionalidadAdmin().modificaProducto(
-							this.ventana.VistaProductooOp().getIdProd(), this.vista.getNombre(),
-							this.vista.getPrecioCosto(), this.vista.getPrecioVenta(), this.vista.getStockInicial());
-					JOptionPane.showMessageDialog(null, "Datos actualizados.");
-					cl.show(contentPane, ventana.getVistaGestionProductoAdmin());	
-				}
-			} catch (precioInvalido_Exception | prodEnUso_Exception | NoExisteID_Exception e1) {
-				this.vista.ventanaEmergente(e1.getMessage());
-			}
-		}*/
 		else if (comando.equalsIgnoreCase("VOLVER")) {
 			if (Sistema.getInstance().getFuncionalidadOperario() != null) 
 				cl.show(contentPane, ventana.getVistaGestionProductoOp());	

@@ -7,5 +7,4 @@ public interface IVistaGestionProductoOp {
 	void addActionListener(ActionListener actionListener);
 	void limpiarVista();
 	void ventanaEmergente(String mensaje);
-	int getIdProd();
 }
