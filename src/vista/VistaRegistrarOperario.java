@@ -6,11 +6,14 @@ import java.awt.event.ActionListener;
 import javax.swing.JButton;
 import javax.swing.JComboBox;
 import javax.swing.JLabel;
+import javax.swing.JOptionPane;
 import javax.swing.JPanel;
 import javax.swing.JTextField;
 import javax.swing.border.TitledBorder;
 
 import modelo.Enumerados;
+import modelo.Enumerados.estadoOperario;
+
 import javax.swing.border.EtchedBorder;
 import java.awt.Color;
 
@@ -21,6 +24,7 @@ public class VistaRegistrarOperario extends JPanel implements IVistaRegistrarOpe
 	private JTextField textField;
 	private JButton btnVolver;
 	private JButton btnConfirmar;
+	private JComboBox comboBox;
 	private ActionListener actionListener;
 
 	/**
@@ -90,7 +94,7 @@ public class VistaRegistrarOperario extends JPanel implements IVistaRegistrarOpe
 		JPanel panel_12 = new JPanel();
 		panel_3.add(panel_12);
 		
-		JComboBox comboBox = new JComboBox<String>();
+		comboBox = new JComboBox<String>();
 		panel_12.add(comboBox);
 		comboBox.addItem(Enumerados.estadoOperario.ACTIVO);
 		comboBox.addItem(Enumerados.estadoOperario.INACTIVO);
@@ -125,38 +129,37 @@ public class VistaRegistrarOperario extends JPanel implements IVistaRegistrarOpe
 
 	@Override
 	public void limpiarVista() {
-		// TODO Auto-generated method stub
-		
+		this.textField.setText("");
+		this.textFieldNyA.setText("");
+		this.textFieldUserName.setText("");
 	}
 
 	@Override
 	public void ventanaEmergente(String mensaje) {
-		// TODO Auto-generated method stub
-		
+		JOptionPane.showMessageDialog(null, mensaje);
 	}
 
 	@Override
 	public String getNyA() {
 		// TODO Auto-generated method stub
-		return null;
+		return this.textFieldNyA.getText();
 	}
 
 	@Override
 	public String getUserName() {
 		// TODO Auto-generated method stub
-		return null;
+		return this.textFieldUserName.getText();
 	}
 
 	@Override
 	public String getPassword() {
-		// TODO Auto-generated method stub
-		return null;
+		return this.textField.getText();
 	}
 
 	@Override
-	public boolean getActivo() {
+	public Enumerados.estadoOperario getActivo() {
 		// TODO Auto-generated method stub
-		return false;
+		return (estadoOperario) this.comboBox.getSelectedItem();
 	}
 
 }

@@ -2,6 +2,8 @@ package vista;
 
 import java.awt.event.ActionListener;
 
+import modelo.Enumerados.estadoOperario;
+
 public interface IVistaRegistrarOperario {
 
 	void addActionListener(ActionListener actionListener);
@@ -10,5 +12,5 @@ public interface IVistaRegistrarOperario {
 	String getNyA();
     String getUserName();
     String getPassword();
-    boolean getActivo();
+    estadoOperario getActivo();
 }

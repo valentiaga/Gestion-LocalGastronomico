@@ -7,6 +7,9 @@ import java.awt.event.ActionListener;
 import javax.swing.JOptionPane;
 import javax.swing.JPanel;
 
+import excepciones.ContrasenaIncorrecta_Exception;
+import excepciones.UserNameRepetido_Exception;
+import negocio.Sistema;
 import vista.IVistaAdmin;
 import vista.IVistaGestionProductoAdmin;
 import vista.IVistaModificaDatosPersonales;
@@ -30,6 +33,11 @@ public class ControladorVistaModificaDatosOperario implements ActionListener {
 		CardLayout cl = (CardLayout) contentPane.getLayout();
 		String comando = e.getActionCommand();
 		if (comando.equalsIgnoreCase("CONFIRMA")) {
+			try {
+				Sistema.getInstance().getFuncionalidadOperario().modificaOperario(this.vista.getNyA(), this.vista.getUserName(), this.vista.getPassword());
+			} catch (UserNameRepetido_Exception | ContrasenaIncorrecta_Exception e1) {
+				this.vista.ventanaEmergente(e1.getMessage());
+			}
 			JOptionPane.showMessageDialog(null, "Datos actualizados.");
 			cl.show(contentPane, ventana.getVistaOp());
 		}
