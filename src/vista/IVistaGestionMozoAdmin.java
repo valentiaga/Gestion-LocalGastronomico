@@ -14,4 +14,5 @@ public interface IVistaGestionMozoAdmin {
 	void addActionListener(ActionListener actionListener);
 	void limpiarVista();
 	void ventanaEmergente(String mensaje);
+	double getRemuneracionBasica();
 }
