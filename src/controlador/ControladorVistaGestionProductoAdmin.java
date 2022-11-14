@@ -29,9 +29,8 @@ public class ControladorVistaGestionProductoAdmin implements ActionListener {
 		CardLayout cl = (CardLayout) contentPane.getLayout();
 		String comando = e.getActionCommand();
 		if (comando.equalsIgnoreCase("MODIFICA")) {
-			
-		}
 			JOptionPane.showMessageDialog(null, "Modifica");
+		}
 		else if (comando.equalsIgnoreCase("AGREGA"))
 			JOptionPane.showMessageDialog(null, "Alta");
 		else if (comando.equalsIgnoreCase("ELIMINA"))
