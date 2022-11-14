@@ -24,7 +24,7 @@ public class VistaRegistrarOperario extends JPanel implements IVistaRegistrarOpe
 	 * Create the panel.
 	 */
 	public VistaRegistrarOperario() {
-		setBorder(new TitledBorder(new EtchedBorder(EtchedBorder.LOWERED, new Color(255, 255, 255), new Color(160, 160, 160)), "Registra Operario", TitledBorder.LEADING, TitledBorder.TOP, null, new Color(0, 0, 0)));
+		setBorder(new TitledBorder(new EtchedBorder(EtchedBorder.LOWERED, new Color(255, 255, 255), new Color(160, 160, 160)), "Modifica Datos Operario", TitledBorder.LEADING, TitledBorder.TOP, null, new Color(0, 0, 0)));
 		setLayout(new GridLayout(6, 0, 0, 0));
 		
 		JPanel panel = new JPanel();

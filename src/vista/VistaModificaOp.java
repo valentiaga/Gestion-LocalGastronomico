@@ -14,7 +14,7 @@ import modelo.Enumerados;
 import javax.swing.border.EtchedBorder;
 import java.awt.Color;
 
-public class VistaRegistrarOperario extends JPanel implements IVistaRegistrarOperario{
+public class VistaModificaOp extends JPanel implements IVistaRegistrarOperario{
 
 	private JTextField textFieldNyA;
 	private JTextField textFieldUserName;
@@ -23,9 +23,9 @@ public class VistaRegistrarOperario extends JPanel implements IVistaRegistrarOpe
 	/**
 	 * Create the panel.
 	 */
-	public VistaRegistrarOperario() {
-		setBorder(new TitledBorder(new EtchedBorder(EtchedBorder.LOWERED, new Color(255, 255, 255), new Color(160, 160, 160)), "Registra Operario", TitledBorder.LEADING, TitledBorder.TOP, null, new Color(0, 0, 0)));
-		setLayout(new GridLayout(6, 0, 0, 0));
+	public VistaModificaOp() {
+		setBorder(new TitledBorder(new EtchedBorder(EtchedBorder.LOWERED, new Color(255, 255, 255), new Color(160, 160, 160)), "Modifica Datos Operario", TitledBorder.LEADING, TitledBorder.TOP, null, new Color(0, 0, 0)));
+		setLayout(new GridLayout(5, 0, 0, 0));
 		
 		JPanel panel = new JPanel();
 		add(panel);
@@ -74,23 +74,6 @@ public class VistaRegistrarOperario extends JPanel implements IVistaRegistrarOpe
 		textField = new JTextField();
 		panel_10.add(textField);
 		textField.setColumns(10);
-		
-		JPanel panel_3 = new JPanel();
-		add(panel_3);
-		
-		JPanel panel_11 = new JPanel();
-		panel_3.add(panel_11);
-		
-		JLabel lblNewLabel = new JLabel("Estado Operario");
-		panel_11.add(lblNewLabel);
-		
-		JPanel panel_12 = new JPanel();
-		panel_3.add(panel_12);
-		
-		JComboBox comboBox = new JComboBox<String>();
-		panel_12.add(comboBox);
-		comboBox.addItem(Enumerados.estadoOperario.ACTIVO);
-		comboBox.addItem(Enumerados.estadoOperario.INACTIVO);
 		
 		
 		

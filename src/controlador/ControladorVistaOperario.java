@@ -39,7 +39,7 @@ public class ControladorVistaOperario implements ActionListener {
 		else if (comando.equalsIgnoreCase("GESTION_PROMOCIONES")) 
 			JOptionPane.showMessageDialog(null, "promos.");
 		else if (comando.equalsIgnoreCase("MODIFICAR")) 
-			cl.show(contentPane, ventana.getVistaOp());
+			cl.show(contentPane, ventana.getVistaModificaOp());
 		else if (comando.equalsIgnoreCase("CERRAR_SESION")) 
 			cl.show(contentPane, ventana.getVistaInicial());
 	}

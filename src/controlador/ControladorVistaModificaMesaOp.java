@@ -28,7 +28,7 @@ public class ControladorVistaModificaMesaOp implements ActionListener {
 		CardLayout cl = (CardLayout) contentPane.getLayout();
 		String comando = e.getActionCommand();
 		if (comando.equalsIgnoreCase("CONFIRMA")) {
-			Mesa mesa = Sistema.getInstance().getMesas().get(this.ventana.getVistaMesaaAdmin().getNroMesa());
+			Mesa mesa = Sistema.getInstance().getMesas().get(this.ventana.getVistaMesaaOp().getNroMesa());
 			mesa.setEstado(this.vista.getEstado());
 		}
 		else if (comando.equalsIgnoreCase("VOLVER")) 

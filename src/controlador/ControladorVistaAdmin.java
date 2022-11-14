@@ -34,12 +34,12 @@ public class ControladorVistaAdmin implements ActionListener {
 		else if (comando.equalsIgnoreCase("GESTION_MOZO"))
 			cl.show(contentPane, ventana.getVistaGestionMozoAdmin());
 		else if (comando.equalsIgnoreCase("GESTION_PRODUCTO"))
-			cl.show(contentPane, ventana.getVistaProductoAdmin());
-		else if (comando.equalsIgnoreCase("GESTION_OPERARIO")) 
-			JOptionPane.showMessageDialog(null, "OPERARIO.");
+			cl.show(contentPane, ventana.getVistaGestionProductoAdmin());
+		else if (comando.equalsIgnoreCase("GESTION_OPERARIO")) {
+			cl.show(contentPane, ventana.getVistaRegistraOp());
+		}
 		else if (comando.equalsIgnoreCase("CERRAR_SESION")) {
 			cl.show(contentPane, ventana.getVistaInicial());
-			
 		}
 	}
 

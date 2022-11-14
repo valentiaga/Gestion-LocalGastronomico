@@ -23,8 +23,6 @@ import controlador.ControladorVistaGestionMozoOp;
 import negocio.Sistema;
 
 public class VistaGestionMozoOp extends JPanel implements IVistaGestionMozoOp, ItemListener {
-
-	JComboBox comboBox;
 	ActionListener actionListener;
 	JButton btnModificaMozo;
 	JButton btnEstableceEstado;
@@ -46,42 +44,7 @@ public class VistaGestionMozoOp extends JPanel implements IVistaGestionMozoOp, I
 		
 		JPanel panel = new JPanel();
 		add(panel);
-		panel.setLayout(new GridLayout(4, 0, 0, 0));
-		
-		JPanel panel_1 = new JPanel();
-		panel.add(panel_1);
-		panel_1.setLayout(new GridLayout(0, 2, 0, 0));
-		
-		JLabel lblSeleccionaMozo = new JLabel("Seleccione Mozo");
-		lblSeleccionaMozo.setHorizontalAlignment(SwingConstants.CENTER);
-		panel_1.add(lblSeleccionaMozo);
-		
-		JPanel panel_4 = new JPanel();
-		panel_1.add(panel_4);
-		
-		comboBox = new JComboBox<String>();
-		comboBox.setEditable(true);
-		comboBox.addItem(Sistema.getInstance().getMozos().get("Marti").getNyA());
-		comboBox.addItem(Sistema.getInstance().getMozos().get("Valen").getNyA());
-		comboBox.addItem(Sistema.getInstance().getMozos().get("Pau").getNyA());
-		comboBox.addItemListener(this);
-	
-		GroupLayout gl_panel_4 = new GroupLayout(panel_4);
-		gl_panel_4.setHorizontalGroup(
-			gl_panel_4.createParallelGroup(Alignment.TRAILING)
-				.addGroup(Alignment.LEADING, gl_panel_4.createSequentialGroup()
-					.addGap(50)
-					.addComponent(comboBox, GroupLayout.PREFERRED_SIZE, 116, GroupLayout.PREFERRED_SIZE)
-					.addContainerGap(53, Short.MAX_VALUE))
-		);
-		gl_panel_4.setVerticalGroup(
-			gl_panel_4.createParallelGroup(Alignment.TRAILING)
-				.addGroup(Alignment.LEADING, gl_panel_4.createSequentialGroup()
-					.addGap(33)
-					.addComponent(comboBox, GroupLayout.PREFERRED_SIZE, GroupLayout.DEFAULT_SIZE, GroupLayout.PREFERRED_SIZE)
-					.addContainerGap(37, Short.MAX_VALUE))
-		);
-		panel_4.setLayout(gl_panel_4);
+		panel.setLayout(new GridLayout(3, 0, 0, 0));
 		
 		JPanel panel_2 = new JPanel();
 		panel.add(panel_2);
@@ -109,12 +72,8 @@ public class VistaGestionMozoOp extends JPanel implements IVistaGestionMozoOp, I
 
 	@Override
 	public void itemStateChanged(ItemEvent e) {
-		if (e.getSource()==comboBox) {
-            String seleccionado=(String)comboBox.getSelectedItem();
-            //JOptionPane.showMessageDialog(null, "Ha seleccionado "+seleccionado);
-            //comboBox.setSelectedItem(comboBox.getSelectedItem());
-		}
 	}
+	
 
 
 	

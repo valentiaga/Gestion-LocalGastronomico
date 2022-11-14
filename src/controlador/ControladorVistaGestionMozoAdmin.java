@@ -35,13 +35,12 @@ public class ControladorVistaGestionMozoAdmin implements ActionListener {
 		CardLayout cl = (CardLayout) contentPane.getLayout();
 		String comando = e.getActionCommand();
 		if (comando.equalsIgnoreCase("MODIFICA")) {
-			cl.show(contentPane, ventana.getVistaModificaMozo());
-			JOptionPane.showMessageDialog(null, "Modifica.");
+			cl.show(contentPane, ventana.getVistaModificaMozoAdmin());
 		}
 		else if (comando.equalsIgnoreCase("ESTABLECE"))
 			JOptionPane.showMessageDialog(null, "Estados.");
 		else if (comando.equalsIgnoreCase("ALTA")) {
-			
+			cl.show(contentPane, ventana.getVistaAltaMozo());
 		}
 		else if (comando.equalsIgnoreCase("VOLVER"))
 			cl.show(contentPane, ventana.getVistaAdmin());

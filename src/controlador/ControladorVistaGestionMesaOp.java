@@ -7,12 +7,9 @@ import java.awt.event.ActionListener;
 import javax.swing.JOptionPane;
 import javax.swing.JPanel;
 
-import excepciones.MesaNoOcupadaException;
 import excepciones.MesaOcupada_Exception;
 import excepciones.NoExisteMesa_Exception;
 import excepciones.StockInsuficiente_Exception;
-import modelo.Enumerados;
-import modelo.Mesa;
 import negocio.Sistema;
 import vista.IVistaGestionMesaOp;
 import vista.Ventana;
@@ -37,7 +34,7 @@ public class ControladorVistaGestionMesaOp implements ActionListener {
 		String comando = e.getActionCommand();
 		Integer nroMesa = this.vista.getNroMesa();
 		if (comando.equalsIgnoreCase("MODIFICAR")) 
-			cl.show(contentPane, ventana.getVistaModificaMesa());
+			cl.show(contentPane, ventana.getVistaModificaMesaOp());
 		else if (comando.equalsIgnoreCase("SETEAR"))
 			JOptionPane.showMessageDialog(null, "Setear.");
 		else if (comando.equalsIgnoreCase("CERRAR")) {

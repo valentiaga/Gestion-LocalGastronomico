@@ -47,7 +47,7 @@ public class VistaGestionMozoAdmin extends JPanel implements ItemListener, IVist
 
 		JPanel panel = new JPanel();
 		add(panel);
-		panel.setLayout(new GridLayout(6, 0, 0, 0));
+		panel.setLayout(new GridLayout(5, 0, 0, 0));
 
 		JPanel panel_1 = new JPanel();
 		panel.add(panel_1);
@@ -65,43 +65,6 @@ public class VistaGestionMozoAdmin extends JPanel implements ItemListener, IVist
 		panel_2.add(btnEstableceEstado);
 		btnEstableceEstado.setActionCommand("ESTABLECE");
 
-		JPanel panel_3 = new JPanel();
-		panel.add(panel_3);
-
-		JPanel panel_4 = new JPanel();
-
-		comboBox = new JComboBox<String>();
-		comboBox.setEditable(true);
-		comboBox.addItem(Sistema.getInstance().getMozos().get("Marti").getNyA());
-		comboBox.addItem(Sistema.getInstance().getMozos().get("Valen").getNyA());
-		comboBox.addItem(Sistema.getInstance().getMozos().get("Pau").getNyA());
-		comboBox.addItemListener(this);
-
-		GroupLayout gl_panel_4 = new GroupLayout(panel_4);
-		gl_panel_4.setHorizontalGroup(gl_panel_4.createParallelGroup(Alignment.LEADING)
-				.addGroup(gl_panel_4.createSequentialGroup().addGap(44)
-						.addComponent(comboBox, GroupLayout.PREFERRED_SIZE, 116, GroupLayout.PREFERRED_SIZE)
-						.addContainerGap(182, Short.MAX_VALUE)));
-		gl_panel_4
-				.setVerticalGroup(gl_panel_4.createParallelGroup(Alignment.LEADING)
-						.addGroup(gl_panel_4.createSequentialGroup().addContainerGap().addComponent(comboBox,
-								GroupLayout.PREFERRED_SIZE, GroupLayout.DEFAULT_SIZE, GroupLayout.PREFERRED_SIZE)
-								.addContainerGap(59, Short.MAX_VALUE)));
-		panel_4.setLayout(gl_panel_4);
-
-		JLabel lblSeleccionaMozo = new JLabel("Seleccione Mozo");
-		lblSeleccionaMozo.setHorizontalAlignment(SwingConstants.CENTER);
-		GroupLayout gl_panel_3 = new GroupLayout(panel_3);
-		gl_panel_3.setHorizontalGroup(gl_panel_3.createParallelGroup(Alignment.LEADING)
-				.addGroup(gl_panel_3.createSequentialGroup().addGap(102).addComponent(lblSeleccionaMozo)
-						.addPreferredGap(ComponentPlacement.RELATED).addComponent(panel_4, GroupLayout.PREFERRED_SIZE,
-								GroupLayout.DEFAULT_SIZE, GroupLayout.PREFERRED_SIZE)));
-		gl_panel_3.setVerticalGroup(gl_panel_3.createParallelGroup(Alignment.LEADING)
-				.addGroup(gl_panel_3.createSequentialGroup().addGap(5).addComponent(panel_4, GroupLayout.PREFERRED_SIZE,
-						GroupLayout.DEFAULT_SIZE, GroupLayout.PREFERRED_SIZE))
-				.addGroup(gl_panel_3.createSequentialGroup().addGap(19).addComponent(lblSeleccionaMozo)));
-		panel_3.setLayout(gl_panel_3);
-
 		JPanel panel_5 = new JPanel();
 		panel.add(panel_5);
 
@@ -111,6 +74,14 @@ public class VistaGestionMozoAdmin extends JPanel implements ItemListener, IVist
 
 		JPanel panel_6 = new JPanel();
 		panel.add(panel_6);
+		
+				comboBox = new JComboBox<String>();
+				panel_6.add(comboBox);
+				comboBox.setEditable(true);
+				comboBox.addItem(Sistema.getInstance().getMozos().get("Marti").getNyA());
+				comboBox.addItem(Sistema.getInstance().getMozos().get("Valen").getNyA());
+				comboBox.addItem(Sistema.getInstance().getMozos().get("Pau").getNyA());
+				comboBox.addItemListener(this);
 
 		btnElimina = new JButton("Eliminar Mozo");
 		btnElimina.setActionCommand("ELIMINA");
@@ -164,16 +135,11 @@ public class VistaGestionMozoAdmin extends JPanel implements ItemListener, IVist
 	}
 
 	@Override
-	public String getNyA() {
-		// TODO Auto-generated method stub
-		return null;
+	public String getNombreMozo() {
+		return this.comboBox.getSelectedItem().toString();
 	}
 
-	@Override
-	public int getCantHijos() {
-		// TODO Auto-generated method stub
-		return 0;
-	}
+	
 
 	
 

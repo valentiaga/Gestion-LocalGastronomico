@@ -34,7 +34,7 @@ public class ControladorVistaGestionMozoOp implements ActionListener {
 		CardLayout cl = (CardLayout) contentPane.getLayout();
 		String comando = e.getActionCommand();
 		if (comando.equalsIgnoreCase(MODIFICA)) {
-			JOptionPane.showMessageDialog(null, "Modifica.");
+			cl.show(contentPane, ventana.getVistaModificaMozoOp());
 		}
 		else if (comando.equalsIgnoreCase(ESTABLECE))
 			JOptionPane.showMessageDialog(null, "Estados.");

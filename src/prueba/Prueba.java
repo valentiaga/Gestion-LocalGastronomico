@@ -12,6 +12,7 @@ import controlador.ControladorVistaInicial;
 import controlador.ControladorVistaModificaMesaAdmin;
 import controlador.ControladorVistaModificaMesaOp;
 import controlador.ControladorVistaModificaMozoAdmin;
+import controlador.ControladorVistaModificaMozoOp;
 import controlador.ControladorVistaOperario;
 import excepciones.CantComensalesInvalida_Exception;
 import excepciones.precioInvalido_Exception;
@@ -33,7 +34,9 @@ import vista.VistaGestionProductoAdmin;
 import vista.VistaGestionProductoOp;
 import vista.VistaInicial;
 import vista.VistaModificaDatosPersonales;
-import vista.VistaModificaMozo;
+import vista.VistaModificaMozoAdmin;
+import vista.VistaModificaMozoOp;
+import vista.VistaModificaOp;
 import vista.VistaModificaProducto;
 import vista.VistaModificaProductoPromocion;
 import vista.VistaModificaPromocionTemporal;
@@ -73,7 +76,8 @@ public class Prueba {
 		VistaGestionProductoAdmin vistaProductoAdmin = new VistaGestionProductoAdmin();
 		VistaModificarMesaAdmin vistaModificarMesa = new VistaModificarMesaAdmin();
 		VistaModificarMesaOp vistaModificaMesaOp = new VistaModificarMesaOp();
-		VistaModificaMozo vistaModificaMozoAdmin = new VistaModificaMozo();
+		VistaModificaMozoAdmin vistaModificaMozoAdmin = new VistaModificaMozoAdmin();
+		VistaModificaMozoOp vistaModificaMozoOp = new VistaModificaMozoOp();
 		VistaAltaMozo vistaAltaMozo = new VistaAltaMozo();
 		VistaAgregaProducto vistaAgregaProducto = new  VistaAgregaProducto();
 		VistaAgregaProducto vistaAgregaProductoPromocion = new VistaAgregaProducto();
@@ -82,7 +86,8 @@ public class Prueba {
 		VistaModificaProductoPromocion vistaModificaProductoPromocion = new VistaModificaProductoPromocion();
 		VistaModificaPromocionTemporal vistaModificaPromocionTemporal = new VistaModificaPromocionTemporal();
 		VistaRegistrarOperario vistaRegistraOp = new VistaRegistrarOperario();
-
+		VistaModificaOp vistaModificaOp = new VistaModificaOp();
+		
 		Sistema.getInstance().seteaAdmin();
 		Sistema.getInstance().setFuncionalidadAdmin(new FuncionalidadAdmin(Administrador.getInstance()));
 		try {
@@ -94,17 +99,21 @@ public class Prueba {
 		try {
 			Sistema.getInstance().getFuncionalidadAdmin().agregaMesa(4);
 			Sistema.getInstance().getFuncionalidadAdmin().agregaMesa(5);
+			//System.out.println(Sistema.getInstance().getMesas().get(0).getCantPax());
 		} catch (CantComensalesInvalida_Exception e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
 
+		//Ventana v = new Ventana(vistaInicial, vistaMozoOp, vistaMozoAdmin, vistaMesaOp, vistaMesaAdmin, vistaCambiaContra, vistaOp, vistaAdmin, vistaProductoOp, vistaProductoAdmin, vistaModificarMesa, vistaModificaMesaOp, vistaModificaMozoAdmin, vistaAltaMozo);
+
+
 		Ventana v = new Ventana(vistaInicial, vistaMozoOp, vistaMozoAdmin, vistaMesaOp, vistaMesaAdmin, null,
 				vistaCambiaContra, vistaOp, vistaAdmin, vistaProductoOp, vistaProductoAdmin, vistaModificarMesa,
 				vistaModificaMesaOp, vistaModificaMozoAdmin, vistaAltaMozo, vistaAgregaProducto,
 				vistaAgregaProductoPromocion, vistaModificaDatosPersonales, vistaModificaProducto,
-				vistaModificaProductoPromocion, vistaModificaPromocionTemporal, vistaRegistraOp);
-
+				vistaModificaProductoPromocion, vistaModificaPromocionTemporal, vistaRegistraOp, vistaModificaMozoOp, vistaModificaOp);
+		
 		ControladorVistaOperario cOperario = new ControladorVistaOperario(vistaOp, v);
 		ControladorVistaAdmin cAdmin = new ControladorVistaAdmin(vistaAdmin, v);
 		ControladorVistaInicial cInicial = new ControladorVistaInicial(vistaInicial, v);
@@ -118,6 +127,7 @@ public class Prueba {
 		ControladorVistaModificaMesaOp cModificaMesaOp = new ControladorVistaModificaMesaOp(vistaModificaMesaOp, v);
 		ControladorVistaModificaMozoAdmin cModificaMozoAdmin = new ControladorVistaModificaMozoAdmin(
 				vistaModificaMozoAdmin, v);
+		ControladorVistaModificaMozoOp cModificaMozoOp = new ControladorVistaModificaMozoOp(vistaModificaMozoOp, v);
 	}
 
 }
