@@ -65,19 +65,19 @@ public class VistaModificaDatosPersonales extends JPanel implements IVistaModifi
 	@Override
 	public String getNyA() {
 		// TODO Auto-generated method stub
-		return null;
+		return this.textFieldNyA.getText();
 	}
 
 	@Override
 	public String getUserName() {
 		// TODO Auto-generated method stub
-		return null;
+		return this.textFieldUserName.getText();
 	}
 
 	@Override
 	public String getPassword() {
 		// TODO Auto-generated method stub
-		return null;
+		return this.textField.getText();
 	}
 
 	@Override
@@ -94,8 +94,7 @@ public class VistaModificaDatosPersonales extends JPanel implements IVistaModifi
 
 	@Override
 	public void ventanaEmergente(String mensaje) {
-		// TODO Auto-generated method stub
-		
-	}
+		// TODO Auto-generated method stu	
+		}
 
 }

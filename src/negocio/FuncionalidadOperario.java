@@ -4,6 +4,7 @@ import java.util.ArrayList;
 
 import excepciones.CantComensalesInvalida_Exception;
 import excepciones.CantHijosInvalida_Exception;
+import excepciones.ContrasenaIncorrecta_Exception;
 import excepciones.MesaNoOcupadaException;
 import excepciones.MesaOcupada_Exception;
 import excepciones.NoExisteID_Exception;
@@ -54,16 +55,21 @@ public class FuncionalidadOperario {
 	 * @param activo   nuevo estado del Operario.
 	 * @throws UserNameRepetido_Exception Se lanza si el nuevo nombre de usuario ya
 	 *                                    existe en el sistema.
+	 * @throws ContrasenaIncorrecta_Exception 
 	 */
 	
 	public void modificaOperario(String NyA, String userName, String password)
-			throws UserNameRepetido_Exception {
+			throws UserNameRepetido_Exception, ContrasenaIncorrecta_Exception {
 		if (userName != this.operario.getUserName()
 				&& Sistema.getInstance().getOperariosRegistrados().containsKey(userName))
 			throw new UserNameRepetido_Exception("El nombre de usuario ya se encuentra registrado en el sistema.");
-		this.operario.setNyA(NyA);
-		this.operario.setPassword(password);
-		this.operario.setUserName(userName);
+		else if (this.verificaPassword(password)== false)
+			throw new ContrasenaIncorrecta_Exception("El campo contraseña debe contener entre 6 y 12 caracteres. Con al menos 1 dígito y 1 mayúscula");
+		else {
+			this.operario.setNyA(NyA);
+			this.operario.setPassword(password);
+			this.operario.setUserName(userName);
+		}
 	}
 
 	/**
@@ -328,6 +334,24 @@ public class FuncionalidadOperario {
 	
 	public void modificaPassword(String password) {
 		this.getOperario().setPassword(password);
+	}
+	
+	public boolean verificaPassword (String password){
+		boolean res = false, banMayus = false, banDigit = false;
+		if (password.length()>12 || password.length()<6 ) {
+			return res;
+		}
+		else {
+			for (int i = 0; i < password.length(); i++) {
+				if (Character.isUpperCase(password.charAt(i)))
+					banMayus = true;
+				if (Character.isDigit(password.charAt(i)))
+					banDigit = true;
+			}
+			if (banMayus == true  && banDigit==true)
+				res=true;
+		}
+		return res;
 	}
 	
 }

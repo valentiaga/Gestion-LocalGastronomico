@@ -132,6 +132,7 @@ public class Prueba {
 		ControladorVistaModificaDatosOperario cModificaDatosOp = new ControladorVistaModificaDatosOperario(vistaModificaDatosPersonales, v);
 		ControladorVistaRegistrarOperario cRegistraOp = new ControladorVistaRegistrarOperario(vistaRegistraOp, v);
 		ControladorVistaAltaMozo cAltaMozo = new ControladorVistaAltaMozo(vistaAltaMozo, v);
+		
 	}
 
 }

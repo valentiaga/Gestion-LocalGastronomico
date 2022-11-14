@@ -8,6 +8,7 @@ import java.util.GregorianCalendar;
 
 import excepciones.CantComensalesInvalida_Exception;
 import excepciones.CantHijosInvalida_Exception;
+import excepciones.ContrasenaIncorrecta_Exception;
 import excepciones.EdadInvalida_Exception;
 import excepciones.MesaOcupada_Exception;
 import excepciones.NoExisteID_Exception;
@@ -56,6 +57,7 @@ public class FuncionalidadAdmin extends FuncionalidadOperario {
 			throw new NoExisteOperario_Exception("No existe el opeario que desea modificar");
 	}
 	
+	
 	/**
 	 * Metodo que registra un nuevo operario en el sistema. <br>
 	 * Post: Agrega un nuevo operario al HashMap
@@ -68,13 +70,31 @@ public class FuncionalidadAdmin extends FuncionalidadOperario {
 	 *                 userName. <br>
 	 * @throws UserNameRepetido_Exception si el nombre de usuario ingresado esta
 	 *                                    asociado a otra cuenta.
+	 * @throws ContrasenaIncorrecta_Exception 
 	 */
 	
-	public void registraOperario (String NyA, String userName, String password) throws UserNameRepetido_Exception{
-		if(Sistema.getInstance().getOperariosRegistrados().putIfAbsent(userName, new Operario(NyA,userName,password,true)) != null)	// si ya estaba registrado tiramos excepcion????
+	public void registraOperario (String NyA, String userName, String password, Enumerados.estadoOperario estado) throws UserNameRepetido_Exception, ContrasenaIncorrecta_Exception{
+		boolean activo=true;
+		if (estado == Enumerados.estadoOperario.INACTIVO)
+			activo = false;
+		if (this.verificaPassword(password)== false)
+			throw new ContrasenaIncorrecta_Exception("El campo contraseña debe contener entre 6 y 12 caracteres. Con al menos 1 dígito y 1 mayúscula");
+		else if(Sistema.getInstance().getOperariosRegistrados().putIfAbsent(userName, new Operario(NyA,userName,password,activo)) != null)	// si ya estaba registrado tiramos excepcion????
 			throw new UserNameRepetido_Exception("El userName '"+userName+"' ya esta asociado a un operario.");
 	}
 	
+	/*public void modificaOperario(String NyA, String userName, String password, Enumerados.estadoOperario estado)
+			throws UserNameRepetido_Exception, ContrasenaIncorrecta_Exception, NoExisteOperario_Exception {
+		boolean activo=true;
+		// TODO Auto-generated method stub
+		super.modificaOperario(NyA, userName, password);
+		if (estado == Enumerados.estadoOperario.INACTIVO)
+			activo = false;
+		this.modificaEstadoOperario(userName, activo);
+		
+			
+	}*/
+
 	public void eliminaOperario(String userName)throws NoExisteOperario_Exception{
 		if (GestionMozo.existeMozo(userName) == false)
 			throw new NoExisteOperario_Exception("No existe el operario que desea eliminar");
