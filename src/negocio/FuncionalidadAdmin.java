@@ -15,6 +15,7 @@ import excepciones.NoExisteID_Exception;
 import excepciones.NoExisteMesa_Exception;
 import excepciones.NoExisteMozo_Exception;
 import excepciones.NoExisteOperario_Exception;
+import excepciones.NyARepetido_Exception;
 import excepciones.UserNameRepetido_Exception;
 import excepciones.precioInvalido_Exception;
 import excepciones.prodEnUso_Exception;
@@ -30,11 +31,12 @@ public class FuncionalidadAdmin extends FuncionalidadOperario {
 		super(operario);
 	}
 
-	public void agregaMozo(String NyA, GregorianCalendar fechaNacimiento, int cantHijos, Enumerados.estadoMozo estado) throws EdadInvalida_Exception, CantHijosInvalida_Exception {
+	public void agregaMozo(String NyA, GregorianCalendar fechaNacimiento, int cantHijos, Enumerados.estadoMozo estado) throws EdadInvalida_Exception, CantHijosInvalida_Exception, NyARepetido_Exception {
 		LocalDate today = LocalDate.now();
         LocalDate fechaNac = LocalDate.of(fechaNacimiento.get(Calendar.YEAR), fechaNacimiento.get(Calendar.MONTH), fechaNacimiento.get(Calendar.DAY_OF_MONTH));
         long edad = ChronoUnit.YEARS.between(fechaNac, today);
-       
+       if (Sistema.getInstance().getMozos().get(NyA)!= null)
+    	   throw new NyARepetido_Exception("Ya existe un mozo registrado con este nombre");
 		if (edad < 18)
 			throw new EdadInvalida_Exception("Debe ser mayor de 18 anios.");
 		if (cantHijos<0)
@@ -82,24 +84,13 @@ public class FuncionalidadAdmin extends FuncionalidadOperario {
 		else if(Sistema.getInstance().getOperariosRegistrados().putIfAbsent(userName, new Operario(NyA,userName,password,activo)) != null)	// si ya estaba registrado tiramos excepcion????
 			throw new UserNameRepetido_Exception("El userName '"+userName+"' ya esta asociado a un operario.");
 	}
-	
-	/*public void modificaOperario(String NyA, String userName, String password, Enumerados.estadoOperario estado)
-			throws UserNameRepetido_Exception, ContrasenaIncorrecta_Exception, NoExisteOperario_Exception {
-		boolean activo=true;
-		// TODO Auto-generated method stub
-		super.modificaOperario(NyA, userName, password);
-		if (estado == Enumerados.estadoOperario.INACTIVO)
-			activo = false;
-		this.modificaEstadoOperario(userName, activo);
-		
-			
-	}*/
+
 
 	public void eliminaOperario(String userName)throws NoExisteOperario_Exception{
-		if (GestionMozo.existeMozo(userName) == false)
+		if (GestionOperario.existeOperario(userName) == false)
 			throw new NoExisteOperario_Exception("No existe el operario que desea eliminar");
 		else
-			GestionMozo.eliminaMozo(userName);
+			GestionOperario.eliminaOperario(userName);
 	}
 
 	public void agregaProducto(String nombre, double precioCosto, double precioVenta, int stockInicial) throws precioInvalido_Exception{

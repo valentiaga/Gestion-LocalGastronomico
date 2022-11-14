@@ -7,6 +7,10 @@ import java.awt.event.ActionListener;
 import javax.swing.JOptionPane;
 import javax.swing.JPanel;
 
+import excepciones.CantHijosInvalida_Exception;
+import excepciones.EdadInvalida_Exception;
+import excepciones.NyARepetido_Exception;
+import negocio.Sistema;
 import vista.IVistaAdmin;
 import vista.IVistaAltaMozo;
 import vista.IVistaGestionProductoAdmin;
@@ -31,14 +35,18 @@ public class ControladorVistaAltaMozo implements ActionListener {
 	public void actionPerformed(ActionEvent e) {
 		CardLayout cl = (CardLayout) contentPane.getLayout();
 		String comando = e.getActionCommand();
-		if (comando.equalsIgnoreCase("MODIFICA")) 
-			JOptionPane.showMessageDialog(null, "Modifica");
-		else if (comando.equalsIgnoreCase("AGREGA"))
-			JOptionPane.showMessageDialog(null, "Alta");
-		else if (comando.equalsIgnoreCase("ELIMINA"))
-			JOptionPane.showMessageDialog(null, "Elimina");
+
+		if (comando.equalsIgnoreCase("CONFIRMAR")) {
+			try {
+				Sistema.getInstance().getFuncionalidadAdmin().agregaMozo(this.vista.getNyA(), this.vista.fechaNacimiento(), this.vista.getCantHijos(), this.vista.getEstado());
+				JOptionPane.showMessageDialog(null, "Mozo agregado con exito.");
+				//System.out.println(Sistema.getInstance().getMozos().get("Juan Carlos").getNyA());
+			} catch (EdadInvalida_Exception | CantHijosInvalida_Exception | NyARepetido_Exception e1) {
+				this.vista.ventanaEmergente(e1.getMessage());
+			}
+		}
 		else if (comando.equalsIgnoreCase("VOLVER")) 
-			cl.show(contentPane, ventana.getVistaAdmin());
+			cl.show(contentPane, ventana.getVistaGestionMozoAdmin());
 	}
 	
 

@@ -37,8 +37,6 @@ public class ControladorVistaGestionMozoAdmin implements ActionListener {
 		if (comando.equalsIgnoreCase("MODIFICA")) {
 			cl.show(contentPane, ventana.getVistaModificaMozoAdmin());
 		}
-		else if (comando.equalsIgnoreCase("ESTABLECE"))
-			JOptionPane.showMessageDialog(null, "Estados.");
 		else if (comando.equalsIgnoreCase("ALTA")) {
 			cl.show(contentPane, ventana.getVistaAltaMozo());
 		}

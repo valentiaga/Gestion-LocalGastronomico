@@ -4,6 +4,7 @@ import java.awt.GridLayout;
 import java.awt.event.ActionListener;
 import java.awt.event.ItemEvent;
 import java.awt.event.ItemListener;
+import java.util.GregorianCalendar;
 
 import javax.swing.JButton;
 import javax.swing.JComboBox;
@@ -14,6 +15,7 @@ import javax.swing.JTextField;
 import javax.swing.border.TitledBorder;
 
 import modelo.Enumerados;
+import modelo.Enumerados.estadoMozo;
 
 public class VistaAltaMozo extends JPanel implements ItemListener, IVistaAltaMozo{
 	
@@ -25,6 +27,7 @@ public class VistaAltaMozo extends JPanel implements ItemListener, IVistaAltaMoz
 	private JTextField textFieldDia;
 	private JTextField textFieldMes;
 	private JTextField textFieldAnio;
+	private JComboBox comboBox;
 	/**
 	 * Create the panel.
 	 */
@@ -48,7 +51,7 @@ public class VistaAltaMozo extends JPanel implements ItemListener, IVistaAltaMoz
 		JPanel panel_8 = new JPanel();
 		panel_1.add(panel_8);
 		
-		JComboBox comboBox = new JComboBox();
+		comboBox = new JComboBox();
 		comboBox.setEditable(true);
 		panel_8.add(comboBox);
 		comboBox.addItem(Enumerados.estadoMozo.ACTIVO);
@@ -219,22 +222,49 @@ public class VistaAltaMozo extends JPanel implements ItemListener, IVistaAltaMoz
 	}
 
 	@Override
-	public String getDiaNacimiento() {
-		
-		return this.textFieldDia.getText();
+	public int getDiaNacimiento() {
+		int diaNac=-1;
+		try {
+			diaNac = Integer.parseInt(this.textFieldDia.getText());
+		}
+		catch (NumberFormatException e2) {
+		}
+		return diaNac;
 	}
 
 	@Override
-	public String getMesNacimiento() {
-		// TODO Auto-generated method stub
-		return this.textFieldMes.getText();
+	public int getMesNacimiento() {
+		int mesNac=-1;
+		try {
+			mesNac = Integer.parseInt(this.textFieldMes.getText());
+		}
+		catch (NumberFormatException e2) {
+		}
+		return mesNac;
 	}
 
 	@Override
-	public String getAnioNacimiento() {
-		// TODO Auto-generated method stub
-		return this.textFieldAnio.getText();
+	public int getAnioNacimiento() {
+		int anioNac=-1;
+		try {
+			anioNac = Integer.parseInt(this.textFieldAnio.getText());
+		}
+		catch (NumberFormatException e2) {
+		}
+		return anioNac;
 	}
+
+	@Override
+	public GregorianCalendar fechaNacimiento() {
+		return new GregorianCalendar(this.getAnioNacimiento(), this.getMesNacimiento(), this.getDiaNacimiento());
+	}
+
+	@Override
+	public estadoMozo getEstado() {
+		// TODO Auto-generated method stub
+		return (estadoMozo) this.comboBox.getSelectedItem();
+	}
+
 
 
 }

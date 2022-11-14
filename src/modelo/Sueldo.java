@@ -2,7 +2,7 @@ package modelo;
 
 public class Sueldo
 {
-    private static double remBasic;
+    private static double remBasic = 5000;
     
     /**
      *  Metodo que calcula el sueldo final de cada mozo,remuneración básica: 5% más por cada hijo. <br>

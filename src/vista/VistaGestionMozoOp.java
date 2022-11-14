@@ -25,14 +25,12 @@ import negocio.Sistema;
 public class VistaGestionMozoOp extends JPanel implements IVistaGestionMozoOp, ItemListener {
 	ActionListener actionListener;
 	JButton btnModificaMozo;
-	JButton btnEstableceEstado;
 	private JButton btnVolver;
 
 	@Override
 	public void addActionListener(ActionListener actionListener) { 
 		this.actionListener = actionListener;
 		this.btnModificaMozo.addActionListener(actionListener);
-		this.btnEstableceEstado.addActionListener(actionListener);
 		this.btnVolver.addActionListener(actionListener);
 	}
 	/**
@@ -44,7 +42,7 @@ public class VistaGestionMozoOp extends JPanel implements IVistaGestionMozoOp, I
 		
 		JPanel panel = new JPanel();
 		add(panel);
-		panel.setLayout(new GridLayout(3, 0, 0, 0));
+		panel.setLayout(new GridLayout(2, 0, 0, 0));
 		
 		JPanel panel_2 = new JPanel();
 		panel.add(panel_2);
@@ -52,15 +50,7 @@ public class VistaGestionMozoOp extends JPanel implements IVistaGestionMozoOp, I
 		
 		btnModificaMozo = new JButton("Modificar Mozo");
 		btnModificaMozo.setActionCommand("MODIFICA");
-		panel_2.add(btnModificaMozo);		
-		
-		JPanel panel_3 = new JPanel();
-		panel.add(panel_3);
-		panel_3.setLayout(new FlowLayout(FlowLayout.CENTER, 5, 5));
-		
-		btnEstableceEstado = new JButton("Establecer estados");
-		btnEstableceEstado.setActionCommand("ESTABLECE");
-		panel_3.add(btnEstableceEstado);
+		panel_2.add(btnModificaMozo);
 		
 		JPanel panel_5 = new JPanel();
 		panel.add(panel_5);

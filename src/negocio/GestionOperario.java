@@ -1,13 +1,13 @@
 package negocio;
 
-public class GestionMozo {
+public class GestionOperario {
 
 	
-	public static boolean existeMozo(String userName) {
+	public static boolean existeOperario(String userName) {
 		return Sistema.getInstance().getOperariosRegistrados().get(userName) != null;
 	}
 	
-	public static void eliminaMozo(String userName) {
+	public static void eliminaOperario(String userName) {
 		Sistema.getInstance().getOperariosRegistrados().remove(userName);
 	}
 	
