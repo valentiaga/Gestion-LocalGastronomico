@@ -40,6 +40,11 @@ public class ControladorVistaAltaMozo implements ActionListener {
 			try {
 				Sistema.getInstance().getFuncionalidadAdmin().agregaMozo(this.vista.getNyA(), this.vista.fechaNacimiento(), this.vista.getCantHijos(), this.vista.getEstado());
 				JOptionPane.showMessageDialog(null, "Mozo agregado con exito.");
+				this.ventana.vistaGestionMozoAdmin().actualizaComboBox();
+				this.ventana.VistaModificaMozoAdmin().actualizaComboBox();
+				//this.ventana.VistaModificaMozoOp().actualizaComboBox();
+				this.ventana.getVistaGestionMesaAdmin().actualizaComboBox();
+				this.ventana.getVistaGestionMesaOp().actualizaComboBox();
 				this.vista.limpiarVista();
 				//System.out.println(Sistema.getInstance().getMozos().get("Juan Carlos").getNyA());
 			} catch (EdadInvalida_Exception | CantHijosInvalida_Exception | NyARepetido_Exception e1) {

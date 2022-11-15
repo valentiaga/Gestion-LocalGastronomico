@@ -5,11 +5,11 @@ import java.util.ArrayList;
 import excepciones.CantComensalesInvalida_Exception;
 import excepciones.CantHijosInvalida_Exception;
 import excepciones.ContrasenaIncorrecta_Exception;
+import excepciones.EstadoIncorrecto_Exception;
 import excepciones.MesaNoOcupadaException;
 import excepciones.MesaOcupada_Exception;
 import excepciones.NoExisteID_Exception;
 import excepciones.NoExisteMesa_Exception;
-import excepciones.ProductoNulo_Exception;
 import excepciones.PromoIdRepetido_Exception;
 import excepciones.PromoInvalida_Exception;
 import excepciones.PromoRepetida_Exception;
@@ -36,7 +36,9 @@ public class FuncionalidadOperario {
 		super();
 		this.operario = operario;
 	}
-
+	public FuncionalidadOperario() {
+		
+	}
 	public Operario getOperario() {
 		return operario;
 	}
@@ -258,8 +260,15 @@ public class FuncionalidadOperario {
 	}
 
 	
-	public void setMesaMozo(Mesa mesa, Mozo mozo) {
-		mesa.setMozo(mozo);
+	public void setMesaMozo(int nroMesa, Mozo mozo) throws NoExisteMesa_Exception, EstadoIncorrecto_Exception{
+		Mesa mesa = Sistema.getInstance().getMesas().get(nroMesa);
+		if (mesa!= null)
+			if (mozo.getEstado() == Enumerados.estadoMozo.ACTIVO)
+				mesa.setMozo(mozo);
+			else
+				throw new EstadoIncorrecto_Exception("El mozo no se encuentra ACTIVO");
+		else
+			throw new NoExisteMesa_Exception("No existe la mesa seleccionada");
 	}
 	
 	public void cierraMesa(int nroMesa, Enumerados.formaDePago formaDePago) throws MesaNoOcupadaException{ // forma de pago la eligen en la// ventana

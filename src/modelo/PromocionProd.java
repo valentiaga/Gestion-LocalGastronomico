@@ -22,6 +22,9 @@ public class PromocionProd extends Promocion
 		DtoPorCant_PrecioUnitario = dtoPorCant_PrecioUnitario;
 	}
 
+	public PromocionProd() {
+		
+	}
 
 	public Producto getProducto() {
 		return producto;

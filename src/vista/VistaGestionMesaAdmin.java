@@ -15,8 +15,13 @@ import javax.swing.JTextField;
 import javax.swing.SwingConstants;
 import javax.swing.GroupLayout.Alignment;
 import javax.swing.border.TitledBorder;
+
+import modelo.Mozo;
+import negocio.Sistema;
+
 import javax.swing.LayoutStyle.ComponentPlacement;
 import java.awt.event.KeyListener;
+import java.util.HashMap;
 import java.awt.event.KeyEvent;
 
 public class VistaGestionMesaAdmin extends JPanel implements IVistaGestionMesaAdmin, KeyListener{
@@ -70,7 +75,7 @@ public class VistaGestionMesaAdmin extends JPanel implements IVistaGestionMesaAd
 		JPanel panel_7 = new JPanel();
 		
 		comboBox = new JComboBox<String>();
-		comboBox.setEnabled(false);
+		this.actualizaComboBox();
 		comboBox.setEditable(true);
 		GroupLayout gl_panel_7 = new GroupLayout(panel_7);
 		gl_panel_7.setHorizontalGroup(
@@ -274,5 +279,22 @@ public class VistaGestionMesaAdmin extends JPanel implements IVistaGestionMesaAd
 		catch (NumberFormatException e2) {
 		}
 		return cant;
+	}
+	
+	@Override
+	public void actualizaComboBox() {
+		HashMap<String, Mozo> mozos = Sistema.getInstance().getMozos();
+		String nombre = "";
+		this.comboBox.removeAllItems();
+		for (HashMap.Entry<String, Mozo> entry : mozos.entrySet()) {
+			nombre = entry.getKey();// mozos.get(entry.getKey());
+			this.comboBox.addItem(nombre);
+		}
+	}
+	
+	@Override
+	public Mozo getMozo() {
+		Mozo mozo = Sistema.getInstance().getMozos().get(this.comboBox.getSelectedItem());
+		return mozo;
 	}
 }

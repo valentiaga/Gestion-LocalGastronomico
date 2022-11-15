@@ -8,6 +8,7 @@ import javax.swing.JOptionPane;
 import javax.swing.JPanel;
 
 import excepciones.CantComensalesInvalida_Exception;
+import excepciones.EstadoIncorrecto_Exception;
 import excepciones.MesaNoOcupadaException;
 import excepciones.MesaOcupada_Exception;
 import excepciones.NoExisteID_Exception;
@@ -85,8 +86,14 @@ public class ControladorVistaGestionMesaAdmin implements ActionListener {
 				this.vista.ventanaEmergente(e1.getMessage());
 			} // falta ver forma de pago !!!!!!
 			JOptionPane.showMessageDialog(null, "Cerrar.");
-		} else if (comando.equalsIgnoreCase("SETEAR"))
-			JOptionPane.showMessageDialog(null, "Setea.");
+		} else if (comando.equalsIgnoreCase("SETEAR")) {
+			try {
+				Sistema.getInstance().getFuncionalidadAdmin().setMesaMozo(this.vista.getNroMesa(), this.vista.getMozo());
+				JOptionPane.showMessageDialog(null, "Seteada.");
+			} catch (EstadoIncorrecto_Exception | NoExisteMesa_Exception e1) {
+				JOptionPane.showMessageDialog(null, e1.getMessage());
+			}
+		}
 		else if (comando.equalsIgnoreCase("AGREGA_PEDIDO")) {
 			try {
 				Sistema.getInstance().getFuncionalidadAdmin().agregaPedidos(this.vista.getNroMesa(), this.vista.getCant(), this.vista.getIdProd());

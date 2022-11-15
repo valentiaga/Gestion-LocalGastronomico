@@ -17,6 +17,9 @@ public class Producto implements Cloneable
 		this.precioVenta = precioVenta;
 		this.stockInicial = stockInicial;
 	}
+	public Producto() {
+		
+	}
 
 	public int getIdProd() {
 		return idProd;
@@ -78,6 +81,7 @@ public class Producto implements Cloneable
 		// TODO Auto-generated method stub
 		return super.clone();
 	}
+	
 
 	
     

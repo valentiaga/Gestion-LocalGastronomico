@@ -15,4 +15,5 @@ public interface IVistaGestionMozoAdmin {
 	void limpiarVista();
 	void ventanaEmergente(String mensaje);
 	double getRemuneracionBasica();
+	void actualizaComboBox();
 }

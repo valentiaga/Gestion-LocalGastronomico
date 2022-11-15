@@ -26,10 +26,11 @@ public class GestionProdPromo {
 		PromocionProd promo;
 		
 		for(int i = 0; i < pedidos.size(); i++) {
-			
 			promo = Sistema.getInstance().getPromocionProds().get(pedidos.get(i).getProducto().getIdProd());
-			if(promo != null)
+			if(promo != null) {
 				mesaAtendida.agregaPromocion(promo);
+				//System.out.println(promo.getIdProm());
+			}
 		}
 	}
 	

@@ -16,4 +16,5 @@ public interface IVistaModificaMozoOp {
 	int getCantHijos();
 	Enumerados.estadoMozo getEstadoMozo();
 	Mozo getMozo();
+	void actualizaComboBox();
 }

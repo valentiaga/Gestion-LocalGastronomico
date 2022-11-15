@@ -35,6 +35,7 @@ public class ControladorVistaGestionMozoAdmin implements ActionListener {
 		CardLayout cl = (CardLayout) contentPane.getLayout();
 		String comando = e.getActionCommand();
 		if (comando.equalsIgnoreCase("MODIFICA")) {
+			System.out.println("Enre");
 			cl.show(contentPane, ventana.getVistaModificaMozoAdmin());
 		}
 		else if (comando.equalsIgnoreCase("ALTA")) {
@@ -46,7 +47,12 @@ public class ControladorVistaGestionMozoAdmin implements ActionListener {
 			try {
 				Sistema.getInstance().getFuncionalidadAdmin().eliminaMozo(this.vista.getComboBox().getSelectedItem().toString());
 				JOptionPane.showMessageDialog(null, "Eliminado: "+this.vista.getComboBox().getSelectedItem().toString());
-				this.vista.getComboBox().removeItem(this.vista.getComboBox().getSelectedItem());
+				//this.vista.getComboBox().removeItem(this.vista.getComboBox().getSelectedItem());
+				this.ventana.vistaGestionMozoAdmin().actualizaComboBox();
+				this.ventana.VistaModificaMozoAdmin().actualizaComboBox();
+				this.ventana.VistaModificaMozoOp().actualizaComboBox();
+				this.ventana.getVistaGestionMesaAdmin().actualizaComboBox();
+				this.ventana.getVistaGestionMesaOp().actualizaComboBox();
 			} catch (NoExisteMozo_Exception e1) {
 				// TODO Auto-generated catch block
 				e1.printStackTrace();
@@ -54,6 +60,10 @@ public class ControladorVistaGestionMozoAdmin implements ActionListener {
 		else if(comando.equalsIgnoreCase("ACTUALIZAR_REMUNERACION")) {
 			Sistema.getInstance().getFuncionalidadAdmin().modificaRemuneracionBasica(this.vista.getRemuneracionBasica());
 		}
+		else if(comando.equalsIgnoreCase("MUESTRA_ESTAD")) {
+			cl.show(contentPane, ventana.getVistaMostrarEstadisticas());
+		}
+		
 	}
 
 }

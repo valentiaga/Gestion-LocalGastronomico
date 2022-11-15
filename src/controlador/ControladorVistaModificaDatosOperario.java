@@ -35,7 +35,7 @@ public class ControladorVistaModificaDatosOperario implements ActionListener {
 		if (comando.equalsIgnoreCase("CONFIRMA")) {
 			try {
 				Sistema.getInstance().getFuncionalidadOperario().modificaOperario(this.vista.getNyA(), this.vista.getUserName(), this.vista.getPassword());
-				JOptionPane.showMessageDialog(null, "Datos actualizados.");
+				this.vista.ventanaEmergente( "Datos actualizados.");
 				cl.show(contentPane, ventana.getVistaOp());
 			} catch (UserNameRepetido_Exception | ContrasenaIncorrecta_Exception e1) {
 				this.vista.ventanaEmergente(e1.getMessage());

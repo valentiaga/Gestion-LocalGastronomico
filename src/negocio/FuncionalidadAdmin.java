@@ -31,6 +31,9 @@ public class FuncionalidadAdmin extends FuncionalidadOperario {
 	public FuncionalidadAdmin(Operario operario) {
 		super(operario);
 	}
+	public FuncionalidadAdmin() {
+		
+	}
 
 	public void agregaMozo(String NyA, GregorianCalendar fechaNacimiento, int cantHijos, Enumerados.estadoMozo estado) throws EdadInvalida_Exception, CantHijosInvalida_Exception, NyARepetido_Exception {
 		LocalDate today = LocalDate.now();

@@ -61,10 +61,13 @@ public class GestionComandas {
 		for (int i = 0; i<promos.size(); i++) {
 			promoActual = promos.get(i);
 			for (int j = 0; j<comanda.getPedidos().size(); j++) {
+				//System.out.println("Entre");
 				pedidoActual = comanda.getPedidos().get(j);
 				cantActual = pedidoActual.getCant();
-				if (pedidoActual.getProducto() == promoActual.getProducto()) {
+				if (pedidoActual.getProducto().getNombre().equals(pedidoActual.getProducto().getNombre())) {
+					System.out.println("Entre1");
 					if (promoActual.isAplica2x1()) {
+						System.out.println("Entre2");
 						if (cantActual>1)//si hay uno solo no se aplica dto
 							if (cantActual % 2 == 0)
 								descuento += cantActual * pedidoActual.getProducto().getPrecioVenta()*0.5;
@@ -80,10 +83,15 @@ public class GestionComandas {
 			}
 		}
 		total = totalComandaSinDescuento(comanda);
+		System.out.println("Total sin desc"+total);
 		total -= descuento;
-		if (mesa.getPromoTemp()!=null)
-			total = total * (1-mesa.getPromoTemp().getPorcentajeDesc());
+		if (mesa.getPromoTemp()!=null) {
+			//System.out.println("Descuento"+mesa.getPromoTemp().getPorcentajeDesc());
+			total = total * (1-(double)(mesa.getPromoTemp().getPorcentajeDesc())/100);
+		}
 		mesa.setTotal(total);
+		//System.out.println(descuento);
+		//System.out.println(total);
 	}
 	
 }

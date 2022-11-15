@@ -19,6 +19,9 @@ public class Mesa
 		this.estado = estado.LIBRE;
 		//this.comanda = new Comanda(this,Enumerados.estadoComanda.ABIERTO);
 	}
+	public Mesa() {
+		
+	}
 	/*public Mesa() {
 		super();
 		this.nroMesa = siguienteNroMesa++;

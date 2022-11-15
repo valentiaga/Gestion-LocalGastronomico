@@ -4,6 +4,7 @@ import java.awt.GridLayout;
 import java.awt.event.ActionListener;
 import java.awt.event.ItemEvent;
 import java.awt.event.ItemListener;
+import java.util.HashMap;
 
 import javax.swing.JButton;
 import javax.swing.JComboBox;
@@ -27,7 +28,6 @@ public class VistaModificaMozoAdmin extends JPanel implements ItemListener, IVis
 	private JButton btnConfirmar;
 	private JComboBox comboBox;
 	private JComboBox<String> comboBoxMozo;
-	private JComboBox<String> comboBoxMozo_1;
 	private ActionListener actionListener;
 	private Mozo mozo;
 	/**
@@ -50,19 +50,16 @@ public class VistaModificaMozoAdmin extends JPanel implements ItemListener, IVis
 		JLabel lblSeleccionaMozo = new JLabel("Seleccione Mozo");
 		panel_7.add(lblSeleccionaMozo);
 		lblSeleccionaMozo.setHorizontalAlignment(SwingConstants.CENTER);
-		
-		comboBoxMozo = new JComboBox<String>();
+	
 		
 		JPanel panel_8 = new JPanel();
 		panel_1.add(panel_8);
-		comboBoxMozo_1 = new JComboBox<String>();
-		panel_8.add(comboBoxMozo_1);
-		comboBoxMozo_1.setEditable(true);
-		comboBoxMozo_1.addItem(Sistema.getInstance().getMozos().get("Marti").getNyA());
-		comboBoxMozo_1.addItem(Sistema.getInstance().getMozos().get("Valen").getNyA());
-		comboBoxMozo_1.addItem(Sistema.getInstance().getMozos().get("Pau").getNyA());
-		comboBoxMozo_1.addItemListener(this);
-		mozo = Sistema.getInstance().getMozos().get(this.comboBoxMozo_1.getSelectedItem().toString());
+		comboBoxMozo = new JComboBox<String>();
+		panel_8.add(comboBoxMozo);
+		comboBoxMozo.setEditable(true);
+		this.actualizaComboBox();
+		comboBoxMozo.addItemListener(this);
+		mozo = Sistema.getInstance().getMozos().get(this.comboBoxMozo.getSelectedItem().toString());
 
 		
 		JPanel panel_2 = new JPanel();
@@ -158,10 +155,12 @@ public class VistaModificaMozoAdmin extends JPanel implements ItemListener, IVis
 
 	@Override
 	public void itemStateChanged(ItemEvent e) {
-		mozo = Sistema.getInstance().getMozos().get(this.comboBoxMozo_1.getSelectedItem().toString());
-		textFieldCantHijos.setText(String.valueOf(mozo.getCantHijos()));
-		textFieldNyA.setText(mozo.getNyA());
-		textFieldSueldo.setText(String.valueOf(mozo.getSueldo()));
+		if (this.comboBoxMozo.getSelectedItem()!=null) {
+			mozo = Sistema.getInstance().getMozos().get(this.comboBoxMozo.getSelectedItem().toString());
+			textFieldCantHijos.setText(String.valueOf(mozo.getCantHijos()));
+			textFieldNyA.setText(mozo.getNyA());
+			textFieldSueldo.setText(String.valueOf(mozo.getSueldo()));			
+		}
 	}
 
 	@Override
@@ -219,6 +218,16 @@ public class VistaModificaMozoAdmin extends JPanel implements ItemListener, IVis
 	@Override
 	public Mozo getMozo() {
 		return this.mozo;
+	}
+	@Override
+	public void actualizaComboBox() {
+		HashMap<String, Mozo> mozos = Sistema.getInstance().getMozos();
+		String nombre = "";
+		this.comboBoxMozo.removeAllItems();
+		for (HashMap.Entry<String, Mozo> entry : mozos.entrySet()) {
+			nombre = entry.getKey();// mozos.get(entry.getKey());
+			this.comboBoxMozo.addItem(nombre);
+		}
 	}
 
 }

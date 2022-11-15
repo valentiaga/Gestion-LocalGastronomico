@@ -7,6 +7,7 @@ import java.awt.GridLayout;
 import java.awt.event.ActionListener;
 import java.awt.event.ItemEvent;
 import java.awt.event.ItemListener;
+import java.util.HashMap;
 
 import javax.swing.GroupLayout;
 import javax.swing.JButton;
@@ -21,6 +22,7 @@ import javax.swing.border.TitledBorder;
 
 import controlador.ControladorVistaGestionMozoAdmin;
 import controlador.ControladorVistaGestionMozoOp;
+import modelo.Mozo;
 import negocio.Sistema;
 import javax.swing.LayoutStyle.ComponentPlacement;
 import java.awt.event.ActionEvent;
@@ -33,8 +35,9 @@ public class VistaGestionMozoAdmin extends JPanel implements ItemListener, IVist
 	JButton btnModificaMozo;
 	JButton btnElimina;
 	JButton btnAltaMozo;
-	JButton btnVolver;
 	JButton btnRemuneracion;
+	JButton btnMostrarEstadisticas;
+	JButton btnVolver;
 	private JTextField textFieldRemuneracionBasica;
 
 	/**
@@ -53,7 +56,7 @@ public class VistaGestionMozoAdmin extends JPanel implements ItemListener, IVist
 		JPanel panel_1 = new JPanel();
 		panel.add(panel_1);
 		panel_1.setLayout(new FlowLayout(FlowLayout.CENTER, 5, 5));
-		
+
 		JPanel panel_3 = new JPanel();
 		panel_1.add(panel_3);
 
@@ -63,7 +66,7 @@ public class VistaGestionMozoAdmin extends JPanel implements ItemListener, IVist
 
 		JPanel panel_5 = new JPanel();
 		panel.add(panel_5);
-		
+
 		JPanel panel_2 = new JPanel();
 		panel_5.add(panel_2);
 
@@ -73,65 +76,66 @@ public class VistaGestionMozoAdmin extends JPanel implements ItemListener, IVist
 
 		JPanel panel_6 = new JPanel();
 		panel.add(panel_6);
-				
-				JPanel panel_4 = new JPanel();
-				panel_6.add(panel_4);
-		
-				comboBox = new JComboBox<String>();
-				panel_4.add(comboBox);
-				comboBox.setEditable(true);
-				comboBox.addItem(Sistema.getInstance().getMozos().get("Marti").getNyA());
-				comboBox.addItem(Sistema.getInstance().getMozos().get("Valen").getNyA());
-				comboBox.addItem(Sistema.getInstance().getMozos().get("Pau").getNyA());
-				comboBox.addItemListener(this);
-		
+
+		JPanel panel_4 = new JPanel();
+		panel_6.add(panel_4);
+
+		comboBox = new JComboBox<String>();
+		panel_4.add(comboBox);
+		comboBox.setEditable(true);
+		HashMap<String, Mozo> mozos = Sistema.getInstance().getMozos();
+		String nombre = "";
+		for (HashMap.Entry<String, Mozo> entry : mozos.entrySet()) {
+			nombre = entry.getKey();// mozos.get(entry.getKey());
+			this.comboBox.addItem(nombre);
+		}
+		comboBox.addItemListener(this);
+
 		JPanel panel_8 = new JPanel();
 		panel_6.add(panel_8);
 
 		btnElimina = new JButton("Eliminar Mozo");
 		panel_8.add(btnElimina);
 		btnElimina.setActionCommand("ELIMINA");
-		
+
 		JPanel panel_7 = new JPanel();
 		panel.add(panel_7);
-		
+
 		JPanel panel_11 = new JPanel();
 		panel_7.add(panel_11);
-		
+
 		this.btnRemuneracion = new JButton("Actualizar Remuneracion Basica");
 		this.btnRemuneracion.setActionCommand("ACTUALIZAR_REMUNERACION");
 		panel_11.add(btnRemuneracion);
-		
+
 		JPanel panel_12 = new JPanel();
 		panel_7.add(panel_12);
-		
+
 		textFieldRemuneracionBasica = new JTextField();
 		panel_12.add(textFieldRemuneracionBasica);
 		textFieldRemuneracionBasica.setColumns(10);
-		
-		
-		
 
 		btnVolver = new JButton("Volver");
 		btnVolver.setActionCommand("VOLVER");
-		
+
 		JPanel panel_10 = new JPanel();
 		panel.add(panel_10);
-		
+
 		JPanel panel_14 = new JPanel();
 		panel_10.add(panel_14);
-		
-		JButton btnMostrarEstadisticas = new JButton("Mostrar estadisticas");
+
+		btnMostrarEstadisticas = new JButton("Mostrar estadisticas");
+		btnMostrarEstadisticas.setActionCommand("MUESTRA_ESTAD");
 		panel_14.add(btnMostrarEstadisticas);
-		
+
 		JPanel panel_13 = new JPanel();
 		panel.add(panel_13);
-		
+
 		JPanel panel_9 = new JPanel();
 		panel_13.add(panel_9);
-		
-		JButton btnVolver_1 = new JButton("VOLVER");
-		panel_9.add(btnVolver_1);
+
+		btnVolver = new JButton("VOLVER");
+		panel_9.add(btnVolver);
 	}
 
 	@Override
@@ -151,8 +155,10 @@ public class VistaGestionMozoAdmin extends JPanel implements ItemListener, IVist
 		this.btnElimina.addActionListener(actionListener);
 		this.btnRemuneracion.addActionListener(actionListener);
 		this.actionListener = actionListener;
+		this.btnMostrarEstadisticas.addActionListener(actionListener);
+		this.btnVolver.addActionListener(actionListener);
 	}
-	
+
 	public JComboBox getComboBox() {
 		return comboBox;
 	}
@@ -160,7 +166,7 @@ public class VistaGestionMozoAdmin extends JPanel implements ItemListener, IVist
 	@Override
 	public void limpiarVista() {
 		// TODO Auto-generated method stub
-		
+
 	}
 
 	@Override
@@ -175,12 +181,19 @@ public class VistaGestionMozoAdmin extends JPanel implements ItemListener, IVist
 
 	@Override
 	public double getRemuneracionBasica() {
-	
+
 		return Double.valueOf(this.textFieldRemuneracionBasica.getText());
 	}
 
-	
-	
-	
+	@Override
+	public void actualizaComboBox() {
+		HashMap<String, Mozo> mozos = Sistema.getInstance().getMozos();
+		String nombre = "";
+		this.comboBox.removeAllItems();
+		for (HashMap.Entry<String, Mozo> entry : mozos.entrySet()) {
+			nombre = entry.getKey();// mozos.get(entry.getKey());
+			this.comboBox.addItem(nombre);
+		}
+	}
 
 }

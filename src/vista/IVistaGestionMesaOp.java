@@ -3,6 +3,7 @@ package vista;
 import java.awt.event.ActionListener;
 
 import modelo.Enumerados;
+import modelo.Mozo;
 
 public interface IVistaGestionMesaOp {
 	int getNroMesa();
@@ -11,4 +12,6 @@ public interface IVistaGestionMesaOp {
 	Enumerados.formaDePago getFormaDePago();
 	void addActionListener(ActionListener actionListener);
 	void ventanaEmergente(String mensaje);
+	void actualizaComboBox();
+	Mozo getMozo();
 }

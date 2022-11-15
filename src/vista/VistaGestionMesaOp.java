@@ -8,6 +8,7 @@ import java.awt.event.ItemEvent;
 import java.awt.event.ItemListener;
 import java.awt.event.KeyEvent;
 import java.awt.event.KeyListener;
+import java.util.HashMap;
 
 import javax.swing.GroupLayout;
 import javax.swing.GroupLayout.Alignment;
@@ -21,6 +22,7 @@ import javax.swing.SwingConstants;
 import javax.swing.border.TitledBorder;
 
 import modelo.Enumerados;
+import modelo.Mozo;
 import modelo.Enumerados.formaDePago;
 import negocio.Sistema;
 import java.awt.event.ActionEvent;
@@ -72,11 +74,8 @@ public class VistaGestionMesaOp extends JPanel implements IVistaGestionMesaOp, I
 		panel_2.add(panel_7);
 		
 		comboBoxSetearMozo = new JComboBox<String>();
-		comboBoxSetearMozo.setEnabled(false);
 		comboBoxSetearMozo.setEditable(true);
-		comboBoxSetearMozo.addItem(Sistema.getInstance().getMozos().get("Marti").getNyA());
-		comboBoxSetearMozo.addItem(Sistema.getInstance().getMozos().get("Valen").getNyA());
-		comboBoxSetearMozo.addItem(Sistema.getInstance().getMozos().get("Pau").getNyA());
+		this.actualizaComboBox();
 		comboBoxSetearMozo.addItemListener(this);
 		
 		GroupLayout gl_panel_7 = new GroupLayout(panel_7);
@@ -257,5 +256,20 @@ public class VistaGestionMesaOp extends JPanel implements IVistaGestionMesaOp, I
 	public formaDePago getFormaDePago() {
 		
 		return (formaDePago) this.comboBoxFormaDePago.getSelectedItem();
+	}
+	@Override
+	public void actualizaComboBox() {
+		HashMap<String, Mozo> mozos = Sistema.getInstance().getMozos();
+		String nombre = "";
+		this.comboBoxSetearMozo.removeAllItems();
+		for (HashMap.Entry<String, Mozo> entry : mozos.entrySet()) {
+			nombre = entry.getKey();// mozos.get(entry.getKey());
+			this.comboBoxSetearMozo.addItem(nombre);
+		}
+	}
+	@Override
+	public Mozo getMozo() {
+		Mozo mozo = Sistema.getInstance().getMozos().get(this.comboBoxSetearMozo.getSelectedItem());
+		return mozo;
 	}
 }

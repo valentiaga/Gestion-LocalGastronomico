@@ -22,6 +22,9 @@ public class Comanda
 		this.estado = estado;
 	}
 	
+	public Comanda() {
+		
+	}
 	public void setEstado(Enumerados.estadoComanda estado) {
 		this.estado = estado;
 	}

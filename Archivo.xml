@@ -1,3 +1,204 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <java version="17.0.2" class="java.beans.XMLDecoder">
+ <object class="java.util.HashMap">
+  <void method="put">
+   <string>Valen</string>
+   <object class="modelo.Mozo">
+    <void property="estado">
+     <object class="java.lang.Enum" id="Enumerados$estadoMozo0" method="valueOf">
+      <class>modelo.Enumerados$estadoMozo</class>
+      <string>ACTIVO</string>
+     </object>
+    </void>
+    <void property="fecha">
+     <object class="java.util.GregorianCalendar">
+      <void property="time">
+       <object class="java.util.Date">
+        <long>1668483595791</long>
+       </object>
+      </void>
+     </object>
+    </void>
+    <void property="mesasAtendidas">
+     <object class="java.util.ArrayList"/>
+    </void>
+    <void property="nyA">
+     <string>Valen</string>
+    </void>
+    <void property="sueldo">
+     <double>5000.0</double>
+    </void>
+   </object>
+  </void>
+  <void method="put">
+   <string>Pau</string>
+   <object class="modelo.Mozo">
+    <void property="cantHijos">
+     <int>2</int>
+    </void>
+    <void property="estado">
+     <object idref="Enumerados$estadoMozo0"/>
+    </void>
+    <void property="fecha">
+     <object class="java.util.GregorianCalendar">
+      <void property="time">
+       <object class="java.util.Date">
+        <long>1668483595791</long>
+       </object>
+      </void>
+     </object>
+    </void>
+    <void property="mesasAtendidas">
+     <object class="java.util.ArrayList"/>
+    </void>
+    <void property="nyA">
+     <string>Pau</string>
+    </void>
+    <void property="sueldo">
+     <double>5500.0</double>
+    </void>
+   </object>
+  </void>
+  <void method="put">
+   <string>Marti</string>
+   <object class="modelo.Mozo">
+    <void property="cantHijos">
+     <int>3</int>
+    </void>
+    <void property="estado">
+     <object idref="Enumerados$estadoMozo0"/>
+    </void>
+    <void property="fecha">
+     <object class="java.util.GregorianCalendar">
+      <void property="time">
+       <object class="java.util.Date">
+        <long>1668483595790</long>
+       </object>
+      </void>
+     </object>
+    </void>
+    <void property="mesasAtendidas">
+     <object class="java.util.ArrayList"/>
+    </void>
+    <void property="nyA">
+     <string>Marti</string>
+    </void>
+    <void property="sueldo">
+     <double>5750.0</double>
+    </void>
+   </object>
+  </void>
+ </object>
+ <object class="java.util.HashMap">
+  <void method="put">
+   <int>0</int>
+   <object class="modelo.Producto">
+    <void property="nombre">
+     <string>Pizza</string>
+    </void>
+    <void property="precioCosto">
+     <double>10.0</double>
+    </void>
+    <void property="precioVenta">
+     <double>20.0</double>
+    </void>
+    <void property="stockInicial">
+     <int>10</int>
+    </void>
+   </object>
+  </void>
+  <void method="put">
+   <int>1</int>
+   <object class="modelo.Producto">
+    <void property="idProd">
+     <int>1</int>
+    </void>
+    <void property="nombre">
+     <string>Agua</string>
+    </void>
+    <void property="precioCosto">
+     <double>10.0</double>
+    </void>
+    <void property="precioVenta">
+     <double>20.0</double>
+    </void>
+    <void property="stockInicial">
+     <int>10</int>
+    </void>
+   </object>
+  </void>
+ </object>
+ <object class="java.util.HashMap">
+  <void method="put">
+   <string>juan</string>
+   <object class="modelo.Operario">
+    <void property="activo">
+     <boolean>true</boolean>
+    </void>
+    <void property="nyA">
+     <string>Juan</string>
+    </void>
+    <void property="password">
+     <string>Carlos1234</string>
+    </void>
+    <void property="userName">
+     <string>juan</string>
+    </void>
+   </object>
+  </void>
+  <void method="put">
+   <string>ADMIN</string>
+   <object class="modelo.Administrador" id="Administrador0">
+    <void property="activo">
+     <boolean>true</boolean>
+    </void>
+    <void property="nyA">
+     <string>Administrador</string>
+    </void>
+    <void property="password">
+     <string>ADMIN1234</string>
+    </void>
+    <void property="userName">
+     <string>ADMIN</string>
+    </void>
+   </object>
+  </void>
+ </object>
+ <object class="java.util.HashMap"/>
+ <object class="java.util.HashMap"/>
+ <object class="java.util.ArrayList">
+  <void method="add">
+   <object class="modelo.PromocionTemporal">
+    <void property="activa">
+     <boolean>true</boolean>
+    </void>
+    <void property="diasDePromo">
+     <object class="java.lang.Enum" method="valueOf">
+      <class>modelo.Enumerados$diasDePromo</class>
+      <string>MARTES</string>
+     </object>
+    </void>
+    <void property="formaDePago">
+     <object class="java.lang.Enum" method="valueOf">
+      <class>modelo.Enumerados$formaDePago</class>
+      <string>CTADNI</string>
+     </object>
+    </void>
+    <void property="horaFinal">
+     <int>2</int>
+    </void>
+    <void property="nombre">
+     <string>Promo1</string>
+    </void>
+    <void property="porcentajeDesc">
+     <int>20</int>
+    </void>
+   </object>
+  </void>
+ </object>
+ <object class="java.util.ArrayList"/>
+ <object class="java.util.HashMap"/>
+ <object class="negocio.FuncionalidadOperario"/>
+ <object class="negocio.FuncionalidadAdmin"/>
+ <object idref="Administrador0"/>
 </java>

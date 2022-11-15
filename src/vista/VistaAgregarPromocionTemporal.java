@@ -264,8 +264,10 @@ public class VistaAgregarPromocionTemporal extends JPanel implements IVistaAgreg
 
 	@Override
 	public boolean isAcumulable() {
-		// TODO Auto-generated method stub
-		return false;
+		boolean res=true;
+		if (this.comboBoxAcumulable.getSelectedItem().toString()=="No")
+			res=false;
+		return res;
 	}
 
 	@Override

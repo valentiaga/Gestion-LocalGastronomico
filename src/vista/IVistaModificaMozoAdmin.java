@@ -15,5 +15,6 @@ public interface IVistaModificaMozoAdmin {
 	float getSueldo();
 	Enumerados.estadoMozo getEstadoMozo();
 	Mozo getMozo();
+	void actualizaComboBox();
 	
 }

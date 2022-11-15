@@ -27,6 +27,10 @@ public class Mozo
         this.mesasAtendidas = new ArrayList<MesaAtendida>();
         this.sueldo =  Sueldo.calculaSueldo(cantHijos);
     }
+    
+    public Mozo() {
+    	
+    }
 
 	public void setEstado(Enumerados.estadoMozo estado) {
 		this.estado = estado;

@@ -14,6 +14,9 @@ public class PromocionTemporal extends Promocion
 		return porcentajeDesc;
 	}
 
+	public PromocionTemporal() {
+		
+	}
 
 	public PromocionTemporal(boolean activa, modelo.Enumerados.diasDePromo diasDePromo, String nombre,
 			modelo.Enumerados.formaDePago formaDePago, int porcentajeDesc, boolean esAcumulable, int horaInicio,

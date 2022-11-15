@@ -23,7 +23,9 @@ public class MesaAtendida {
 		this.formaDePago = formaDePago;
 		promociones = new ArrayList<PromocionProd>();
 	}
-	
+	public MesaAtendida() {
+		
+	}
 	
 	public PromocionTemporal getPromoTemp() {
 		return promoTemp;

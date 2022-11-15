@@ -10,6 +10,9 @@ public class Promocion {
 		this.activa = activa;
 		this.diasDePromo = diasDePromo;
 	}
+	public Promocion() {
+		
+	}
 
 	public boolean isActiva() {
 		return activa;
