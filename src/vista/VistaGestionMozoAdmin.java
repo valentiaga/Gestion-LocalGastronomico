@@ -48,7 +48,7 @@ public class VistaGestionMozoAdmin extends JPanel implements ItemListener, IVist
 
 		JPanel panel = new JPanel();
 		add(panel);
-		panel.setLayout(new GridLayout(5, 0, 0, 0));
+		panel.setLayout(new GridLayout(6, 0, 0, 0));
 
 		JPanel panel_1 = new JPanel();
 		panel.add(panel_1);
@@ -118,8 +118,17 @@ public class VistaGestionMozoAdmin extends JPanel implements ItemListener, IVist
 		JPanel panel_10 = new JPanel();
 		panel.add(panel_10);
 		
+		JPanel panel_14 = new JPanel();
+		panel_10.add(panel_14);
+		
+		JButton btnMostrarEstadisticas = new JButton("Mostrar estadisticas");
+		panel_14.add(btnMostrarEstadisticas);
+		
+		JPanel panel_13 = new JPanel();
+		panel.add(panel_13);
+		
 		JPanel panel_9 = new JPanel();
-		panel_10.add(panel_9);
+		panel_13.add(panel_9);
 		
 		JButton btnVolver_1 = new JButton("VOLVER");
 		panel_9.add(btnVolver_1);

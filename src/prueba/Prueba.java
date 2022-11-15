@@ -67,12 +67,49 @@ public class Prueba {
 
 	public static void main(String[] args) {
 		
+	
 		try {
 			Persiste.getInstancia().leer();
 		} catch (IOException e2) {
-			// TODO Auto-generated catch block
+			
 			e2.printStackTrace();
+			Mozo mozo = new Mozo("Marti", 3);
+			Mozo mozo2 = new Mozo("Valen", 0);
+			Mozo mozo3 = new Mozo("Pau", 2);
+			Sistema.getInstance().getMozos().put("Marti", mozo);
+			Sistema.getInstance().getMozos().put("Valen", mozo2);
+			Sistema.getInstance().getMozos().put("Pau", mozo3);
+//			
+//			Sistema.getInstance().seteaAdmin();
+//			Sistema.getInstance().setFuncionalidadAdmin(new FuncionalidadAdmin(Administrador.getInstance()));
+//			Sistema.getInstance().setFuncionalidadOperario(new FuncionalidadOperario(Administrador.getInstance()));
+//			Sistema.getInstance().setOperarioActual(Administrador.getInstance());
+//			try {
+//				Sistema.getInstance().getFuncionalidadAdmin().agregaProducto("Pizza", 10, 20, 10);
+//				Sistema.getInstance().getFuncionalidadAdmin().agregaProducto("Agua", 10, 20, 10);
+//			} catch (precioInvalido_Exception e) {
+//				// TODO Auto-generated catch block
+//				e.printStackTrace();
+//			}
+//			Sistema.getInstance().setFuncionalidadOperario(new FuncionalidadOperario(Administrador.getInstance()));
+//			Sistema.getInstance().setOperarioActual(Administrador.getInstance());
+//			try {
+//				Sistema.getInstance().getFuncionalidadOperario().agregaPromocionProd(0, Enumerados.diasDePromo.LUNES, false, true, 3, 12, true);
+//			} catch (PromoInvalida_Exception | NoExisteID_Exception e1) {
+//				// TODO Auto-generated catch block
+//				e1.printStackTrace();
+//			}
+//			try {
+//				Sistema.getInstance().getFuncionalidadOperario().agregaPromocionTemporal(true, Enumerados.diasDePromo.LUNES, "Promo1", Enumerados.formaDePago.CTADNI, 20, false, 12, 14);
+//			} catch (PromoRepetida_Exception e1) {
+//				// TODO Auto-generated catch block
+//				e1.printStackTrace();
+//			}
+//			
+			Persiste.getInstancia().persistir();
 		}
+		
+		
 		
 		Mozo mozo = new Mozo("Marti", 3);
 		Mozo mozo2 = new Mozo("Valen", 0);

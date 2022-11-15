@@ -20,6 +20,8 @@ import javax.swing.JTextField;
 import javax.swing.SwingConstants;
 import javax.swing.border.TitledBorder;
 
+import modelo.Enumerados;
+import modelo.Enumerados.formaDePago;
 import negocio.Sistema;
 import java.awt.event.ActionEvent;
 
@@ -28,13 +30,15 @@ public class VistaGestionMesaOp extends JPanel implements IVistaGestionMesaOp, I
 	private JButton btnCerrarMesa;
 	private JButton btnSeteaMozo;
 	private JButton btnModificaMesa;
-	private JComboBox comboBox;
+	private JComboBox comboBoxSetearMozo;
 	private ActionListener actionListener;
 	private JButton btnVolver ;
 	private JButton btnAbrirMesa;
 	private JButton btnAgregaPedido;
 	private JTextField textFieldCantidad;
 	private JTextField textFieldIdProd;
+	private JComboBox comboBoxFormaDePago;
+	
 	/**
 	 * Create the panel.
 	 */
@@ -67,27 +71,27 @@ public class VistaGestionMesaOp extends JPanel implements IVistaGestionMesaOp, I
 		JPanel panel_7 = new JPanel();
 		panel_2.add(panel_7);
 		
-		comboBox = new JComboBox<String>();
-		comboBox.setEnabled(false);
-		comboBox.setEditable(true);
-		comboBox.addItem(Sistema.getInstance().getMozos().get("Marti").getNyA());
-		comboBox.addItem(Sistema.getInstance().getMozos().get("Valen").getNyA());
-		comboBox.addItem(Sistema.getInstance().getMozos().get("Pau").getNyA());
-		comboBox.addItemListener(this);
+		comboBoxSetearMozo = new JComboBox<String>();
+		comboBoxSetearMozo.setEnabled(false);
+		comboBoxSetearMozo.setEditable(true);
+		comboBoxSetearMozo.addItem(Sistema.getInstance().getMozos().get("Marti").getNyA());
+		comboBoxSetearMozo.addItem(Sistema.getInstance().getMozos().get("Valen").getNyA());
+		comboBoxSetearMozo.addItem(Sistema.getInstance().getMozos().get("Pau").getNyA());
+		comboBoxSetearMozo.addItemListener(this);
 		
 		GroupLayout gl_panel_7 = new GroupLayout(panel_7);
 		gl_panel_7.setHorizontalGroup(
 			gl_panel_7.createParallelGroup(Alignment.LEADING)
 				.addGroup(gl_panel_7.createSequentialGroup()
 					.addContainerGap()
-					.addComponent(comboBox, GroupLayout.PREFERRED_SIZE, 64, GroupLayout.PREFERRED_SIZE)
+					.addComponent(comboBoxSetearMozo, GroupLayout.PREFERRED_SIZE, 64, GroupLayout.PREFERRED_SIZE)
 					.addContainerGap(GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
 		);
 		gl_panel_7.setVerticalGroup(
 			gl_panel_7.createParallelGroup(Alignment.LEADING)
 				.addGroup(Alignment.TRAILING, gl_panel_7.createSequentialGroup()
 					.addContainerGap(GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-					.addComponent(comboBox, GroupLayout.PREFERRED_SIZE, 22, GroupLayout.PREFERRED_SIZE)
+					.addComponent(comboBoxSetearMozo, GroupLayout.PREFERRED_SIZE, 22, GroupLayout.PREFERRED_SIZE)
 					.addContainerGap())
 		);
 		panel_7.setLayout(gl_panel_7);
@@ -97,6 +101,17 @@ public class VistaGestionMesaOp extends JPanel implements IVistaGestionMesaOp, I
 		JPanel panel_3 = new JPanel();
 		panel.add(panel_3);
 		panel_3.setLayout(new FlowLayout(FlowLayout.CENTER, 5, 5));
+		
+		JPanel panel_11 = new JPanel();
+		panel_3.add(panel_11);
+		
+		comboBoxFormaDePago = new JComboBox();
+		panel_11.add(comboBoxFormaDePago);
+		comboBoxFormaDePago.setEditable(true);
+		comboBoxFormaDePago.addItem(Enumerados.formaDePago.CTADNI);
+		comboBoxFormaDePago.addItem(Enumerados.formaDePago.EFECTIVO);
+		comboBoxFormaDePago.addItem(Enumerados.formaDePago.MERCPAGO);
+		comboBoxFormaDePago.addItem(Enumerados.formaDePago.TARJETA);
 		
 		btnCerrarMesa = new JButton("Cerrar Mesa");
 		btnCerrarMesa.setEnabled(false);
@@ -175,12 +190,14 @@ public class VistaGestionMesaOp extends JPanel implements IVistaGestionMesaOp, I
 
 	@Override
 	public void addActionListener(ActionListener actionListener) {
+		
+		this.actionListener = actionListener;
 		this.btnCerrarMesa.addActionListener(actionListener);
 		this.btnModificaMesa.addActionListener(actionListener);
 		this.btnSeteaMozo.addActionListener(actionListener);
 		this.btnVolver.addActionListener(actionListener);
 		this.btnAbrirMesa.addActionListener(actionListener);
-		this.actionListener = actionListener;
+		this.btnAgregaPedido.addActionListener(actionListener);
 	}
 
 	@Override
@@ -198,7 +215,7 @@ public class VistaGestionMesaOp extends JPanel implements IVistaGestionMesaOp, I
 		this.btnModificaMesa.setEnabled(condition);
 		this.btnSeteaMozo.setEnabled(condition);
 		this.btnAbrirMesa.setEnabled(condition);
-		this.comboBox.setEnabled(condition);
+		this.comboBoxSetearMozo.setEnabled(condition);
 		this.btnAgregaPedido.setEnabled(condPedido);
 	}
 	public void keyTyped(KeyEvent e) {
@@ -232,5 +249,13 @@ public class VistaGestionMesaOp extends JPanel implements IVistaGestionMesaOp, I
 		catch (NumberFormatException e2) {
 		}
 		return cant;
+	}
+
+
+
+	@Override
+	public formaDePago getFormaDePago() {
+		
+		return (formaDePago) this.comboBoxFormaDePago.getSelectedItem();
 	}
 }

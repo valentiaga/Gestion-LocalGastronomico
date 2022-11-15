@@ -21,6 +21,7 @@ import modelo.Mozo;
 import negocio.Sistema;
 
 public class VistaModificaMozoOp extends JPanel implements ItemListener, IVistaModificaMozoOp{
+	
 	private JTextField textFieldNyA;
 	private JTextField textFieldCantHijos;
 	private JButton btnVolver;

@@ -54,6 +54,19 @@ public class Producto implements Cloneable
 		this.stockInicial = stockInicial;
 	}
 
+	
+	public static int getSiguienteIdProd() {
+		return siguienteIdProd;
+	}
+
+	public static void setSiguienteIdProd(int siguienteIdProd) {
+		Producto.siguienteIdProd = siguienteIdProd;
+	}
+
+	public void setIdProd(int idProd) {
+		this.idProd = idProd;
+	}
+
 	@Override
 	public String toString() {
 		return "Producto [idProd=" + idProd + ", nombre=" + nombre + ", precioCosto=" + precioCosto + ", precioVenta="

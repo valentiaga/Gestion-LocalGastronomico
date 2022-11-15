@@ -47,5 +47,7 @@ public class Enumerados
 		ACTIVO,
 		INACTIVO;
 	}
+	
+	
 }
 

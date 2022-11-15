@@ -66,6 +66,14 @@ public class Mesa
 	public static int getSiguienteNroMesa() {
 		return siguienteNroMesa;
 	}
+
+	public void setNroMesa(int nroMesa) {
+		this.nroMesa = nroMesa;
+	}
+
+	public static void setSiguienteNroMesa(int siguienteNroMesa) {
+		Mesa.siguienteNroMesa = siguienteNroMesa;
+	}
 	
     
 	

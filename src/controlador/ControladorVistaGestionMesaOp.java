@@ -32,16 +32,18 @@ public class ControladorVistaGestionMesaOp implements ActionListener {
 	}
 	@Override
 	public void actionPerformed(ActionEvent e) {
+		
 		CardLayout cl = (CardLayout) contentPane.getLayout();
 		String comando = e.getActionCommand();
 		Integer nroMesa = this.vista.getNroMesa();
+		
 		if (comando.equalsIgnoreCase("MODIFICAR")) 
 			cl.show(contentPane, ventana.getVistaModificaMesaOp());
 		else if (comando.equalsIgnoreCase("SETEAR"))
 			JOptionPane.showMessageDialog(null, "Setear.");
 		else if (comando.equalsIgnoreCase("CERRAR")) {
 			try {
-				Sistema.getInstance().getFuncionalidadAdmin().cierraMesa(this.vista.getNroMesa(), null);
+				Sistema.getInstance().getFuncionalidadAdmin().cierraMesa(this.vista.getNroMesa(), this.vista.getFormaDePago());
 				//this.vista.limpiarVista();
 				JOptionPane.showMessageDialog(null, "Cerrar.");
 			} catch (MesaNoOcupadaException e1) {
@@ -62,7 +64,7 @@ public class ControladorVistaGestionMesaOp implements ActionListener {
 		else if (comando.equalsIgnoreCase("VOLVER")) {
 			cl.show(contentPane, ventana.getVistaOp());
 		}
-		else if (comando.equalsIgnoreCase("AGREGA_PEDIDO")) { ///FIJATE Q NO ANDA
+		else if (comando.equalsIgnoreCase("AGREGA_PEDIDO")) { 
 			try {
 				Sistema.getInstance().getFuncionalidadAdmin().agregaPedidos(nroMesa, this.vista.getIdProd(), this.vista.getCant());
 				this.vista.ventanaEmergente("Pedido agregado con exito");

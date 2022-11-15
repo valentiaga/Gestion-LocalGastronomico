@@ -19,6 +19,15 @@ public class Pedido
 		return cant;
 	}
 
+	
+	public void setProducto(Producto producto) {
+		this.producto = producto;
+	}
+
+	public void setCant(int cant) {
+		this.cant = cant;
+	}
+
 	@Override
 	public String toString() {
 		return "Pedido [producto=" + producto.getNombre() + ", cant=" + cant + "]";

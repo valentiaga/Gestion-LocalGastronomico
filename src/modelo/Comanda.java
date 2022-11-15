@@ -42,5 +42,18 @@ public class Comanda
 	public void agregaPedido(Pedido pedido) {
 		this.pedidos.add(pedido);
 	}
+
+	public void setFecha(GregorianCalendar fecha) {
+		this.fecha = fecha;
+	}
+
+	public void setMesa(Mesa mesa) {
+		this.mesa = mesa;
+	}
+
+	public void setPedidos(ArrayList<Pedido> pedidos) {
+		this.pedidos = pedidos;
+	}
+	
 	
 }

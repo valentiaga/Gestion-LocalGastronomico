@@ -20,4 +20,5 @@ public class Sueldo
     public double getRemBasic() {
         return remBasic;
     }
+    
 }

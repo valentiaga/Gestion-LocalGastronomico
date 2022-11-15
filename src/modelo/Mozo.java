@@ -63,6 +63,18 @@ public class Mozo
 	public double getSueldo() {
 		return sueldo;
 	}
+
+	public void setFecha(GregorianCalendar fecha) {
+		this.fecha = fecha;
+	}
+
+	public void setMesasAtendidas(ArrayList<MesaAtendida> mesasAtendidas) {
+		this.mesasAtendidas = mesasAtendidas;
+	}
+
+	public void setSueldo(double sueldo) {
+		this.sueldo = sueldo;
+	}
     
     
 

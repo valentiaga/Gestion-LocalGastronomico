@@ -77,6 +77,21 @@ public class PromocionProd extends Promocion
 	public int getIdProm() {
 		return idProm;
 	}
+
+
+	public static int getSigIdProm() {
+		return sigIdProm;
+	}
+
+
+	public static void setSigIdProm(int sigIdProm) {
+		PromocionProd.sigIdProm = sigIdProm;
+	}
+
+
+	public void setIdProm(int idProm) {
+		this.idProm = idProm;
+	}
     
    
 

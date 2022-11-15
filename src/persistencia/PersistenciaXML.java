@@ -3,6 +3,7 @@ package persistencia;
 import java.beans.XMLDecoder;
 import java.beans.XMLEncoder;
 import java.io.FileInputStream;
+import java.io.FileNotFoundException;
 import java.io.FileOutputStream;
 import java.io.IOException;
 
@@ -15,7 +16,7 @@ public class PersistenciaXML implements IPersistencia{
 	
 	
 	@Override
-	public void abrirInput(String nombre) throws IOException {
+	public void abrirInput(String nombre) throws FileNotFoundException {
 		this.fileinput = new FileInputStream(nombre);
 		this.xmlDecoder = new XMLDecoder(this.fileinput);
 	}

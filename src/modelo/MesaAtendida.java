@@ -9,7 +9,7 @@ public class MesaAtendida {
 	private Mesa mesa;
 	private ArrayList<Pedido> pedidos = new ArrayList<Pedido>();
 	private double total;
-	private Enumerados.formaDePago formaDePago;							// hay que elegir la forma de pago por ventana cuando se cierra la mesa
+	private Enumerados.formaDePago formaDePago;							
 	private ArrayList<PromocionProd> promociones;
 	private PromocionTemporal promoTemp;
 	
@@ -75,6 +75,16 @@ public class MesaAtendida {
 
 	public void setPromociones(ArrayList<PromocionProd> promociones) {
 		this.promociones = promociones;
+	}
+
+
+	public GregorianCalendar getFecha() {
+		return fecha;
+	}
+
+
+	public void setFecha(GregorianCalendar fecha) {
+		this.fecha = fecha;
 	}
 	
 	
