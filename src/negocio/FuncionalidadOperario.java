@@ -1,6 +1,7 @@
 package negocio;
 
 import java.util.ArrayList;
+import java.util.HashMap;
 
 import excepciones.CantComensalesInvalida_Exception;
 import excepciones.CantHijosInvalida_Exception;
@@ -8,6 +9,7 @@ import excepciones.ContrasenaIncorrecta_Exception;
 import excepciones.EstadoIncorrecto_Exception;
 import excepciones.MesaNoOcupadaException;
 import excepciones.MesaOcupada_Exception;
+import excepciones.MozoInactivo_Exception;
 import excepciones.NoExisteID_Exception;
 import excepciones.NoExisteMesa_Exception;
 import excepciones.PromoIdRepetido_Exception;
@@ -315,7 +317,14 @@ public class FuncionalidadOperario {
 	
 
 	// crea comanda
-	public void abreComanda(Mesa mesa) throws NoExisteMesa_Exception, MesaOcupada_Exception{ //seria la opcion abrir mesa de la ventana. Hay q agregar un maximo de mesas y tirar excepcion de q ya esta todo ocupado y aparte excepcion de si justo esa mesa esta ocupada.
+	public void abreComanda(Mesa mesa) throws NoExisteMesa_Exception, MesaOcupada_Exception, MozoInactivo_Exception{ //seria la opcion abrir mesa de la ventana. Hay q agregar un maximo de mesas y tirar excepcion de q ya esta todo ocupado y aparte excepcion de si justo esa mesa esta ocupada.
+		int i=0, bandera=0;
+		String nombreMozo="";
+		HashMap<String, Mozo> mozos = Sistema.getInstance().getMozos();
+		ArrayList<String> arrayMozo = new ArrayList<String>();
+		for (HashMap.Entry<String, Mozo> entry : mozos.entrySet()) {
+			arrayMozo.add(entry.getKey());
+		}
 		if (mesa != null) { //la mesa existe en el local
 			if (Sistema.getInstance().getMesas().get(mesa.getNroMesa()).getEstado() == Enumerados.estadoMesa.LIBRE) {
 				Sistema.getInstance().getMesas().get(mesa.getNroMesa()).setEstado(Enumerados.estadoMesa.OCUPADA);
@@ -323,7 +332,16 @@ public class FuncionalidadOperario {
 				Comanda comanda = new Comanda(mesa, Enumerados.estadoComanda.ABIERTO);
 				mesa.setComanda(comanda); 
 				sistema.getComandas().add(comanda);	
-				mesa.setMozo(Sistema.getInstance().getMozos().get("Marti"));
+				while (i<30 && bandera==0) {
+					i = (int) (Math.random() * (arrayMozo.size()+1));
+					nombreMozo = arrayMozo.get(i);
+					if (Sistema.getInstance().getMozos().get(nombreMozo).getEstado()==Enumerados.estadoMozo.ACTIVO) {
+						bandera=1;
+						mesa.setMozo(Sistema.getInstance().getMozos().get(nombreMozo));
+					}
+				}
+				if (bandera==0)
+					throw new MozoInactivo_Exception("No hay mozos activos en este momento");
 			}
 			else throw new MesaOcupada_Exception("La mesa se encuentra ocupada.");
 		}

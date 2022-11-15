@@ -190,7 +190,6 @@ public class Prueba {
 					vistaModificaPromocionTemporal, v);
 			ControladorVistaMostrarEstadisticas cMuestraEstad = new ControladorVistaMostrarEstadisticas(vistaMostrarEstadisticas, v);
 		}
-
 	}
 
 }

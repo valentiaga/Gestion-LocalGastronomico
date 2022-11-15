@@ -11,6 +11,7 @@ import excepciones.CantComensalesInvalida_Exception;
 import excepciones.EstadoIncorrecto_Exception;
 import excepciones.MesaNoOcupadaException;
 import excepciones.MesaOcupada_Exception;
+import excepciones.MozoInactivo_Exception;
 import excepciones.NoExisteID_Exception;
 import excepciones.NoExisteMesa_Exception;
 import excepciones.StockInsuficiente_Exception;
@@ -52,9 +53,13 @@ public class ControladorVistaGestionMesaAdmin implements ActionListener {
 			}
 		} else if (comando.equalsIgnoreCase("ABRE_MESA")) {
 			try {
-				Sistema.getInstance().getFuncionalidadAdmin()
-						.abreComanda(Sistema.getInstance().getMesas().get(nroMesa));
-				this.vista.ventanaEmergente("Abierta con exito");
+				try {
+					Sistema.getInstance().getFuncionalidadAdmin()
+							.abreComanda(Sistema.getInstance().getMesas().get(nroMesa));
+					this.vista.ventanaEmergente("Abierta con exito");
+				} catch (MozoInactivo_Exception e1) {
+					this.vista.ventanaEmergente(e1.getMessage());
+				}
 			} catch (MesaOcupada_Exception e1) {
 				this.vista.ventanaEmergente(e1.getMessage());
 			} catch (NoExisteMesa_Exception e1) {
