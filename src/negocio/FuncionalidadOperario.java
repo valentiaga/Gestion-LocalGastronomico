@@ -45,21 +45,28 @@ public class FuncionalidadOperario {
 		return operario;
 	}
 
-	public void estableceEstadosMozos(Enumerados.estadoMozo estado, String nya) { //esto se hace al comienzo de cada dia 
+	/**
+	 * Metodo para setear el estado de un mozos. <br>
+	 * Pre: Nya != null, NyA != "" <br>
+	 * Post: Se setea el estado del mozo. <br>
+	 * @param estado activo, de franco, ausente. <br>
+	 * @param nya Nombre y apellido, identificador del mozo. <br>
+	 */
+	public void estableceEstadosMozos(Enumerados.estadoMozo estado, String nya) { 
 		Mozo mozoActual = Sistema.getInstance().getMozos().get(nya);
 		mozoActual.setEstado(estado);
 	}
 
 	/**
-	 * metodo utilizado para modificar el o los campos de Operario que se deseen.
-	 * 
-	 * @param NyA      nombre y apellido nuevo.
-	 * @param userName nuevo nombre de usuario.
-	 * @param password nueva contrasenia.
-	 * @param activo   nuevo estado del Operario.
-	 * @throws UserNameRepetido_Exception Se lanza si el nuevo nombre de usuario ya
-	 *                                    existe en el sistema.
-	 * @throws ContrasenaIncorrecta_Exception 
+	 * Metodo utilizado para modificar el o los campos de Operario que se deseen. <br>
+	 * Pre: Nya != null, NyA != "", userName != null, userName != "", password != null, password != "" <br>
+	 * Post: Se modifican los atributos del operario. <br>
+	 * @param NyA      nombre y apellido nuevo. <br>
+	 * @param userName nuevo nombre de usuario. <br>
+	 * @param password nueva contrasenia. <br>
+	 * @param activo   nuevo estado del Operario. <br>
+	 * @throws UserNameRepetido_Exception Se lanza si el nuevo nombre de usuario ya existe en el sistema. <br>
+	 * @throws ContrasenaIncorrecta_Exception  
 	 */
 	
 	public void modificaOperario(String NyA, String userName, String password)
@@ -68,7 +75,7 @@ public class FuncionalidadOperario {
 				&& Sistema.getInstance().getOperariosRegistrados().containsKey(userName))
 			throw new UserNameRepetido_Exception("El nombre de usuario ya se encuentra registrado en el sistema.");
 		else if (this.verificaPassword(password)== false)
-			throw new ContrasenaIncorrecta_Exception("El campo contraseña debe contener entre 6 y 12 caracteres. Con al menos 1 dígito y 1 mayúscula");
+			throw new ContrasenaIncorrecta_Exception("El campo contraseï¿½a debe contener entre 6 y 12 caracteres. Con al menos 1 dï¿½gito y 1 mayï¿½scula");
 		else {
 			this.operario.setNyA(NyA);
 			this.operario.setPassword(password);
@@ -77,16 +84,15 @@ public class FuncionalidadOperario {
 	}
 
 	/**
-	 * metodo para modificar el/los atributos del mozo que se desee/n.
-	 * 
-	 * @param NyA       nombre y apellido nuevo.
-	 * @param cantHijos nueva cantidad de hijos.
-	 * @param mozo      que se desea modificar.
+	 * metodo para modificar el/los atributos del mozo que se deseen.<br>
+	 * Pre: Nya != null, NyA != "" <br>
+	 * Post: Mozo modificado. <br>
+	 * @param NyA       nombre y apellido nuevo. <br>
+	 * @param cantHijos nueva cantidad de hijos. <br>
+	 * @param mozo      que se desea modificar.  <br>
+	  * @throws CantHijosInvalida_Exception cuando la cantidad de hijos es negativa. <br>
 	 */
-	public void modificaMozo(Mozo mozo, String NyA, int cantHijos) throws CantHijosInvalida_Exception { // el estado lo
-																										// modifica el o
-																										// // el //
-																										// sistema??
+	public void modificaMozo(Mozo mozo, String NyA, int cantHijos) throws CantHijosInvalida_Exception { 
 		if (cantHijos < 0)
 			throw new CantHijosInvalida_Exception("Ingrese una cantidad de hijos valida.");
 		mozo.setCantHijos(cantHijos);
@@ -94,16 +100,17 @@ public class FuncionalidadOperario {
 	}
 
 	/**
-	 * metodo para modificar el/los atributos que se deseen del producto.
-	 * 
+	 * metodo para modificar el/los atributos que se deseen del producto. <br>
 	 * @param id           correspondiente al producto. <br>
 	 * @param nombre       nuevo nombre del producto. <br>
 	 * @param precioCosto  nuevo precio de costo. <br>
 	 * @param precioVenta  nuevo precio de venta. <br>
 	 * @param stockInicial nuevo stock inicial. <br>
-	 * @throws NoExisteID_Exception Se lanza si el ID ingresado no esta relacionado
-	 *                              a ningun producto del sistema.
+	 * @throws NoExisteID_Exception Se lanza si el ID ingresado no esta relacionado a ningun producto del sistema.
+	 * @throws precioInvalido_Exception	
+	 * @throws prodEnUso_Exception
 	 */
+
 	public void modificaProducto(int idProd, String nombre, double precioCosto, double precioVenta, int stockInicial)
 			throws NoExisteID_Exception, precioInvalido_Exception, prodEnUso_Exception {
 		Producto prodActual = Sistema.getInstance().getProductos().get(idProd);
@@ -125,10 +132,11 @@ public class FuncionalidadOperario {
 	 * @param nroMesa    ID de mesa. <br>
 	 * @param cantSillas cantidad de personas que ocuparan la mesa. <br>
 	 * @param libre      estado de la mesa. <br>
-	 * @throws NoExisteMesa_Exception Se lanza si el ID no corresponde con ninguna
-	 *                                mesa cargada en el sistema.
+	 * @throws NoExisteMesa_Exception Se lanza si el ID no corresponde con ninguna mesa cargada en el sistema. <br>
+	  * @throws CantComensalesInvalida_Exception cuando la cantidad de comensales de una mesa es menos que 2.  <br>                           
 	 */
 
+	
 	public void modificaMesa(int nroMesa, int cantPax, Enumerados.estadoMesa estado)
 			throws NoExisteMesa_Exception, CantComensalesInvalida_Exception {
 		Mesa mesaActual = Sistema.getInstance().getMesas().get(nroMesa);
@@ -138,9 +146,7 @@ public class FuncionalidadOperario {
 			throw new CantComensalesInvalida_Exception("La cantidad de comensales debe ser mayor a uno.");
 		mesaActual.setCantPax(cantPax);
 		mesaActual.setEstado(estado);
-	} // tira excepcion de no existe mesa? O vamos a tener un mapa de mesas
-		// si elegimos en la ventana la mesa del array de mesa, no se va a tirar la
-		// excepcion nunca
+	} 
 
 	/**
 	 * metodo para agregar un nuevo producto en promo al menu. <br>
@@ -175,7 +181,7 @@ public class FuncionalidadOperario {
 	}
 
 	/**
-	 * metodo para modificar el estado de una promo.<br>
+	 * Metodo para modificar el estado de una promo.<br>
 	 * 
 	 * @param idProm identificador de la promo. <br>
 	 * @param activa estado de la promo. <br>
@@ -199,7 +205,7 @@ public class FuncionalidadOperario {
 	}
 
 	/**
-	 * metodo que elimina la promo. <br>
+	 * Metodo que elimina la promo. <br>
 	 * 
 	 * @param idProm identificador de la promo. <br>
 	 */
@@ -211,7 +217,18 @@ public class FuncionalidadOperario {
 			throw new PromoInvalida_Exception("No existe la promo que intenta eliminar");
 	}
 
-	
+	/**
+	 * Metodo para agregar una promocion temporal a la coleccion de promociones temporales. <br>
+	 * @param activa	
+	 * @param diasDePromo determina el dia en el que es validad la promocion (LUNES,MARTES,MIERCOLES,JUEVES,VIERNES,SABADO,DOMINGO;). <br>
+	 * @param nombre de la promocion. (identificador de la promocion temporal)<br>
+	 * @param formaDePago puede ser EFECTIVO,TARJETA,MERCPAGO,CTADNI. <br>
+	 * @param porcentajeDesc porcentaje de descuento. <br>
+	 * @param esAcumulable determina si la promocion es acumulable con otras promociones. <br>
+	 * @param horaInicio
+	 * @param horaFinal
+	 * @throws PromoRepetida_Exception cuando la promocion que se desea agregar ya existe en la coleccion de promociones temporales. <br>
+	 */
 	public void agregaPromocionTemporal(boolean activa, modelo.Enumerados.diasDePromo diasDePromo, String nombre,
 			modelo.Enumerados.formaDePago formaDePago, int porcentajeDesc, boolean esAcumulable, int horaInicio,
 			int horaFinal) throws PromoRepetida_Exception {
@@ -224,6 +241,13 @@ public class FuncionalidadOperario {
 			promosTemp.add(promoActual);
 	}
 
+	/**
+	 * Metodo para eliminar una promocion temporal de la coleccion de promociones temporales. <br>
+	 * Pre: nombre != null, nombre != "". <br>
+	 * Post: Se elimina la promocion temporal. <br>
+	 * @param nombre de la promocion a eliminar(identificador de la promocion temporal). <br>
+	 * @throws PromoInvalida_Exception cuando la promocion que se desea eliminar no existe en la coleccion de promociones temporales. <br>
+	 */
 	public void eliminaPromocionTemporal(String nombre) throws PromoInvalida_Exception  {
 		ArrayList<PromocionTemporal> promosTemp = Sistema.getInstance().getPromocionesTemp();
 		int bandera = 0, i = 0;
@@ -238,6 +262,21 @@ public class FuncionalidadOperario {
 			throw new PromoInvalida_Exception("No existe la promo que intenta eliminar");
 	}
 
+	/**
+	 * Metodo que modifica una promocion temporal. <br>
+	 * Pre: nombre != null, nombre != "". <br>
+	 * Post: Se modifica la promocion temporal. <br>
+	 * @param nombre de la promocion temporal que se quiere modificar (identificador de la promocion temporal). <br>
+	* @param diasDePromo determina el dia en el que es validad la promocion (LUNES,MARTES,MIERCOLES,JUEVES,VIERNES,SABADO,DOMINGO;). <br>
+	 * @param nombre de la promocion. (identificador de la promocion temporal)<br>
+	 * @param formaDePago puede ser EFECTIVO,TARJETA,MERCPAGO,CTADNI. <br>
+	 * @param porcentajeDesc porcentaje de descuento. <br>
+	 * @param esAcumulable determina si la promocion es acumulable con otras promociones. <br>
+	 * @param activo
+	 * @param horaInicio
+	 * @param horaFinal
+	 * @throws PromoInvalida_Exception cuando la promocion a modificar no existe. <br>
+	 */
 	public void modificaPromocionTemporal(String nombre, Enumerados.diasDePromo diasDePromo,
 			Enumerados.formaDePago formaDePago, boolean activo, int porcentajeDescuento, boolean esAcumulable,
 			int horaInicio, int horaFinal) throws PromoInvalida_Exception {
@@ -250,9 +289,9 @@ public class FuncionalidadOperario {
 			if (promosTemp.get(i).getNombre() == nombre) {
 				promocionTemporal = promosTemp.get(i);
 				promocionTemporal.setActiva(activo);
-				promocionTemporal.setPorcentajeDesc(porcentajeDescuento); // controlar en la ventana que sea > 0
+				promocionTemporal.setPorcentajeDesc(porcentajeDescuento); 
 				promocionTemporal.setEsAcumulable(esAcumulable);
-				promocionTemporal.setHoraInicio(horaInicio); // controlar en la ventana que sea 0< > 24
+				promocionTemporal.setHoraInicio(horaInicio); 
 				promocionTemporal.setHoraFinal(horaFinal);
 				promocionTemporal.setFormaDePago(formaDePago);
 				promocionTemporal.setDiasDePromo(diasDePromo);
@@ -261,7 +300,15 @@ public class FuncionalidadOperario {
 			throw new PromoInvalida_Exception("La promocion '" + nombre + "' no existe.");
 	}
 
-	
+	/**
+	 * Metodo que setea a una mesa un mozo.<br>
+	 * Pre: mozo != null <br>
+	 * Post: Se setea el mozo en la mesa. <br>
+	 * @param nroMesa ID de mesa. <br>
+	 * @param mozo
+	 * @throws NoExisteMesa_Exception Se lanza cuando la mesa no existe en la coleccion de mesas. <br>
+	 * @throws EstadoIncorrecto_Exception Se lanza cuando el estado del mozo a setear es distinto de ACTIVO. <br>
+	 */
 	public void setMesaMozo(int nroMesa, Mozo mozo) throws NoExisteMesa_Exception, EstadoIncorrecto_Exception{
 		Mesa mesa = Sistema.getInstance().getMesas().get(nroMesa);
 		if (mesa!= null)
@@ -273,12 +320,19 @@ public class FuncionalidadOperario {
 			throw new NoExisteMesa_Exception("No existe la mesa seleccionada");
 	}
 	
-	public void cierraMesa(int nroMesa, Enumerados.formaDePago formaDePago) throws MesaNoOcupadaException{ // forma de pago la eligen en la// ventana
+	/**
+	 * Metodo para cerrar una mesa. <br>
+	 * Post: Se cierra la mesa. <br>
+	 * @param nroMesa ID de mesa. <br>
+	 * @param formaDePago puede ser EFECTIVO,TARJETA,MERCPAGO,CTADNI. <br>
+	 * @throws MesaNoOcupadaException cuando la mesa == null, o el estado de la mesa sigue en ocupada. <br>
+	 */
+	
+	public void cierraMesa(int nroMesa, Enumerados.formaDePago formaDePago) throws MesaNoOcupadaException{
 
 		Mesa mesaActual = Sistema.getInstance().getMesas().get(nroMesa);
 		if (mesaActual!=null && mesaActual.getEstado() == Enumerados.estadoMesa.OCUPADA) {
-			Comanda comanda = mesaActual.getComanda(); //pinta hacer un hashmappp
-			//System.out.println(comanda.getPedidos());
+			Comanda comanda = mesaActual.getComanda(); 
 			comanda.setEstado(Enumerados.estadoComanda.CERRADO);
 			Mozo mozo = mesaActual.getMozo();
 			double total = GestionComandas.totalComandaSinDescuento(comanda);
@@ -287,36 +341,22 @@ public class FuncionalidadOperario {
 			GestionProdPromo.cargaPromosProd(comanda);
 			GestionProdTemp.cargaPromosTemp(comanda);
 			GestionComandas.totalComandaConDescuento(mesaAtendida, comanda);
-			//falta clonar la comanda
 			mesaActual.setEstado(Enumerados.estadoMesa.LIBRE);
 		}
 		else
 			throw new MesaNoOcupadaException("La mesa no esta ocupada o no existe.");
 	}
 
-	// verifica promos, instancia MesaAtendida, y la agrega a el ArrayList del mozo
-	/*public void cierraMesa(Comanda comanda, Enumerados.formaDePago formaDePago) throws MesaNoOcupadaException{ // forma de pago la eligen en la// ventana
 
-		Mesa mesaActual = comanda.getMesa();
-		if (mesaActual.getEstado() == Enumerados.estadoMesa.OCUPADA) {
-			comanda.setEstado(Enumerados.estadoComanda.CERRADO);
-			Mozo mozo = mesaActual.getMozo();
-			double total = GestionComandas.totalComandaSinDescuento(comanda);
-			MesaAtendida mesaAtendida = new MesaAtendida(comanda.getMesa(), comanda.getPedidos(), total, formaDePago);
-			GestionProdPromo.cargaPromosProd(comanda);
-			GestionProdTemp.cargaPromosTemp(comanda);
-			GestionComandas.totalComandaConDescuento(mesaAtendida, comanda);
-			mozo.getMesasAtendidas().add(mesaAtendida);
-			//falta clonar la comanda
-			mesaActual.setEstado(Enumerados.estadoMesa.LIBRE);
-		}
-		else
-			throw new MesaNoOcupadaException("La mesa no esta ocupada o no existe.")
-	}*/
-	
-
-	// crea comanda
-	public void abreComanda(Mesa mesa) throws NoExisteMesa_Exception, MesaOcupada_Exception, MozoInactivo_Exception{ //seria la opcion abrir mesa de la ventana. Hay q agregar un maximo de mesas y tirar excepcion de q ya esta todo ocupado y aparte excepcion de si justo esa mesa esta ocupada.
+	/**
+	 * Metodo para abrir una comanda. <br>
+	 * Post: Se abre una comanda en la mesa ingresada. <br>
+	 * @param mesa a en la que se va a crear la comanda. <br>
+	 * @throws NoExisteMesa_Exception cuando la mesa es null. <br>
+	 * @throws MesaOcupada_Exception cuando la mesa ya se encuentra ocupada. <br>
+	 * @throws MozoInactivo_Exception cuando no hay ningun mozo activo para asignar a la mesa.<br>
+	 */
+	public void abreComanda(Mesa mesa) throws NoExisteMesa_Exception, MesaOcupada_Exception, MozoInactivo_Exception{ 
 		int i=0, bandera=0;
 		String nombreMozo="";
 		HashMap<String, Mozo> mozos = Sistema.getInstance().getMozos();
@@ -324,7 +364,7 @@ public class FuncionalidadOperario {
 		for (HashMap.Entry<String, Mozo> entry : mozos.entrySet()) {
 			arrayMozo.add(entry.getKey());
 		}
-		if (mesa != null) { //la mesa existe en el local
+		if (mesa != null) { 
 			if (Sistema.getInstance().getMesas().get(mesa.getNroMesa()).getEstado() == Enumerados.estadoMesa.LIBRE) {
 				Sistema.getInstance().getMesas().get(mesa.getNroMesa()).setEstado(Enumerados.estadoMesa.OCUPADA);
 				Sistema sistema = Sistema.getInstance();
@@ -355,14 +395,31 @@ public class FuncionalidadOperario {
 		comanda.agregaPedido(new Pedido(producto, cant));
 	}*/
 	
+	/**
+	 * Metodo para agregar un pedido a la comanda de una mesa. <br>
+	 * @param nroMesa ID de la mesa. <br>
+	 * @param cant cantidad del producto. <br>
+	 * @param idProd identificador del producto a agregar. <br>
+	 * @throws StockInsuficiente_Exception	cuando la cantidad de productos a agregar es mayor a su stock. <br>
+	 * @throws NoExisteID_Exception	cuando el idProd no corresponde a ningun producto. <br>
+	 */
 	public void agregaPedidos(int nroMesa, int cant, int idProd) throws StockInsuficiente_Exception, NoExisteID_Exception {
 		GestionMesas.agregaPedidos(Sistema.getInstance().getMesas().get(nroMesa), cant, idProd);
 	}
-	
+	/**
+	 * Metodo que modifica el password del operario. <br>
+	 * Pre: password != "", password != null, 6 <= password <= 12 caracteres con al menos un digito y una mayuscula. <br>
+	 * @param password
+	 */
 	public void modificaPassword(String password) {
 		this.getOperario().setPassword(password);
 	}
 	
+	/**
+	 * Metodo que verifica que 6 <= password <= 12 caracteres con al menos un digito y una mayuscula. <br>
+	 * @param password
+	 * @return 
+	 */
 	public boolean verificaPassword (String password){
 		boolean res = false, banMayus = false, banDigit = false;
 		if (password.length()>12 || password.length()<6 ) {
