@@ -186,9 +186,9 @@ public class Sistema {
 
 	/**
 	 * metodo para logear un operario. <br>
-	 * Pre: El operario debe estar activo <br>
+	 * Pre: El userName debe ser !=null y !=vacio. <br>
 	 * Pre: El campo password debe contener entre 6 y 12 caracteres. Con al menos un
-	 * digito y una mayuscula <br>
+	 * digito y una mayuscula. Ademas ser distinto de null y vacio. <br>
 	 * Post: El operario queda logeado. <br>
 	 * 
 	 * @param userName utilizado para logear al usuario. <br>

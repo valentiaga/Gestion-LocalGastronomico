@@ -275,7 +275,6 @@ public class FuncionalidadOperario {
 	
 	public void cierraMesa(int nroMesa, Enumerados.formaDePago formaDePago) throws MesaNoOcupadaException{ // forma de pago la eligen en la// ventana
 
-		//System.out.println("Hola");
 		Mesa mesaActual = Sistema.getInstance().getMesas().get(nroMesa);
 		if (mesaActual!=null && mesaActual.getEstado() == Enumerados.estadoMesa.OCUPADA) {
 			Comanda comanda = mesaActual.getComanda(); //pinta hacer un hashmappp
