@@ -50,10 +50,6 @@ public class Sistema {
 	private String codigoAdministrador = "ADMIN1234";
 	private Operario operarioActual;
 	
-	// private Sueldo sueldo; //ESTO ACA ESTA
-	// RAROOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOO, hay que volarlo y explicar que
-	// usamos el metodo y atributo de la CLASE
-
 	public static Sistema getInstance() {
 		if (instance == null)
 			instance = new Sistema();
@@ -131,7 +127,6 @@ public class Sistema {
 	public void setFuncionalidadAdmin(FuncionalidadAdmin funcionalidadAdmin) {
 		this.funcionalidadAdmin = funcionalidadAdmin;
 	}
-
 
 	public void seteaAdmin() {
 		Administrador admin = Administrador.getInstance();
@@ -221,13 +216,28 @@ public class Sistema {
 		}
 		return funcionalidad;
 	}*/
+	
+	/**
+	 * metodo para logear un operario. <br>
+	 * Pre: El operario debe estar activo <br>
+	 * Pre: El campo password debe contener entre 6 y 12 caracteres. Con al menos un
+	 * digito y una mayuscula <br>
+	 * Post: El operario queda logeado. <br>
+	 * 
+	 * @param userName utilizado para logear al usuario. <br>
+	 * @param password correspondiente al userName. <br>
+	 * @throws UserNameIncorrecto_Exception	cuando el userName no se encuentra en la coleccion de operariosRegistrados
+	 * @throws ContrasenaIncorrecta_Exception cuando el password no corresponde al password del operario.
+	 * @throws OperarioInactivo_Exception 
+	 */
+	
 	public void login(String userName, String password)
 			throws UserNameIncorrecto_Exception, ContrasenaIncorrecta_Exception, OperarioInactivo_Exception {
 		//FuncionalidadOperario funcionalidad = null;
 		if(this.operariosRegistrados.containsKey(userName)) {
 			Operario operario = this.operariosRegistrados.get(userName);
 			if(operario.verificaPassword(password) == true) {
-				this.operarioActual = operario;										// podriamos tener solo funcionalidad, porque tiene el operario
+				this.operarioActual = operario;										
 				if(operario.isActivo() == false)
 					throw new OperarioInactivo_Exception("El usuario '"+userName+"' se encuentra inactivo.");
 				if(userName.equals(this.usuarioAdministrador))								// si la contrasena sigue siendo Admin1234 hay que obligarlo a cambiarla
