@@ -88,10 +88,7 @@ public class FuncionalidadOperario {
 	 * @param cantHijos nueva cantidad de hijos.
 	 * @param mozo      que se desea modificar.
 	 */
-	public void modificaMozo(Mozo mozo, String NyA, int cantHijos) throws CantHijosInvalida_Exception { // el estado lo
-																										// modifica el o
-																										// // el //
-																										// sistema??
+	public void modificaMozo(Mozo mozo, String NyA, int cantHijos) throws CantHijosInvalida_Exception { 
 		if (cantHijos < 0)
 			throw new CantHijosInvalida_Exception("Ingrese una cantidad de hijos valida.");
 		mozo.setCantHijos(cantHijos);
