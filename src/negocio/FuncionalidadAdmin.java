@@ -38,6 +38,8 @@ public class FuncionalidadAdmin extends FuncionalidadOperario {
 	
 	/**
 	 * Metodo para agregar un mozo a la coleccion de mozos.  <br>
+	 * Pre: NyA != null, Nya != "" <br>
+	 * Post: Se agrego el mozo a la coleccion. <br>
 	 * @param NyA Nombre y apellido, identificador del mozo. <br> 						
 	 * @param fechaNacimiento. 								 <br> 
 	 * @param cantHijos. 									 <br>
@@ -63,6 +65,8 @@ public class FuncionalidadAdmin extends FuncionalidadOperario {
 	
 	/**
 	 * Metodo que elimina mozo de la coleccion de mozos.     <br>
+	 * Pre: NyA != null, Nya != "" <br>
+	 * Post: Se elimina el mozo. <br>
 	 * @param NyA Nombre y apellido, identificador del mozo. <br> 					
 	 * @throws NoExisteMozo_Exception cuando el mozo que se quiere eliminar no existe en la coleccion. <br>
 	 */
@@ -77,6 +81,8 @@ public class FuncionalidadAdmin extends FuncionalidadOperario {
 	
 	/**
 	 * Metodo para modificar el estado de un operario. <br>
+	 * Pre; userName != null, userName != "" <br>
+	 * Post: Se modifica el estado del operario. <br>
 	 * @param userName Nombre de usuario del operario, identificador del operario.  <br>
 	 * @param activo   Boolean que representa el estado del operario. <br>
 	 * @throws NoExisteOperario_Exception cuando el operario que se quiere modificar no se encuentra en la coleccion. <br>
@@ -93,6 +99,7 @@ public class FuncionalidadAdmin extends FuncionalidadOperario {
 	
 	/**
 	 * Metodo que registra un nuevo operario en el sistema. <br>
+	 * Pre: NyA != null, Nya != "" <br>
 	 * Post: Agrega un nuevo operario al HashMap
 	 * 
 	 * @param NyA      Nombre y apellido, identificador del mozo. <br>
@@ -100,8 +107,7 @@ public class FuncionalidadAdmin extends FuncionalidadOperario {
 	 *                 operario para el login. <br>
 	 * @param password atributo que representa la contrasena y que corresponde al
 	 *                 userName. <br>
-	 * @throws UserNameRepetido_Exception si el nombre de usuario ingresado esta
-	 *                                    asociado a otra cuenta.
+	 * @throws UserNameRepetido_Exception si el nombre de usuario ingresado esta asociado a otra cuenta.
 	 * @throws ContrasenaIncorrecta_Exception 
 	 */
 	
@@ -118,6 +124,8 @@ public class FuncionalidadAdmin extends FuncionalidadOperario {
 
 	/**
 	 * Metodo que elimina un operario de la coleccion de operarios. <br>
+	 * Pre; userName != null, userName != "" <br>
+	 * Post: Se modifica el estado del operario. <br>
 	 * @param userName Nombre de usuario del operario, identificador del operario.  <br>
 	 * @throws NoExisteOperario_Exception cuando el operario que se quiere eliminar no se encuentra en la coleccion. <br>
 	 */
@@ -130,6 +138,8 @@ public class FuncionalidadAdmin extends FuncionalidadOperario {
 
 	/**
 	 * Metodo para agregar un producto a la coleccion de productos. <br>
+	 * Pre: nombre != null, nombre != "" <br>
+	 * Post: Se agrego el producto. <br>
 	 * @param nombre nombre del producto. <br>
 	 * @param precioCosto 
 	 * @param precioVenta

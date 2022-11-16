@@ -47,24 +47,26 @@ public class FuncionalidadOperario {
 
 	/**
 	 * Metodo para setear el estado de un mozos. <br>
+	 * Pre: Nya != null, NyA != "" <br>
+	 * Post: Se setea el estado del mozo. <br>
 	 * @param estado activo, de franco, ausente. <br>
 	 * @param nya Nombre y apellido, identificador del mozo. <br>
 	 */
-	public void estableceEstadosMozos(Enumerados.estadoMozo estado, String nya) { //esto se hace al comienzo de cada dia 
+	public void estableceEstadosMozos(Enumerados.estadoMozo estado, String nya) { 
 		Mozo mozoActual = Sistema.getInstance().getMozos().get(nya);
 		mozoActual.setEstado(estado);
 	}
 
 	/**
-	 * metodo utilizado para modificar el o los campos de Operario que se deseen.
-	 * 
-	 * @param NyA      nombre y apellido nuevo.
-	 * @param userName nuevo nombre de usuario.
-	 * @param password nueva contrasenia.
-	 * @param activo   nuevo estado del Operario.
-	 * @throws UserNameRepetido_Exception Se lanza si el nuevo nombre de usuario ya
-	 *                                    existe en el sistema.
-	 * @throws ContrasenaIncorrecta_Exception 
+	 * Metodo utilizado para modificar el o los campos de Operario que se deseen. <br>
+	 * Pre: Nya != null, NyA != "", userName != null, userName != "", password != null, password != "" <br>
+	 * Post: Se modifican los atributos del operario. <br>
+	 * @param NyA      nombre y apellido nuevo. <br>
+	 * @param userName nuevo nombre de usuario. <br>
+	 * @param password nueva contrasenia. <br>
+	 * @param activo   nuevo estado del Operario. <br>
+	 * @throws UserNameRepetido_Exception Se lanza si el nuevo nombre de usuario ya existe en el sistema. <br>
+	 * @throws ContrasenaIncorrecta_Exception  
 	 */
 	
 	public void modificaOperario(String NyA, String userName, String password)
@@ -82,11 +84,13 @@ public class FuncionalidadOperario {
 	}
 
 	/**
-	 * metodo para modificar el/los atributos del mozo que se desee/n.
-	 * 
-	 * @param NyA       nombre y apellido nuevo.
-	 * @param cantHijos nueva cantidad de hijos.
-	 * @param mozo      que se desea modificar.
+	 * metodo para modificar el/los atributos del mozo que se deseen.<br>
+	 * Pre: Nya != null, NyA != "" <br>
+	 * Post: Mozo modificado. <br>
+	 * @param NyA       nombre y apellido nuevo. <br>
+	 * @param cantHijos nueva cantidad de hijos. <br>
+	 * @param mozo      que se desea modificar.  <br>
+	  * @throws CantHijosInvalida_Exception cuando la cantidad de hijos es negativa. <br>
 	 */
 	public void modificaMozo(Mozo mozo, String NyA, int cantHijos) throws CantHijosInvalida_Exception { 
 		if (cantHijos < 0)
@@ -96,16 +100,17 @@ public class FuncionalidadOperario {
 	}
 
 	/**
-	 * metodo para modificar el/los atributos que se deseen del producto.
-	 * 
+	 * metodo para modificar el/los atributos que se deseen del producto. <br>
 	 * @param id           correspondiente al producto. <br>
 	 * @param nombre       nuevo nombre del producto. <br>
 	 * @param precioCosto  nuevo precio de costo. <br>
 	 * @param precioVenta  nuevo precio de venta. <br>
 	 * @param stockInicial nuevo stock inicial. <br>
-	 * @throws NoExisteID_Exception Se lanza si el ID ingresado no esta relacionado
-	 *                              a ningun producto del sistema.
+	 * @throws NoExisteID_Exception Se lanza si el ID ingresado no esta relacionado a ningun producto del sistema.
+	 * @throws precioInvalido_Exception	
+	 * @throws prodEnUso_Exception
 	 */
+
 	public void modificaProducto(int idProd, String nombre, double precioCosto, double precioVenta, int stockInicial)
 			throws NoExisteID_Exception, precioInvalido_Exception, prodEnUso_Exception {
 		Producto prodActual = Sistema.getInstance().getProductos().get(idProd);
@@ -127,10 +132,11 @@ public class FuncionalidadOperario {
 	 * @param nroMesa    ID de mesa. <br>
 	 * @param cantSillas cantidad de personas que ocuparan la mesa. <br>
 	 * @param libre      estado de la mesa. <br>
-	 * @throws NoExisteMesa_Exception Se lanza si el ID no corresponde con ninguna
-	 *                                mesa cargada en el sistema.
+	 * @throws NoExisteMesa_Exception Se lanza si el ID no corresponde con ninguna mesa cargada en el sistema. <br>
+	  * @throws CantComensalesInvalida_Exception cuando la cantidad de comensales de una mesa es menos que 2.  <br>                           
 	 */
 
+	
 	public void modificaMesa(int nroMesa, int cantPax, Enumerados.estadoMesa estado)
 			throws NoExisteMesa_Exception, CantComensalesInvalida_Exception {
 		Mesa mesaActual = Sistema.getInstance().getMesas().get(nroMesa);
@@ -237,6 +243,8 @@ public class FuncionalidadOperario {
 
 	/**
 	 * Metodo para eliminar una promocion temporal de la coleccion de promociones temporales. <br>
+	 * Pre: nombre != null, nombre != "". <br>
+	 * Post: Se elimina la promocion temporal. <br>
 	 * @param nombre de la promocion a eliminar(identificador de la promocion temporal). <br>
 	 * @throws PromoInvalida_Exception cuando la promocion que se desea eliminar no existe en la coleccion de promociones temporales. <br>
 	 */
@@ -256,6 +264,8 @@ public class FuncionalidadOperario {
 
 	/**
 	 * Metodo que modifica una promocion temporal. <br>
+	 * Pre: nombre != null, nombre != "". <br>
+	 * Post: Se modifica la promocion temporal. <br>
 	 * @param nombre de la promocion temporal que se quiere modificar (identificador de la promocion temporal). <br>
 	* @param diasDePromo determina el dia en el que es validad la promocion (LUNES,MARTES,MIERCOLES,JUEVES,VIERNES,SABADO,DOMINGO;). <br>
 	 * @param nombre de la promocion. (identificador de la promocion temporal)<br>
@@ -291,11 +301,13 @@ public class FuncionalidadOperario {
 	}
 
 	/**
-	 * Metodo que setea a una mesa un mozo. (identificador de la promocion temporal)
-	 * @param nroMesa
+	 * Metodo que setea a una mesa un mozo.<br>
+	 * Pre: mozo != null <br>
+	 * Post: Se setea el mozo en la mesa. <br>
+	 * @param nroMesa ID de mesa. <br>
 	 * @param mozo
-	 * @throws NoExisteMesa_Exception
-	 * @throws EstadoIncorrecto_Exception
+	 * @throws NoExisteMesa_Exception Se lanza cuando la mesa no existe en la coleccion de mesas. <br>
+	 * @throws EstadoIncorrecto_Exception Se lanza cuando el estado del mozo a setear es distinto de ACTIVO. <br>
 	 */
 	public void setMesaMozo(int nroMesa, Mozo mozo) throws NoExisteMesa_Exception, EstadoIncorrecto_Exception{
 		Mesa mesa = Sistema.getInstance().getMesas().get(nroMesa);
