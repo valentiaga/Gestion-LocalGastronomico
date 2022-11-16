@@ -12,6 +12,7 @@ import excepciones.MesaOcupada_Exception;
 import excepciones.MozoInactivo_Exception;
 import excepciones.NoExisteID_Exception;
 import excepciones.NoExisteMesa_Exception;
+import excepciones.NyARepetido_Exception;
 import excepciones.PromoIdRepetido_Exception;
 import excepciones.PromoInvalida_Exception;
 import excepciones.PromoRepetida_Exception;
@@ -87,16 +88,18 @@ public class FuncionalidadOperario {
 	 * metodo para modificar el/los atributos del mozo que se deseen.<br>
 	 * Pre: Nya != null, NyA != "" <br>
 	 * Post: Mozo modificado. <br>
-	 * @param NyA       nombre y apellido nuevo. <br>
 	 * @param cantHijos nueva cantidad de hijos. <br>
 	 * @param mozo      que se desea modificar.  <br>
 	  * @throws CantHijosInvalida_Exception cuando la cantidad de hijos es negativa. <br>
+	 * @throws NyARepetido_Exception Ya existe un mozo con el nombre que intenta ingresar. <br>
 	 */
-	public void modificaMozo(Mozo mozo, String NyA, int cantHijos) throws CantHijosInvalida_Exception { 
+	public void modificaMozo(Mozo mozo, Enumerados.estadoMozo estado, int cantHijos) throws CantHijosInvalida_Exception, NyARepetido_Exception { 
 		if (cantHijos < 0)
 			throw new CantHijosInvalida_Exception("Ingrese una cantidad de hijos valida.");
-		mozo.setCantHijos(cantHijos);
-		mozo.setNyA(NyA);
+		else{
+			mozo.setCantHijos(cantHijos);
+			mozo.setEstado(estado);
+		}
 	}
 
 	/**

@@ -20,8 +20,10 @@ import modelo.Enumerados;
 import modelo.Enumerados.estadoMozo;
 import modelo.Mozo;
 import negocio.Sistema;
+import java.awt.event.KeyListener;
+import java.awt.event.KeyEvent;
 
-public class VistaModificaMozoOp extends JPanel implements ItemListener, IVistaModificaMozoOp {
+public class VistaModificaMozoOp extends JPanel implements ItemListener, IVistaModificaMozoOp, KeyListener {
 
 	private JTextField textFieldNyA;
 	private JTextField textFieldCantHijos;
@@ -51,6 +53,7 @@ public class VistaModificaMozoOp extends JPanel implements ItemListener, IVistaM
 		lblSeleccionaMozo.setHorizontalAlignment(SwingConstants.CENTER);
 
 		comboBoxMozo = new JComboBox<String>();
+		comboBoxMozo.addKeyListener(this);
 		comboBoxMozo.setEditable(true);
 		HashMap<String, Mozo> mozos = Sistema.getInstance().getMozos();
 		String nombre = "";
@@ -70,6 +73,8 @@ public class VistaModificaMozoOp extends JPanel implements ItemListener, IVistaM
 		panel_2.add(lblNyA);
 
 		textFieldNyA = new JTextField();
+		textFieldNyA.setEditable(false);
+		textFieldNyA.addKeyListener(this);
 		panel_2.add(textFieldNyA);
 		textFieldNyA.setColumns(10);
 		textFieldNyA.setText(mozo.getNyA());
@@ -81,6 +86,7 @@ public class VistaModificaMozoOp extends JPanel implements ItemListener, IVistaM
 		panel_3.add(lblCantHijos);
 
 		textFieldCantHijos = new JTextField();
+		textFieldCantHijos.addKeyListener(this);
 		panel_3.add(textFieldCantHijos);
 		textFieldCantHijos.setColumns(10);
 		textFieldCantHijos.setText(String.valueOf(mozo.getCantHijos()));
@@ -102,6 +108,7 @@ public class VistaModificaMozoOp extends JPanel implements ItemListener, IVistaM
 		panel.add(panel_6);
 
 		btnConfirmar = new JButton("Confirmar");
+		btnConfirmar.setEnabled(true);
 		panel_6.add(btnConfirmar);
 		btnConfirmar.setActionCommand("CONFIRMAR");
 
@@ -114,6 +121,14 @@ public class VistaModificaMozoOp extends JPanel implements ItemListener, IVistaM
 		btnVolver.setActionCommand("VOLVER");
 
 	}
+	
+	
+	@Override
+	public JComboBox getComboBox() {
+		return comboBox;
+	}
+
+
 
 	@Override
 	public void itemStateChanged(ItemEvent e) {
@@ -121,6 +136,7 @@ public class VistaModificaMozoOp extends JPanel implements ItemListener, IVistaM
 			mozo = Sistema.getInstance().getMozos().get(this.comboBoxMozo.getSelectedItem().toString());
 			textFieldCantHijos.setText(String.valueOf(mozo.getCantHijos()));
 			textFieldNyA.setText(mozo.getNyA());
+			this.btnConfirmar.setEnabled(true);
 		}
 	}
 
@@ -134,7 +150,6 @@ public class VistaModificaMozoOp extends JPanel implements ItemListener, IVistaM
 
 	@Override
 	public String getNyA() {
-		// TODO Auto-generated method stub
 		return this.textFieldNyA.getText();
 	}
 
@@ -150,8 +165,8 @@ public class VistaModificaMozoOp extends JPanel implements ItemListener, IVistaM
 
 	@Override
 	public void limpiarVista() {
-		// TODO Auto-generated method stub
-
+		this.textFieldCantHijos.setText("");
+		this.textFieldNyA.setText("");
 	}
 
 	@Override
@@ -164,10 +179,12 @@ public class VistaModificaMozoOp extends JPanel implements ItemListener, IVistaM
 		return (estadoMozo) this.comboBox.getSelectedItem();
 	}
 
+
+	@Override
 	public JTextField getTextFieldNyA() {
 		return textFieldNyA;
 	}
-
+	@Override
 	public JTextField getTextFieldCantHijos() {
 		return textFieldCantHijos;
 	}
@@ -175,7 +192,7 @@ public class VistaModificaMozoOp extends JPanel implements ItemListener, IVistaM
 	@Override
 	public Mozo getMozo() {
 		// TODO Auto-generated method stub
-		return this.mozo;
+		return Sistema.getInstance().getMozos().get(this.comboBoxMozo.getSelectedItem().toString());
 	}
 
 	@Override
@@ -189,4 +206,16 @@ public class VistaModificaMozoOp extends JPanel implements ItemListener, IVistaM
 		}
 	}
 
+	public void keyPressed(KeyEvent e) {
+	}
+	public void keyReleased(KeyEvent e) {
+		boolean cond = this.getCantHijos()>=0 && this.getNyA().length()>0;
+		this.btnConfirmar.setEnabled(cond);
+	}
+	public void keyTyped(KeyEvent e) {
+	}
+
+	
+	
+	
 }
