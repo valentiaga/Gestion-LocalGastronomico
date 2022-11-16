@@ -38,9 +38,9 @@ public class FuncionalidadAdmin extends FuncionalidadOperario {
 	
 	/**
 	 * Metodo para agregar un mozo a la coleccion de mozos.  <br>
-	 * @param NyA	nombre y apellido. 						<br>
-	 * @param fechaNacimiento. 								<br> 
-	 * @param cantHijos. 									<br>
+	 * @param NyA Nombre y apellido, identificador del mozo. <br> 						
+	 * @param fechaNacimiento. 								 <br> 
+	 * @param cantHijos. 									 <br>
 	 * @param estado activo, de franco, ausente.				<br>
 	 * @throws EdadInvalida_Exception	cuando la edad es menor que 18. <br>
 	 * @throws CantHijosInvalida_Exception cuando la cantidad de hijos es menor que 0. <br>
@@ -62,8 +62,8 @@ public class FuncionalidadAdmin extends FuncionalidadOperario {
 
 	
 	/**
-	 * Metodo que elimina mozo de la coleccion de mozos. <br>
-	 * @param NyA nombre y apellido. 					 <br>
+	 * Metodo que elimina mozo de la coleccion de mozos.     <br>
+	 * @param NyA Nombre y apellido, identificador del mozo. <br> 					
 	 * @throws NoExisteMozo_Exception cuando el mozo que se quiere eliminar no existe en la coleccion. <br>
 	 */
 	
@@ -77,7 +77,7 @@ public class FuncionalidadAdmin extends FuncionalidadOperario {
 	
 	/**
 	 * Metodo para modificar el estado de un operario. <br>
-	 * @param userName Nombre de usuario del operario.  <br>
+	 * @param userName Nombre de usuario del operario, identificador del operario.  <br>
 	 * @param activo   Boolean que representa el estado del operario. <br>
 	 * @throws NoExisteOperario_Exception cuando el operario que se quiere modificar no se encuentra en la coleccion. <br>
 	 */
@@ -95,8 +95,7 @@ public class FuncionalidadAdmin extends FuncionalidadOperario {
 	 * Metodo que registra un nuevo operario en el sistema. <br>
 	 * Post: Agrega un nuevo operario al HashMap
 	 * 
-	 * @param NyA      atributo correspondiente al nombre y apellido del operario
-	 *                 que desea registrarse. <br>
+	 * @param NyA      Nombre y apellido, identificador del mozo. <br>
 	 * @param userName atributo correspondiente al nombre de usuario que usara el
 	 *                 operario para el login. <br>
 	 * @param password atributo que representa la contrasena y que corresponde al
@@ -119,7 +118,7 @@ public class FuncionalidadAdmin extends FuncionalidadOperario {
 
 	/**
 	 * Metodo que elimina un operario de la coleccion de operarios. <br>
-	 * @param userName nombre y apellido. 					       <br>
+	 * @param userName Nombre de usuario del operario, identificador del operario.  <br>
 	 * @throws NoExisteOperario_Exception cuando el operario que se quiere eliminar no se encuentra en la coleccion. <br>
 	 */
 	public void eliminaOperario(String userName)throws NoExisteOperario_Exception{
@@ -165,7 +164,7 @@ public class FuncionalidadAdmin extends FuncionalidadOperario {
 	
 	/**
 	 * Metodo para agregar una mesa a la coleccion de mesas. <br>
-	 * @param cantSillas 
+	 * @param cantSillas cantidad de personas que ocuparan la mesa. <br>
 	 * @throws CantComensalesInvalida_Exception cuando se quiere agregar una mesa (la mesa nro 0 es la barra) que no es la barra, la cantidad de sillas debe ser mayor a 2. <br> 
 	 */
 	public void agregaMesa(int cantSillas) throws CantComensalesInvalida_Exception {

@@ -23,10 +23,12 @@ import modelo.PromocionProd;
 import modelo.PromocionTemporal;
 
 /**
- * Clase Singleton que representa a la empresa gastronomica. mozos: Key -> Nya
- * Value -> Mozo productos: Key -> id del producto Value -> Producto operarios:
- * Key -> userNamer Value -> Operario mesas: Key -> numero de mesa Value -> Mesa
- * promocionProds: Key -> idProm Value -> PromocionProd
+ * Clase Singleton que representa a la empresa gastronomica. 
+ * mozos:     		Key -> Nya 			   Value -> Mozo 
+ * productos: 		Key -> id del producto Value -> Producto 
+ * operarios: 		Key -> userNamer 	   Value -> Operario 
+ * mesas:     		Key -> numero de mesa  Value -> Mesa
+ * promocionProds:  Key -> idProm          Value -> PromocionProd
  */
 
 public class Sistema {
