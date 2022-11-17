@@ -64,8 +64,9 @@ public class VistaModificaMozoOp extends JPanel implements ItemListener, IVistaM
 		comboBoxMozo.addItemListener(this);
 		panel_1.add(comboBoxMozo);
 		comboBoxMozo.setEditable(true);
-		mozo = Sistema.getInstance().getMozos().get(this.comboBoxMozo.getSelectedItem().toString());
-
+		//mozo = Sistema.getInstance().getMozos().get(this.comboBoxMozo.getSelectedItem().toString());
+comboBoxMozo.setSelectedItem(null);
+		
 		JPanel panel_2 = new JPanel();
 		panel.add(panel_2);
 
@@ -77,7 +78,7 @@ public class VistaModificaMozoOp extends JPanel implements ItemListener, IVistaM
 		textFieldNyA.addKeyListener(this);
 		panel_2.add(textFieldNyA);
 		textFieldNyA.setColumns(10);
-		textFieldNyA.setText(mozo.getNyA());
+		textFieldNyA.setText("");
 
 		JPanel panel_3 = new JPanel();
 		panel.add(panel_3);
@@ -89,7 +90,7 @@ public class VistaModificaMozoOp extends JPanel implements ItemListener, IVistaM
 		textFieldCantHijos.addKeyListener(this);
 		panel_3.add(textFieldCantHijos);
 		textFieldCantHijos.setColumns(10);
-		textFieldCantHijos.setText(String.valueOf(mozo.getCantHijos()));
+		textFieldCantHijos.setText("");
 
 		JPanel panel_5 = new JPanel();
 		panel.add(panel_5);
@@ -120,6 +121,12 @@ public class VistaModificaMozoOp extends JPanel implements ItemListener, IVistaM
 		panel_1_1.add(btnVolver);
 		btnVolver.setActionCommand("VOLVER");
 
+		this.comboBox.setName("jComboBoxEstados");
+		this.comboBoxMozo.setName("jComboBoxMozos");
+		this.textFieldCantHijos.setName("jTextFieldCantHijos");
+		this.textFieldNyA.setName("jTextFieldNyA");
+		this.btnConfirmar.setName("jBtnConfirmar");
+		this.btnVolver.setName("jBtnVolver");
 	}
 	
 	
@@ -145,7 +152,7 @@ public class VistaModificaMozoOp extends JPanel implements ItemListener, IVistaM
 		this.btnConfirmar.addActionListener(actionListener);
 		this.btnVolver.addActionListener(actionListener);
 		this.actionListener = actionListener;
-
+		System.out.println(this.textFieldNyA.getText());
 	}
 
 	@Override
@@ -167,6 +174,7 @@ public class VistaModificaMozoOp extends JPanel implements ItemListener, IVistaM
 	public void limpiarVista() {
 		this.textFieldCantHijos.setText("");
 		this.textFieldNyA.setText("");
+		this.comboBox.setSelectedItem(null);
 	}
 
 	@Override

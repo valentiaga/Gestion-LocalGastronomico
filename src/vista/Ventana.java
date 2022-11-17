@@ -128,6 +128,16 @@ public class Ventana extends JFrame {
 		contentPane.add(vistaMostrarEstadisticas, "vistaMostrarEstadisticas");
 	}
 
+	public Ventana(VistaModificaMozoOp vistaModificaMozoOp) {
+		this.vistaModificaMozoOp = vistaModificaMozoOp;
+		this.setVisible(true);
+		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+		setBounds(100, 100, 495, 354);
+		this.contentPane = new JPanel();
+		setContentPane(contentPane);
+		contentPane.add(vistaModificaMozoOp, "vistaModificaMozoOp");
+	}
+
 	public JPanel getContentPane() {
 		return this.contentPane;
 	}
