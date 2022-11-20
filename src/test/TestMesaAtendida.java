@@ -26,6 +26,39 @@ public class TestMesaAtendida
 		Assert.assertEquals("Total registrado incorrectamente",900.0, mA.getTotal(),0);
 		Assert.assertEquals("FormaDePago registrada incorrectamente",Enumerados.formaDePago.CTADNI, mA.getFormaDePago());
 	}
+	
+	@Test
+	public void testConstructorFormaDePagoEfectivo()
+	{
+		Mesa mesa = new Mesa();
+		ArrayList<Pedido> pedidos = new ArrayList<Pedido>();
+		MesaAtendida mA = new MesaAtendida(mesa,pedidos,900.0,modelo.Enumerados.formaDePago.EFECTIVO);
+		Assert.assertEquals("Mesa registrada incorrectamente",mesa, mA.getMesa());
+		Assert.assertEquals("Total registrado incorrectamente",900.0, mA.getTotal(),0);
+		Assert.assertEquals("FormaDePago registrada incorrectamente",Enumerados.formaDePago.EFECTIVO, mA.getFormaDePago());
+	}
+	
+	@Test
+	public void testConstructorFormaDePagoMERCPAGO()
+	{
+		Mesa mesa = new Mesa();
+		ArrayList<Pedido> pedidos = new ArrayList<Pedido>();
+		MesaAtendida mA = new MesaAtendida(mesa,pedidos,900.0,modelo.Enumerados.formaDePago.MERCPAGO);
+		Assert.assertEquals("Mesa registrada incorrectamente",mesa, mA.getMesa());
+		Assert.assertEquals("Total registrado incorrectamente",900.0, mA.getTotal(),0);
+		Assert.assertEquals("FormaDePago registrada incorrectamente",Enumerados.formaDePago.MERCPAGO, mA.getFormaDePago());
+	}
+	
+	@Test
+	public void testConstructorFormaDePagoTARJETA()
+	{
+		Mesa mesa = new Mesa();
+		ArrayList<Pedido> pedidos = new ArrayList<Pedido>();
+		MesaAtendida mA = new MesaAtendida(mesa,pedidos,900.0,modelo.Enumerados.formaDePago.TARJETA);
+		Assert.assertEquals("Mesa registrada incorrectamente",mesa, mA.getMesa());
+		Assert.assertEquals("Total registrado incorrectamente",900.0, mA.getTotal(),0);
+		Assert.assertEquals("FormaDePago registrada incorrectamente",Enumerados.formaDePago.TARJETA, mA.getFormaDePago());
+	}
 
 	@Test
 	public void testConstructorTotalNegativo()
