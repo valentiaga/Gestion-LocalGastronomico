@@ -7,6 +7,8 @@ import java.awt.event.ActionListener;
 import javax.swing.JOptionPane;
 import javax.swing.JPanel;
 
+import excepciones.CantHijosInvalida_Exception;
+import excepciones.NyARepetido_Exception;
 import modelo.Mozo;
 import negocio.Sistema;
 import vista.IVistaModificaMozoOp;
@@ -31,15 +33,20 @@ public class ControladorVistaModificaMozoOp implements ActionListener {
 		String comando = e.getActionCommand();
 		
 		if (comando.equalsIgnoreCase("CONFIRMAR")) {
-			Mozo mozo = this.vista.getMozo();
-			mozo.setCantHijos(this.vista.getCantHijos());
-			mozo.setEstado(this.vista.getEstadoMozo());
-			mozo.setNyA(this.vista.getNyA());
-			JOptionPane.showMessageDialog(null, "Datos actualizados.");
-			cl.show(contentPane, ventana.getVistaGestionMozoOp());
+			try {
+				Sistema.getInstance().getFuncionalidadOperario().modificaMozo(this.vista.getMozo(), this.vista.getEstadoMozo(), this.vista.getCantHijos());
+				JOptionPane.showMessageDialog(null, "Datos actualizados.");	
+				this.vista.actualizaComboBox();
+			} catch (CantHijosInvalida_Exception | NyARepetido_Exception e1) {
+				this.vista.ventanaEmergente(e1.getMessage());
+			}
 		}
-		else if (comando.equalsIgnoreCase("VOLVER")) 
+		else if (comando.equalsIgnoreCase("VOLVER")) {			
 			cl.show(contentPane, ventana.getVistaGestionMozoOp());
+			this.vista.getTextFieldCantHijos().setText(String.valueOf(this.vista.getMozo().getCantHijos()));
+			this.vista.getTextFieldNyA().setText(this.vista.getMozo().getNyA());
+			this.vista.getComboBox().setSelectedItem(this.vista.getMozo().getEstado());
+		}
 	}
 
 }

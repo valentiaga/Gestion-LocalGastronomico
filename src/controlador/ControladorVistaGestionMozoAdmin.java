@@ -59,6 +59,7 @@ public class ControladorVistaGestionMozoAdmin implements ActionListener {
 			}
 		else if(comando.equalsIgnoreCase("ACTUALIZAR_REMUNERACION")) {
 			Sistema.getInstance().getFuncionalidadAdmin().modificaRemuneracionBasica(this.vista.getRemuneracionBasica());
+			this.vista.ventanaEmergente("Remuneracion actualizada");
 		}
 		else if(comando.equalsIgnoreCase("MUESTRA_ESTAD")) {
 			cl.show(contentPane, ventana.getVistaMostrarEstadisticas());
