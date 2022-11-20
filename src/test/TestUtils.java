@@ -10,7 +10,7 @@ import java.awt.event.KeyEvent;
 import javax.swing.JTextField;
 
 /**
- * Clase que ofrece metodos est√°ticos para ayudar al testeo de GUI utilizando la clase Robot
+ * Clase que ofrece metodos est·ticos para ayudar al testeo de GUI utilizando la clase Robot
  */
 public class TestUtils
 
