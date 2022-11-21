@@ -5,7 +5,7 @@ import org.junit.Test;
 
 import modelo.Sueldo;
 
-public class testSueldo
+public class TestSueldo
 {
 
 	@Test
@@ -17,7 +17,16 @@ public class testSueldo
 	}
 	
 	@Test
-	public void testCalculaSueldo()
+	public void testCalculaSueldoSinSettearRemBasic()
+	{
+		int canthijos = 3;
+		double montoSueldo = Sueldo.calculaSueldo(canthijos);
+		Sueldo sueldo = new Sueldo();
+		Assert.assertEquals("Sueldo calculado erroneamente",sueldo.getRemBasic()*(1+0.05*canthijos),montoSueldo,0);
+	}
+	
+	@Test
+	public void testCalculaSueldoSetteandoRemBasic()
 	{
 		Sueldo.setRemBasic(279);
 		double montoSueldo = Sueldo.calculaSueldo(3);
