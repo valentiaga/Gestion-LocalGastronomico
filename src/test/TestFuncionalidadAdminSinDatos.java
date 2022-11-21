@@ -212,7 +212,7 @@ public class TestFuncionalidadAdminSinDatos
 		} catch (UserNameRepetido_Exception e)
 		{
 			Assert.fail("No deberia lanzarse ninguna excepcion");
-		} catch (ContrasenaIncorrecta_Exception e)
+		} catch (ContrasenaIncorrecta_Exception e) //el contrato nunca menciona cuando se lanza esta excepcion
 		{
 			Assert.fail("No deberia lanzarse ninguna excepcion");
 		}

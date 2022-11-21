@@ -441,4 +441,5 @@ public class FuncionalidadOperario {
 		return res;
 	}
 	
+	
 }
