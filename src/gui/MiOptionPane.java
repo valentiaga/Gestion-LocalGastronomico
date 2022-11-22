@@ -13,7 +13,7 @@ public class MiOptionPane implements InterfazOptionPanel {
 
 
     @Override
-    public void ShowMessage(Component parent, Mensajes mensaje) {
+    public void ShowMessage(Component parent, String mensaje) {
         JOptionPane.showMessageDialog(parent, mensaje);
     }
 

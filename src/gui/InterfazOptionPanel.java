@@ -5,6 +5,6 @@ import java.awt.Component;
 import util.Mensajes;
 
 public interface InterfazOptionPanel {
-    void ShowMessage(Component parent, Mensajes actualizaDatos);
+    void ShowMessage(Component parent, String mensaje);
 
 }
