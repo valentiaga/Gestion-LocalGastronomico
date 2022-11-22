@@ -25,6 +25,7 @@ import modelo.Mozo;
 import modelo.Operario;
 import modelo.Producto;
 import modelo.Sueldo;
+import util.Mensajes;
 
 public class FuncionalidadAdmin extends FuncionalidadOperario
 {
@@ -174,9 +175,9 @@ public class FuncionalidadAdmin extends FuncionalidadOperario
 	{
 
 		if (precioVenta < precioCosto)
-			throw new precioInvalido_Exception("El precio de venta debe ser mayor o igual al costo.");
+			throw new precioInvalido_Exception(Mensajes.PRECIO_VENTA_MENOR_COSTO);
 		else if (precioVenta < 0 || precioCosto < 0)
-			throw new precioInvalido_Exception("Ninguno de los precios puede ser negativo.");
+			throw new precioInvalido_Exception(Mensajes.PRECIO_INVALIDO);
 
 		Producto producto = new Producto(nombre, precioCosto, precioVenta, stockInicial);
 		Sistema.getInstance().getProductos().put(producto.getIdProd(), producto);

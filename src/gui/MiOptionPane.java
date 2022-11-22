@@ -4,6 +4,8 @@ import java.awt.Component;
 
 import javax.swing.JOptionPane;
 
+import util.Mensajes;
+
 public class MiOptionPane implements InterfazOptionPanel {
     public MiOptionPane() {
         super();
@@ -11,7 +13,8 @@ public class MiOptionPane implements InterfazOptionPanel {
 
 
     @Override
-    public void ShowMessage(Component parent, String mensaje) {
+    public void ShowMessage(Component parent, Mensajes mensaje) {
         JOptionPane.showMessageDialog(parent, mensaje);
     }
+
 }
