@@ -247,5 +247,4 @@ public class FuncionalidadAdmin extends FuncionalidadOperario
 	{
 		Sueldo.setRemBasic(remBasica);
 	}
-
 }

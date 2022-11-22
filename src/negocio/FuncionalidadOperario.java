@@ -392,9 +392,7 @@ public class FuncionalidadOperario {
 	}
 
 	/*public void agregaPedidos(Comanda comanda, int cant, int idProd) {
-
 		Producto producto = Sistema.getInstance().getProductos().get(idProd);
-
 		comanda.agregaPedido(new Pedido(producto, cant));
 	}*/
 	

@@ -63,6 +63,7 @@ public class ControladorVistaModificaProducto implements ActionListener {
 						this.vista.getIdProd(), this.vista.getNombre(),
 						this.vista.getPrecioCosto(), this.vista.getPrecioVenta(), this.vista.getStockInicial());
 				this.optionPane.ShowMessage(null, "Datos actualizados.");
+				//JOptionPane.showMessageDialog(null, "Datos actualizados.");
 				cl.show(contentPane, ventana.getVistaGestionProductoOp());
 				}
 				else {
@@ -70,6 +71,7 @@ public class ControladorVistaModificaProducto implements ActionListener {
 							this.vista.getIdProd(), this.vista.getNombre(),
 							this.vista.getPrecioCosto(), this.vista.getPrecioVenta(), this.vista.getStockInicial());
 					this.optionPane.ShowMessage(null, "Datos actualizados.");
+					//JOptionPane.showMessageDialog(null, "Datos actualizados.");
 					cl.show(contentPane, ventana.getVistaGestionProductoAdmin());
 				}
 				this.vista.limpiarVista();
@@ -86,5 +88,4 @@ public class ControladorVistaModificaProducto implements ActionListener {
 		}
 
 	}
-
 }
