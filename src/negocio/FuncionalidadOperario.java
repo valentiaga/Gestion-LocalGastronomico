@@ -29,6 +29,7 @@ import modelo.Operario;
 import modelo.Producto;
 import modelo.PromocionProd;
 import modelo.PromocionTemporal;
+import util.Mensajes;
 
 public class FuncionalidadOperario {
 
@@ -120,7 +121,7 @@ public class FuncionalidadOperario {
 		if (prodActual == null)
 			throw new NoExisteID_Exception("No existe el producto que desea modificar. Ingrese un ID valido.");
 		if (precioCosto < 0 || precioVenta < 0)
-			throw new precioInvalido_Exception("Ninguno de los precios puede ser negativo.");
+			throw new precioInvalido_Exception(Mensajes.PRECIO_INVALIDO);
 		if (GestionComandas.contieneProd(idProd) == true)
 			throw new prodEnUso_Exception("El producto esta en una comanda activa, no puede ser modificado");
 		prodActual.setNombre(nombre);
