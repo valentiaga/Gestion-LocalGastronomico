@@ -11,11 +11,15 @@ import excepciones.CantComensalesInvalida_Exception;
 import excepciones.CantHijosInvalida_Exception;
 import excepciones.ContrasenaIncorrecta_Exception;
 import excepciones.EstadoIncorrecto_Exception;
+import excepciones.MesaNoOcupadaException;
+import excepciones.MesaOcupada_Exception;
+import excepciones.MozoInactivo_Exception;
 import excepciones.NoExisteID_Exception;
 import excepciones.NoExisteMesa_Exception;
 import excepciones.NyARepetido_Exception;
 import excepciones.PromoInvalida_Exception;
 import excepciones.PromoRepetida_Exception;
+import excepciones.StockInsuficiente_Exception;
 import excepciones.UserNameRepetido_Exception;
 import excepciones.precioInvalido_Exception;
 import excepciones.prodEnUso_Exception;
@@ -44,9 +48,12 @@ public class TestFuncionalidadOperarioConDatos
 		this.fO = new FuncionalidadOperario(new Operario("Aureliano", "aureeliano", "ja!jeji", true));
 		this.mozo = new Mozo("Paula", 0);
 		Sistema.getInstance().getMozos().put(this.mozo.getNyA(), this.mozo);
-		Sistema.getInstance().getMozos().put("Mario", new Mozo("Mario", 2));
-		Sistema.getInstance().getMozos().put("Salome", new Mozo("Salome", 1));
-		Sistema.getInstance().getMozos().put("Quimey", new Mozo("Quimey", 7));
+		Mozo mozo1 = new Mozo("Mario", 2);
+		Mozo mozo2 = new Mozo("Salome", 1);
+		Mozo mozo3 = new Mozo("Quimey", 7);
+		Sistema.getInstance().getMozos().put("Mario", mozo1);
+		Sistema.getInstance().getMozos().put("Salome", mozo2);
+		Sistema.getInstance().getMozos().put("Quimey", mozo3);
 		Sistema.getInstance().getOperariosRegistrados().put(this.fO.getOperario().getUserName(), this.fO.getOperario());
 		Sistema.getInstance().getOperariosRegistrados().put("valus",
 				new Operario("Valentina", "valus", "marioneta", false));
@@ -57,19 +64,34 @@ public class TestFuncionalidadOperarioConDatos
 		Producto prod2 = new Producto("Milanesa de cemento", 189, 430, 3);
 		Sistema.getInstance().getProductos().put(prod1.getIdProd(), prod1);
 		Sistema.getInstance().getProductos().put(prod2.getIdProd(), prod2);
-		Comanda com = new Comanda();
+		Comanda com1 = new Comanda();
 		ArrayList<Pedido> peds = new ArrayList<Pedido>();
 		Pedido ped = new Pedido(prod1, 2);
 		peds.add(ped);
-		com.setPedidos(peds);
-		com.setEstado(Enumerados.estadoComanda.ABIERTO);
-		Sistema.getInstance().getComandas().add(com);
+		com1.setPedidos(peds);
+		com1.setEstado(Enumerados.estadoComanda.ABIERTO);
+		Sistema.getInstance().getComandas().add(com1);
 		Mesa mesa1 = new Mesa(3);
 		Mesa mesa2 = new Mesa(10);
-		mesa1.setEstado(Enumerados.estadoMesa.LIBRE);
+		Mesa mesa3 = new Mesa(7);
+		Mesa mesa4 = new Mesa(2);
+		Mesa mesa5 = new Mesa(5);
 		mesa2.setEstado(Enumerados.estadoMesa.OCUPADA);
+		mesa4.setEstado(Enumerados.estadoMesa.OCUPADA);
+		mesa1.setMozo(mozo);
+		mesa2.setMozo(mozo1);
+		Comanda com2 = new Comanda(mesa2, Enumerados.estadoComanda.ABIERTO);
+		Sistema.getInstance().getComandas().add(com2);
+		Comanda com3 = new Comanda(mesa5, Enumerados.estadoComanda.ABIERTO);
+		Sistema.getInstance().getComandas().add(com3);
+		mesa2.setComanda(com2);// al parecer en este programa decidieron hacer doble referencia entre mesa y
+		// comanda!!
+		mesa5.setComanda(com3);
 		Sistema.getInstance().getMesas().put(mesa1.getNroMesa(), mesa1);
 		Sistema.getInstance().getMesas().put(mesa2.getNroMesa(), mesa2);
+		Sistema.getInstance().getMesas().put(mesa3.getNroMesa(), mesa3);
+		Sistema.getInstance().getMesas().put(mesa4.getNroMesa(), mesa4);
+		Sistema.getInstance().getMesas().put(mesa5.getNroMesa(), mesa5);
 		PromocionProd promprod1 = new PromocionProd(true, modelo.Enumerados.diasDePromo.MIERCOLES, prod1, true, true, 2,
 				0.1);
 		PromocionProd promprod2 = new PromocionProd(true, modelo.Enumerados.diasDePromo.SABADO, prod2, false, true, 3,
@@ -2182,10 +2204,10 @@ public class TestFuncionalidadOperarioConDatos
 			Assert.fail("Deberia lanzarse NoExisteMesa_Exception");
 		} catch (NoExisteMesa_Exception e)
 		{
-			
+
 		}
 	}
-	
+
 	@Test
 	public void testSetMesaMozoMozoAusente()
 	{
@@ -2197,13 +2219,13 @@ public class TestFuncionalidadOperarioConDatos
 			Assert.fail("Deberia lanzarse EstadoIncorrecto_Exception");
 		} catch (EstadoIncorrecto_Exception e)
 		{
-		
+
 		} catch (NoExisteMesa_Exception e)
 		{
 			Assert.fail("Deberia lanzarse EstadoIncorrecto_Exception");
 		}
 	}
-	
+
 	@Test
 	public void testSetMesaMozoMozoDeFranco()
 	{
@@ -2215,10 +2237,235 @@ public class TestFuncionalidadOperarioConDatos
 			Assert.fail("Deberia lanzarse EstadoIncorrecto_Exception");
 		} catch (EstadoIncorrecto_Exception e)
 		{
-		
+
 		} catch (NoExisteMesa_Exception e)
 		{
 			Assert.fail("Deberia lanzarse EstadoIncorrecto_Exception");
 		}
+	}
+
+	@Test
+	public void testCierraMesaOCUAPADA()
+	{
+		try
+		{
+			Mesa mesa = Sistema.getInstance().getMesas().get(1);
+			this.fO.cierraMesa(mesa.getNroMesa(), Enumerados.formaDePago.CTADNI);
+			Assert.fail("deberia lanzarse MesaNoOcupadaException");
+		} catch (MesaNoOcupadaException e)
+		{
+
+		}
+	}
+
+	@Test
+	public void testCierraMesaLIBRE()
+	{
+		try
+		{
+			Mesa mesa = Sistema.getInstance().getMesas().get(0);
+			this.fO.cierraMesa(mesa.getNroMesa(), Enumerados.formaDePago.CTADNI);
+
+		} catch (MesaNoOcupadaException e)
+		{
+			Assert.fail("No deberia lanzarse ninguna excepcion");
+		}
+	}
+
+	@Test
+	public void testAbreComandaMesaLIBRE()
+	{
+		int cant = Sistema.getInstance().getComandas().size();
+		Mesa mesa = Sistema.getInstance().getMesas().get(2);
+		try
+		{
+			this.fO.abreComanda(mesa);
+			Assert.assertEquals("Comanda abierta incorrectamente", cant + 1,
+					Sistema.getInstance().getComandas().size());
+		} catch (MesaOcupada_Exception e)
+		{
+			Assert.fail("No deberia lanzarse ninguna excepcion");
+		} catch (MozoInactivo_Exception e)
+		{
+			Assert.fail("No deberia lanzarse ninguna excepcion");
+		} catch (NoExisteMesa_Exception e)
+		{
+			Assert.fail("No deberia lanzarse ninguna excepcion");
+		}
+	}
+
+	@Test
+	public void testAbreComandaMesaOCUPADA()
+	{
+		Mesa mesa = Sistema.getInstance().getMesas().get(3);
+		try
+		{
+			this.fO.abreComanda(mesa);
+			Assert.fail("Deberia lanzar MesaOcupada_Exception");
+		} catch (MesaOcupada_Exception e)
+		{
+
+		} catch (MozoInactivo_Exception e)
+		{
+			Assert.fail("Deberia lanzar MesaOcupada_Exception");
+		} catch (NoExisteMesa_Exception e)
+		{
+			Assert.fail("Deberia lanzar MesaOcupada_Exception");
+		}
+	}
+
+	@Test
+	public void testAbreComandaMesaNull()
+	{
+		try
+		{
+			this.fO.abreComanda(null);
+			Assert.fail("Deberia lanzar NoExisteMesa_Exception");
+		} catch (MesaOcupada_Exception e)
+		{
+			Assert.fail("Deberia lanzar NoExisteMesa_Exception");
+		} catch (MozoInactivo_Exception e)
+		{
+			Assert.fail("Deberia lanzar NoExisteMesa_Exception");
+		} catch (NoExisteMesa_Exception e)
+		{
+
+		}
+	}
+
+	@Test
+	public void testAbreComandaMesaInexistente()
+	{
+		int cant = Sistema.getInstance().getComandas().size();
+		Mesa mesa = new Mesa(5);
+		try
+		{
+			this.fO.abreComanda(mesa);
+			Assert.assertEquals("Comanda abierta incorrectamente", cant + 1,
+					Sistema.getInstance().getComandas().size());
+		} catch (MesaOcupada_Exception e)
+		{
+			Assert.fail("No deberia lanzarse ninguna excepcion");
+		} catch (MozoInactivo_Exception e)
+		{
+			Assert.fail("No deberia lanzarse ninguna excepcion");
+		} catch (NoExisteMesa_Exception e)
+		{
+			Assert.fail("No deberia lanzarse ninguna excepcion");
+		}
+	}
+
+	@Test
+	public void testAgregaPedidos()
+	{
+		try
+		{
+			Producto prod = Sistema.getInstance().getProductos().get(0);
+			int cant = prod.getStockInicial();
+			this.fO.agregaPedidos(1, 1, prod.getIdProd());
+			Assert.assertEquals("Pedido agregado incorrectamente", cant - 1, prod.getStockInicial());
+		} catch (StockInsuficiente_Exception e)
+		{
+			Assert.fail("No deberia lanzarse ninguna excepcion");
+		} catch (NoExisteID_Exception e)
+		{
+			Assert.fail("No deberia lanzarse ninguna excepcion");
+		}
+	}
+
+	@Test
+	public void testAgregaPedidosSuperaStock()
+	{
+		try
+		{
+			Producto prod = Sistema.getInstance().getProductos().get(0);
+			this.fO.agregaPedidos(4, 99999, prod.getIdProd());
+			Assert.fail("Deberia lanzarse StockInsuficiente_Exception");
+		} catch (StockInsuficiente_Exception e)
+		{
+
+		} catch (NoExisteID_Exception e)
+		{
+			Assert.fail("Deberia lanzarse StockInsuficiente_Exception");
+		}
+	}
+
+	@Test
+	public void testAgregaPedidosIdInexistente()
+	{
+		try
+		{
+			this.fO.agregaPedidos(4, 1, 34234);
+			Assert.fail("Deberia lanzarse NoExisteID_Exception");
+		} catch (StockInsuficiente_Exception e)
+		{
+			Assert.fail("Deberia lanzarse NoExisteID_Exception");
+		} catch (NoExisteID_Exception e)
+		{
+
+		}
+	}
+
+	@Test
+	public void testAgregaPedidosNroMesaInexistente()
+	{
+		try
+		{
+			Producto prod = Sistema.getInstance().getProductos().get(0);
+			int cant = prod.getStockInicial();
+			this.fO.agregaPedidos(9999, 1, prod.getIdProd());
+			Assert.assertEquals("Pedido agregado incorrectamente", cant - 1, prod.getStockInicial());
+		} catch (StockInsuficiente_Exception e)
+		{
+			Assert.fail("No deberia lanzarse ninguna excpecion");
+		} catch (NoExisteID_Exception e)
+		{
+			Assert.fail("No deberia lanzarse ninguna excpecion");
+		}
+	}
+
+	@Test
+	public void testAgregaPedidosCantNegativa()
+	{
+		try
+		{
+			Producto prod = Sistema.getInstance().getProductos().get(0);
+			int cant = prod.getStockInicial();
+			this.fO.agregaPedidos(1, -1, prod.getIdProd());
+			Assert.assertEquals("Pedido agregado incorrectamente", cant + 1, prod.getStockInicial());
+		} catch (StockInsuficiente_Exception e)
+		{
+			Assert.fail("No deberia lanzarse ninguna excepcion");
+		} catch (NoExisteID_Exception e)
+		{
+			Assert.fail("No deberia lanzarse ninguna excepcion");
+		}
+	}
+
+	@Test
+	public void testModificaPassword()
+	{
+		String password = "Aloworld1";
+		this.fO.modificaPassword(password);
+		Assert.assertEquals("Password modificada incorrectamente", password, fO.getOperario().getPassword());
+	}
+
+	@Test
+	public void testVerificaPasswordValida()
+	{
+		Assert.assertEquals("Password verificada incorrectamente", true, this.fO.verificaPassword("Aloworld1"));
+	}
+
+	@Test
+	public void testVerificaPasswordInvalida()
+	{
+		Assert.assertEquals("Password verificada incorrectamente", false,
+				this.fO.verificaPassword("no quiero desaprobar por favor"));
+	}
+
+	@Test
+	public void testVerificaPasswordNull()
+	{
+		Assert.assertEquals("Password verificada incorrectamente", false, this.fO.verificaPassword(null));
 	}
 }
