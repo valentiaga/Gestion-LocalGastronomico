@@ -105,6 +105,17 @@ public class VistaModificaProducto extends JPanel implements IVistaModificaProdu
 		panel_7.add(btnVolver);
 		btnVolver.setActionCommand("VOLVER");
 
+		
+		//Seteo los nombres
+		this.btnConfirmar.setName("botonConfirmar");
+		this.btnVolver.setName("botonVolver");
+		this.textFieldCosto.setName("jtCostoProducto");
+		this.textFieldIdProd.setName("jtidProducto");
+		this.textFieldNombre.setName("jtNombreProducto");
+		this.textFieldStock.setName("jtStockProducto");
+		this.textFieldVenta.setName("jtPrecioVentaProducto");
+		
+		
 	}
 
 	@Override

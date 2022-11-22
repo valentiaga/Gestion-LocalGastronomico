@@ -12,6 +12,8 @@ import excepciones.NoExisteID_Exception;
 import excepciones.UserNameRepetido_Exception;
 import excepciones.precioInvalido_Exception;
 import excepciones.prodEnUso_Exception;
+import gui.InterfazOptionPanel;
+import gui.MiOptionPane;
 import negocio.Sistema;
 import vista.IVistaModificaDatosPersonales;
 import vista.IVistaModificaProducto;
@@ -22,6 +24,7 @@ public class ControladorVistaModificaProducto implements ActionListener {
 	private IVistaModificaProducto vista = null;
 	private Ventana ventana = null;
 	private JPanel contentPane = null;
+	private InterfazOptionPanel optionPane = new MiOptionPane();
 
 	public ControladorVistaModificaProducto(IVistaModificaProducto vista, Ventana ventana) {
 		this.vista = vista;
@@ -29,6 +32,25 @@ public class ControladorVistaModificaProducto implements ActionListener {
 		this.ventana = ventana;
 		this.contentPane = this.ventana.getContentPane();
 	}
+	
+	
+	public Ventana getVentana() {
+		return ventana;
+	}
+
+	public void setContentPane(JPanel contentPane) {
+		this.contentPane = contentPane;
+	}
+
+
+	public InterfazOptionPanel getOptionPane() {
+		return optionPane;
+	}
+	
+	public void setOptionPane(InterfazOptionPanel optionPane) {
+		this.optionPane = optionPane;
+	}
+
 
 	@Override
 	public void actionPerformed(ActionEvent e) {

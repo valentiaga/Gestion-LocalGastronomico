@@ -1,6 +1,7 @@
 package vista;
 
 import java.awt.CardLayout;
+import java.awt.HeadlessException;
 import java.awt.event.ActionListener;
 
 import javax.swing.JFrame;
@@ -127,6 +128,22 @@ public class Ventana extends JFrame {
 		contentPane.add(vistaAgregaPromoTemp, "vistaAgregaPromoTemp");
 		contentPane.add(vistaMostrarEstadisticas, "vistaMostrarEstadisticas");
 	}
+	
+	
+	//ventana creada para el test GUI
+	public Ventana(VistaModificaProducto vistaModificaProducto) throws HeadlessException 
+	{
+		super();
+		this.vistaModificaProducto = vistaModificaProducto;
+		this.setVisible(true);
+		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+		setBounds(100, 100, 495, 354);
+		this.contentPane = new JPanel();
+		setContentPane(contentPane);
+		contentPane.add(vistaModificaProducto, "vistaModificaProducto");
+	}
+
+
 
 	public JPanel getContentPane() {
 		return this.contentPane;
