@@ -4,7 +4,6 @@ import java.awt.Component;
 
 import javax.swing.JOptionPane;
 
-import util.Mensajes;
 
 public class MiOptionPane implements InterfazOptionPanel {
     public MiOptionPane() {

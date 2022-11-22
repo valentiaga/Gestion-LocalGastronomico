@@ -16,7 +16,6 @@ import org.junit.Test;
 import controlador.ControladorVistaModificaProducto;
 import modelo.Cerveceria;
 import modelo.Producto;
-import util.Mensajes;
 import vista.Ventana;
 import vista.VistaModificaProducto;
 
@@ -95,7 +94,7 @@ public class GuiTestConjuntoConDatos
 		TestUtils.tipeaTexto("12", robot);
 		
 		//verifico los resultados
-		Assert.assertEquals("Mensaje incorrecto, debería decir"+Mensajes.ACTUALIZA_DATOS.getValor(),Mensajes.ACTUALIZA_DATOS.getValor(),fo.getMensaje());
+		Assert.assertEquals("Mensaje incorrecto, debería decir 'Datos actualizados.'","Datos actualizados.",fo.getMensaje());
 	
 	}
 
@@ -128,7 +127,7 @@ public class GuiTestConjuntoConDatos
 		TestUtils.tipeaTexto("12", robot);
 		
 		//verifico los resultados
-		Assert.assertEquals("Mensaje incorrecto, debería decir"+Mensajes.PRECIO_INVALIDO.getValor(),Mensajes.PRECIO_INVALIDO.getValor(),fo.getMensaje());
+		Assert.assertEquals("Mensaje incorrecto, debería decir 'Ninguno de los precios puede ser negativo.'","Ninguno de los precios puede ser negativo.",fo.getMensaje());
 		
 	}
 	
@@ -161,7 +160,7 @@ public class GuiTestConjuntoConDatos
 		TestUtils.tipeaTexto("12", robot);
 		
 		//verifico los resultados
-		Assert.assertEquals("Mensaje incorrecto, debería decir"+Mensajes.PRECIO_INVALIDO.getValor(),Mensajes.PRECIO_INVALIDO.getValor(),fo.getMensaje());
+		Assert.assertEquals("Mensaje incorrecto, debería decir 'Ninguno de los precios puede ser negativo.'","Ninguno de los precios puede ser negativo.",fo.getMensaje());
 				
 	}
 }

@@ -29,7 +29,6 @@ import modelo.Operario;
 import modelo.Producto;
 import modelo.PromocionProd;
 import modelo.PromocionTemporal;
-import util.Mensajes;
 
 public class FuncionalidadOperario {
 

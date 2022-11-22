@@ -1,6 +1,5 @@
 package excepciones;
 
-import util.Mensajes;
 
 public class precioInvalido_Exception extends Exception {
 

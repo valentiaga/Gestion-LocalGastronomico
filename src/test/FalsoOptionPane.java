@@ -3,7 +3,6 @@ package test;
 import java.awt.Component;
 
 import gui.InterfazOptionPanel;
-import util.Mensajes;
 
 public class FalsoOptionPane implements InterfazOptionPanel {
     private String mensaje = null;

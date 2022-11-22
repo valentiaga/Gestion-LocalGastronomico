@@ -18,7 +18,6 @@ import negocio.Sistema;
 
 import vista.IVistaModificaProducto;
 import vista.Ventana;
-import util.Mensajes;
 
 public class ControladorVistaModificaProducto implements ActionListener {
 
