@@ -3,20 +3,21 @@ package test;
 import java.awt.Component;
 
 import gui.InterfazOptionPanel;
+import util.Mensajes;
 
 public class FalsoOptionPane implements InterfazOptionPanel {
-    private String mensaje = null;
+    private Mensajes mensaje = null;
 
     public FalsoOptionPane() {
         super();
     }
 
     @Override
-    public void ShowMessage(Component parent, String mensaje) {
+    public void ShowMessage(Component parent, Mensajes mensaje) {
         this.mensaje = mensaje;
     }
 
-    public String getMensaje() {
+    public Mensajes getMensaje() {
         return mensaje;
     }
 }

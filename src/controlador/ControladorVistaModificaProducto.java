@@ -15,9 +15,10 @@ import excepciones.prodEnUso_Exception;
 import gui.InterfazOptionPanel;
 import gui.MiOptionPane;
 import negocio.Sistema;
-import vista.IVistaModificaDatosPersonales;
+
 import vista.IVistaModificaProducto;
 import vista.Ventana;
+import util.Mensajes;
 
 public class ControladorVistaModificaProducto implements ActionListener {
 
@@ -62,14 +63,14 @@ public class ControladorVistaModificaProducto implements ActionListener {
 				Sistema.getInstance().getFuncionalidadOperario().modificaProducto(
 						this.vista.getIdProd(), this.vista.getNombre(),
 						this.vista.getPrecioCosto(), this.vista.getPrecioVenta(), this.vista.getStockInicial());
-				JOptionPane.showMessageDialog(null, "Datos actualizados.");
+				this.optionPane.ShowMessage(null, Mensajes.ACTUALIZA_DATOS);
 				cl.show(contentPane, ventana.getVistaGestionProductoOp());
 				}
 				else {
 					Sistema.getInstance().getFuncionalidadAdmin().modificaProducto(
 							this.vista.getIdProd(), this.vista.getNombre(),
 							this.vista.getPrecioCosto(), this.vista.getPrecioVenta(), this.vista.getStockInicial());
-					JOptionPane.showMessageDialog(null, "Datos actualizados.");
+					this.optionPane.ShowMessage(null, Mensajes.ACTUALIZA_DATOS);
 					cl.show(contentPane, ventana.getVistaGestionProductoAdmin());
 				}
 				this.vista.limpiarVista();

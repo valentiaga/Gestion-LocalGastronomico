@@ -12,9 +12,8 @@ import org.junit.Before;
 import org.junit.Test;
 
 import controlador.ControladorVistaModificaProducto;
+import modelo.Cerveceria;
 import modelo.Producto;
-import negocio.Sistema;
-import vista.IVistaModificaProducto;
 import vista.Ventana;
 import vista.VistaModificaProducto;
 
@@ -31,7 +30,6 @@ public class GuiTestEnabledDisanabled
 	private VistaModificaProducto vista;
 	private Ventana ventana;
     private FalsoOptionPane fo = new FalsoOptionPane();
-	private Producto producto;
 	
 
 	public GuiTestEnabledDisanabled()
@@ -51,8 +49,8 @@ public class GuiTestEnabledDisanabled
 		controlador = new ControladorVistaModificaProducto(vista, ventana);
 		controlador.setOptionPane(fo);
 		
-		producto = new Producto ("Pizza", 10, 20, 10);
-		Sistema.getInstance().getProductos().put(0, producto);
+		Producto producto = new Producto ("Pizza", 10, 20, 10);
+		Cerveceria.getInstance().getProductos().put(0, producto);
 	}
 
 	@After
