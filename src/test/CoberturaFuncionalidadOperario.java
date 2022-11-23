@@ -9,6 +9,7 @@ import excepciones.CantComensalesInvalida_Exception;
 import excepciones.ContrasenaIncorrecta_Exception;
 import excepciones.NoExisteID_Exception;
 import excepciones.NoExisteMesa_Exception;
+import excepciones.PromoInvalida_Exception;
 import excepciones.UserNameRepetido_Exception;
 import excepciones.precioInvalido_Exception;
 import excepciones.prodEnUso_Exception;
@@ -18,6 +19,7 @@ import modelo.Mesa;
 import modelo.Operario;
 import modelo.Pedido;
 import modelo.Producto;
+import modelo.PromocionProd;
 import negocio.FuncionalidadOperario;
 import negocio.Sistema;
 
@@ -40,10 +42,12 @@ public class CoberturaFuncionalidadOperario
 		Comanda com = new Comanda(mesa, Enumerados.estadoComanda.ABIERTO);
 		com.getPedidos().add(ped);
 		mesa.setComanda(com); // increiblemente aplicaron doble referencia entre mesa y comanda
+		PromocionProd promprod = new PromocionProd();
 		Sistema.getInstance().getProductos().put(this.prod.getIdProd(), this.prod);
 		Sistema.getInstance().getMesas().put(mesa.getNroMesa(), mesa);
 		Sistema.getInstance().getMesas().put(mesa2.getNroMesa(), mesa2);
 		Sistema.getInstance().getComandas().add(com);
+		Sistema.getInstance().getPromocionProds().put(promprod.getIdProm(), promprod);
 
 	}
 
@@ -112,6 +116,37 @@ public class CoberturaFuncionalidadOperario
 		} catch (NoExisteMesa_Exception e)
 		{
 			Assert.fail("Deberia lanzar CantComensalesInvalida_Exception");
+		}
+	}
+	
+	@Test
+	public void testAgregaPromocionProd()
+	{
+		try
+		{
+			this.fO.agregaPromocionProd(this.prod.getIdProd(), Enumerados.diasDePromo.JUEVES, false, false, 2, 0.15, true);
+		Assert.fail("Deberia lanzar PromoInvalida_Exception");
+		} catch (PromoInvalida_Exception e)
+		{
+			
+		} catch (NoExisteID_Exception e)
+		{
+			Assert.fail("Deberia lanzar PromoInvalida_Exception");
+		}
+	}
+	
+	@Test
+	public void testModificaPromocionProd()
+	{
+		try
+		{
+			this.fO.modificaPromocionProd(0, true, Enumerados.diasDePromo.MIERCOLES, false, false, 7, 0.7);
+		} catch (PromoInvalida_Exception e)
+		{
+
+		} catch (NoExisteID_Exception e)
+		{
+			Assert.fail("Deberia lanzar PromoInvalida_Exception");
 		}
 	}
 }
