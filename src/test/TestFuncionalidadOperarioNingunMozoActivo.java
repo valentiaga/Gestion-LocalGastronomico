@@ -54,6 +54,7 @@ public class TestFuncionalidadOperarioNingunMozoActivo
 	public void testAbreComandaMesaNingunMozoActivo()
 	{
 		Mesa mesa = Sistema.getInstance().getMesas().get(0);
+		System.out.println(Sistema.getInstance().getMozos().size());
 		try
 		{
 			this.fO.abreComanda(mesa);

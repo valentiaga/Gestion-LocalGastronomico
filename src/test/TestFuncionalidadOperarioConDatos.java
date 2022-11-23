@@ -538,11 +538,42 @@ public class TestFuncionalidadOperarioConDatos
 	@Test
 	public void testAgregaPromocionProdLUNES()
 	{
+		int cant = Sistema.getInstance().getPromocionProds().size();
 		try
 		{
 			this.fO.agregaPromocionProd(0, Enumerados.diasDePromo.LUNES, true, true, 3, 0.5, true);
 			Assert.assertEquals("Producto registrado incorrectamente", 0,
 					Sistema.getInstance().getPromocionProds().get(2).getProducto().getIdProd());
+			Assert.assertEquals("DiaDePeromo registrado incorrectamente", Enumerados.diasDePromo.LUNES,
+					Sistema.getInstance().getPromocionProds().get(2).getDiasDePromo());
+			Assert.assertEquals("Aplica2x1 registrado incorrectamente", true,
+					Sistema.getInstance().getPromocionProds().get(2).isAplica2x1());
+			Assert.assertEquals("AplicaDtoPorCant registrado incorrectamente", true,
+					Sistema.getInstance().getPromocionProds().get(2).isAplicaDtoPorCant());
+			Assert.assertEquals("DtoPorCantidad_CantMinima registrada incorrectamente", 3,
+					Sistema.getInstance().getPromocionProds().get(2).getDtoPorCant_CantMinima());
+			Assert.assertEquals("DtoPorCantidad_PrecioUnitario registrada incorrectamente", 0.5,
+					Sistema.getInstance().getPromocionProds().get(2).getDtoPorCant_PrecioUnitario(), 0);
+			Assert.assertEquals("Activa registrado incorrectamente", true,
+					Sistema.getInstance().getPromocionProds().get(2).isActiva());
+
+		} catch (PromoInvalida_Exception e)
+		{
+			Assert.fail("No deberia lanzar ninguna excepcion");
+		} catch (NoExisteID_Exception e) // la documentacion no indica cuando se lanza esta excepcion
+		{
+			Assert.fail("No deberia lanzar ninguna excepcion");
+		}
+	}
+	
+	@Test
+	public void testAgregaPromocionProdProdInexistente()
+	{
+		try
+		{
+			this.fO.agregaPromocionProd(99999, Enumerados.diasDePromo.LUNES, true, true, 3, 0.5, true);
+			Assert.assertEquals("Producto registrado incorrectamente", null,
+					Sistema.getInstance().getPromocionProds().get(2).getProducto());
 			Assert.assertEquals("DiaDePeromo registrado incorrectamente", Enumerados.diasDePromo.LUNES,
 					Sistema.getInstance().getPromocionProds().get(2).getDiasDePromo());
 			Assert.assertEquals("Aplica2x1 registrado incorrectamente", true,

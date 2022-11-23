@@ -135,7 +135,7 @@ public class FuncionalidadAdmin extends FuncionalidadOperario
 			throw new ContrasenaIncorrecta_Exception(
 					"El campo contrase�a debe contener entre 6 y 12 caracteres. Con al menos 1 d�gito y 1 may�scula");
 		else if (Sistema.getInstance().getOperariosRegistrados().putIfAbsent(userName,
-				new Operario(NyA, userName, password, activo)) != null) // si ya estaba registrado tiramos excepcion????
+				new Operario(NyA, userName, password, activo)) != null) 
 			throw new UserNameRepetido_Exception("El userName '" + userName + "' ya esta asociado a un operario.");
 	}
 
