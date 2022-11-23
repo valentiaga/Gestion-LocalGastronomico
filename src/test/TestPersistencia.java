@@ -20,7 +20,6 @@ import persistencia.Persiste;
 public class TestPersistencia 
 {
 	Cerveceria cerveceria;
-	File archivo = new File ("ArchivoPersistencia.xml");
 	
 	
 	public TestPersistencia() 
@@ -31,6 +30,7 @@ public class TestPersistencia
 	public void setUp() throws Exception 
 	{
 		cerveceria = new Cerveceria();
+		File archivo = new File ("ArchivoPersistencia.xml");
 		if (archivo.exists())
 			archivo.delete();
 	}
