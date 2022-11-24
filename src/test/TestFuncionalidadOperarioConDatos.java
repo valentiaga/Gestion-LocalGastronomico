@@ -82,12 +82,12 @@ public class TestFuncionalidadOperarioConDatos
 		mesa1.setMozo(mozo);
 		mesa2.setMozo(mozo1);
 		Comanda com2 = new Comanda(mesa2, Enumerados.estadoComanda.ABIERTO);
+		mesa2.setComanda(com2);// al parecer en este programa decidieron hacer doble referencia entre mesa y
+		// comanda!!
 		com2.setPedidos(peds);
 		Sistema.getInstance().getComandas().add(com2);
 		Comanda com3 = new Comanda(mesa5, Enumerados.estadoComanda.ABIERTO);
 		Sistema.getInstance().getComandas().add(com3);
-		mesa2.setComanda(com2);// al parecer en este programa decidieron hacer doble referencia entre mesa y
-		// comanda!!
 		mesa5.setComanda(com3);
 		Sistema.getInstance().getMesas().put(mesa1.getNroMesa(), mesa1);
 		Sistema.getInstance().getMesas().put(mesa2.getNroMesa(), mesa2);
