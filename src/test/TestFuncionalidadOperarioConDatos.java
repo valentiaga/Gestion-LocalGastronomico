@@ -1,6 +1,7 @@
 package test;
 
 import java.util.ArrayList;
+import java.util.Calendar;
 
 import org.junit.After;
 import org.junit.Assert;
@@ -81,6 +82,7 @@ public class TestFuncionalidadOperarioConDatos
 		mesa1.setMozo(mozo);
 		mesa2.setMozo(mozo1);
 		Comanda com2 = new Comanda(mesa2, Enumerados.estadoComanda.ABIERTO);
+		com2.setPedidos(peds);
 		Sistema.getInstance().getComandas().add(com2);
 		Comanda com3 = new Comanda(mesa5, Enumerados.estadoComanda.ABIERTO);
 		Sistema.getInstance().getComandas().add(com3);
@@ -98,12 +100,14 @@ public class TestFuncionalidadOperarioConDatos
 				0.3);
 		Sistema.getInstance().getPromocionProds().put(promprod1.getIdProm(), promprod1);
 		Sistema.getInstance().getPromocionProds().put(promprod2.getIdProm(), promprod2);
-		PromocionTemporal promotemp1 = new PromocionTemporal(true, Enumerados.diasDePromo.DOMINGO, "dia del arquero",
-				Enumerados.formaDePago.TARJETA, 5, true, 1, 3);
+		PromocionTemporal promotemp1 = new PromocionTemporal(true, Enumerados.diasDePromo.SABADO, "dia del arquero",
+				Enumerados.formaDePago.TARJETA, 5, true, 1, 24);
 		PromocionTemporal promotemp2 = new PromocionTemporal(true, Enumerados.diasDePromo.MARTES,
 				"mis vacaciones (nunca)", Enumerados.formaDePago.CTADNI, 3, true, 1, 7);
 		Sistema.getInstance().getPromocionesTemp().add(promotemp1);
 		Sistema.getInstance().getPromocionesTemp().add(promotemp2);
+	com2.getFecha().set(Calendar.DAY_OF_WEEK, promotemp1.getDiasDePromo().ordinal()+2);
+		promotemp1.setHoraInicio(com2.getFecha().get(Calendar.HOUR_OF_DAY));
 	}
 
 	@After
@@ -2269,7 +2273,7 @@ public class TestFuncionalidadOperarioConDatos
 		} catch (EstadoIncorrecto_Exception e)
 		{
 
-		} catch (NoExisteMesa_Exception e)
+		} catch (NoExisteMesa_Exception e) 
 		{
 			Assert.fail("Deberia lanzarse EstadoIncorrecto_Exception");
 		}
@@ -2283,7 +2287,7 @@ public class TestFuncionalidadOperarioConDatos
 			Mesa mesa = Sistema.getInstance().getMesas().get(1);
 			this.fO.cierraMesa(mesa.getNroMesa(), Enumerados.formaDePago.CTADNI);
 			Assert.fail("deberia lanzarse MesaNoOcupadaException");
-		} catch (MesaNoOcupadaException e)
+		} catch (MesaNoOcupadaException e) //auqnque no tenga sentido, el contrato dice que se lanza cuando la mesa esta ocupada
 		{
 
 		}
