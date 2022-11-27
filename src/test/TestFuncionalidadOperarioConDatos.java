@@ -1292,7 +1292,7 @@ public class TestFuncionalidadOperarioConDatos
 					Sistema.getInstance().getPromocionProds().size());
 		} catch (PromoInvalida_Exception e) // la documentacion no menciona a esta excepcion
 		{
-			Assert.fail("Ninguna excepciÃ³n deberia lanzarse");
+			Assert.fail("Ninguna excepción deberia lanzarse");
 		}
 	}
 
@@ -1307,7 +1307,7 @@ public class TestFuncionalidadOperarioConDatos
 					Sistema.getInstance().getPromocionProds().size());
 		} catch (PromoInvalida_Exception e) // la documentacion no menciona a esta excepcion
 		{
-			Assert.fail("Ninguna excepciÃ³n deberia lanzarse");
+			Assert.fail("Ninguna excepción deberia lanzarse");
 		}
 	}
 
