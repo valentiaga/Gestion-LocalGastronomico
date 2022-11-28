@@ -39,7 +39,6 @@ import negocio.Sistema;
 
 public class TestFuncionalidadOperarioConDatos
 {
-
 	private FuncionalidadOperario fO;
 	private Mozo mozo;
 
@@ -167,6 +166,14 @@ public class TestFuncionalidadOperarioConDatos
 		Assert.assertEquals("Nuevo estado establecido incorrectamente", Enumerados.estadoMozo.DEFRANCO,
 				this.mozo.getEstado());
 	}
+	
+	@Test
+	public void testEstableceEstadosMozosEstadoNull()
+	{
+		this.fO.estableceEstadosMozos(Enumerados.estadoMozo.DEFRANCO, this.mozo.getNyA());
+		Assert.assertEquals("Nuevo estado establecido incorrectamente", Enumerados.estadoMozo.DEFRANCO,
+				this.mozo.getEstado());
+	}
 
 	@Test
 	public void testEstableceEstadosMozosInexistente()
@@ -216,12 +223,66 @@ public class TestFuncionalidadOperarioConDatos
 	}
 
 	@Test
-	public void testModificaMozoExistente()
+	public void testModificaMozoEstadoAusente()
 	{
 		try
 		{
 			this.fO.modificaMozo(this.mozo, Enumerados.estadoMozo.AUSENTE, 19);
 			Assert.assertEquals("Nuevo estado registrado incorrectamente", Enumerados.estadoMozo.AUSENTE,
+					this.mozo.getEstado());
+			Assert.assertEquals("Nueva cantHijos registrada incorrectamente", 19, this.mozo.getCantHijos());
+		} catch (CantHijosInvalida_Exception e)
+		{
+			Assert.fail("No deberia lanzarse ninguna excepcion");
+		} catch (NyARepetido_Exception e)
+		{
+			Assert.fail("No deberia lanzarse ninguna excepcion");
+		}
+	}
+	
+	@Test
+	public void testModificaMozoEstadoActivo()
+	{
+		try
+		{
+			this.fO.modificaMozo(this.mozo, Enumerados.estadoMozo.ACTIVO, 19);
+			Assert.assertEquals("Nuevo estado registrado incorrectamente", Enumerados.estadoMozo.ACTIVO,
+					this.mozo.getEstado());
+			Assert.assertEquals("Nueva cantHijos registrada incorrectamente", 19, this.mozo.getCantHijos());
+		} catch (CantHijosInvalida_Exception e)
+		{
+			Assert.fail("No deberia lanzarse ninguna excepcion");
+		} catch (NyARepetido_Exception e)
+		{
+			Assert.fail("No deberia lanzarse ninguna excepcion");
+		}
+	}
+	
+	@Test
+	public void testModificaMozoEstadoDeFranco()
+	{
+		try
+		{
+			this.fO.modificaMozo(this.mozo, Enumerados.estadoMozo.DEFRANCO, 19);
+			Assert.assertEquals("Nuevo estado registrado incorrectamente", Enumerados.estadoMozo.DEFRANCO,
+					this.mozo.getEstado());
+			Assert.assertEquals("Nueva cantHijos registrada incorrectamente", 19, this.mozo.getCantHijos());
+		} catch (CantHijosInvalida_Exception e)
+		{
+			Assert.fail("No deberia lanzarse ninguna excepcion");
+		} catch (NyARepetido_Exception e)
+		{
+			Assert.fail("No deberia lanzarse ninguna excepcion");
+		}
+	}
+	
+	@Test
+	public void testModificaMozoEstadoNull()
+	{
+		try
+		{
+			this.fO.modificaMozo(this.mozo, null, 19);
+			Assert.assertEquals("Nuevo estado registrado incorrectamente", null,
 					this.mozo.getEstado());
 			Assert.assertEquals("Nueva cantHijos registrada incorrectamente", 19, this.mozo.getCantHijos());
 		} catch (CantHijosInvalida_Exception e)
@@ -287,21 +348,7 @@ public class TestFuncionalidadOperarioConDatos
 		}
 	}
 
-	@Test
-	public void testModificaMozoNyARepetido()
-	{
-		try
-		{
-			this.fO.modificaMozo(this.mozo, Enumerados.estadoMozo.AUSENTE, -3);
-			Assert.fail("Deberia lanzarse CantHijosInvalida_Exception");
-		} catch (CantHijosInvalida_Exception e)
-		{
 
-		} catch (NyARepetido_Exception e)
-		{
-			Assert.fail("Deberia lanzarse CantHijosInvalida_Exception");
-		}
-	}
 
 	@Test
 	public void testModificaProducto()
@@ -485,7 +532,7 @@ public class TestFuncionalidadOperarioConDatos
 	}
 
 	@Test
-	public void testModificaMesa()
+	public void testModificaMesaEstadoOcupada()
 	{
 		try
 		{
@@ -493,7 +540,49 @@ public class TestFuncionalidadOperarioConDatos
 			Assert.assertEquals("Nueva cantPax registrada incorrectamente", 8,
 					Sistema.getInstance().getMesas().get(0).getCantPax());
 			Assert.assertEquals("Nuevo estado registrado incorrectamente", Enumerados.estadoMesa.OCUPADA,
-					Sistema.getInstance().getMesas().get(1).getEstado());
+					Sistema.getInstance().getMesas().get(0).getEstado());
+
+		} catch (CantComensalesInvalida_Exception e)
+		{
+			Assert.fail("Ninguna excepcion deberia lanzarse");
+		} catch (NoExisteMesa_Exception e)
+		{
+			Assert.fail("Ninguna excepcion deberia lanzarse");
+		}
+
+	}
+	
+	@Test
+	public void testModificaMesaEstadoLibre()
+	{
+		try
+		{
+			this.fO.modificaMesa(0, 8, Enumerados.estadoMesa.LIBRE);
+			Assert.assertEquals("Nueva cantPax registrada incorrectamente", 8,
+					Sistema.getInstance().getMesas().get(0).getCantPax());
+			Assert.assertEquals("Nuevo estado registrado incorrectamente", Enumerados.estadoMesa.LIBRE,
+					Sistema.getInstance().getMesas().get(0).getEstado());
+
+		} catch (CantComensalesInvalida_Exception e)
+		{
+			Assert.fail("Ninguna excepcion deberia lanzarse");
+		} catch (NoExisteMesa_Exception e)
+		{
+			Assert.fail("Ninguna excepcion deberia lanzarse");
+		}
+
+	}
+	
+	@Test
+	public void testModificaMesaEstadoNull()
+	{
+		try
+		{
+			this.fO.modificaMesa(0, 8, null);
+			Assert.assertEquals("Nueva cantPax registrada incorrectamente", 8,
+					Sistema.getInstance().getMesas().get(0).getCantPax());
+			Assert.assertEquals("Nuevo estado registrado incorrectamente", null,
+					Sistema.getInstance().getMesas().get(0).getEstado());
 
 		} catch (CantComensalesInvalida_Exception e)
 		{
@@ -542,7 +631,6 @@ public class TestFuncionalidadOperarioConDatos
 	@Test
 	public void testAgregaPromocionProdLUNES()
 	{
-		int cant = Sistema.getInstance().getPromocionProds().size();
 		try
 		{
 			this.fO.agregaPromocionProd(0, Enumerados.diasDePromo.LUNES, true, true, 3, 0.5, true);
@@ -759,6 +847,36 @@ public class TestFuncionalidadOperarioConDatos
 			Assert.assertEquals("Producto registrado incorrectamente", 0,
 					Sistema.getInstance().getPromocionProds().get(2).getProducto().getIdProd());
 			Assert.assertEquals("DiaDePeromo registrado incorrectamente", Enumerados.diasDePromo.DOMINGO,
+					Sistema.getInstance().getPromocionProds().get(2).getDiasDePromo());
+			Assert.assertEquals("Aplica2x1 registrado incorrectamente", true,
+					Sistema.getInstance().getPromocionProds().get(2).isAplica2x1());
+			Assert.assertEquals("AplicaDtoPorCant registrado incorrectamente", true,
+					Sistema.getInstance().getPromocionProds().get(2).isAplicaDtoPorCant());
+			Assert.assertEquals("DtoPorCantidad_CantMinima registrada incorrectamente", 3,
+					Sistema.getInstance().getPromocionProds().get(2).getDtoPorCant_CantMinima());
+			Assert.assertEquals("DtoPorCantidad_PrecioUnitario registrada incorrectamente", 0.5,
+					Sistema.getInstance().getPromocionProds().get(2).getDtoPorCant_PrecioUnitario(), 0);
+			Assert.assertEquals("Activa registrado incorrectamente", true,
+					Sistema.getInstance().getPromocionProds().get(2).isActiva());
+
+		} catch (PromoInvalida_Exception e)
+		{
+			Assert.fail("No deberia lanzar ninguna excepcion");
+		} catch (NoExisteID_Exception e) // la documentacion no indica cuando se lanza esta excepcion
+		{
+			Assert.fail("No deberia lanzar ninguna excepcion");
+		}
+	}
+	
+	@Test
+	public void testAgregaPromocionProdDiaNull()
+	{
+		try
+		{
+			this.fO.agregaPromocionProd(0, null, true, true, 3, 0.5, true);
+			Assert.assertEquals("Producto registrado incorrectamente", 0,
+					Sistema.getInstance().getPromocionProds().get(2).getProducto().getIdProd());
+			Assert.assertEquals("DiaDePeromo registrado incorrectamente", null,
 					Sistema.getInstance().getPromocionProds().get(2).getDiasDePromo());
 			Assert.assertEquals("Aplica2x1 registrado incorrectamente", true,
 					Sistema.getInstance().getPromocionProds().get(2).isAplica2x1());
@@ -1101,6 +1219,33 @@ public class TestFuncionalidadOperarioConDatos
 			Assert.assertEquals("Activa registrado incorrectamente", true,
 					Sistema.getInstance().getPromocionProds().get(0).isActiva());
 			Assert.assertEquals("Nuevo DiaDePeromo registrado incorrectamente", Enumerados.diasDePromo.DOMINGO,
+					Sistema.getInstance().getPromocionProds().get(0).getDiasDePromo());
+			Assert.assertEquals("Nuevo Aplica2x1 registrado incorrectamente", true,
+					Sistema.getInstance().getPromocionProds().get(0).isAplica2x1());
+			Assert.assertEquals("Nuevo AplicaDtoPorCant registrado incorrectamente", true,
+					Sistema.getInstance().getPromocionProds().get(0).isAplicaDtoPorCant());
+			Assert.assertEquals("Nueva DtoPorCantidad_CantMinima registrada incorrectamente", 3,
+					Sistema.getInstance().getPromocionProds().get(0).getDtoPorCant_CantMinima());
+			Assert.assertEquals("Nuevo DtoPorCantidad_PrecioUnitario registrada incorrectamente", 0.2,
+					Sistema.getInstance().getPromocionProds().get(0).getDtoPorCant_PrecioUnitario(), 0);
+		} catch (PromoInvalida_Exception e) // la documentacion no menciona esta excepcion
+		{
+			Assert.fail("No deberia lanzar ninguna excepcion");
+		} catch (NoExisteID_Exception e) // la documentacion no menciona esta excepcion
+		{
+			Assert.fail("No deberia lanzar ninguna excepcion");
+		}
+	}
+	
+	@Test
+	public void testModificaPromocionProdDiaNull()
+	{
+		try
+		{
+			this.fO.modificaPromocionProd(0, true,null, true, true, 3, 0.2);
+			Assert.assertEquals("Activa registrado incorrectamente", true,
+					Sistema.getInstance().getPromocionProds().get(0).isActiva());
+			Assert.assertEquals("Nuevo DiaDePeromo registrado incorrectamente", null,
 					Sistema.getInstance().getPromocionProds().get(0).getDiasDePromo());
 			Assert.assertEquals("Nuevo Aplica2x1 registrado incorrectamente", true,
 					Sistema.getInstance().getPromocionProds().get(0).isAplica2x1());
@@ -1513,6 +1658,35 @@ public class TestFuncionalidadOperarioConDatos
 			Assert.fail("Ninguna excepcion deberia lanzarse");
 		}
 	}
+	
+	@Test
+	public void testAgregaPromocionTemporalDiaNull()
+	{
+		try
+		{
+			this.fO.agregaPromocionTemporal(true, null, "este tp no se termina mas",
+					Enumerados.formaDePago.CTADNI, 5, true, 1, 3);
+			Assert.assertEquals("Activa registrado incorrectamente", true,
+					Sistema.getInstance().getPromocionesTemp().get(2).isActiva());
+			Assert.assertEquals("DiasDePromo registrado incorrectamente", null,
+					Sistema.getInstance().getPromocionesTemp().get(2).getDiasDePromo());
+			Assert.assertEquals("Nombre registrado incorrectamente", "este tp no se termina mas",
+					Sistema.getInstance().getPromocionesTemp().get(2).getNombre());
+			Assert.assertEquals("FormaDePago registrado incorrectamente", Enumerados.formaDePago.CTADNI,
+					Sistema.getInstance().getPromocionesTemp().get(2).getFormaDePago());
+			Assert.assertEquals("PorcentajeDesc registrado incorrectamente", 5,
+					Sistema.getInstance().getPromocionesTemp().get(2).getPorcentajeDesc());
+			Assert.assertEquals("EsAcumulable registrado incorrectamente", true,
+					Sistema.getInstance().getPromocionesTemp().get(2).isEsAcumulable());
+			Assert.assertEquals("HoraInicio registrado incorrectamente", 1,
+					Sistema.getInstance().getPromocionesTemp().get(2).getHoraInicio());
+			Assert.assertEquals("HoraFinal registrado incorrectamente", 3,
+					Sistema.getInstance().getPromocionesTemp().get(2).getHoraFinal());
+		} catch (PromoRepetida_Exception e)
+		{
+			Assert.fail("Ninguna excepcion deberia lanzarse");
+		}
+	}
 
 	@Test
 	public void testAgregaPromocionTemporalActivaFalse()
@@ -1673,6 +1847,35 @@ public class TestFuncionalidadOperarioConDatos
 			Assert.assertEquals("Nombre registrado incorrectamente", "este tp no se termina mas",
 					Sistema.getInstance().getPromocionesTemp().get(2).getNombre());
 			Assert.assertEquals("FormaDePago registrado incorrectamente", Enumerados.formaDePago.TARJETA,
+					Sistema.getInstance().getPromocionesTemp().get(2).getFormaDePago());
+			Assert.assertEquals("PorcentajeDesc registrado incorrectamente", 5,
+					Sistema.getInstance().getPromocionesTemp().get(2).getPorcentajeDesc());
+			Assert.assertEquals("EsAcumulable registrado incorrectamente", true,
+					Sistema.getInstance().getPromocionesTemp().get(2).isEsAcumulable());
+			Assert.assertEquals("HoraInicio registrado incorrectamente", 1,
+					Sistema.getInstance().getPromocionesTemp().get(2).getHoraInicio());
+			Assert.assertEquals("HoraFinal registrado incorrectamente", 3,
+					Sistema.getInstance().getPromocionesTemp().get(2).getHoraFinal());
+		} catch (PromoRepetida_Exception e)
+		{
+			Assert.fail("Ninguna excepcion deberia lanzarse");
+		}
+	}
+	
+	@Test
+	public void testAgregaPromocionTemporalFormaDePagoNull()
+	{
+		try
+		{
+			this.fO.agregaPromocionTemporal(true, Enumerados.diasDePromo.DOMINGO, "este tp no se termina mas",
+					null, 5, true, 1, 3);
+			Assert.assertEquals("Activa registrado incorrectamente", true,
+					Sistema.getInstance().getPromocionesTemp().get(2).isActiva());
+			Assert.assertEquals("DiasDePromo registrado incorrectamente", Enumerados.diasDePromo.DOMINGO,
+					Sistema.getInstance().getPromocionesTemp().get(2).getDiasDePromo());
+			Assert.assertEquals("Nombre registrado incorrectamente", "este tp no se termina mas",
+					Sistema.getInstance().getPromocionesTemp().get(2).getNombre());
+			Assert.assertEquals("FormaDePago registrado incorrectamente",null,
 					Sistema.getInstance().getPromocionesTemp().get(2).getFormaDePago());
 			Assert.assertEquals("PorcentajeDesc registrado incorrectamente", 5,
 					Sistema.getInstance().getPromocionesTemp().get(2).getPorcentajeDesc());
@@ -2011,6 +2214,29 @@ public class TestFuncionalidadOperarioConDatos
 			Assert.fail("Ninguna excepcion deberia lanzarse");
 		}
 	}
+	
+	@Test
+	public void testModificaPromocionTemporalDiaNull()
+	{
+		try
+		{
+			PromocionTemporal promT = Sistema.getInstance().getPromocionesTemp().get(0);
+			this.fO.modificaPromocionTemporal(promT.getNombre(), null,
+					Enumerados.formaDePago.CTADNI, true, 5, true, 1, 3);
+			Assert.assertEquals("Activa registrado incorrectamente", true, promT.isActiva());
+			Assert.assertEquals("DiasDePromo registrado incorrectamente", null,
+					promT.getDiasDePromo());
+			Assert.assertEquals("FormaDePago registrado incorrectamente", Enumerados.formaDePago.CTADNI,
+					promT.getFormaDePago());
+			Assert.assertEquals("PorcentajeDesc registrado incorrectamente", 5, promT.getPorcentajeDesc());
+			Assert.assertEquals("EsAcumulable registrado incorrectamente", true, promT.isEsAcumulable());
+			Assert.assertEquals("HoraInicio registrado incorrectamente", 1, promT.getHoraInicio());
+			Assert.assertEquals("HoraFinal registrado incorrectamente", 3, promT.getHoraFinal());
+		} catch (PromoInvalida_Exception e)
+		{
+			Assert.fail("Ninguna excepcion deberia lanzarse");
+		}
+	}
 
 	@Test
 	public void testModificaPromocionTemporalActivaFalse()
@@ -2093,6 +2319,29 @@ public class TestFuncionalidadOperarioConDatos
 			Assert.assertEquals("DiasDePromo registrado incorrectamente", Enumerados.diasDePromo.DOMINGO,
 					promT.getDiasDePromo());
 			Assert.assertEquals("FormaDePago registrado incorrectamente", Enumerados.formaDePago.TARJETA,
+					promT.getFormaDePago());
+			Assert.assertEquals("PorcentajeDesc registrado incorrectamente", 5, promT.getPorcentajeDesc());
+			Assert.assertEquals("EsAcumulable registrado incorrectamente", true, promT.isEsAcumulable());
+			Assert.assertEquals("HoraInicio registrado incorrectamente", 1, promT.getHoraInicio());
+			Assert.assertEquals("HoraFinal registrado incorrectamente", 3, promT.getHoraFinal());
+		} catch (PromoInvalida_Exception e)
+		{
+			Assert.fail("Ninguna excepcion deberia lanzarse");
+		}
+	}
+	
+	@Test
+	public void testModificaPromocionTemporalFormaDePagoNull()
+	{
+		try
+		{
+			PromocionTemporal promT = Sistema.getInstance().getPromocionesTemp().get(0);
+			this.fO.modificaPromocionTemporal(promT.getNombre(), Enumerados.diasDePromo.DOMINGO,
+					null, true, 5, true, 1, 3);
+			Assert.assertEquals("Activa registrado incorrectamente", true, promT.isActiva());
+			Assert.assertEquals("DiasDePromo registrado incorrectamente", Enumerados.diasDePromo.DOMINGO,
+					promT.getDiasDePromo());
+			Assert.assertEquals("FormaDePago registrado incorrectamente", null,
 					promT.getFormaDePago());
 			Assert.assertEquals("PorcentajeDesc registrado incorrectamente", 5, promT.getPorcentajeDesc());
 			Assert.assertEquals("EsAcumulable registrado incorrectamente", true, promT.isEsAcumulable());
@@ -2306,6 +2555,7 @@ public class TestFuncionalidadOperarioConDatos
 			Assert.fail("No deberia lanzarse ninguna excepcion");
 		}
 	}
+	
 
 	@Test
 	public void testAbreComandaMesaLIBRE()

@@ -51,7 +51,8 @@ public class TestFuncionalidadAdminSinDatos
 		Sistema.getInstance().getProductos().clear();
 		Sistema.getInstance().getComandas().clear();
 		Sistema.getInstance().getMesas().clear();
-		// De igual manera necesito hacer esto porque siguienteIdProd y SiguienteNroMesa son static
+		// De igual manera necesito hacer esto porque siguienteIdProd y SiguienteNroMesa
+		// son static
 		Producto.setSiguienteIdProd(0);
 		Mesa.setSiguienteNroMesa(0);
 	}
@@ -136,6 +137,27 @@ public class TestFuncionalidadAdminSinDatos
 	}
 
 	@Test
+	public void testAgregaMozoNuevoEstadoNull()
+	{
+		int cant = Sistema.getInstance().getMozos().size();
+		try
+		{
+			this.fA.agregaMozo("Rocio", new GregorianCalendar(2000, 11, 15), 2, null);
+		} catch (EdadInvalida_Exception e)
+		{
+			Assert.fail("No deberia lanzarse ninguna excepcion");
+		} catch (CantHijosInvalida_Exception e)
+		{
+			Assert.fail("No deberia lanzarse ninguna excepcion");
+		} catch (NyARepetido_Exception e)
+		{
+			Assert.fail("No deberia lanzarse ninguna excepcion");
+		}
+
+		Assert.assertEquals("Mozo registrado incorrectamente", cant + 1, Sistema.getInstance().getMozos().size());
+	}
+
+	@Test
 	public void testAgregaMozoEdadInvalida()
 	{
 		try
@@ -200,7 +222,7 @@ public class TestFuncionalidadAdminSinDatos
 	}
 
 	@Test
-	public void testRegistraOperarioNuevo()
+	public void testRegistraOperarioNuevoACTIVO()
 	{
 		int cant = Sistema.getInstance().getOperariosRegistrados().size();
 		try
@@ -212,7 +234,44 @@ public class TestFuncionalidadAdminSinDatos
 		} catch (UserNameRepetido_Exception e)
 		{
 			Assert.fail("No deberia lanzarse ninguna excepcion");
-		} catch (ContrasenaIncorrecta_Exception e) //el contrato nunca menciona cuando se lanza esta excepcion
+		} catch (ContrasenaIncorrecta_Exception e) // el contrato nunca menciona cuando se lanza esta excepcion
+		{
+			Assert.fail("No deberia lanzarse ninguna excepcion");
+		}
+	}
+
+	@Test
+	public void testRegistraOperarioNuevoINACTIVO()
+	{
+		int cant = Sistema.getInstance().getOperariosRegistrados().size();
+		try
+		{
+			this.fA.registraOperario("Carola", "caritenss.gl", "perfumew0rlddominati1on",
+					Enumerados.estadoOperario.INACTIVO);
+			Assert.assertEquals("Operario registrado incorrectamente", cant + 1,
+					Sistema.getInstance().getOperariosRegistrados().size());
+		} catch (UserNameRepetido_Exception e)
+		{
+			Assert.fail("No deberia lanzarse ninguna excepcion");
+		} catch (ContrasenaIncorrecta_Exception e) // el contrato nunca menciona cuando se lanza esta excepcion
+		{
+			Assert.fail("No deberia lanzarse ninguna excepcion");
+		}
+	}
+
+	@Test
+	public void testRegistraOperarioNuevoEstadoNull()
+	{
+		int cant = Sistema.getInstance().getOperariosRegistrados().size();
+		try
+		{
+			this.fA.registraOperario("Carola", "caritenss.gl", "perfumew0rlddominati1on", null);
+			Assert.assertEquals("Operario registrado incorrectamente", cant + 1,
+					Sistema.getInstance().getOperariosRegistrados().size());
+		} catch (UserNameRepetido_Exception e)
+		{
+			Assert.fail("No deberia lanzarse ninguna excepcion");
+		} catch (ContrasenaIncorrecta_Exception e) // el contrato nunca menciona cuando se lanza esta excepcion
 		{
 			Assert.fail("No deberia lanzarse ninguna excepcion");
 		}
