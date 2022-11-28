@@ -353,6 +353,25 @@ public class TestFuncionalidadAdminConDatos
 			Assert.fail("No deberia lanzarse ninguna excepcion"); 
 		}
 	}
+	
+	@Test
+	public void testRegistraOperarioNuevoEstadoNull()
+	{
+		int cant = Sistema.getInstance().getOperariosRegistrados().size();
+		try
+		{
+			this.fA.registraOperario("Carola", "caritenss.gl", "perfumew0rlddominati1on",
+					null);
+			Assert.assertEquals("Operario registrado incorrectamente", cant + 1,
+					Sistema.getInstance().getOperariosRegistrados().size());
+		} catch (UserNameRepetido_Exception e)
+		{
+			Assert.fail("No deberia lanzarse ninguna excepcion");
+		} catch (ContrasenaIncorrecta_Exception e) //el contrato nunca menciona cuando se lanza esta excepcion
+		{
+			Assert.fail("No deberia lanzarse ninguna excepcion"); 
+		}
+	}
 
 	@Test
 	public void testRegistraOperarioExistente()
