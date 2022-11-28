@@ -110,8 +110,13 @@ public class TestFuncionalidadAdminConDatos
 			String nombre = "Aureliano Vega Imbalde";
 			int cantHijos = 2;
 			Enumerados.estadoMozo estado = Enumerados.estadoMozo.ACTIVO;
-			this.fA.agregaMozo(nombre, new GregorianCalendar(2000, 11, 15),cantHijos,estado);
+			GregorianCalendar fecha = new GregorianCalendar(2000, 11, 15);
+			this.fA.agregaMozo(nombre,fecha,cantHijos,estado);
 			Assert.assertEquals("Mozo registrado incorrectamente", cant + 1, Sistema.getInstance().getMozos().size());
+			Mozo mozo = Sistema.getInstance().getMozos().get(nombre);
+			Assert.assertEquals("NyA registrado incorrectamente",nombre,mozo.getNyA());
+			Assert.assertEquals("CantHijos registrada incorrectamente",cantHijos,mozo.getCantHijos());
+			Assert.assertEquals("Estado registrado incorrectamente",estado,mozo.getEstado());
 		} catch (EdadInvalida_Exception e)
 		{
 			Assert.fail("No deberia lanzarse ninguna excepcion");
@@ -133,8 +138,13 @@ public class TestFuncionalidadAdminConDatos
 			String nombre = "Aureliano Vega Imbalde";
 			int cantHijos = 2;
 			Enumerados.estadoMozo estado = Enumerados.estadoMozo.AUSENTE;
-			this.fA.agregaMozo(nombre, new GregorianCalendar(2000, 11, 15),cantHijos,estado);
-			Assert.assertEquals("Mozo registrado incorrectamente", cant + 1, Sistema.getInstance().getMozos().size());	
+			GregorianCalendar fecha = new GregorianCalendar(2000, 11, 15);
+			this.fA.agregaMozo(nombre,fecha,cantHijos,estado);
+			Assert.assertEquals("Mozo registrado incorrectamente", cant + 1, Sistema.getInstance().getMozos().size());
+			Mozo mozo = Sistema.getInstance().getMozos().get(nombre);
+			Assert.assertEquals("NyA registrado incorrectamente",nombre,mozo.getNyA());
+			Assert.assertEquals("CantHijos registrada incorrectamente",cantHijos,mozo.getCantHijos());
+			Assert.assertEquals("Estado registrado incorrectamente",estado,mozo.getEstado());
 		} catch (EdadInvalida_Exception e)
 		{
 			Assert.fail("No deberia lanzarse ninguna excepcion");
@@ -156,8 +166,13 @@ public class TestFuncionalidadAdminConDatos
 			String nombre = "Aureliano Vega Imbalde";
 			int cantHijos = 2;
 			Enumerados.estadoMozo estado = Enumerados.estadoMozo.DEFRANCO;
-			this.fA.agregaMozo(nombre, new GregorianCalendar(2000, 11, 15),cantHijos,estado);
+			GregorianCalendar fecha = new GregorianCalendar(2000, 11, 15);
+			this.fA.agregaMozo(nombre,fecha,cantHijos,estado);
 			Assert.assertEquals("Mozo registrado incorrectamente", cant + 1, Sistema.getInstance().getMozos().size());
+			Mozo mozo = Sistema.getInstance().getMozos().get(nombre);
+			Assert.assertEquals("NyA registrado incorrectamente",nombre,mozo.getNyA());
+			Assert.assertEquals("CantHijos registrada incorrectamente",cantHijos,mozo.getCantHijos());
+			Assert.assertEquals("Estado registrado incorrectamente",estado,mozo.getEstado());
 		} catch (EdadInvalida_Exception e)
 		{
 			Assert.fail("No deberia lanzarse ninguna excepcion");
@@ -180,8 +195,13 @@ public class TestFuncionalidadAdminConDatos
 			String nombre = "Aureliano Vega Imbalde";
 			int cantHijos = 2;
 			Enumerados.estadoMozo estado = null;
-			this.fA.agregaMozo(nombre, new GregorianCalendar(2000, 11, 15),cantHijos,estado);
+			GregorianCalendar fecha = new GregorianCalendar(2000, 11, 15);
+			this.fA.agregaMozo(nombre,fecha,cantHijos,estado);
 			Assert.assertEquals("Mozo registrado incorrectamente", cant + 1, Sistema.getInstance().getMozos().size());
+			Mozo mozo = Sistema.getInstance().getMozos().get(nombre);
+			Assert.assertEquals("NyA registrado incorrectamente",nombre,mozo.getNyA());
+			Assert.assertEquals("CantHijos registrada incorrectamente",cantHijos,mozo.getCantHijos());
+			Assert.assertEquals("Estado registrado incorrectamente",estado,mozo.getEstado());
 		} catch (EdadInvalida_Exception e)
 		{
 			Assert.fail("No deberia lanzarse ninguna excepcion");
