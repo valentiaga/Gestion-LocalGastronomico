@@ -37,7 +37,7 @@ public class IntegracionEscenario3
 		 * 
 		 * 
 		 * 
-		 * CON PRODUCTO CON PROMOCIÃ“N
+		 * CON PRODUCTO CON PROMOCIÓN
 		 * 
 		 * 
 		 */
@@ -66,7 +66,7 @@ public class IntegracionEscenario3
 		 * 
 		 * 
 		 * 
-		 * CON PRODUCTO SIN PROMOCIÃ“N
+		 * CON PRODUCTO SIN PROMOCIÓN
 		 * 
 		 * 
 		 */
@@ -101,7 +101,7 @@ public class IntegracionEscenario3
 			this.fO.cierraMesa(this.MesaConPromProd.getNroMesa(), Enumerados.formaDePago.CTADNI);
 		} catch (MesaNoOcupadaException e)
 		{
-			Assert.fail("No deberÃ­a lanzar ninguna excepciÃ³n.");
+			Assert.fail("No debería lanzar ninguna excepción.");
 		}
 	}
 
@@ -113,7 +113,7 @@ public class IntegracionEscenario3
 			this.fO.cierraMesa(this.MesaSinPromProd.getNroMesa(), Enumerados.formaDePago.EFECTIVO);
 		} catch (MesaNoOcupadaException e)
 		{
-			Assert.fail("No deberÃ­a lanzar ninguna excepciÃ³n.");
+			Assert.fail("No debería lanzar ninguna excepción.");
 		}
 	}
 

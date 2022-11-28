@@ -16,7 +16,6 @@ import negocio.Sistema;
 
 public class CoberturaSistema
 {
-
 	Operario op;
 	Operario adm; // tengo que poner operario en vez de administrador porque le pusieron un
 					// constructor vacio al admin!!!!
