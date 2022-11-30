@@ -28,7 +28,7 @@ public class TestPersistencia
 {
 
 	private IPersistencia persistencia = new PersistenciaXML();
-	private String nombre = "Archivo.xml";
+	private String nombre = "testPersistencia.xml";
 	private Administrador adm;
 	private Comanda comanda;
 	private Mesa mesa;
@@ -63,21 +63,6 @@ public class TestPersistencia
 
 	public void vaciarSistema()
 	{
-		// necesito hacer esto porque Sistema es Singleton entonces acumula en las
-		// colecciones a pesar de usar Before en vez de BeforeClass
-		Sistema.getInstance().getMozos().clear();
-		Sistema.getInstance().getOperariosRegistrados().clear();
-		Sistema.getInstance().getProductos().clear();
-		Sistema.getInstance().getComandas().clear();
-		Sistema.getInstance().getMesas().clear();
-		Sistema.getInstance().getPromocionProds().clear();
-		Sistema.getInstance().getPromocionesTemp().clear();
-		// De igual manera necesito hacer esto porque siguienteIdProd y SiguienteNroMesa
-		// son static
-
-		Producto.setSiguienteIdProd(0);
-		Mesa.setSiguienteNroMesa(0);
-		PromocionProd.setSigIdProm(0);
 
 	}
 
