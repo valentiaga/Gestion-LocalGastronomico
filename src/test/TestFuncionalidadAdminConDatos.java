@@ -651,7 +651,6 @@ public class TestFuncionalidadAdminConDatos
 		} catch (MesaOcupada_Exception e)
 		{
 			
-			e.printStackTrace();
 		} catch (NoExisteMesa_Exception e)
 		{
 			Assert.fail("MesaOcupada_Exception deberia lanzarse");
