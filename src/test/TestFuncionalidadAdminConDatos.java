@@ -235,7 +235,7 @@ public class TestFuncionalidadAdminConDatos
 	}
 	
 	@Test
-	public void testAgregaMozoFechaNull()
+	public void testAgregaMozoFechaNull() //el contrato nunca menciona la posibilidad o imposibilidad de pasar un valor null en la fecha.
 	{
 		int cant = Sistema.getInstance().getMozos().size();
 		try

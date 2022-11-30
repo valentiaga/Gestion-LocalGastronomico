@@ -66,6 +66,7 @@ public class TestComanda
 		Assert.assertEquals("Nueva fecha registrada incorrectamente",gc,com.getFecha());
 	}
 	
+	
 	@Test
 	public void testSetPedidos()
 	{

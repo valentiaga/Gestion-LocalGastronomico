@@ -62,6 +62,8 @@ public class TestMozo
 		Assert.assertEquals("Nueva fecha registrada incorrectamente",gc,mozo.getFecha());
 	}
 	
+
+	
 	@Test
 	public void testSetMesasAtendidas()
 	{

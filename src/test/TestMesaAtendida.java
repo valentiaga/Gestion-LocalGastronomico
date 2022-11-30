@@ -99,6 +99,7 @@ public class TestMesaAtendida
 		Assert.assertEquals("Nueva fecha registrada incorrectamente",gc, mA.getFecha());
 	}
 	
+	
 	@Test
 	public void testSetFormaDePago()
 	{
