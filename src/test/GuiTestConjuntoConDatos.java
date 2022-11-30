@@ -60,6 +60,7 @@ public class GuiTestConjuntoConDatos
 	/*
 	 * Casos a considerar:
 	 * modifica ok
+	 * id invalido
 	 * precio costo negativo
 	 * precio venta negativo
 	 * 
@@ -95,6 +96,39 @@ public class GuiTestConjuntoConDatos
 		
 		//verifico los resultados
 		Assert.assertEquals("Mensaje incorrecto, debería decir 'Datos actualizados.'","Datos actualizados.",fo.getMensaje());
+	
+	}
+	
+	@Test
+	public void testidInvalido()
+	{
+		robot.delay(TestUtils.getDelay());
+		//obtengo las referencias a los componentes necesarios
+		JTextField idProd = (JTextField) TestUtils.getComponentForName(controlador.getVentana(), "jtidProducto");
+		JTextField nombre = (JTextField) TestUtils.getComponentForName(controlador.getVentana(), "jtNombreProducto");
+		JTextField precioCosto = (JTextField) TestUtils.getComponentForName(controlador.getVentana(), "jtCostoProducto");
+		JTextField precioVenta = (JTextField) TestUtils.getComponentForName(controlador.getVentana(), "jtPrecioVentaProducto");
+		JTextField stock = (JTextField) TestUtils.getComponentForName(controlador.getVentana(), "jtStockProducto");
+			
+		//lleno los JTextField
+		TestUtils.clickComponent(idProd, robot);
+		TestUtils.borraJTextField(idProd, robot);
+		TestUtils.tipeaTexto("15", robot);
+		TestUtils.clickComponent(nombre, robot);
+		TestUtils.borraJTextField(nombre, robot);
+		TestUtils.tipeaTexto("Papas", robot);
+		TestUtils.clickComponent(precioCosto, robot);
+		TestUtils.borraJTextField(precioCosto, robot);
+		TestUtils.tipeaTexto("15.0", robot);
+		TestUtils.clickComponent(precioVenta, robot);
+		TestUtils.borraJTextField(precioVenta, robot);
+		TestUtils.tipeaTexto("25.0", robot);
+		TestUtils.clickComponent(stock, robot);
+		TestUtils.borraJTextField(stock, robot);
+		TestUtils.tipeaTexto("12", robot);
+		
+		//verifico los resultados
+		Assert.assertEquals("Mensaje incorrecto, debería decir 'No existe el producto que desea modificar. Ingrese un ID valido.'","No existe el producto que desea modificar. Ingrese un ID valido.",fo.getMensaje());
 	
 	}
 
