@@ -186,7 +186,6 @@ public class TestPersistencia
 	public void testComandaConDatos()
 	{
 		this.comanda.setEstado(Enumerados.estadoComanda.CERRADO);
-		this.comanda.setFecha(new GregorianCalendar(2001,10,5));
 		this.comanda.setMesa(this.mesa);
 		try
 		{
@@ -265,7 +264,6 @@ public class TestPersistencia
 	@Test
 	public void testMesaAtendidaConDatos()
 	{
-		this.mesaAt.setFecha(new GregorianCalendar(3243,78,9));
 		this.mesaAt.setFormaDePago(Enumerados.formaDePago.EFECTIVO);
 		this.mesaAt.setMesa(this.mesa);
 		this.mesaAt.setTotal(7895.78);
@@ -343,7 +341,6 @@ public class TestPersistencia
 	{
 		this.mozo.setCantHijos(0);
 		this.mozo.setEstado(Enumerados.estadoMozo.DEFRANCO);
-		this.mozo.setFecha(new GregorianCalendar(1990,8,6));
 		this.mozo.setNyA("Jose");
 		this.mozo.setSueldo(56000.);
 		try
