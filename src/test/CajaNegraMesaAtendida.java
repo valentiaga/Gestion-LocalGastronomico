@@ -13,7 +13,7 @@ import modelo.Pedido;
 import modelo.PromocionProd;
 import modelo.PromocionTemporal;
 
-public class TestMesaAtendida
+public class CajaNegraMesaAtendida
 {
 
 	@Test

@@ -5,7 +5,7 @@ import org.junit.Test;
 
 import modelo.PromocionTemporal;
 
-public class TestPromocionTemporal
+public class CajaNegraPromocionTemporal
 {
 
 	// los metodos y sus variantes testeados en la clase padre no se vuelven a

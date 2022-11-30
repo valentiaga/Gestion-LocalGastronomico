@@ -23,7 +23,14 @@ import modelo.PromocionProd;
 import negocio.FuncionalidadOperario;
 import negocio.Sistema;
 
-public class CoberturaFuncionalidadOperario
+/**
+ * 
+ * ACA SE CUBREN LAS LINEAS DE FuncionalidadOperario QUE NO FUERON CUBIERTAS EN
+ * CajaNegraFuncionalidadOperario
+ *
+ */
+
+public class CajaBlancaFuncionalidadOperario
 {
 
 	FuncionalidadOperario fO;

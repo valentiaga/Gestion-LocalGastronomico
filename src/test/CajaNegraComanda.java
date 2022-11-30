@@ -11,7 +11,7 @@ import modelo.Enumerados.estadoComanda;
 import modelo.Mesa;
 import modelo.Pedido;
 
-public class TestComanda
+public class CajaNegraComanda
 {
 
 	@Test

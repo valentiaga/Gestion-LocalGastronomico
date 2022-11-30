@@ -37,7 +37,7 @@ import negocio.FuncionalidadAdmin;
 import negocio.FuncionalidadOperario;
 import negocio.Sistema;
 
-public class TestFuncionalidadOperarioConDatos
+public class CajaNegraFuncionalidadOperarioConDatos
 {
 	private FuncionalidadOperario fO;
 	private Mozo mozo;
@@ -1437,7 +1437,7 @@ public class TestFuncionalidadOperarioConDatos
 					Sistema.getInstance().getPromocionProds().size());
 		} catch (PromoInvalida_Exception e) // la documentacion no menciona a esta excepcion
 		{
-			Assert.fail("Ninguna excepción deberia lanzarse");
+			Assert.fail("Ninguna excepciï¿½n deberia lanzarse");
 		}
 	}
 
@@ -1452,7 +1452,7 @@ public class TestFuncionalidadOperarioConDatos
 					Sistema.getInstance().getPromocionProds().size());
 		} catch (PromoInvalida_Exception e) // la documentacion no menciona a esta excepcion
 		{
-			Assert.fail("Ninguna excepción deberia lanzarse");
+			Assert.fail("Ninguna excepciï¿½n deberia lanzarse");
 		}
 	}
 

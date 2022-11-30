@@ -8,7 +8,7 @@ import modelo.Enumerados;
 import modelo.Mesa;
 import modelo.Mozo;
 
-public class TestMesa
+public class CajaNegraMesa
 {
 
 	@Test

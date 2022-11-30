@@ -14,7 +14,14 @@ import modelo.Administrador;
 import modelo.Operario;
 import negocio.Sistema;
 
-public class CoberturaSistema
+/**
+ * 
+ * ACA SE CUBREN LAS LINEAS DE Sistema QUE NO FUERON CUBIERTAS EN
+ * CajaNegraSistema
+ *
+ */
+
+public class CajaBlancaSistema
 {
 	Operario op;
 	Operario adm; // tengo que poner operario en vez de administrador porque le pusieron un

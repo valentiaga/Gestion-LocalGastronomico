@@ -6,14 +6,14 @@ import org.junit.runners.Suite.SuiteClasses;
 
 @RunWith(Suite.class)
 @SuiteClasses(
-{ CoberturaFuncionalidadAdmin.class, CoberturaFuncionalidadOperario.class, CoberturaSistema.class,
-		GuiTestConjuntoConDatos.class, GuiTestEnabledDisanabled.class, IntegracionEscenario1.class,
-		IntegracionEscenario2.class, IntegracionEscenario3.class, TestAdministrador.class, TestComanda.class,
-		TestFuncionalidadAdminConDatos.class, TestFuncionalidadAdminSinDatos.class,
-		TestFuncionalidadOperarioConDatos.class, TestFuncionalidadOperarioNingunMozoActivo.class, TestMesa.class,
-		TestMesaAtendida.class, TestMozo.class, TestOperario.class, TestPedido.class, TestPersistencia.class,
-		TestProducto.class, TestPromocion.class, TestPromocionProd.class, TestPromocionTemporal.class,
-		TestSistema.class, TestSueldo.class })
+{ CajaBlancaFuncionalidadAdmin.class, CajaBlancaFuncionalidadOperario.class, CajaBlancaSistema.class,
+		CajaNegraAdministrador.class, CajaNegraComanda.class, CajaNegraFuncionalidadAdminConDatos.class,
+		CajaNegraFuncionalidadAdminSinDatos.class, CajaNegraFuncionalidadOperarioConDatos.class,
+		CajaNegraFuncionalidadOperarioNingunMozoActivo.class, CajaNegraMesa.class, CajaNegraMesaAtendida.class,
+		CajaNegraMozo.class, CajaNegraOperario.class, CajaNegraPedido.class, CajaNegraProducto.class,
+		CajaNegraPromocion.class, CajaNegraPromocionProd.class, CajaNegraPromocionTemporal.class,
+		CajaNegraSistema.class, CajaNegraSueldo.class, GuiTestConjuntoConDatos.class, GuiTestEnabledDisanabled.class,
+		IntegracionEscenario1.class, IntegracionEscenario2.class, IntegracionEscenario3.class, TestPersistencia.class })
 public class AllTests
 {
 

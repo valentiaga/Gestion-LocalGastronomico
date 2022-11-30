@@ -6,7 +6,7 @@ import org.junit.Test;
 import modelo.Pedido;
 import modelo.Producto;
 
-public class TestPedido
+public class CajaNegraPedido
 {
 
 	@Test

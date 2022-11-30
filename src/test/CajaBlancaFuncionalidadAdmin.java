@@ -12,7 +12,14 @@ import modelo.Operario;
 import negocio.FuncionalidadAdmin;
 import negocio.Sistema;
 
-public class CoberturaFuncionalidadAdmin
+/**
+ * 
+ * ACA SE CUBREN LAS LINEAS DE FuncionalidadAdmin QUE NO FUERON CUBIERTAS EN
+ * CajaNegraFuncionalidadAdmin
+ *
+ */
+
+public class CajaBlancaFuncionalidadAdmin
 {
 	FuncionalidadAdmin fA;
 
@@ -45,7 +52,5 @@ public class CoberturaFuncionalidadAdmin
 			Assert.fail("Deberia lanzarse UserNameRepetido_Exception");
 		}
 	}
-	
-	
 
 }

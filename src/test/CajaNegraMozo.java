@@ -10,7 +10,7 @@ import modelo.Enumerados;
 import modelo.MesaAtendida;
 import modelo.Mozo;
 
-public class TestMozo
+public class CajaNegraMozo
 {
 
 	@Test

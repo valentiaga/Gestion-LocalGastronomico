@@ -11,7 +11,7 @@ import excepciones.UserNameIncorrecto_Exception;
 import modelo.Operario;
 import negocio.Sistema;
 
-public class TestSistema
+public class CajaNegraSistema
 {
 
 	@Before

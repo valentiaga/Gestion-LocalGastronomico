@@ -5,7 +5,7 @@ import org.junit.Test;
 
 import modelo.Operario;
 
-public class TestOperario
+public class CajaNegraOperario
 {
 
 	@Test
