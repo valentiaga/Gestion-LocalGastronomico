@@ -97,10 +97,10 @@ public class Ventana extends JFrame {
 		setContentPane(contentPane);
 
 		contentPane.setLayout(new CardLayout(0, 0));
+		contentPane.add(vistaInicial, "vistaInicial");
 		contentPane.add(vistaOp, "vistaOp");
 		contentPane.add(vistaAdmin, "vistaAdmin");
 		contentPane.add(vistaGestionMesaOp, "vistaMesaOp");
-		contentPane.add(vistaInicial, "vistaInicial");
 		contentPane.add(vistaGestionMozoAdmin, "vistaGestionMozoAdmin");
 		contentPane.add(vistaGestionMozoOp, "vistaGestionMozoOp");
 		contentPane.add(vistaGestionMesaAdmin, "vistaMesaAdmin");
